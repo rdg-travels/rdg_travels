@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flight Booking</title>
+    <link rel="stylesheet" href="./css/flight.css" />
+    <link
+      href="https://db.onlinewebfonts.com/a/y7WeC3fQys9eM03ag2DoL0JVvA55P6RR32USY1mQbvDfS36RtGsca2IR2Oy4U3uy"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script
+      src="https://kit.fontawesome.com/24f84abb34.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <!-- header section -->
+
+    <header class="nav-bar">
+      <a href="./index.html"><img src="/images/Logo.png" alt="RDG Logo" /></a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="flight.html">book flight</a></li>
+          <li><a href="study-abroad.html">study abroad</a></li>
+          <li><a href="hotel-service.html">reserve hotel</a></li>
+          <li><a href="destinations.html">destinations</a></li>
+          <li class="last-nav-link">
+            <a href="https://wa.me/+2348034099082" target="_blank">
+              <i class="fa-brands fa-whatsapp"></i> +2348034099082</a
+            >
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- hero section -->
+
+    <section class="hero-section">
+      <h1 id="welcome-text">flight bookings</h1>
+
+      <div class="book-flight-section">
+        <form class="flight-form" action="">
+          <div class="flight-details-heading">
+            <h2><i class="fa-solid fa-plane"></i> where are you flying?</h2>
+          </div>
+          <div class="form-group">
+            <label for="departure">Flying From</label>
+            <input
+              type="text"
+              id="departure"
+              name="flying from"
+              placeholder="Istanbul, turkey"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="arrival">Flying To</label>
+            <input
+              type="text"
+              id="arrival"
+              name="flying to"
+              placeholder="Istanbul, turkey"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="departure-date">Leaving On</label>
+            <input
+              type="date"
+              id="departure-date"
+              name="Leaving On"
+              placeholder="Select a date"
+              required
+            />
+            <script>
+              document.getElementById("departure-date").min = new Date()
+                .toISOString()
+                .split("T")[0];
+            </script>
+          </div>
+          <div class="form-group">
+            <label for="return-date">Returning On</label>
+            <input type="date" id="return-date" name="Returning On" required />
+            <script>
+              document.getElementById("return-date").min = new Date()
+                .toISOString()
+                .split("T")[0];
+            </script>
+          </div>
+          <div class="form-group">
+            <label for="full-name">Full Name</label>
+            <input
+              type="text"
+              id="full-name"
+              name="Full Name"
+              placeholder="John Doe"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input
+              type="email"
+              id="email"
+              name="Email Address"
+              placeholder="Johndoe@example.com"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input
+              type="tel"
+              id="phone"
+              name="phone number"
+              placeholder="+234 566 566 7789"
+              required
+            />
+            <!-- pattern="[+]{1}[0-9]{1,}" -->
+          </div>
+          <div class="form-group">
+            <label for="quantity">No. of Passengers</label>
+            <select id="quantity" name="no of passengers" required>
+              <script>
+                for (let i = 1; i <= 100; i++) {
+                  document.write(`<option value="${i}">${i}</option>`);
+                }
+              </script>
+            </select>
+          </div>
+          <div class="book-flight-button-container">
+            <button id="book-flight-button" type="submit">book flight</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- what set us section -->
+    <section class="what-set-us-section">
+      <div class="what-set-us-section-heading">
+        <h2>What Sets RDG Travels Apart?</h2>
+      </div>
+      <div class="what-set-us-container">
+        <div class="answer-box">
+          <div class="answer-box-icon">
+            <img src="./images/icons8_adventures.svg" alt="adventures" />
+          </div>
+          <h3>Personalized Adventures</h3>
+          <p>
+            At ROUND D GLOBE TRAVELS AND TOURS, we turn your dream vacation into
+            a masterpiece. Let us craft the perfect journey, tailored precisely
+            to your desires and needs.
+          </p>
+        </div>
+        <div class="answer-box">
+          <div class="answer-box-icon">
+            <img src="./images/mdi_flight (1).svg" alt="airplane icon" />
+          </div>
+          <h3>Corporate Travel Solutions</h3>
+          <p>
+            Elevate your business with our tailored corporate travel services.
+            We understand the unique requirements of the corporate world,
+            providing seamless, cost-effective, and efficient solutions for your
+            company's journeys.
+          </p>
+        </div>
+        <div class="what-set-us-container-img">
+          <img src="./images/female-pax.png" alt="Female passenger image" />
+        </div>
+        <div class="answer-box">
+          <div class="answer-box-icon">
+            <img src="./images/vaadin_medal.svg" alt="medal" />
+          </div>
+          <h3>Unparalleled Expertise</h3>
+          <p>
+            Our team of travel experts has their fingers on the pulse of the
+            industry. We stay updated with the latest trends, hidden gems, and
+            the know-how to make your trip extraordinary.
+          </p>
+        </div>
+        <div class="answer-box">
+          <div class="answer-box-icon">
+            <img src="./images/ri_global-fill.svg" alt="global network" />
+          </div>
+          <h3>Global Network</h3>
+          <p>
+            With a vast network of partners and affiliates worldwide, we ensure
+            you have the best accommodations, flights, and experiences at your
+            fingertips.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- services section -->
+    <section class="services">
+      <header class="services-header">
+        <h1>Our Services</h1>
+        <p>Taking Your Travel Experience To The Next Level</p>
+      </header>
+
+      <section class="services-container">
+        <div class="service-box">
+          <h3>Individual Travel</h3>
+          <p>
+            From romantic getaways to family adventures, we design bespoke trips
+            that turn your dreams into reality.
+          </p>
+          <img src="/images/service1.png" alt="Service 1 Image" />
+        </div>
+
+        <div class="service-box">
+          <h3>Corporate Travel</h3>
+          <p>
+            Boost your business with our comprehensive corporate travel
+            management services, ensuring smooth, hassle-free journeys for your
+            team.
+          </p>
+          <img src="/images/service2.png" alt="Service 2 Image" />
+        </div>
+
+        <div class="service-box">
+          <h3>Group Travel</h3>
+          <p>
+            Traveling with a group? We've got you covered with seamless planning
+            and coordination.
+          </p>
+          <img src="/images/service3.png" alt="Service 3 Image" />
+        </div>
+
+        <div class="service-box">
+          <h3>Tours</h3>
+          <p>
+            Explore the world with our expertly curated tours that enhance your
+            travel experience.
+          </p>
+          <img src="/images/service4.png" alt="Service 4 Image" />
+        </div>
+
+        <div class="service-box">
+          <h3>Protocol Services</h3>
+          <p>
+            Experience the highest level of service with our protocol services,
+            ensuring smooth journey from start to finish.
+          </p>
+          <img src="/images/service5.png" alt="Service 5 Image" />
+        </div>
+
+        <div class="service-box">
+          <h3>Airport Pick-up and Drop-off</h3>
+          <p>
+            Leave the logistics to us. We'll ensure you're met at the airport
+            and safely transported to your destination.
+          </p>
+          <img src="/images/service6.png" alt="Service 6 Image" />
+        </div>
+
+        <div class="service-box last-service-box">
+          <h3>Travel Insurance</h3>
+          <p>
+            Protect your journey with comprehensive travel insurance coverage
+            for peace of mind.
+          </p>
+          <img src="/images/service7.png" alt="Service 7 Image" />
+        </div>
+      </section>
+    </section>
+
+    <!-- why choose us section -->
+    <section class="why-choose-us">
+      <div class="why-choose-us-container">
+        <h1>Why Choose Us?</h1>
+
+        <div class="why-choose-us-box">
+          <img
+            src="./images/icon-park-solid_emotion-happy (1).svg"
+            alt="face smile"
+          />
+          <h3>Customer-Centric Approach</h3>
+          <p>
+            Your satisfaction is our top priority. We listen to your needs and
+            ensure that every aspect of your journey exceeds your expectations.
+          </p>
+        </div>
+
+        <div class="why-choose-us-box">
+          <img src="./images/healthicons_money-bag (1).svg" alt="dollar sack" />
+          <h3>Value for Money</h3>
+          <p>
+            We optimize your budget without compromising the quality of your
+            travel experience.
+          </p>
+        </div>
+
+        <div class="why-choose-us-box">
+          <img src="./images/bx_support (1).svg" alt="headset" />
+          <h3>24/7 Support</h3>
+          <p>
+            No matter where you are in the world, our support is available round
+            the clock to ensure your peace of mind.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- flight booking two -->
+    <section>
+      <div class="flight-section-two">
+        <div class="flight-form-container">
+          <h2>
+            <i class="fa-solid fa-plane"></i>
+            Where are you flying?
+          </h2>
+          <form>
+            <div>
+              <label for="departure2">Flying From</label>
+              <input
+                type="text"
+                id="departure2"
+                name="flying from"
+                placeholder="Istanbul, turkey"
+                required
+              />
+            </div>
+            <div>
+              <label for="arrival2">Flying To</label>
+              <input
+                type="text"
+                id="arrival2"
+                name="flying to"
+                placeholder="Istanbul, turkey"
+                required
+              />
+            </div>
+            <div>
+              <label for="departureDate">Leaving On</label>
+              <input
+                type="date"
+                id="departureDate"
+                name="Leaving On"
+                required
+              />
+              <script>
+                document.getElementById("departureDate").min = new Date()
+                  .toISOString()
+                  .split("T")[0];
+              </script>
+            </div>
+            <div>
+              <label for="returnDate">Returning On</label>
+              <input type="date" id="returnDate" name="Returning On" required />
+              <script>
+                document.getElementById("returnDate").min = new Date()
+                  .toISOString()
+                  .split("T")[0];
+              </script>
+            </div>
+            <div>
+              <label for="full-name2">Full Name</label>
+              <input
+                type="text"
+                id="full-name2"
+                name="Full Name"
+                placeholder="John Doe"
+                required
+              />
+            </div>
+            <div>
+              <label for="email2">Email Address</label>
+              <input
+                type="email"
+                id="email2"
+                name="Email Address"
+                placeholder="Johndoe@example.com"
+                required
+              />
+            </div>
+            <div>
+              <label for="phone2">Phone Number</label>
+              <input
+                type="tel"
+                id="phone2"
+                name="phone number"
+                placeholder="+234 566 566 7789"
+                required
+              />
+              <!-- pattern="[+]{1}[0-9]{1,}" -->
+            </div>
+            <div>
+              <label for="quantity2">No. of Passengers</label>
+              <select id="quantity2" name="no of passengers" required>
+                <script>
+                  for (let i = 1; i <= 100; i++) {
+                    document.write(`<option value="${i}">${i}</option>`);
+                  }
+                </script>
+              </select>
+            </div>
+
+            <button type="submit" class="submit-btn">Book Flight</button>
+          </form>
+        </div>
+      </div>
+    </section>
+    <!-- discover section -->
+    <section class="discover">
+      <div class="discover-container">
+        <h1>Discover the world with RDG Travels.</h1>
+        <p>Your journey starts here.</p>
+      </div>
+    </section>
+
+    <!-- footer -->
+
+    <footer class="footer">
+      <div class="footer-section footer-first-section">
+        <div class="footer-container">
+          <h4>Company</h4>
+          <ul>
+            <li>About</li>
+            <li>Contact Us</li>
+            <li>Terms and Conditions</li>
+            <li>Privacy Policy</li>
+          </ul>
+        </div>
+
+        <div class="footer-container">
+          <h4>Services</h4>
+          <ul>
+            <li>Study Abroad Programs</li>
+            <li>Travel Planning</li>
+            <li>Flight Booking</li>
+          </ul>
+        </div>
+
+        <div class="footer-container">
+          <h4>Follow Us</h4>
+          <ul class="social-icons">
+            <li><i class="fab fa-facebook"></i></li>
+            <li><i class="fab fa-twitter"></i></li>
+            <li><i class="fab fa-instagram"></i></li>
+            <li><i class="fab fa-linkedin"></i></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-section subscribe-section">
+        <div class="footer-container">
+          <div>
+            <h4>SUBSCRIBE TO OUR NEWSLETTER</h4>
+            <p>A monthly digest of the latest news, articles, and resources.</p>
+          </div>
+          <form>
+            <input type="email" placeholder="Email address" />
+            <button type="submit">Subscribe</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="footer-section copyright-section">
+        <div class="footer-container">
+          <img src="./images/Logo.png" alt="RDG Logo" />
+          <p>© 2023 RDG Consults. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
