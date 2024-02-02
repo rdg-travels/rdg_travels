@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/hotel-service.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://kit.fontawesome.com/262ff4d8d9.js" crossorigin="anonymous"></script>
+    <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBHOmuCBdqrK1esALcGnicfVP60l2oTrFg&libraries=places"></script>
+    <script>
+        function initAutocomplete() {
+            var input = document.getElementById('flyingFrom');
+            var autocomplete = new google.maps.places.Autocomplete(input);
+        }
+        // Load the Places API asynchronously
+        function loadScript() {
+            var script = document.createElement('script');
+            script.type = 'text/javascript';
+            script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyBHOmuCBdqrK1esALcGnicfVP60l2oTrFg&libraries=places&callback=initAutocomplete';
+            document.body.appendChild(script);
+        }
+        window.onload = loadScript;
+    </script> -->
+    <title>RDG Travels</title>
+</head>
+<body>
+    <section class="header-and-hero">
+        <header>
+            <div class="logo ">
+                <a href="index.html"><img src="images/rdg-logo.png" alt="RDG Logo"></a>
+            </div>
+            <!-- <button class="menu-icon">&#9776;</button> -->
+            <nav>
+                <ul>
+                    <li><a href="flight.html">Book Flight</a></li>
+                    <li><a href="study-abroad.html">Study Abroad</a></li>
+                    <li><a href="hotel-service.html">Reserve Hotel</a></li>
+                    <li><a href="destinations.html">Destinations</a></li>
+                    <li>
+                        <div class="whatsapp">
+                            <a href="https://wa.link/8vfeqe" target="_blank">
+                                <i class="fa fa-whatsapp"></i>
+                                <span>+2348034099082</span>
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+    
+        <section class="hero-and-form">
+            <section class="hero-section">
+                <div class="welcome-text">
+                    <h1>Welcome to RDG Travels</h1>
+                    <p>We redefine travel with personalized adventures, seamless corporate solutions, curated study abroad packages, and hassle-free visa processing.</p>
+                </div>
+        
+                <!-- Book Flight Form -->
+                <div id="book-flight" class="book-flight-section">
+                    <form class="flight-form">
+        
+                        <!-- Flight Details -->
+                        <div class="flight-details">
+                            <div class="flight-details-heading">
+                                <div class="flight-icon">
+                                    <i class="fa fa-plane"></i>
+                                </div>
+                                <div class="text">
+                                    <p>Where are you flying?</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Input fields for Flying From, Flying To, Leaving On, Returning On -->
+                            <div class="flight-info">
+                                <div class="form-group flex-group top-input">
+                                    <label for="flyingFrom">Flying From</label>
+                                    <input type="text" id="flyingFrom" name="flyingFrom" placeholder="Istanbul, Turkey" required>
+                                </div>
+                
+                                <div class="form-group flex-group top-input">
+                                    <label for="flyingTo">Flying To</label>
+                                    <input type="text" id="flyingTo" name="flyingTo" placeholder="Istanbul, Turkey" required>
+                                </div>
+                
+                                <div class="form-group flex-group top-input">
+                                    <label for="leavingOn">Leaving On</label>
+                                    <input type="date" id="leavingOn" name="leavingOn" required>
+                                </div>
+                
+                                <div class="form-group flex-group top-input">
+                                    <label for="returningOn">Returning On</label>
+                                    <input type="date" id="returningOn" name="returningOn" required>
+                                </div>
+        
+                                <div class="form-group flex-group">
+                                    <label for="fullName">Full Name</label>
+                                    <input type="text" id="fullName" name="fullName" placeholder="John Doe" required>
+                                </div>
+                
+                                <div class="form-group flex-group">
+                                    <label for="email">Email Address</label>
+                                    <input type="email" id="email" name="email" placeholder="Johndoe@mail.com" required>
+                                </div>
+                
+                                <div class="form-group flex-group">
+                                    <label for="phone">Phone Number</label>
+                                    <input type="tel" id="phone" name="phone" pattern="[+]{1}[0-9]{1,}" placeholder="+234 566 566 7789" required>
+                                </div>
+                
+                                <div class="form-group flex-group guest">
+                                    <label for="passengers">No of Passengers</label>
+                                    <div class="input-with-icon">
+                                        <input type="number" id="passengers" name="passengers" min="1" placeholder="2" required>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+            
+                        <!-- Book Flight Button -->
+                        <div class="book-flight-button">
+                            <button type="submit">Book Flight</button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+        </section>
+    </section>
+    
+    <section class="home-section">
+        <div class="services-container">
+            <div>
+                <h2>Our Services</h2>
+                <p>Taking Your Travel Experience To The Next Level</p>
+            </div>
+
+            <!-- Service Cards -->
+            <div class="service-card-container">
+            <div class="service-card">
+                <div class="icon">
+                    <i class="fa fa-plane"></i>
+                </div>
+                <div class="service-info">
+                    <h3>Flight Booking</h3>
+                    <p>Elevate your travel experience with our hassle-free flight booking service. Discover unbeatable deals on a global network of airlines, ensuring your journey is smooth from takeoff to landing. Your adventure awaits – book with us today!</p>
+                    <a href="flight.html" class="service-link">Book a Flight <img src="/images/Icon-right.svg" alt="Arrow Icon"></a>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="icon">
+                    <i class="fa fa-graduation-cap"></i>
+                </div>
+                <div class="service-info">
+                    <h3>Study Abroad Program</h3>
+                    <p>We offer a wide range of study abroad programs that cater to your individual needs and interests. Our team of experts will assist you in finding the perfect program for you.</p>
+                    <a href="study-abroad.html" class="service-link">Start your Study Journey <img src="/images/Icon-right.svg" alt="Arrow Icon"></a>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="icon">
+                    <i class="fas fa-couch"></i>
+                </div>
+                <div class="service-info">
+                    <h3>Hotel Reservations</h3>
+                    <p>Elevate your travel experience with our carefully curated selection of accommodations worldwide. Whether you're planning a leisurely getaway, a business trip, or a group excursion, our personalized approach ensures that your stay exceeds expectations.</p>
+                    <a href="hotel-service.html" class="service-link">Book Hotels <img src="/images/Icon-right.svg" alt="Arrow Icon"></a>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+
+    <section class="trending-destinations-section">
+        <div class="trending-header-container">
+            <div class="trending-header">
+                <h2>Trending Destinations</h2>
+                <p>Most popular choices for travellers</p>
+            </div>
+            <div class="view-destination">
+                <a href="destinations.html"class="service-link">View All Destinations <img src="/images/Icon-right.svg" alt="Arrow Icon"></a>
+            </div>
+        </div>
+    
+        <div class="destination-cards">
+            <a href="destination-detail1.html">
+                <div class="destination-card">
+                    <div class="image-container">
+                        <img src="images/destination-image1.png" alt="Destination Image">
+                        <div class="price-tag">
+                            <p>Price from: $1,430/person</p>
+                        </div>
+                    </div>
+                    <div class="destination-details">
+                        <h3>Singapore</h3>
+                        <div class="schedule">
+                            <i class="fa fa-clock"></i>
+                            <p>23rd Feb - 9th Feb, 2024</p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            
+            <a href="destination-detail2.html">
+                <div class="destination-card">
+                    <div class="image-container">
+                        <img src="images/destination-image2.png" alt="Destination Image">
+                        <div class="price-tag">
+                            <p>Price from: $3,250/person</p>
+                        </div>
+                    </div>
+                    <div class="destination-details">
+                        <h3>UAE December Cruise</h3>
+                        <div class="schedule">
+                            <i class="fa fa-clock"></i>
+                            <p>22nd Dec - 2nd Jan, 2023</p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            
+            <a href="destination-detail3.html">
+                <div class="destination-card">
+                    <div class="image-container">
+                        <img src="images/destination-image3.png" alt="Destination Image">
+                        <div class="price-tag">
+                            <p>Price from: $1,200/person</p>
+                        </div>
+                    </div>
+                    <div class="destination-details">
+                        <h3>Summer in Nairobi</h3>
+                        <div class="schedule">
+                            <i class="fa fa-clock"></i>
+                            <p>22nd Dec - 2nd Jan, 2024</p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+            <a href="destination-detail4.html">
+                <div class="destination-card">
+                    <div class="image-container">
+                        <img src="images/destination-image4.png" alt="Destination Image">
+                        <div class="price-tag">
+                            <p>Price from: $1,500/person</p>
+                        </div>
+                    </div>
+                    <div class="destination-details">
+                        <h3>Summer in Nairobi</h3>
+                        <div class="schedule">
+                            <i class="fa fa-clock"></i>
+                            <p>22nd Dec - 2nd Jan, 2024</p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+            <a href="destination-detail5.html">
+                <div class="destination-card">
+                    <div class="image-container">
+                        <img src="images/destination-image5.png" alt="Destination Image">
+                        <div class="price-tag">
+                            <p>Price from: $1,500/person</p>
+                        </div>
+                    </div>
+                    <div class="destination-details">
+                        <h3>UK Vacation</h3>
+                        <div class="schedule">
+                            <i class="fa fa-clock"></i>
+                            <p>22nd Dec - 2nd Jan, 2024</p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+            <a href="destination-detail6.html">
+                <div class="destination-card">
+                    <div class="image-container">
+                        <img src="images/destination-image6.png" alt="Destination Image">
+                        <div class="price-tag">
+                            <p>Price from: $1,500/person</p>
+                        </div>
+                    </div>
+                    <div class="destination-details">
+                        <h3>Summer in France</h3>
+                        <div class="schedule">
+                            <i class="fa fa-clock"></i>
+                            <p>22nd Dec - 2nd Jan, 2024</p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </section>  
+
+    <section class="popular-hotels-section">
+        <div class="popular-hotels-container">
+            <div class="popular-hotels-header">
+                <h2>Popular Hotels we work with</h2>
+                <p>Most popular choices for travelers</p>
+            </div>
+            <div class="view-hotel">
+                <a href="all-hotels.html"class="service-link">View All Hotels <img src="/images/Icon-right.svg" alt="Arrow Icon"></a>
+            </div>
+        </div>
+        
+        <div class="hotel-cards">
+            <div class="hotel-card">
+                <div class="image-container">
+                    <img src="images/hotel-image1.png" alt="Hotel Image">
+                </div>
+                <div class="hotel-details">
+                    <h3>Radisson Blue Hotel</h3>
+                    <div class="location">
+                        <i class="fa fa-map-marker"></i>
+                        <p>Kenya, South Africa, London, Turkey</p>
+                    </div>
+                    <div class="book-now-button">
+                        <a href="#" class="book-now-link">Book Now</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="hotel-card">
+                <div class="image-container">
+                    <img src="images/hotel-image2.png" alt="Hotel Image">
+                </div>
+                <div class="hotel-details">
+                    <h3>Tribe London Canary Wharf</h3>
+                    <div class="location">
+                        <i class="fa fa-map-marker"></i>
+                        <p>London, United Kingdom</p>
+                    </div>
+                    <div class="book-now-button">
+                        <a href="#" class="book-now-link">Book Now</a>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="hotel-card">
+                <div class="image-container">
+                    <img src="images/hotel-image3.png" alt="Hotel Image">
+                </div>
+                <div class="hotel-details">
+                    <h3>Renaissance Paris Republique</h3>
+                    <div class="location">
+                        <i class="fa fa-map-marker"></i>
+                        <p>France</p>
+                    </div>
+                    <div class="book-now-button">
+                        <a href="#" class="book-now-link">Book Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>   
+    
+    <section class="why-choose-us-section">
+        <div class="why-choose-us-container">
+            <div class="why-choose-us-text">
+                <h2>Why Choose Us</h2>
+                <p>At RDG Travels, we prioritize your travel experience by providing exceptional services tailored to meet your needs. Your satisfaction is our social proof.</p>
+            </div>
+    
+            <div class="feature-container">
+                <div class="feature">
+                    <div class="feature-icon">
+                        <img src="images/vaadin_medal.svg" alt="Medal icon">
+                    </div>
+                    <div class="feature-detail">
+                        <h2>10+</h2>
+                        <p>Years of Experience</p>
+                    </div>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">
+                        <i class="fa fa-plane"></i>
+                    </div>
+                    <div class="feature-detail">
+                        <h2>20+</h2>
+                        <p>Destinations</p>
+                    </div>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">
+                        <i class="fas fa-smile"></i>
+                    </div>
+                    <div class="feature-detail">
+                        <h2>50+</h2>
+                        <p>Happy Customers</p>
+                    </div>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">
+                        <img src="images/bx_support.svg" alt="">
+                    </div>
+                    <div class="feature-detail">
+                        <h2>24/7</h2>
+                        <p>Customer Support</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="why-choose-us-image">
+            <img src="images/happy-customers.png" alt="Happy Customers">
+        </div>
+    </section>  
+    
+    <section class="customer-feedback-section">
+        <div class="customer-feedback-container">
+            <!-- Container 1 -->
+            <div class="customer-feedback-text">
+                <h2>What Our Customers are saying About Us</h2>
+                <p>Don’t just take our word for it. Our esteemed clients will convince you.</p>
+                <div class="quote-icon">
+                    <i class="fas fa-quote-left"></i>
+                </div>
+                <p class="customer-quote">I had an amazing experience studying abroad with RDG Consult Global Services. The team was very helpful and made the whole process stress-free.</p>
+                <div class="customer-details">
+                    <img src="images/customer-image.png" alt="Customer Image">
+                    <div class="customer-info">
+                        <p class="customer-name">Smith Johnson</p>
+                        <p class="customer-location">London, United Kingdom</p>
+                    </div>
+                </div>
+                <div class="rating-icons">
+                    <i class="fas fa-circle blue"></i>
+                    <i class="fas fa-circle grey"></i>
+                    <i class="fas fa-circle grey"></i>
+                    <i class="fas fa-circle grey"></i>
+                    <i class="fas fa-circle grey"></i>
+                </div>
+            </div>
+    
+            <!-- Container 2 -->
+            <div class="customer-feedback-image">
+                <img src="images/customer-feedback-image.png" alt="Customer Feedback Image">
+            </div>
+        </div>
+    </section>
+
+    <section class="partners-section">
+        <h2>Our Partners</h2>
+        <div class="partners-container">
+            <div class="partner-logo"><img src="images/partner1.png" alt="Partner 1"></div>
+            <div class="partner-logo"><img src="images/partner2.png" alt="Partner 2"></div>
+            <div class="partner-logo"><img src="images/partner3.png" alt="Partner 3"></div>
+            <div class="partner-logo"><img src="images/partner4.png" alt="Partner 4"></div>
+            <div class="partner-logo"><img src="images/partner5.png" alt="Partner 5"></div>
+            <div class="partner-logo"><img src="images/partner6.png" alt="Partner 6"></div>
+            <div class="partner-logo"><img src="images/partner7.png" alt="Partner 7"></div>
+            <div class="partner-logo"><img src="images/partner8.png" alt="Partner 8"></div>
+            <div class="partner-logo"><img src="images/partner9.png" alt="Partner 9"></div>
+            <div class="partner-logo"><img src="images/partner10.png" alt="Partner 10"></div>
+            <div class="partner-logo"><img src="images/partner11.png" alt="Partner 11"></div>
+            <div class="partner-logo"><img src="images/partner12.png" alt="Partner 12"></div>
+            <div class="partner-logo"><img src="images/partner13.png" alt="Partner 13"></div>
+            <div class="partner-logo"><img src="images/partner14.png" alt="Partner 14"></div>
+            <div class="partner-logo"><img src="images/partner15.png" alt="Partner 15"></div>
+        </div>
+    </section> 
+    
+    <section class="contact-section">
+        <div class="contact-content">
+            <div class="contact-content-container">
+            <h2>Let's Plan Your Next Adventure</h2>
+            <p>Get in touch with us today to start planning your next adventure. Our team of experts is here to help you every step of the way.</p>
+            <div class="contact-details">
+                <div class="contact-info">
+                    <i class="fa fa-envelope-o"></i>
+                    <p>info@rdgtravels.com</p>
+                </div>
+                <div class="contact-info phone">
+                    <div class="phone-no">
+                        <i class="fa fa-volume-control-phone"></i>
+                        <span>+234 803 409 9082, +234 903 470 1813</span>
+                        <p>+440 735 902 7464, +234 704 543 3319</p>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <a href="contact-us.html" class="contact-button">Contact Us</a>
+        </div>
+    </section>
+    
+    <footer class="footer">
+        <div class="footer-section footer-first-section">
+            <div class="footer-container">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="about-us.html">About</a></li>
+                    <li><a href="contact-us.html">Contact Us</a></li>
+                    <li><a href="terms-and-condition.html">Terms and Conditions</a></li>
+                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-container">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="flight.html">Flight Booking</a></li>
+                    <li><a href="study-abroad.html">Study Abroad Program</a></li>
+                    <li><a href="hotel-service.html">Hotel Reservations</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-container">
+                <h4>Follow Us</h4>
+                <ul class="social-icons">
+                    <li><a href="#"><i class="fab fa-facebook"></i></a></li>
+                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                    <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                    <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    
+        <div class="footer-section subscribe-section">
+            <div class="footer-container">
+                <div>
+                    <h4>SUBSCRIBE TO OUR NEWSLETTER</h4>
+                    <p>A monthly digest of the latest news, articles, and resources.</p>
+                </div>
+                <form>
+                    <input type="email" placeholder="Email address" required>
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    
+        <div class="footer-section copyright-section">
+            <div class="footer-container">
+                <img src="images/rdg-logo.png" alt="RDG Logo">
+                <p>© 2023 RDG Consults. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>        
+</body>
+
+<script src="/form-validation.js"></script>
+<!-- <script src="/customer-feedback.js"></script> -->
+
+<!-- <script>
+    initAutocomplete();
+</script> -->
+
+
+</html>

@@ -1,0 +1,303 @@
+@import url(https://db.onlinewebfonts.com/c/961a181da27e7cbc072ec2fb5bbfe2a9?family=Circular+Std+Black);
+
+.destination-hero-section {
+    width: 100%;
+    height: 540px;
+    background-image: url('/images/destination-background-image.jpeg');
+    background: linear-gradient(90deg, rgba(0, 35, 77, 0.63) 11.46%, rgba(0, 35, 77, 0.00) 77.37%), url(/images/destination-background-image.jpeg), lightgray 50%;
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+    padding: 100px 112px;
+}
+
+.destination-welcome-text {
+    display: flex;
+    width: 100%;
+    padding: 0px 32px;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+.destination-welcome-text h1 {
+    /* align-self: stretch; */
+    font-size: 3em;
+    padding-top: 260px;
+    letter-spacing: 0.96px;
+    font-weight: 700;
+}
+
+.destination-welcome-text p {
+    text-align: center;
+}
+
+.destination-detail-hero-section {
+    /* height: 550px; */
+    padding: 64px 112px;
+    /* display: flex; */
+    align-items: flex-start;
+}
+
+.destination-detail-hero {
+    width: 100%;
+    display: flex;
+    gap: 8px;
+}
+
+.destination-detail-hero-image1 {
+    flex: 2.5;
+    height: 550px;
+    border-radius: 12px 0px 0px 12px;
+    background: url(/images/destination-detail-hero-image1.png), lightgray 50% / cover no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.destination-detail-hero-image2 {
+    flex: 1 0 0;
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.destination-detail-hero-image-1 {
+    flex: 1 0 0;
+    border-radius: 12px 0px 0px 12px;
+    background: url(/images/destination-detail-hero-image2.png), lightgray 50% / cover no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.destination-detail-hero-image-2 {
+    flex: 1 0 0;
+    border-radius: 12px 0px 0px 12px;
+    background: url(/images/destination-detail-hero-image3.png), lightgray 50% / cover no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.trip-details-section {
+    background-color: #fff;
+    padding: 64px 112px;
+}
+
+.trip-details-container {
+    display: flex;
+    gap: 48px;
+}
+
+.trip-info-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 48px;
+    flex: 2.0;
+    border-bottom: 1px solid rgba(166, 170, 172, 0.20);
+}
+
+.date-location {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+.trip-location {
+    font-size: 2em;
+    margin: 0px;
+}
+
+.calender-detail {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline; 
+    gap: 8px;  
+}
+
+.calender-icon img {
+    display: flex;
+    align-items: baseline;
+}
+
+.date {
+    display: flex;
+    color: #0F1416;
+    align-items: baseline;
+}
+
+h4, 
+h3, 
+.total-package-container p, 
+.booking-form .form-group {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.trip-overview-container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.trip-overview {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.trip-overview-container p {
+    font-size: 1em;
+    color: #6B7280;
+    line-height: 26px;
+    margin-bottom: 0px;
+    padding-bottom: 20px;
+}
+
+.package-include {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-bottom: 20px;
+}
+
+.package-include div {
+    display: flex;
+    gap: 10px;
+    font-size: 1em;
+    font-style: normal;
+    font-weight: 450;
+    line-height: 26px;
+}
+
+.package-include div img {
+    max-width: inherit;
+    height: auto;
+}
+
+.package-include p {
+    padding-bottom: 0px;
+}
+
+.total-package-container {
+    flex: 1;
+    height: fit-content;
+    border-radius: 8px;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 28px;
+    border-radius: 10px;
+    border: 1px solid #E4E7EC;
+    box-shadow: 0px 55px 90px 0px rgba(0, 0, 0, 0.03), 0px 55px 70px 0px rgba(0, 0, 0, 0.03);
+}
+
+.total-package {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    align-self: stretch;
+}
+
+.total-package-container p {
+    font-size: 1em;
+    font-weight: bold;
+}
+
+.price-info {
+    display: flex;
+    align-items: flex-start;
+    gap: 28px;
+    flex-grow: 1;
+}
+
+.price-option {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+}
+
+.price-text {
+    display: flex;
+    flex-grow: 1;
+    font-size: 0.875em;
+    color: #6B7280;
+}
+
+.price-value {
+    display: flex;
+    flex-grow: 1;
+    font-family: "Circular Std Black";
+    font-size: 2.5em;
+    font-weight: 700;
+    color: #0F1416;
+}
+
+.book-now {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    align-self: stretch;
+    gap: 24px;
+    padding-top: 24px;
+}
+
+.book-now-info {
+    display: flex;
+}
+
+.booking-form .form-group {
+    margin-bottom: 0px;
+}
+
+
+h4 {
+    font-size: 1.25em;
+}
+
+.booking-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* .booking-form input:not(.package-type input),
+button {
+    width: calc(200% - 76px)
+} */
+
+.package-type {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+}
+
+.package-type div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    align-self: stretch;
+}
+
+button {
+    margin-top: 4px;
+    border: none;
+    border-radius: 6px;
+    background: #093BA8;
+    padding: 10px 24px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 1.125em;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
