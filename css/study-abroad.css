@@ -1,0 +1,288 @@
+.study-hero-section {
+    background-image: url('/images/study-background-image.png');
+    background: linear-gradient(0deg, rgba(9, 59, 168, 0.40) 0%, rgba(9, 59, 168, 0.40) 100%), url(/images/study-background-image.png), lightgray 50% / cover no-repeat;
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+    padding: 90px 112px;
+    display: flex;
+    width: 100%;
+}
+
+
+.study-welcome-text h1 {
+    max-width: 450px;
+    text-align: left;
+    font-size: 3em;
+    margin-top: 24px;
+    letter-spacing: -0.96px;
+    font-weight: 500;
+    line-height: 60px;
+}
+
+
+.study-abroad-section {
+    background-color: #fff;
+    color: #111827;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 10px;
+    box-shadow: 0px 4px 16px 0px rgba(17, 34, 17, 0.05);
+    flex-grow: 1;
+}
+
+.study-abroad-section .form-group {
+    margin-bottom: 20px;
+}
+
+.text p {
+    font-weight: 700;
+    margin-bottom: 32px;
+    font-size: 1.25em;
+}
+
+.study-type {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.start-study-button {
+    text-align: right;
+}
+
+.welcome-section {
+    padding: 64px 112px;
+    display: flex;
+    justify-content: space-between;
+    gap: 48px;
+}
+
+.welcome-image,
+.study-welcome-text {
+    flex-grow: 1;
+}
+
+.study-welcome-text {
+    padding: 48px 0px 0px;
+}
+
+.study-welcome-text p {
+    text-align: justify;
+}
+
+.welcome-image img {
+    width: 100%;
+    border-radius: 8px;
+}
+
+.welcome-text-heading {
+    margin-bottom: 16px;
+}
+
+.welcome-text-heading h2,
+.welcome-text-heading span {
+    font-size: 2em;
+    line-height: 40px;
+    margin-bottom: 0px;
+}
+
+.welcome-text-heading h2 {
+    color: #0F1416;
+}
+
+.welcome-text-heading span {
+    color: #093BA8;
+    font-family: "Circular Std Black",Arial, Helvetica, sans-serif;
+}
+
+.welcome-text p,
+.packages-heading p,
+.study-why-choose-us-container p,
+.study-welcome-text p {
+    color: #6B7280;
+    font-size: 1em;
+    line-height: 24px;
+}
+
+.welcome-text p {
+    text-align: justify;
+}
+
+.packages-section {
+    background-color: #f9f9f9;
+    padding: 64px 112px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 48px;
+}
+
+.packages-heading {
+    text-align: left;
+    width: 100%;
+}
+
+.packages-heading h2 {
+    font-size: 2em;
+    margin-bottom: 24px;
+}
+
+.packages-heading p {
+    letter-spacing: -0.32px;
+    margin-bottom: 0px;
+}
+
+.packages-grid {
+    /* display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px; */
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    /* justify-content: space-between; */
+    align-items: flex-start;
+    flex-grow: 1;
+    gap: 48px;
+    align-self: stretch;
+}
+
+.package-container {
+    /* height: 448px; */
+    background-color: #fff;
+    border: none;
+    box-shadow: 0px 20px 184px -10px rgba(0, 0, 0, 0.14);
+    border-radius: 8px;
+    padding: 24px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    flex: 1 0 0;
+    align-self: stretch;
+    flex: 0 0 calc(33.33% - 48px);
+}
+
+.package-container h3 {
+    font-size: 1.25em;
+    margin-bottom: 16px;
+    letter-spacing: -0.4px;
+}
+
+.package-container p {
+    font-size: 1em;
+    margin-bottom: 40px;
+    text-align: justify;
+    line-height: 24px;
+}
+
+.package-container img {
+    width: 100%;
+    height: auto;
+    flex-grow: 1;
+    /* border-radius: 8px; */
+}
+
+.study-why-choose-us-section {
+    background-color: #ECF7FF;
+    padding: 64px 112px;
+    flex-direction: column;
+}
+
+.why-choose-us-heading {
+    text-align: center;
+}
+
+.why-choose-us-heading h2 {
+    font-size: 2em;
+    margin-bottom: 48px;
+    letter-spacing: -0.64px;
+}
+
+.why-choose-us-grid {
+    display: flex;
+    justify-content: space-between;
+    gap: 32px;
+}
+
+.study-why-choose-us-container {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    flex-basis: calc(25% - 16px);
+    text-align: center;
+}
+
+.study-why-choose-us-container img {
+    height: 56px;
+}
+
+.study-why-choose-us-container h3 {
+    font-size: 1.25em;
+    margin-bottom: 0px;
+}
+
+.study-why-choose-us-container p {
+    margin-bottom: 0px;
+}
+
+.study-abroad-container {
+    background-image: url('/images/study-background-image2.png');
+    background: linear-gradient(0deg, rgba(9, 59, 168, 0.40) 0%, rgba(9, 59, 168, 0.40) 100%), url(/images/study-background-image2.png), lightgray 50% / cover no-repeat;
+    background-size: cover;
+    background-position: center;
+    padding: 64px 112px;
+    display: flex;
+}
+
+.study-abroad-container .study-abroad-section {
+    max-width: 50%;
+    margin-left: auto;
+    margin-top: 26px;
+}
+
+.study-form {
+    max-width: 100%;
+}
+
+.discover-section {
+    background-color: #16163F;
+    color: #ECF7FF;
+    padding: 64px 112px;
+    flex-direction: column;
+    text-align: center;
+}
+
+/* .discover-text {
+    max-width: 600px;
+    margin: 0 auto;
+} */
+
+.discover-text h2 {
+    font-size: 2.25em;
+    margin-bottom: 24px;
+}
+
+.discover-text p {
+    font-size: 1.125em;
+    margin-bottom: 0px;
+}
+
+
+
+
+/* Responsive styles for smaller screens */
+@media (max-width: 768px) {
+    .welcome-section {
+        flex-direction: column;
+    }
+
+    .welcome-image,
+    .welcome-text {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+}
