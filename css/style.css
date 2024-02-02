@@ -61,9 +61,9 @@ header {
     align-items: flex-start;
 }
 
-.logo img {
+/* .logo img {
     max-height: 50px;
-}
+} */
 
 nav ul {
     list-style: none;
