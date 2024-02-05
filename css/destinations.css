@@ -46,12 +46,21 @@
 }
 
 .destination-detail-hero-image1 {
+    background: url(/images/destination-detail-hero-image1.png), lightgray 50% / cover no-repeat;
+}
+
+.destination-detail2-hero-image1 {
+    background: url(/images/destination-detail2-hero-image3.png), lightgray 50% / cover no-repeat;
+}
+
+.destination-detail-hero-image1,
+.destination-detail2-hero-image1 {
     flex: 2.5;
     height: 550px;
     border-radius: 12px 0px 0px 12px;
-    background: url(/images/destination-detail-hero-image1.png), lightgray 50% / cover no-repeat;
     background-size: cover;
     background-position: center;
+    margin-top: 32px;
 }
 
 .destination-detail-hero-image2 {
@@ -61,18 +70,36 @@
     flex-direction: column;
     gap: 8px;
 }
+
 .destination-detail-hero-image-1 {
-    flex: 1 0 0;
-    border-radius: 12px 0px 0px 12px;
     background: url(/images/destination-detail-hero-image2.png), lightgray 50% / cover no-repeat;
+}
+
+.destination-detail2-hero-image-1 {
+    background: url(/images/destination-detail2-hero-image2.png), lightgray 50% / cover no-repeat;
+}
+
+.destination-detail-hero-image-1,
+.destination-detail2-hero-image-1 {
+    flex: 1 0 0;
+    border-radius: 0px 12px 0px 0px;
     background-size: cover;
     background-position: center;
+    margin-top: 32px;
 }
 
 .destination-detail-hero-image-2 {
-    flex: 1 0 0;
-    border-radius: 12px 0px 0px 12px;
     background: url(/images/destination-detail-hero-image3.png), lightgray 50% / cover no-repeat;
+}
+
+.destination-detail2-hero-image-2 {
+    background: url(/images/destination-detail2-hero-image1.png), lightgray 50% / cover no-repeat;
+}
+
+.destination-detail-hero-image-2,
+.destination-detail2-hero-image-2 {
+    flex: 1 0 0;
+    border-radius: 0px 0px 12px 0px;
     background-size: cover;
     background-position: center;
 }
@@ -204,6 +231,34 @@ h3,
 .total-package-container p {
     font-size: 1em;
     font-weight: bold;
+}
+
+.package-total-container {
+    display: flex;
+    padding: 16px 24px;
+    border: 1px solid #E4E7EC;
+    gap: 24px;
+    border-radius: 10px;
+}
+
+.package-total {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.package-total p:first-child {
+    font-size: 1em;
+}
+
+.package-total p:last-child {
+    font-size: 0.875em;
+    font-weight: 400;
+    opacity: 0.4;
+}
+
+.border-line {
+    border-right: 1px solid #D7E2EE;
 }
 
 .price-info {

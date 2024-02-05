@@ -16,7 +16,7 @@ section {
 
 body {
     font-size: 1em;
-    font-family: "Circular Std Black",Arial, Helvetica, sans-serif;
+    font-family: "Circular Std Black", Arial, Helvetica, sans-serif;
     background-color: #fff;
     color: #111827;
     width: 100%;
@@ -50,9 +50,9 @@ header {
     z-index: 9999;
 }
 
-.menu-icon {
+/* .menu-icon {
     display: none;
-}
+} */
 
 .header-and-hero {
     display: flex;
@@ -61,14 +61,12 @@ header {
     align-items: flex-start;
 }
 
-/* .logo img {
-    max-height: 50px;
-} */
 
 nav ul {
-    list-style: none;
     display: flex;
     gap: 24px;
+    flex-direction: row;
+    list-style: none;
 }
 
 nav ul li {
@@ -85,6 +83,14 @@ nav ul li a {
     text-decoration: none;
 }
 
+.nav-link.active {
+    color: #0088a9;
+}
+
+nav ul li a:hover {
+    color: #0088a9;
+}
+
 .fa-whatsapp {
     height: 20px;
     margin-right: 5px;
@@ -97,6 +103,7 @@ nav ul li a {
     flex-direction: column;
     align-items: flex-start;
     gap: 32px;
+    padding-top: 100px;
 }
 
 .hero-section {
@@ -157,8 +164,8 @@ nav ul li a {
     align-items: baseline;
 }
 
-.flight-icon i {
-    font-size: 1.5em;
+.flight-icon img {
+    height: 24px;
 }
 
 
@@ -300,6 +307,7 @@ p {
     border-radius: 8px;
     padding: 24px;
     transition: box-shadow 0.3s ease-in-out;
+    gap: 24px;
 }
 
 .service-card:hover {
@@ -308,7 +316,6 @@ p {
 
 .icon {
     font-size: 2.5em;
-    margin-bottom: 24px;
     color: #093BA8;
 }
 
@@ -349,15 +356,6 @@ h3 {
     margin-left: 8px;
 }
 
-/* Font Awesome Icons */
-/* .fa {
-    display: inline-block;
-    font: normal normal normal 14px/1 FontAwesome;
-    font-size: inherit;
-    text-rendering: auto;
-    -webkit-font-smoothing: antialiased;
-} */
-
 /* Trending Destinations section */
 .trending-destinations-section {
     background-color: #f9f9f9;
@@ -377,21 +375,14 @@ h3 {
     align-self: stretch;
 }
 
-/* .trending-header {
-    text-align: left;
-} */
-
-/* .view-destination {
-    font-size: 1em;
-    order: 2;
-} */
-
 .destination-cards {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     gap: 48px;
     align-self: stretch;
+    /* display: grid;
+    grid-template-columns: repeat(3, 1fr); */
 }
 
 .destination-cards a,
@@ -416,8 +407,6 @@ h3 {
 }
 
 .image-container {
-    /* position: relative; */
-    /* overflow: hidden; */
     flex: 1 0 0;
     align-self: stretch;
     position: relative;
@@ -426,20 +415,7 @@ h3 {
 .image-container img {
     width: 100%;
     border-radius: 8px 8px 0px 0px;
-    /* display: block; */
 }
-
-/* .price-tag {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    font-size: 1.25em;
-    position: absolute; 
-    bottom: 1.5%;
-    background-color: #093BA8;
-    color: #fff;
-    padding: 10px 24px;
-} */
 
 .price-tag p {
     display: flex;
@@ -504,16 +480,6 @@ h3 {
     align-items: center;
     align-self: stretch;
 }
-
-/* .popular-hotels-header {
-    text-align: left;
-} */
-
-/* .popular-hotels-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-} */
 
 .hotel-cards {
     display: flex;
@@ -598,13 +564,7 @@ h3 {
     gap: 32px;
     align-items: flex-start;
     align-self: stretch;
-    /* flex-grow: 1; */
-    /* justify-content: space-between; */
 }
-
-/* .why-choose-us-text {
-    max-width: 500px;
-} */
 
 .why-choose-us-text h2 {
     font-size: 2em;
@@ -636,10 +596,10 @@ h3 {
 }
 
 .feature i {
-    
     font-size: 3.5em;
     color: #fff;
 }
+
 
 .feature-detail {
     display: flex;
@@ -681,15 +641,9 @@ h3 {
 }
 
 .customer-feedback-text {
-    /* flex-grow: 1; */
-    /* max-width: 50%; */
     line-height: 36px;
 }
 
-/* .customer-feedback-text h2 {
-    font-size: 2em;
-    margin-bottom: 16px;
-} */
 
 .quote-icon {
     font-size: 2em;
@@ -756,11 +710,7 @@ h3 {
     width: 1440px;
     display: flex;
     flex-wrap: wrap;
-    /* flex-direction: column; */
     gap: 48px;
-    /* justify-content: center;
-    align-items: flex-start; */
-    /* margin-top: 32px; */
 }
 
 .partner-logo {
@@ -902,6 +852,10 @@ h3 {
     color:#6B7280;
 }
 
+.footer-container a:hover {
+    color: #0088a9;
+}
+
 .social-icons {
     display: flex;
     gap: 16px;
@@ -967,20 +921,15 @@ h3 {
     color: #9CA3AF;
 }
 
-@media screen and (max-width: 768x) {
+/* @media screen and (max-width: 768x) {
     body {
         font-size: 0.875em;
     }
 
     header {
-        padding: 15px;
+        padding: 24px;
         background-color: #fff;
-        /* position: fixed; */
         width: 100%;
-        z-index: 9999;
-        /* display: flex;
-        flex-direction: column;
-        align-items: center; */
     }
 
     .logo {
@@ -988,20 +937,11 @@ h3 {
         height: auto;
     }
 
-    nav {
-        display: none;
-    }
-
     .menu-icon {
         display: block;
         font-size: 1.5em;
         cursor: pointer;
     }
-
-    /* nav {
-        margin-top: 10px;
-        text-align: center;
-    } */
 
     .hero-section {
         padding: 80px 20px;
@@ -1043,7 +983,7 @@ h3 {
     }
 
     .hotel-card {
-        width: 100%; /* Full width on small screens */
+        width: 100%;
     }
 
     .why-choose-us-container {
@@ -1065,7 +1005,7 @@ h3 {
 
     .customer-feedback-text,
     .customer-feedback-image {
-        width: 100%; /* Full width on small screens */
+        width: 100%;
     }
 
     .partners-container {
@@ -1075,29 +1015,27 @@ h3 {
     }
 
     .partner-logo {
-        width: 48%; /* Two logos per row on small screens */
+        width: 48%;
         margin-bottom: 20px;
     }
 
     .contact-info {
         text-align: center;
     }
-}
+} */
 
-/* Apply styles for larger screens */
-@media screen and (min-width: 769px) {
+/* @media screen and (min-width: 769px) {
     header {
         padding: 0px 112px;
-        /* position: fixed; */
     }
 
     nav {
-        display: flex; /* Display the navigation for larger screens */
+        display: flex;
         align-items: center;
     }
 
     .menu-icon {
-        display: none; /* Hide the menu icon for larger screens */
+        display: none;
     }
 
     nav ul {
@@ -1106,7 +1044,6 @@ h3 {
     }
 
     nav ul li {
-        /* margin-right: 20px; */
         color: #111827;
         padding: 8px 0;
         text-align: center;
@@ -1123,18 +1060,16 @@ h3 {
 
 @media only screen and (max-width: 480px) {
     body {
-        font-size: 12px; /* Further adjust font size for even smaller screens */
+        font-size: 12px;
     }
 
     .hero-section {
-        padding: 60px 10px; /* Further adjust hero section padding for even smaller screens */
+        padding: 60px 10px;
     }
 
     .welcome-text h1 {
-        font-size: 2em; /* Further adjust heading size for even smaller screens */
+        font-size: 2em;
     }
-
-    /* Add more responsive styles as needed */
-}
+} */
 
 
