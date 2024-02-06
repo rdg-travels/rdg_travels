@@ -896,6 +896,7 @@ h3 {
 }
 
 .footer-container input {
+    font-family: "Circular Std Book", Arial, Helvetica, sans-serif;
     padding: 10px 12px;
     font-size: 0.875em;
     width: 475px;
@@ -920,7 +921,7 @@ h3 {
 .modal {
     display: none;
     position: fixed;
-    top: 15%;
+    top: 30%;
     left: 34%;
     width: 30%;
     height: fit-content;
