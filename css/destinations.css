@@ -239,12 +239,14 @@ h3,
     border: 1px solid #E4E7EC;
     gap: 24px;
     border-radius: 10px;
+    align-self: stretch;
 }
 
 .package-total {
     display: flex;
     flex-direction: column;
     gap: 8px;
+    flex-grow: 1;
 }
 
 .package-total p:first-child {
@@ -258,7 +260,10 @@ h3,
 }
 
 .border-line {
+    display: flex;
+    flex-grow: 1;
     border-right: 1px solid #D7E2EE;
+    margin-right: 24px;
 }
 
 .price-info {
@@ -303,6 +308,7 @@ h3,
 
 .book-now-info {
     display: flex;
+    align-self: stretch;
 }
 
 .booking-form .form-group {
@@ -354,5 +360,31 @@ button {
 }
 
 button:hover {
+    background-color: #0056b3;
+}
+
+.container {
+    height: 100vh;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.container h1, 
+.container p {
+    margin-bottom: 30px;
+}
+
+.back-link {
+    text-decoration: none;
+    background-color: #093BA8;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+.back-link:hover {
     background-color: #0056b3;
 }
