@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hotel details</title>
+    <link rel="stylesheet" href="/css/hotel-detail1.css" />
+    <link
+      href="https://db.onlinewebfonts.com/a/y7WeC3fQys9eM03ag2DoL0JVvA55P6RR32USY1mQbvDfS36RtGsca2IR2Oy4U3uy"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script
+      src="https://kit.fontawesome.com/24f84abb34.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <!-- header section -->
+    <header class="header-section">
+      <a href="index.html"
+        ><img src="images/RDG Logo (1) 2.svg" alt="RDG Logo"
+      /></a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="flight.html">book flight</a></li>
+          <li><a href="study-abroad.html">study abroad</a></li>
+          <li><a href="hotel-service.html">reserve hotel</a></li>
+          <li><a href="destinations.html">destinations</a></li>
+          <li class="last-nav-link">
+            <a href="https://wa.me/+2348034099082" target="_blank">
+              <i class="fa-brands fa-whatsapp"></i> +2348034099082</a
+            >
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- hotel picture section -->
+    <section class="hotel-detail-hero-section">
+      <div class="hotel-detail-hero-section-container">
+        <div class="hotel-detail-hero-section-container-box1"></div>
+        <div class="hotel-detail-hero-section-container-box2">
+          <div class="hotel-detail-hero-section-container-box2-row1">
+            <div
+              class="hotel-detail-hero-section-container-box2-row1-image1"
+            ></div>
+            <div
+              class="hotel-detail-hero-section-container-box2-row1-image2"
+            ></div>
+          </div>
+          <div class="hotel-detail-hero-section-container-box2-row2">
+            <div
+              class="hotel-detail-hero-section-container-box2-row2-image1"
+            ></div>
+            <div class="hotel-detail-hero-section-container-box2-row2-image2">
+              <a href="#">View all photos</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- overview + form section -->
+
+    <section class="overview-form-section">
+      <div class="overview-form-container">
+        <div class="overview-frame">
+          <div class="overview-frame-header">
+            <h3>Radisson Blu Hotel</h3>
+            <div class="location">
+              <i class="fa-solid fa-location-dot"></i>
+              <p>Kenya, South Africa, London, Turkey</p>
+            </div>
+          </div>
+          <div class="overview-frame-paragraph">
+            <h3>Hotel Overview</h3>
+            <p>
+              Embark on a journey of refined hospitality with Radisson Blu
+              Hotels, where each location is a testament to luxury, comfort, and
+              world-class service. Discover the essence of our hotels in diverse
+              destinations, located in Kenya, Nairobi, Johannesburg, South
+              Africa, London, United Kingdom, Istanbul, Turkey etc
+            </p>
+            <p>
+              Embark on a journey of refined hospitality with Radisson Blu
+              Hotels, where each location is a testament to luxury, comfort, and
+              world-class service. Discover the essence of our hotels in diverse
+              destinations, located in Kenya, Nairobi, Johannesburg, South
+              Africa, London, United Kingdom, Istanbul, Turkey etc
+            </p>
+          </div>
+        </div>
+        <div class="form-frame">
+          <form action="" class="form-box">
+            <div><h3>Book Now</h3></div>
+            <div class="form-box-field">
+              <label for="Full-Name">Full Name</label>
+              <input
+                type="text"
+                id="Full-Name"
+                name="Full-Name"
+                placeholder="John Doe"
+                required
+              />
+            </div>
+            <div class="form-box-field">
+              <label for="Email">Email</label>
+              <input
+                type="email"
+                name="Email"
+                id="Email"
+                placeholder="john.doe@gmail.com"
+                required
+              />
+            </div>
+            <div class="form-box-field">
+              <label for="Phone-Number">Phone Number</label>
+              <input
+                type="tel"
+                name="Phone-Number"
+                id="Phone-Number"
+                placeholder="+233456790123"
+                required
+              />
+            </div>
+            <div class="form-box-field">
+              <label for="location">Location</label>
+              <input
+                type="text"
+                name="location"
+                id="location"
+                placeholder="Istanbul, Turkey"
+                required
+              />
+            </div>
+            <div class="form-box-field check-date">
+              <div class="checked">
+                <label for="check-in">Check In</label>
+                <input type="date" name="check-in" id="check-in" required />
+              </div>
+              <div class="checked">
+                <label for="check-out">Check Out</label>
+                <input type="date" name="check-out" id="check-out" required />
+              </div>
+            </div>
+            <div class="form-box-field">
+              <label for="guests">No of guests</label>
+              <input
+                type="number"
+                name="No.-of-guests"
+                id="guests"
+                required
+                min="1"
+              />
+            </div>
+            <div class="form-box-field">
+              <input type="submit" value="Book Now" />
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- hotel list section -->
+
+    <section class="hotel-list-section">
+      <h1>Other Popular Hotels</h1>
+      <div class="all-hotels-container">
+        <div class="each-hotel-box">
+          <img src="./images/hotel-room2.jpeg" alt="hotel room" />
+          <h2>Tribe London Canary wharf</h2>
+          <p><i class="fa-solid fa-location-dot"></i>London, United Kingdom</p>
+          <div class="book-now-btn"><a href="#">Book Now</a></div>
+        </div>
+        <div class="each-hotel-box">
+          <img src="./images/hotel-room3.jpeg" alt="hotel room" />
+          <h2>Renaissance Paris Republique</h2>
+          <p><i class="fa-solid fa-location-dot"></i>France</p>
+          <div class="book-now-btn"><a href="#">Book Now</a></div>
+        </div>
+        <div class="each-hotel-box">
+          <img src="./images/hotel-room4.jpeg" alt="hotel room" />
+          <h2>JW Marriott Marquis Hotel</h2>
+          <p><i class="fa-solid fa-location-dot"></i>Dubai</p>
+          <div class="book-now-btn"><a href="#">Book Now</a></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-container">
+        <div class="footer-container-content-block1">
+          <div class="link-blocks">
+            <h5>Company</h5>
+            <ul class="footer-links">
+              <li><a href="#">About</a></li>
+              <li><a href="#">Contact Us</a></li>
+              <li><a href="#">Terms and Conditions</a></li>
+              <li><a href="#">Privacy Policy</a></li>
+            </ul>
+          </div>
+          <div class="link-blocks">
+            <h5>Services</h5>
+            <ul class="footer-links">
+              <li><a href="#">Study Abroad Programs</a></li>
+              <li><a href="#">Travel Planning</a></li>
+              <li><a href="#">Flight Booking</a></li>
+            </ul>
+          </div>
+          <div class="link-blocks">
+            <h5>Follow us</h5>
+            <div class="footer-icons">
+              <a href="#"
+                ><img src="./images/facebook icon.svg" alt="facebook icon"
+              /></a>
+              <a href="#"
+                ><img src="./images/twitter icon.svg" alt="twitter icon"
+              /></a>
+              <a href="#"
+                ><img src="./images/instagram icon.svg" alt="instagram icon"
+              /></a>
+              <a href="#"
+                ><img src="./images/linkedin icon.svg" alt="linkedin icon"
+              /></a>
+            </div>
+          </div>
+        </div>
+        <div class="footer-container-content-block2">
+          <div class="newsletter">
+            <div class="newsletter-text">
+              <h5>Subscribe to our newsletter</h5>
+              <p>
+                A monthly digest of the latest news, articles, and resources.
+              </p>
+            </div>
+            <div class="newsletter-form">
+              <form action="">
+                <label for="email-address"></label>
+                <input
+                  type="email"
+                  id="email-address"
+                  name="Subscribe email"
+                  placeholder="Email address"
+                  required
+                />
+                <button type="submit">Subscribe</button>
+              </form>
+            </div>
+          </div>
+          <div class="logo-copyright">
+            <a href="index.html"
+              ><img src="images/RDG Logo (1) 2.svg" alt="RDG Logo"
+            /></a>
+            <p>© 2023 RDG Consults. All rights reserved.</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

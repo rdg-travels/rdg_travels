@@ -11,6 +11,8 @@ body{
     color: #111827;
 }
 
+
+/* header section */
 .header-section{
     background-color: rgb(255, 255, 255);
     display: flex;
