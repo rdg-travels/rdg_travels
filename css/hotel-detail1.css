@@ -7,7 +7,7 @@ body{
     font-family: "Circular Std Book",Arial, Helvetica, sans-serif;
     margin: 0;
     padding: 0;
-    background: var(--Generic-White, #f9f8f8);
+    /* background: var(--Generic-White, #f9f8f8); */
     color: #111827;
 }
 
@@ -18,13 +18,13 @@ body{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 16px 112px;
+    padding: 24px 112px;
 }
 
-.rdg-logo{
+/* .rdg-logo{
     width: 224px;
 height: 64px;
-}
+} */
 
 .nav-links{
     display: flex;
@@ -50,7 +50,7 @@ height: 64px;
 /* hotel detail hero section */
 
 .hotel-detail-hero-section{
-    padding: 0 100px;
+    padding: 0 112px;
 }
 
 
@@ -155,7 +155,7 @@ right: 15px;
 /* overview+form section */
 
 .overview-form-section{
-    padding: 64px 100px;
+    padding: 64px 112px;
 }
 
 .overview-form-container{
@@ -164,7 +164,7 @@ right: 15px;
     align-items: flex-start;
     gap: 48px;
 }
-.overview-frame{
+.overview-frame {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -274,22 +274,23 @@ text-align: left;
     /* gap: 10px; */
     width: 100%;
     /* flex: 1 0 0; */
-border-radius: 4px 4px;
+border-radius: 4px;
 position: relative;
 }
 
 .form-box-field label{
 
-font-size: 12px;
+font-size: 14px;
 font-weight: 450;
 line-height: 18px;
 letter-spacing: 0em;
 text-align: left;
 background-color: #ffffff;
-
+padding: 0px 8px;
 }
 
 .form-box-field input{
+    font-family: "Circular Std Book";
     height: 50px;
     border: 1px solid #79747E;
     border-radius: 4px;
@@ -307,10 +308,10 @@ background-color: #ffffff;
     justify-content: space-between;
     gap: 10px;
 }
-.checked, .checked{
+.checked {
     position: relative;
     /* background-color: #39cedc; */
-    width: 100%;
+    /* width: 100%; */
     /* flex: 1 0 0; */
 }
 
@@ -381,7 +382,7 @@ text-align: left;
 
 .each-hotel-box p{
     color: #6B7280;
-    font-size: 0.85rem;
+    font-size: 1rem;
 font-weight: 450;
 line-height: 20px;
 text-align: left;
@@ -393,26 +394,26 @@ text-align: left;
 }
 
 .each-hotel-box .book-now-btn{
-    padding: 8px, 20px, 8px, 20px;
+    padding: 8px 20px;
     background-color: #093BA8;
-    width: 100px;
-    height: 46px;
+    width: fit-content;
+    /* height: 46px; */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border-radius: 5px;
+    border-radius: 6px;
 }
 .each-hotel-box a {
     text-decoration: none;
     color: #fff;   
-    font-size: 13px;
+    font-size: 16px;
 }
 
 
 /* FOOTER */
 
-footer {
+/* footer {
     padding: 0 100px;
 }
 
@@ -535,4 +536,4 @@ letter-spacing: 0em;
 text-align: left;
 color: #9CA3AF;
 
-}
+} */
