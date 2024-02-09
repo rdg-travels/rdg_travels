@@ -27,24 +27,24 @@ body{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 100px;
+    /* padding: 10px 100px; */
     background-color: #fff;
 }
-.nav-bar img {
+/* .nav-bar img {
     height: 64px;
     cursor: pointer;
-}
+} */
 
 
 .nav-links{
     list-style-type: none;
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    /* gap: 10px; */
 }
-.nav-links li {
+/* .nav-links li {
     margin-right: 10px;
-}
+} */
 
 .nav-links li:last-child {
     margin-right: 10px;
@@ -54,9 +54,9 @@ body{
     color:#111827;
     text-decoration: none;
     text-transform: capitalize;
-    font-weight: 400;
+    /* font-weight: 400;
     font-size: 1rem;
-    padding: 10px 0;
+    padding: 10px 0; */
     text-align: center;
     transition: color 0.3s ease-in-out;
 }
@@ -103,22 +103,23 @@ body{
 background: url('../images/background-flight-booking.jpeg') center/cover;
 background-color: rgba(38, 74, 219, 0.385);
 background-blend-mode: multiply;
-height:450px;
+height:550px;
 display: flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;
 width: 100%;
-padding: 0 100px;
-margin-bottom: 250px;
+/* padding: 0 100px; */
+margin-bottom: 320px;
+padding-top: 250px;
 }
 
 #welcome-text{
-    font-family: "Circular Std Bold",Arial, Helvetica, sans-serif;
+    /* font-family: "Circular Std Bold",Arial, Helvetica, sans-serif; */
     color: #fff;
     text-transform: capitalize;
-    font-size: 2.5rem;
-    letter-spacing: 2px;
+    font-size: 3rem;
+    letter-spacing: -2px;
     text-align: center;
     margin-top: 500px;
     margin-bottom: 32px;
@@ -137,50 +138,53 @@ margin-bottom: 250px;
     gap: 32px;
     border-radius: 10px;
     box-shadow: 0px 4px 16px 0px rgba(17, 34, 17, 0.05);
-      
-    }
+}
 
 
 .flight-details-heading {
     text-transform: capitalize;
-    font-size: 13px;
-    margin-left: 5px;
-    grid-column: span 4;
+    /* font-size: 13px;
+    margin-left: 5px; */
+    /* grid-column: span 4; */
+    align-items: normal;
 }
 
-.hero-section .fa-plane{
-    color: #093ba8;
-    transform: rotate(-40deg);
-    margin-right: 10px;
+.text p {
+    font-size: 1.25em;
+    font-weight: 700;
+    line-height: 28px;
+    margin-bottom: 0px;
 }
 
-.flight-form{
-    display: grid;
+.flight-form {
+    /* display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-gap: 16px;
+    justify-content: space-between; */
+    display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
+    gap: 16px;
 }
 
- .form-group {
-         position: relative;
+.form-group {
+    position: relative;
     display: flex;
     flex-direction: column;
     flex-grow: 1;
     margin-bottom: 16px;
-      }
+}
 
-     .form-group label {
-        position: absolute;
-        top: -15%;
-        left: 10px;
-        background-color: #fff;
-        padding: 0 5px;
-        color: #555;
-        font-size: 12px;
-        transition: top 0.3s, font-size 0.3s;
-      }
+.form-group label {
+    position: absolute;
+    /* top: -15%;
+    left: 10px; */
+    background-color: #fff;
+    padding: 0 5px;
+    color: #555;
+}
 
-      .form-group input,
+.form-group input,
 .form-group select {
     width: 100%;
     height: 56px;
@@ -192,268 +196,14 @@ margin-bottom: 250px;
 
 
 
-.hero-section .book-flight-button-container{  
-    grid-column: span 4;
-    justify-self: end;
-}
-.hero-section #book-flight-button{
-    background: #093ba8;
-    color: #fff;
-    padding: 10px 15px;
-    text-transform: capitalize;
-    border-radius: 5px;
-    border: none;
-    
-}
-
-
-/* @media (max-width: 768px) {
-
-    .hero-section{
-        height: 100%;
-    }
-
- .flight-form{
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    padding: 20px;
- }
- .flight-details, .form-group, .book-flight-button{
-    flex: 1 0 calc(100% - 10px);
-    padding: 20px;
-    border: 1px solid #ddd;
-    text-align: center;
-    box-sizing: border-box;
- }
-} */
-
-
-/* what set us section */
-
-    .what-set-us-section {
-    padding: 40px;
-    margin: 10px 20px;
-    
-      }
-
-      .what-set-us-section-heading h2 {
-        margin-bottom: 20px;
-        font-family: "Circular Std Bold", Arial, Helvetica, sans-serif;
-        color: #111827;
-        line-height: 40px;
-        margin-left: 20px;
-      }
-
-      .what-set-us-container {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        grid-template-rows: repeat(2, 1fr);
-        gap: 20px;
-        height: 100vh;
-      }
-
-      .answer-box {
-padding: 10px;
-display: flex;
-flex-direction: column;
-align-items: flex-start;
-gap: 5px;
-flex: 1 0 0;
-align-self: stretch;
-      }
-
-      .answer-box-icon {
-        font-size: 20px;
-        margin-bottom: 10px;
-        width: 56px;
-        height: 56px;
-      }
-
-
-.answer-box h3{
-color: var(--Neutral-900, #111827);
-font-family: "Circular Std Bold", Arial, Helvetica, sans-serif;
-font-size: 1rem;
-margin-bottom: 8px;
-line-height: 20px; /* 140% */
-letter-spacing: 0.2px;
-}
-
-.answer-box p{
-color: var(--Neutral-500, #6B7280);
-font-feature-settings: 'salt' on;
-font-size: 14px;
-font-style: normal;
-font-weight: 450;
-line-height: 24px; /* 150% */
-}
-
-      .what-set-us-container-img {
-        grid-column: span 2;
-        grid-row: span 2;
-        width: 592px;
-        height: 572px;
-      }
-
-      .what-set-us-container-img img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-         border-radius: 8px;
-      }
-
-/* services section */
-
-.services {
-    padding: 40px;
-    margin: 20px;
-    
-      }
-
-  .services-header {
-      color: #000000;
-      padding: 10px;
-      margin-left: 25px;
-    }
-
-    .services-header h1 {
-        color: #111827;
-font-family: "Circular Std Bold";
-font-size: 2rem;
-line-height: 40px;
-letter-spacing: -0.64px;
-margin-bottom: 5px;
-    }
-.services-header p{
-    color: #6B7280;
-font-size: 1rem;
-font-style: normal;
-line-height: 24px;
-letter-spacing: -0.32px;
-}
-    .services-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      padding: 20px;
-    }
-
-    .service-box {
-      width: calc(33.33% - 30px);
-      margin: 10px;
-      background-color: #ffffff;
-      padding: 20px;
-       display: flex;
-      flex-direction: column;
-    }
-
-
-.service-box h3, .service-box p {
-   
-    margin: 0; /* Remove default margin */
-     margin-bottom: 18px;
-}
-
-    .service-box h3 {
-      color: var(--Neutral-900, #111827);
-font-family: "Circular Std Bold", Arial, Helvetica, sans-serif;
-font-size: 1.1rem;
-font-style: normal;
-line-height: 28px;
-letter-spacing: 0.5px;
-    }
-
-    .service-box p {
-      color: var(--Neutral-500, #6B7280);
-font-feature-settings: 'salt' on;
-font-size: 14px;
-font-style: normal;
-font-weight: 450;
-line-height: 24px;
-letter-spacing: 0.2;
-flex-grow: 1; /* Make the paragraph take up remaining space */
-    }
-
-    .service-box img {
-      width: 100%;
-      height: auto;
-      margin-top: 10px;
-    }
-
-
-/* why choose us */
-.why-choose-us {
-    background: var(--Smalt-50, #ECF7FF);
-    padding: 64px 112px;
-}
-
-.why-choose-us-container {
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    
-}
-
-.why-choose-us-container h1 {
-    width: 100%;
-    color: var(--Neutral-900, #111827);
-    font-family: "Circular Std Bold", Arial, Helvetica, sans-serif;
-text-align: center;
-font-size: 1.8rem;
-line-height: 40px;
-letter-spacing: -0.64px;
-margin-bottom: 20px;
-}
-
-.why-choose-us-box {
-   flex: 1 0 30%;
-    margin: 15px;
-    display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-gap: 5px;
-padding: 10px;
-}
-
-.why-choose-us-box i, .why-choose-us-box h3, .why-choose-us-box p, .why-choose-us-box img {
-     margin-bottom: 18px;
-}
-
-.why-choose-us-box i {
-color: #093BA8;
-font-size: 45px;
-}
-
-.why-choose-us-box h3 {
-    color: #111827;
-text-align: center;
-font-family: "Circular Std Bold", Arial, Helvetica, sans-serif;
-font-size: 18px;
-line-height: 28px;
-letter-spacing: -0.4px;
-}
-
-.why-choose-us-box p {
-    color: #6B7280;
-text-align: center;
-font-feature-settings: 'salt' on;
-font-size: 14px;
-line-height: 24px;
-flex-grow: 1;
-}
-
-
 /* 
 flight booking two */
   .flight-section-two {
         background: url("../images/plane.jpeg") center/cover no-repeat;
         background-color: rgba(38, 74, 219, 0.385);
 background-blend-mode: multiply;
-        height: 400px;
+        height: 470px;
+        padding: 64px 112px;
         display: flex;
         justify-content: center;
         align-items: center;

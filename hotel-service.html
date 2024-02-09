@@ -70,11 +70,21 @@
                                 <div class="form-group flex-group">
                                     <label for="checkIn">Check In</label>
                                     <input type="date" id="checkIn" name="checkIn" required>
+                                    <script>
+                                        document.getElementById("checkIn").min = new Date()
+                                          .toISOString()
+                                          .split("T")[0];
+                                    </script>
                                 </div>
                 
                                 <div class="form-group flex-group">
                                     <label for="checkOut">Check Out</label>
-                                    <input type="date" id="checkIn" name="checkIn" required>
+                                    <input type="date" id="checkOut" name="checkIn" required>
+                                    <script>
+                                        document.getElementById("checkOut").min = new Date()
+                                          .toISOString()
+                                          .split("T")[0];
+                                    </script>
                                 </div>
         
                                 <div class="form-group flex-group guest">
@@ -274,11 +284,21 @@
                         <div class="form-group flex-group">
                             <label for="checkIn">Check In</label>
                             <input type="date" id="checkIn" name="checkIn" required>
+                            <script>
+                                document.getElementById("checkIn").min = new Date()
+                                  .toISOString()
+                                  .split("T")[0];
+                            </script>
                         </div>
         
                         <div class="form-group flex-group">
                             <label for="checkOut">Check Out</label>
-                            <input type="date" id="checkIn" name="checkIn" required>
+                            <input type="date" id="checkOut" name="checkIn" required>
+                            <script>
+                                document.getElementById("checkOut").min = new Date()
+                                  .toISOString()
+                                  .split("T")[0];
+                            </script>
                         </div>
 
                         <div class="form-group flex-group guest">

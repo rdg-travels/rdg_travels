@@ -140,17 +140,14 @@
 }
 
 .packages-grid {
-    /* display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 32px; */
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    /* justify-content: space-between; */
     align-items: flex-start;
     flex-grow: 1;
     gap: 48px;
     align-self: stretch;
+    justify-content: space-between;
 }
 
 .package-container {

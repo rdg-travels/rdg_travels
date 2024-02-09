@@ -10,9 +10,9 @@ html {
     scroll-behavior: smooth;
 }
 
-section {
+/* section {
     display: flex;
-}
+} */
 
 body {
     font-size: 1em;
@@ -58,12 +58,17 @@ header {
     align-items: flex-start;
 }
 
+.logo img {
+    cursor: pointer;
+}
+
 
 nav ul {
     display: flex;
     gap: 24px;
     flex-direction: row;
     list-style: none;
+    flex-wrap: wrap;
 }
 
 nav ul li {

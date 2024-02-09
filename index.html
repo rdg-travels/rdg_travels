@@ -123,6 +123,11 @@
                       name="leavingOn"
                       required
                     />
+                    <script>
+                        document.getElementById("leavingOn").min = new Date()
+                          .toISOString()
+                          .split("T")[0];
+                    </script>
                   </div>
 
                   <div class="form-group flex-group top-input">
@@ -133,6 +138,11 @@
                       name="returningOn"
                       required
                     />
+                    <script>
+                        document.getElementById("returningOn").min = new Date()
+                          .toISOString()
+                          .split("T")[0];
+                    </script>
                   </div>
 
                   <div class="form-group flex-group">
@@ -431,7 +441,7 @@
               <p>Kenya, South Africa, London, Turkey</p>
             </div>
             <div class="book-now-button">
-              <a href="#" class="book-now-link">Book Now</a>
+              <a href="hotel-detail1.html" class="book-now-link">Book Now</a>
             </div>
           </div>
         </div>
