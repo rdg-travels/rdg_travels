@@ -74,7 +74,7 @@
 }
 
 .study-welcome-text p {
-    text-align: justify;
+    /* text-align: justify; */
 }
 
 .welcome-image img {
@@ -99,7 +99,7 @@
 
 .welcome-text-heading span {
     color: #093BA8;
-    font-family: "Circular Std Black",Arial, Helvetica, sans-serif;
+    font-family: "Circular Std Black", Arial, Helvetica, sans-serif;
 }
 
 .welcome-text p,
@@ -112,7 +112,7 @@
 }
 
 .welcome-text p {
-    text-align: justify;
+    /* text-align: justify; */
 }
 
 .packages-section {
@@ -176,7 +176,7 @@
 .package-container p {
     font-size: 1em;
     margin-bottom: 40px;
-    text-align: justify;
+    /* text-align: justify; */
     line-height: 24px;
 }
 
@@ -272,18 +272,157 @@
     margin-bottom: 0px;
 }
 
-
-
-
-/* Responsive styles for smaller screens */
-@media (max-width: 768px) {
-    .welcome-section {
+@media screen and (max-width: 769px) {
+    .packages-section {
+        padding: 64px 24px;
+    }
+    
+    .packages-grid {
         flex-direction: column;
+        gap: 32px;
+    }
+    
+    .package-container {
+        flex: 1 1 100%;
+        max-width: 400px;
+        margin-bottom: 32px;
+        margin: 0 auto;
+    }
+
+    .welcome-section {
+        padding: 64px 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
     }
 
     .welcome-image,
     .welcome-text {
         width: 100%;
+    }
+
+    .study-welcome-text {
+        padding-top: 32px;
+    }
+    
+    .study-welcome-text p {
+        font-size: 0.875em;
+        line-height: 1.5;
+        /* text-align: justify; */
+    }
+    
+    .welcome-text-heading {
+        margin-bottom: 12px;
+    }
+    
+    .welcome-text-heading h2,
+    .welcome-text-heading span {
+        font-size: 1.75em;
+        line-height: 1.2;
+        margin-bottom: 0px;
+    }
+    
+    .welcome-text p {
+        font-size: 0.875em;
+        line-height: 1.5;
+        /* text-align: justify; */
+    }
+    
+    .study-abroad-container {
+        padding: 64px 24px;
+    }
+
+    .study-abroad-container .study-abroad-section {
+        max-width: 100%;
+        margin: 26px auto;
+    }
+    
+    .study-form {
+        width: 100%; /* Adjust form width for smaller screens */
+    }
+
+    .study-why-choose-us-section {
+        background-color: #ECF7FF;
+        padding: 64px 24px;
+        /* flex-direction: column; */
+    }
+    
+    .why-choose-us-heading h2 {
+        font-size: 2em;
+        margin-bottom: 32px;
+    }
+    
+    .why-choose-us-grid {
+        display: flex;
+        gap: 32px;
+    }
+
+    .why-choose-us-flex {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .study-why-choose-us-container {
+        flex-basis: 100%;
+        max-width: 100%;
+        text-align: center;
+    }
+    
+    .study-why-choose-us-container img {
+        height: 48px;
+    }
+
+    .discover-section {
+        padding: 64px 24px;
+    }
+    
+    .discover-text h2 {
+        font-size: 2em;
         margin-bottom: 20px;
     }
+    
+    .discover-text p {
+        font-size: 1em;
+        margin-bottom: 0;
+    }
+    
+    .study-hero-section {
+        padding: 120px 24px;
+        gap: 12px; 
+    }
+
+    .study-welcome-text {
+        flex: 1;
+    }
+
+    .study-welcome-text h1 {
+        max-width: 100%;
+        font-size: 2.5em;
+        margin-top: 0;
+        margin-bottom: 24px;
+        line-height: 1.2;
+        font-weight: 500;
+        letter-spacing: -0.5px;
+    }
+
+    .study-abroad-section {
+        padding: 16px;
+    }
+
+    .text p {
+        font-weight: 700;
+        margin-bottom: 16px;
+        font-size: 1.125em;
+    }
+    
+    .study-type {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .start-study-button {
+        text-align: center;
+    }
+
 }

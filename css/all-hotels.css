@@ -4,7 +4,7 @@
     box-sizing: border-box;
 }
 body{
-    font-family: "Circular Std Book",Arial, Helvetica, sans-serif;
+    font-family: "Circular Std Book", Arial, Helvetica, sans-serif;
     margin: 0;
     padding: 0;
     background: var(--Generic-White, #f9f8f8);
@@ -111,7 +111,7 @@ line-height: 30px; /* 150% */
       /* align-self: start; */
     }
 .each-hotel-box h2{
-    font-family: 'Circular Std Bold' Arial, Helvetica, sans-serif;
+    font-family: 'Circular Std Book', Arial, Helvetica, sans-serif;
   font-size: 20px;
 line-height: 30.36px;
 text-align: left;

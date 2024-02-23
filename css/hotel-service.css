@@ -40,15 +40,16 @@
 }
 
 .input-with-icon::before {
-    content: '\f007'; /* Unicode for the user icon */
-    font-family: 'Font Awesome 5 Free';
+    background-image: url("/images/leading-icon.png");
+    content: "";
     position: absolute;
     top: 48%;
     left: 10px;
     transform: translateY(-50%);
     color: #112211;
-    font-size: 16px;
-    z-index: 2;
+    width: 16px;
+    height: 16px;
+    z-index: 9999;
 }
 
 .guest label {
@@ -121,4 +122,58 @@
 .study-why-choose-us-container i {
     color: #093BA8;
     font-size: 3.5em;
+}
+
+@media screen and (max-width: 769px) {
+    .what-set-us-apart-section {
+        padding: 64px 24px;
+    }
+
+    .what-set-us-apart-section h2 {
+        margin-bottom: 24px;
+    }
+
+    .what-set-us-apart-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: flex-start;
+    }
+
+    .hotel-feature-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        flex: 1 1 50%;
+        max-width: 600px;
+    }
+
+    .hotel-feature {
+        flex: 1 1 100%;
+    }
+
+    .what-set-us-apart-image {
+        flex: 1 1 100%; /* Make the image take 100% width */
+        text-align: center; /* Center the image horizontally */
+    }
+    
+    .what-set-us-apart-image img {
+        width: 100%;
+        max-width: 400px;
+        height: auto;
+        margin-top: 32px;
+    }
+    
+    .hotel-feature-detail {
+        flex-grow: 1;
+    }
+    
+    .hotel-feature h4 {
+        font-size: 1.1em;
+    }
+    
+    .hotel-feature p {
+        font-size: 0.95em;
+        line-height: 1.4;
+    }
 }

@@ -222,7 +222,7 @@ gap: 20px;
 }
 
 .overview-frame-paragraph h3{
-    font-family: "Circular Std Bold" Arial, Helvetica, sans-serif;
+    font-family: "Circular Std Book", Arial, Helvetica, sans-serif;
     color: #0F1416;
 font-size: 20px;
 font-weight: 700;
@@ -290,7 +290,7 @@ padding: 0px 8px;
 }
 
 .form-box-field input{
-    font-family: "Circular Std Book";
+    font-family: "Circular Std Book", Arial, Helvetica, sans-serif;
     height: 50px;
     border: 1px solid #79747E;
     border-radius: 4px;
@@ -325,7 +325,7 @@ padding: 0px 8px;
     background-color: #093BA8;
     color: #fff;
     border: none;
-    font-family: "Circular Std Bold", Arial, Helvetica, sans-serif;
+    font-family: "Circular Std Book", Arial, Helvetica, sans-serif;
 }
 
 .form-box-field label{
@@ -373,19 +373,19 @@ padding: 0px 8px;
       margin: 5px 0;
       /* align-self: start; */
     }
-.each-hotel-box h2{
-    font-family: 'Circular Std Bold' Arial, Helvetica, sans-serif;
-  font-size: 20px;
-line-height: 30.36px;
-text-align: left;
+.each-hotel-box h2 {
+    font-family: 'Circular Std Book' Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    line-height: 30.36px;
+    text-align: left;
 }
 
 .each-hotel-box p{
     color: #6B7280;
     font-size: 1rem;
-font-weight: 450;
-line-height: 20px;
-text-align: left;
+    font-weight: 450;
+    line-height: 20px;
+    text-align: left;
 }
 
 .each-hotel-box i {
