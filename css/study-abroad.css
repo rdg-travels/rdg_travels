@@ -354,7 +354,7 @@
     
     .why-choose-us-grid {
         display: flex;
-        gap: 32px;
+        gap: 24px;
     }
 
     .why-choose-us-flex {
@@ -363,13 +363,18 @@
     }
     
     .study-why-choose-us-container {
-        flex-basis: 100%;
-        max-width: 100%;
+        flex-basis: calc(50% - 12px);
+        max-width: 300px;
         text-align: center;
     }
+
+    .study-why-choose-us-container h3 {
+        font-size: 1em;
+    }
+    
     
     .study-why-choose-us-container img {
-        height: 48px;
+        height: 40px;
     }
 
     .discover-section {

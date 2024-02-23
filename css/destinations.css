@@ -357,9 +357,9 @@ button {
     transition: background-color 0.3s;
 }
 
-button:hover {
+/* button:hover {
     background-color: #0056b3;
-}
+} */
 
 .container {
     height: 100vh;
@@ -385,4 +385,23 @@ button:hover {
 
 .back-link:hover {
     background-color: #0056b3;
+}
+
+@media screen and (max-width: 769px) {
+    .destination-hero-section {
+        padding: 64px 24px;
+    }
+
+    .destination-welcome-text {
+        text-align: center;
+    }
+
+    .destination-welcome-text h1 {
+        font-size: 2.5em;
+        letter-spacing: 0.72px;
+    }
+    
+    .destination-welcome-text p {
+        font-size: 1em;
+    }
 }
