@@ -1298,9 +1298,8 @@ h3 {
     }
 
     .feature-container {
-        display: flex;
-        flex-direction: column;
-        gap: 16px;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
         align-items: center;
     }
 

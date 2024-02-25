@@ -272,3 +272,72 @@ text-align: left;
 color: #9CA3AF;
 
 } */
+
+@media screen and (max-width: 769px) {
+    .header-section {
+        padding: 16px 24px;
+    }
+
+    .hero-section {
+        padding: 224px 24px 36px;
+    }
+    
+    .hero-section h1 {
+        font-size: 2rem;
+        line-height: 40px;
+        margin-bottom: 12px;
+    }
+    
+    .hero-section p {
+        font-size: 0.875rem;
+        line-height: 24px;
+    }
+
+    .hotel-list-section {
+        padding: 64px 24px;
+    }
+    
+    .all-hotels-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        row-gap: 48px;
+        column-gap: 32px;
+    }
+    
+    .each-hotel-box {
+        display: flex;
+        flex-direction: column;
+        border-radius: 8px;
+        gap: 6px;
+        
+    }
+    
+    .each-hotel-box img {
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+    }
+    
+    .each-hotel-box h2,
+    .each-hotel-box p,
+    .each-hotel-box .book-now-btn {
+        margin: 5px 0;
+    }
+    
+    .each-hotel-box h2 {
+        font-size: 1.5rem;
+        line-height: 1.2;
+    }
+    
+    .each-hotel-box p {
+        font-size: 0.875rem;
+        line-height: 1.4;
+    }
+    
+    .each-hotel-box .book-now-btn {
+        padding: 8px 20px;
+        
+    }
+    
+    
+}

@@ -388,7 +388,9 @@ button {
 }
 
 @media screen and (max-width: 769px) {
-    .destination-hero-section {
+    .destination-hero-section,
+    .destination-detail-hero-section,
+    .trip-details-section {
         padding: 64px 24px;
     }
 
@@ -403,5 +405,40 @@ button {
     
     .destination-welcome-text p {
         font-size: 1em;
+    }
+
+    .trip-details-container {
+        flex-direction: column;
+        gap: 24px;
+    }
+    
+    .trip-info-container {
+        border: none;
+    }
+    
+    .trip-overview-container {
+        padding-bottom: 0px;
+    }
+    
+    .total-package-container {
+        padding: 24px;
+        gap: 16px;
+    }
+    
+    .book-now-info {
+        flex-direction: column;
+    }
+    
+    .booking-form .form-group {
+        margin-bottom: 16px;
+    }
+    
+    .package-type {
+        gap: 12px;
+    }
+    
+    button {
+        font-size: 1em;
+        padding: 12px 20px;
     }
 }

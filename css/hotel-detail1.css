@@ -537,3 +537,111 @@ text-align: left;
 color: #9CA3AF;
 
 } */
+
+@media screen and (max-width: 769px) {
+    .header-section {
+        padding: 16px 24px;
+    }
+
+    .hotel-detail-hero-section {
+        padding: 64px 24px;
+    }
+    
+    .hotel-detail-hero-section-container {
+        width: 100%;
+        display: flex;
+        gap: 8px;
+    }
+    
+    .hotel-detail-hero-section-container-box1 {
+        border-radius: 12px;
+    }
+    
+    .hotel-detail-hero-section-container-box2 {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .hotel-detail-hero-section-container-box2-row1,
+    .hotel-detail-hero-section-container-box2-row2 {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .hotel-detail-hero-section-container-box2-row1-image1,
+    .hotel-detail-hero-section-container-box2-row1-image2,
+    .hotel-detail-hero-section-container-box2-row2-image1,
+    .hotel-detail-hero-section-container-box2-row2-image2 {
+        border-radius: 12px;
+    }
+    
+    .hotel-detail-hero-section-container-box2-row2-image2 a {
+        width: 100%;
+        text-align: center;
+        position: static;
+        bottom: auto;
+        right: auto;
+    }
+
+    .overview-form-section {
+        padding: 64px 24px; 
+    }
+    
+    .overview-form-container {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .overview-frame {
+        width: 100%;
+    }
+    
+    .form-frame {
+        width: 100%;
+    }
+    
+    .form-box-field label {
+        font-size: 0.8rem;
+    }
+    
+    .form-box-field input {
+        font-size: 0.9rem;
+    }
+    
+    .checked input[type="date"] {
+        font-size: 0.8rem;
+    }
+    
+    .form-box-field input[type="submit"] {
+        font-size: 0.9rem;
+    }
+    
+    .overview-frame-header h3 {
+        font-size: 1.2rem;
+        line-height: 1.5;
+    }
+    
+    .overview-frame-header .location i {
+        width: 12px; /* Reduce size of location icon for smaller screens */
+        height: 12px; /* Reduce size of location icon for smaller screens */
+    }
+    
+    .overview-frame-header .location p {
+        font-size: 0.9rem;
+    }
+    
+    .overview-frame-paragraph h3 {
+        font-size: 1rem; 
+        line-height: 1.5;
+    }
+    
+    .overview-frame-paragraph p {
+        font-size: 0.9rem;
+        line-height: 1.5;
+    }
+    
+    
+}
