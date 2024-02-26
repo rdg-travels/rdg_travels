@@ -538,12 +538,13 @@ color: #9CA3AF;
 
 } */
 
-@media screen and (max-width: 769px) {
+@media screen and (max-width: 768px) {
     .header-section {
         padding: 16px 24px;
     }
 
-    .hotel-detail-hero-section {
+    .hotel-detail-hero-section,
+    .hotel-list-section {
         padding: 64px 24px;
     }
     
@@ -601,6 +602,7 @@ color: #9CA3AF;
     
     .form-frame {
         width: 100%;
+        padding: 16px;
     }
     
     .form-box-field label {
@@ -643,5 +645,25 @@ color: #9CA3AF;
         line-height: 1.5;
     }
     
-    
+    .all-hotels-container {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        grid-auto-rows: minmax(300px, auto);
+        gap: 32px;
+    }
+
+    .each-hotel-box h2 {
+        font-size: 1.25em;
+    }
+
+    .each-hotel-box p {
+        font-size: 1em;
+    }
+
+    .each-hotel-box .book-now-btn {
+        padding: 8px 16px;
+    }
+
+    .each-hotel-box a {
+        font-size: 0.875em;
+    }
 }

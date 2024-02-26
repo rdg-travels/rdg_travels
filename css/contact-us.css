@@ -117,3 +117,23 @@
     padding: 0px 112px;
 }
 
+@media (max-width: 768px) {
+    .contact-us-section {
+        display: flex;
+        flex-direction: column;
+        padding: 64px 24px;
+    }
+
+    .form-container {
+        padding: 16px;
+    }
+
+    .info-icon img {
+        max-width: fit-content;
+    }
+
+    .google-map {
+        padding: 0px 24px;
+    }
+}
+  

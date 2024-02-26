@@ -273,7 +273,7 @@ color: #9CA3AF;
 
 } */
 
-@media screen and (max-width: 769px) {
+@media screen and (max-width: 768px) {
     .header-section {
         padding: 16px 24px;
     }

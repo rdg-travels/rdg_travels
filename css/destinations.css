@@ -7,6 +7,7 @@
     background-position: center;
     color: #fff;
     padding: 100px 112px;
+    min-height: 300px; /* Set a minimum height for responsiveness */
 }
 
 .destination-welcome-text {
@@ -387,7 +388,7 @@ button {
     background-color: #0056b3;
 }
 
-@media screen and (max-width: 769px) {
+@media screen and (max-width: 768px) {
     .destination-hero-section,
     .destination-detail-hero-section,
     .trip-details-section {

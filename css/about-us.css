@@ -2,6 +2,7 @@
     background: #093BA8;
     padding: 96px 0px;
     height: 296px;
+    min-height: 300px;
 }
 
 .about-welcome-text {
@@ -66,9 +67,23 @@
 
 .stacked-images {
     display: flex;
+    flex-wrap: wrap;
     gap: 32px;
 }
 
 .images-container img {
     width: 100%;
+}
+
+@media screen and (max-width: 768px) {
+    .mission-vision-section {
+        display: flex;
+        flex-direction: column;
+        padding: 64px 24px;
+        gap: 32px;
+    }
+
+    .mission-container h2 {
+        font-size: 2em;
+    }
 }

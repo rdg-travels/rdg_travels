@@ -40,8 +40,9 @@
 }
 
 .input-with-icon::before {
-    background-image: url("/images/leading-icon.png");
-    content: "";
+    /* background-image: url("/images/leading-icon.png"); */
+    content: "\f007";
+    font-family: 'Font Awesome 5 Free';
     position: absolute;
     top: 48%;
     left: 10px;
@@ -101,11 +102,11 @@
 }
 
 .hotel-feature p {
+    color: #6B7280;
     flex-grow: 1;
     font-size: 1em;
     line-height: 24px;
     /* margin-top: 20px; */
-    text-align: justify;
 }
 
 
@@ -124,7 +125,7 @@
     font-size: 3.5em;
 }
 
-@media screen and (max-width: 769px) {
+@media screen and (max-width: 768px) {
     .hotel-hero-section {
         width: 100%;
         margin-bottom: 152px;
