@@ -38,7 +38,7 @@ img {
 }
 
 header {
-    width: 100%;
+    width: 100vw;
     height: 92px;
     background-color: #fff;
     padding: 0px 112px;
@@ -241,20 +241,33 @@ nav ul li a:hover {
     padding-left: 32px;
 }
 
+.form-group input[type="date"]::placeholder {
+    color: #ccc;
+}
+
 .book-flight-button {
     margin-left: auto;
     width: 125px;
     height: 40px;
 }
 
+button {
+    font-family: "Circular Std Book", Arial, Helvetica, sans-serif;
+}
+
 .book-flight-button button,
 .start-study-button button {
     border-radius: 6px;
     background-color: #093BA8;
-    padding: 8px 20px;
     color: #fff;
     border: none;
-    font-size: 1em;
+    padding: 10px 24px;
+    font-size: 1.125em;
+    white-space: nowrap;
+}
+
+.book-flight-button {
+    margin-right: 12px;
 }
 
 /* Home Section Styles */
@@ -1133,6 +1146,10 @@ h3 {
     p {
         font-size: 1em;
         margin-bottom: 32px;
+    }
+
+    .book-flight-button {
+        margin-right: 2px;
     }
 
     /* Service Cards Styles */

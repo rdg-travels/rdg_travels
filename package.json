@@ -1,0 +1,19 @@
+{
+  "name": "rdg",
+  "version": "1.0.0",
+  "description": "Welcome to the RDG Travels website project! This web application is designed to provide users with a platform for flight booking, exploring study abroad programs, and accessing hotel services. The project is developed using HTML/CSS for the frontend and Node.js for the backend.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.18.2",
+    "nodemailer": "^6.9.10"
+  }
+}

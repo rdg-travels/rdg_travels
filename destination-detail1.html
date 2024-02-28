@@ -116,15 +116,15 @@
                         <form class=" flight-form booking-form">
                             <div class="form-group">
                                 <label for="fullName">Full Name</label>
-                                <input type="text" id="fullName" placeholder="John Doe" required>
+                                <input type="text" id="fullName" placeholder="Chinwe Segun" required>
                             </div>
                             <div class="form-group">
                                 <label for="email">Email</label>
-                                <input type="email" id="email" placeholder="john.doe@gmail.com" required>
+                                <input type="email" id="email" placeholder="chinwesegun@mail.com" required>
                             </div>
                             <div class="form-group">
                                 <label for="phoneNumber">Phone Number</label>
-                                <input type="tel" id="phoneNumber" pattern="[+]{1}[0-9]{1,}" placeholder="+2343456790123" required>
+                                <input type="tel" id="phoneNumber" pattern="[+]{1}[0-9]{1,}" placeholder="+234 345 679 0123" required oninput="formatPhoneNumber(this)">
                             </div>
                             <div class="package-type">
                                 <label for="packageType">Package Type</label>
@@ -279,6 +279,24 @@
         </div>
     </div>
     
+    <script>
+        function formatPhoneNumber(input) {
+          // Remove all non-digit characters
+          let phoneNumber = input.value.replace(/\D/g, '');
+      
+          // Format the phone number as desired
+          let formattedPhoneNumber = '+';
+          for (let i = 0; i < phoneNumber.length; i++) {
+            if (i === 3 || i === 6 || i === 9) {
+              formattedPhoneNumber += ' ';
+            }
+            formattedPhoneNumber += phoneNumber[i];
+          }
+  
+          // Update the input value with the formatted phone number
+          input.value = formattedPhoneNumber;
+        }
+    </script>
     <script src="form-validation.js"></script>
 </body>
 </html>

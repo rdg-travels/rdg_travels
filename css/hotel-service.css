@@ -37,6 +37,7 @@
 
 .input-with-icon {
     position: relative;
+    
 }
 
 .input-with-icon::before {
@@ -45,11 +46,10 @@
     font-family: 'Font Awesome 5 Free';
     position: absolute;
     top: 48%;
-    left: 10px;
+    left: 12px;
     transform: translateY(-50%);
     color: #112211;
     width: 16px;
-    height: 16px;
     z-index: 9999;
 }
 
@@ -110,10 +110,10 @@
 }
 
 
-.what-set-us-apart-image img {
+/* .what-set-us-apart-image img {
     width: 100%;
     height: 575px;
-}
+} */
 
 
 .hotel-container {

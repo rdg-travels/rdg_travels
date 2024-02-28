@@ -80,7 +80,7 @@
 
           <!-- Book Flight Form -->
           <div id="book-flight" class="book-flight-section">
-            <form class="flight-form">
+            <form class="flight-form" method="POST" id="flight-form" action="/booking-flight">
               <!-- Flight Details -->
               <div class="flight-details">
                 <div class="flight-details-heading">
@@ -152,7 +152,7 @@
                       type="text"
                       id="fullName"
                       name="fullName"
-                      placeholder="John Doe"
+                      placeholder="Chinwe Segun"
                       required
                     />
                   </div>
@@ -163,7 +163,7 @@
                       type="email"
                       id="email"
                       name="email"
-                      placeholder="Johndoe@mail.com"
+                      placeholder="chinwesegun@mail.com"
                       required
                     />
                   </div>
@@ -177,6 +177,7 @@
                       pattern="[+]{1}[0-9]{1,}"
                       placeholder="+234 566 566 7789"
                       required
+                      oninput="formatPhoneNumber(this)"
                     />
                   </div>
 
@@ -755,6 +756,25 @@
       </div>
     </div>
 
+    <script>
+      function formatPhoneNumber(input) {
+        // Remove all non-digit characters
+        let phoneNumber = input.value.replace(/\D/g, '');
+    
+        // Format the phone number as desired
+        let formattedPhoneNumber = '+';
+        for (let i = 0; i < phoneNumber.length; i++) {
+          if (i === 3 || i === 6 || i === 9) {
+            formattedPhoneNumber += ' '; // Add space after every third digit
+          }
+          formattedPhoneNumber += phoneNumber[i];
+        }
+
+        // Update the input value with the formatted phone number
+        input.value = formattedPhoneNumber;
+    }
+    </script>
+    <script src="/app.js"></script>
     <script src="/form-validation.js"></script>
   </body>
   <!-- <script src="/customer-feedback.js"></script> -->
