@@ -55,9 +55,9 @@ height: 64px;
 
 
 .hotel-detail-hero-section-container{
-   width: 100%;
-height: 500px;
-gap: 8px;
+    width: 100%;
+    height: 500px;
+    gap: 8px;
     display: flex;
 
 }

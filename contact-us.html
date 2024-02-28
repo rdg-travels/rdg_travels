@@ -111,17 +111,17 @@
           <form class="flight-form contact-form">
             <div class="form-group">
               <label for="fullName">Full Name</label>
-              <input type="text" id="fullName" placeholder="John Doe" name="fullName" required>
+              <input type="text" id="fullName" placeholder="Chinwe Segun" name="fullName" required>
             </div>
     
             <div class="form-group">
               <label for="emailAddress">Email Address</label>
-              <input type="email" id="emailAddress" placeholder="Johndoe@gmail.com" name="emailAddress" required>
+              <input type="email" id="emailAddress" placeholder="chinwesegun@mail.com" name="emailAddress" required>
             </div>
     
             <div class="form-group">
               <label for="phoneNumber">Phone Number</label>
-              <input type="tel" id="phoneNumber" placeholder="+2348135111112" name="phoneNumber" required>
+              <input type="tel" id="phoneNumber" placeholder="+234 813 511 1112" name="phoneNumber" required oninput="formatPhoneNumber(this)">
             </div>
     
             <div class="form-group">
@@ -214,6 +214,24 @@
         </div>
     </div>
     
+    <script>
+        function formatPhoneNumber(input) {
+          // Remove all non-digit characters
+          let phoneNumber = input.value.replace(/\D/g, '');
+      
+          // Format the phone number as desired
+          let formattedPhoneNumber = '+';
+          for (let i = 0; i < phoneNumber.length; i++) {
+            if (i === 3 || i === 6 || i === 9) {
+              formattedPhoneNumber += ' ';
+            }
+            formattedPhoneNumber += phoneNumber[i];
+          }
+  
+          // Update the input value with the formatted phone number
+          input.value = formattedPhoneNumber;
+      }
+      </script>
     <script src="form-validation.js"></script>
 </body>
 </html>

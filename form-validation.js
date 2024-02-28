@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
             // If the form is valid, send data to the server using Fetch API
             const formData = new FormData(form);
 
-            fetch('your_server_endpoint', {
+            fetch('/book-flight', {
                 method: 'POST',
                 body: formData
             })
@@ -22,13 +22,12 @@ document.addEventListener('DOMContentLoaded', function () {
             .then(data => {
                 // Handle the server response, e.g., display a success message
                 alert('Form submitted successfully!');
-            })
-            .then(data => {
+            
                 // Hide the form
                 form.style.display = 'none';
             
                 // Display the success modal
-                document.getElementById('success-modal').style.display = 'block';
+                document.getElementById('modal').style.display = 'block';
             })
             .catch(error => {
                 console.error('Error during fetch operation:', error);
@@ -54,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function closeModal() {
-        document.getElementById('success-modal').style.display = 'none';
+        document.getElementById('modal').style.display = 'none';
     }
 });
 
