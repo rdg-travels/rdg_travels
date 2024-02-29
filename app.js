@@ -47,7 +47,7 @@ transporter.verify(function(error, success) {
     from: email,
     to: process.env.EMAIL,
     subject: 'New Flight Booking',
-    text: `Flying From: ${flyingFrom}\nFlying To: ${flyingTo}\nLeaving On: ${leavingOn}\nReturning On: ${returningOn}\nFull Name: ${fullName}\nEmail: ${email}\nPhone: ${phone}\nNumber of Passengers: ${passengers}`,
+    text: `Flying From: ${flyingFrom}\nFlying To: ${flyingTo}\nLeaving On: ${leavingOn}\nReturning On: ${returningOn}\nFull Name: ${fullName}\nEmail Address: ${email}\nPhone Number: ${phone}\nNumber of Passengers: ${passengers}`,
   };
 
   // Send the email
