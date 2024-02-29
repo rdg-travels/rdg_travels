@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
             // If the form is valid, send data to the server using Fetch API
             const formData = new FormData(form);
 
-            fetch('/booking-flight', {
+            fetch('https://rdg-travels.onrender.com/booking-flight', {
                 method: 'POST',
                 body: formData
             })
