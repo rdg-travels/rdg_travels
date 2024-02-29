@@ -781,11 +781,11 @@
       document.addEventListener("DOMContentLoaded", function() {
           const flightForm = document.getElementById("flight-form");
 
-          flightForm.addEventListener("book flight", function(event) {
+          flightForm.addEventListener("submit", function(event) {
               event.preventDefault();
       
               const formData = new FormData(flightForm);
-              const data = Object.fromEntries(formData.entries());
+              // const data = Object.fromEntries(formData.entries());
 
               // Update the API endpoint URL
               const apiUrl = 'https://rdg-travels.onrender.com';
@@ -795,7 +795,7 @@
                   headers: {
                       "Content-Type": "application/json",
                   },
-                  body: JSON.stringify(data),
+                  body: JSON.stringify(Object.fromEntries(formData)),
               })
               .then(response => response.text())
               .then(message => {
