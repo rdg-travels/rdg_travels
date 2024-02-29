@@ -562,16 +562,27 @@ color: #9CA3AF;
         gap: 8px;
     }
     
-    .hotel-detail-hero-section-container-box1 {
-        border-radius: 12px;
-    }
-    
     .hotel-detail-hero-section-container-box2 {
         display: flex;
         flex-direction: column;
         gap: 8px;
     }
+
+    .hotel-detail-hero-section-container-box2-row1-image1 {
+        border-radius: 0 12px 0 0;
+    }
+
+    .hotel-detail-hero-section-container-box2-row1-image2 {
+        border-radius: 0px;
+    }
+
+    .hotel-detail-hero-section-container-box2-row2-image1 {
+        border-radius: 0px;
+    }
     
+    .hotel-detail-hero-section-container-box2-row2-image2 {
+        border-radius: 0 0 12px 0px;
+    }
     .hotel-detail-hero-section-container-box2-row1,
     .hotel-detail-hero-section-container-box2-row2 {
         display: flex;
@@ -579,12 +590,12 @@ color: #9CA3AF;
         gap: 8px;
     }
     
-    .hotel-detail-hero-section-container-box2-row1-image1,
-    .hotel-detail-hero-section-container-box2-row1-image2,
-    .hotel-detail-hero-section-container-box2-row2-image1,
-    .hotel-detail-hero-section-container-box2-row2-image2 {
+    /* .hotel-detail-hero-section-container-box2-row1-image1,
+    .hotel-detail-hero-section-container-box2-row1-image2 {
         border-radius: 12px;
-    }
+    } */
+
+
     
     .hotel-detail-hero-section-container-box2-row2-image2 a {
         width: 100%;
