@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/hotel-service.css" />
     <link rel="stylesheet" href="css/style.css" />
+    <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
     <link
       href="https://db.onlinewebfonts.com/a/y7WeC3fQys9eM03ag2DoL0JVvA55P6RR32USY1mQbvDfS36RtGsca2IR2Oy4U3uy"
       rel="stylesheet"
@@ -774,6 +775,39 @@
         input.value = formattedPhoneNumber;
     }
     </script>
+    <script>
+      // JavaScript code for handling contact form submission
+      document.addEventListener("DOMContentLoaded", function() {
+          const flightForm = document.getElementById("flight-form");
+
+          flightForm.addEventListener("book flight", function(event) {
+              event.preventDefault();
+      
+              const formData = new FormData(flightForm);
+              const data = Object.fromEntries(formData.entries());
+
+              // Update the API endpoint URL
+              const apiUrl = 'https://rdg-travels.onrender.com';
+
+              fetch(`${apiUrl}/booking-flight`, {
+                  method: "POST",
+                  headers: {
+                      "Content-Type": "application/json",
+                  },
+                  body: JSON.stringify(data),
+              })
+              .then(response => response.text())
+              .then(message => {
+                  alert(message);
+                  contactForm.reset();
+              })
+              .catch(error => {
+                  console.error(error);
+                  alert("An error occurred while sending the message.");
+              });
+          });
+      });
+  </script>
     <script src="/app.js"></script>
     <script src="/form-validation.js"></script>
   </body>
