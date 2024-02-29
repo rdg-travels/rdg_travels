@@ -50,7 +50,7 @@ height: 64px;
 /* hotel detail hero section */
 
 .hotel-detail-hero-section{
-    padding: 0 112px;
+    padding: 96px 112px 0px;
 }
 
 
@@ -224,31 +224,30 @@ gap: 20px;
 .overview-frame-paragraph h3{
     font-family: "Circular Std Book", Arial, Helvetica, sans-serif;
     color: #0F1416;
-font-size: 20px;
-font-weight: 700;
-line-height: 30px;
-letter-spacing: 0em;
-text-align: left;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 30px;
+    letter-spacing: 0em;
+    text-align: left;
 
 }
 
-.overview-frame-paragraph p{
-color: #6B7280;
-font-size: 14px;
-font-weight: 450;
-line-height: 26px;
-letter-spacing: 0em;
-text-align: left;
-
+.overview-frame-paragraph p {
+    color: #6B7280;
+    font-size: 14px;
+    font-weight: 450;
+    line-height: 26px;
+    letter-spacing: 0em;
+    text-align: left;
+    margin-bottom: 0px;
 }
-
 
 .form-frame{
     width: 35%;
 /* height: 635px; */
-padding: 32px;
-border-radius: 10px;
-border: 1px solid #E4E7EC;
+    padding: 32px;
+    border-radius: 10px;
+    border: 1px solid #E4E7EC;
 /* gap: 28px; */
 }
 
@@ -295,10 +294,15 @@ padding: 0px 8px;
     border: 1px solid #79747E;
     border-radius: 4px;
     padding: 18px 16px;
+    width: 100%;
 }
 
 .form-box-field input::placeholder{
     color: black;
+}
+
+.input-with-icon input {
+    padding-left: 48px;
 }
 
 .form-box .check-date{
@@ -306,12 +310,12 @@ padding: 0px 8px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    gap: 10px;
+    gap: 24px;
 }
 .checked {
     position: relative;
     /* background-color: #39cedc; */
-    /* width: 100%; */
+    width: 100%;
     /* flex: 1 0 0; */
 }
 
@@ -333,6 +337,7 @@ padding: 0px 8px;
     /* bottom: 10px; */
     top: -10px;
     left: 10px;
+    z-index: 999;
 }
 
 
@@ -543,9 +548,12 @@ color: #9CA3AF;
         padding: 16px 24px;
     }
 
-    .hotel-detail-hero-section,
     .hotel-list-section {
-        padding: 64px 24px;
+        padding: 64px 24px 0px;
+    }
+
+    .hotel-detail-hero-section {
+        padding: 96px 24px 0px;
     }
     
     .hotel-detail-hero-section-container {
@@ -598,8 +606,9 @@ color: #9CA3AF;
     
     .overview-frame {
         width: 100%;
+        gap: 24px;
     }
-    
+
     .form-frame {
         width: 100%;
         padding: 16px;
@@ -643,6 +652,7 @@ color: #9CA3AF;
     .overview-frame-paragraph p {
         font-size: 0.9rem;
         line-height: 1.5;
+        margin-bottom: 0px;
     }
     
     .all-hotels-container {

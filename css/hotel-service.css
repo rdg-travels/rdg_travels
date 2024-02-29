@@ -46,7 +46,7 @@
     font-family: 'Font Awesome 5 Free';
     position: absolute;
     top: 48%;
-    left: 12px;
+    left: 16px;
     transform: translateY(-50%);
     color: #112211;
     width: 16px;
@@ -142,7 +142,7 @@
     }
     
     .input-with-icon::before {
-        left: 8px;
+        left: 16px;
     }
     
     .hotel-icon i {

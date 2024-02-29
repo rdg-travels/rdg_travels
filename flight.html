@@ -128,15 +128,18 @@
             />
             <!-- pattern="[+]{1}[0-9]{1,}" -->
           </div>
-          <div class="form-group flex-group">
-            <label for="quantity">No. of Passengers</label>
-            <select id="quantity" name="no of passengers" required>
-              <script>
-                for (let i = 1; i <= 100; i++) {
-                  document.write(`<option value="${i}">${i}</option>`);
-                }
-              </script>
-            </select>
+          <div class="form-group flex-group guest">
+            <label for="passengers">No of Passengers</label>
+            <div class="input-with-icon">
+              <input
+                type="number"
+                id="passengers"
+                name="passengers"
+                min="1"
+                placeholder="2"
+                required
+              />
+            </div>
           </div>
           <div class="book-flight-button">
             <button type="submit">Book Flight</button>
@@ -416,15 +419,18 @@
             />
             <!-- pattern="[+]{1}[0-9]{1,}" -->
           </div>
-          <div class="form-group flex-group">
-            <label for="quantity">No. of Passengers</label>
-            <select id="quantity" name="no of passengers" required>
-              <script>
-                for (let i = 1; i <= 100; i++) {
-                  document.write(`<option value="${i}">${i}</option>`);
-                }
-              </script>
-            </select>
+          <div class="form-group flex-group guest">
+            <label for="passengers">No of Passengers</label>
+            <div class="input-with-icon">
+              <input
+                type="number"
+                id="passengers"
+                name="passengers"
+                min="1"
+                placeholder="2"
+                required
+              />
+            </div>
           </div>
           <div class="book-flight-button">
             <button type="submit">Book Flight</button>

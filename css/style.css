@@ -219,6 +219,7 @@ nav ul li a:hover {
     transition: all 0.3s ease;
     background-color: #fff;
     padding: 0px 8px;
+    z-index: 999;
 }
 
 .form-group input,
@@ -254,6 +255,18 @@ nav ul li a:hover {
 button {
     font-family: "Circular Std Book", Arial, Helvetica, sans-serif;
 }
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    transform: translateY(-50%);
+}
+
+.input-with-icon input {
+    padding-left: 48px;
+}
+
 
 .book-flight-button button,
 .start-study-button button {
@@ -1150,6 +1163,10 @@ h3 {
 
     .book-flight-button {
         margin-right: 2px;
+    }
+
+    .input-with-icon input {
+        padding-left: 48px;
     }
 
     /* Service Cards Styles */

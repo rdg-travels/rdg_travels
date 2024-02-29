@@ -181,6 +181,10 @@ padding-top: 350px;
     font-size: 1em;
 }
 
+.input-with-icon input {
+    padding-left: 48px;
+}
+
 /* 
 flight booking two */
   .flight-section-two {
@@ -408,10 +412,10 @@ line-height: 28px;
         margin-right: auto;
     }
 
-    .form-group input,
+    /* .form-group input,
     .form-group select {
         width: calc(100% - 16px);
-    }
+    } */
 
     .book-flight-button {
         grid-column: span 2;
