@@ -738,10 +738,11 @@ h3 {
 }
 
 .partners-container {
-    width: 1440px;
     display: flex;
     flex-wrap: wrap;
     gap: 48px;
+    align-items: center;
+    justify-content: center;
 }
 
 .partner-logo {
@@ -815,27 +816,31 @@ h3 {
     align-items: baseline;
 }
 
+.contact-info a {
+    color: #fff;
+    font-size: 1.125em;
+    line-height: 26px;
+}
+
 .contact-info i {
     color: #FBB417;
     font-size: 1.5em;
 }
 
-.phone {
+/* .phone {
     display: flex;
     flex-direction: column;
+} */
+
+.phone-no {
+    display: flex;
+    gap: 24px;
 }
 
-.phone-no span {
-    font-size: 1.125em;
-    line-height: 26px;
-}
-
-.phone-no p {
-    margin: 16px 0px 0px 24px;
-}
-
-.contact-info span {
-    display: inline;
+.phone-no img {
+    width: 24px; 
+    height: 24px;
+    object-fit: contain;
 }
 
 .contact-button {

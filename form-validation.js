@@ -20,9 +20,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 return response.text();
             })
             .then(data => {
-                // Handle the server response, e.g., display a success message
-                alert('Form submitted successfully!');
-            
                 // Display the success modal
                 document.getElementById('success-modal').style.display = 'block';
             })
