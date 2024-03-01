@@ -248,13 +248,23 @@ nav ul li a:hover {
 
 .book-flight-button {
     margin-left: auto;
-    width: 125px;
-    height: 40px;
+    text-align: right;
+}
+
+.book-flight-button button {
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.book-flight-button button:hover,
+.contact-button:hover,
+.book-now-link:hover,
+.footer-container button:hover  {
+    background-color: #2456c3;
 }
 
 button {
     font-family: "Circular Std Book", Arial, Helvetica, sans-serif;
-    cursor: pointer;
 }
 
 input[type="date"]::-webkit-calendar-picker-indicator {
@@ -278,10 +288,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     padding: 10px 24px;
     font-size: 1.125em;
     white-space: nowrap;
-}
-
-.book-flight-button {
-    margin-right: 12px;
 }
 
 /* Home Section Styles */
@@ -386,6 +392,7 @@ h3 {
     text-align: left;
     align-items: center;
     display: flex;
+    transition: color 0.3s ease;
 }
 
 .service-link img {
@@ -577,6 +584,7 @@ h3 {
     text-decoration: none;
     color: #fff;
     font-weight: 500;
+    transition: background-color 0.3s ease;
 }
 
 .why-choose-us-section {
@@ -849,10 +857,15 @@ h3 {
     align-items: flex-end;
     padding: 10px 24px;
     background-color: #093BA8;
-    color: #fff;
     text-decoration: none;
     border-radius: 6px;
     font-size: 1.125em;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+.contact-button a {
+    color: #fff;
 }
 
 .footer {
@@ -953,6 +966,7 @@ h3 {
     border: none;
     color: #fff;
     font-size: 1em;
+    transition: background-color 0.3s ease;
 }
 
 .copyright-section p {
