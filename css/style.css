@@ -219,7 +219,7 @@ nav ul li a:hover {
     transition: all 0.3s ease;
     background-color: #fff;
     padding: 0px 8px;
-    z-index: 999;
+    z-index: 1;
 }
 
 .form-group input,
