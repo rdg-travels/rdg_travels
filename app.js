@@ -57,7 +57,7 @@ transporter.verify(function(error, success) {
       res.status(500).send('An error occurred while sending the email.');
     } else {
       console.log('Email sent:', info.response);
-      res.send('Flight booked successfully!');
+      // res.send('Flight booked successfully!');
     }
   });
 });
