@@ -254,6 +254,7 @@ nav ul li a:hover {
 
 button {
     font-family: "Circular Std Book", Arial, Helvetica, sans-serif;
+    cursor: pointer;
 }
 
 input[type="date"]::-webkit-calendar-picker-indicator {
