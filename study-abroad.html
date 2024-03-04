@@ -399,6 +399,8 @@
                 .then(message => {
                     alert(message); // Display server response message
                     successModal.style.display = 'block';
+                    // Reset the form
+                    studyForm.reset();
                 })
                 .catch(error => {
                     console.error(error);
@@ -409,8 +411,6 @@
             closeButton.addEventListener("click", function() {
                 // Close the modal when the close button is clicked
                 closeModal();
-                // Reset the flight form
-                studyForm.reset();
             });
 
             function closeModal() {

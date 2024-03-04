@@ -808,6 +808,8 @@
             alert(message);
             // Display the success modal
             successModal.style.display = 'block';
+            // Reset the flight form
+            flightForm.reset();
           })
           .catch(error => {
             console.error(error);
@@ -818,8 +820,6 @@
         closeButton.addEventListener("click", function() {
           // Close the modal when the close button is clicked
           closeModal();
-          // Reset the flight form
-          flightForm.reset();
         });
 
         function closeModal() {
