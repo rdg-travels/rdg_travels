@@ -249,6 +249,7 @@ nav ul li a:hover {
 .book-flight-button {
     margin-left: auto;
     text-align: right;
+    margin-top: 16px;
 }
 
 .book-flight-button button {

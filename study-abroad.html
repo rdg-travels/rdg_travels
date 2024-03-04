@@ -48,7 +48,7 @@
 
             <!-- Study Abroad Form -->
             <div id="study-abroad" class="study-abroad-section">
-                <form class=" flight-form study-form">
+                <form class=" flight-form study-form" method="POST" id="study-form" action="/studying-abroad" >
 
                     <!-- Study Details -->
                     <div class="study-details">
@@ -222,7 +222,7 @@
             <div>
                 
             </div>
-            <form class="flight-form study-form">
+            <form class="flight-form study-form" method="POST" id="study-form" action="/studying-abroad">
 
                 <!-- Study Details -->
                 <div class="study-details">
@@ -338,9 +338,9 @@
         </div>
     </footer> 
     
-    <div id="success-modal" class="modal">
+    <div id="success-modal" class="modal" onclick="closeModal()">
         <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
+            <span class="close" id="closeButton">&times;</span>
             <div class="modal-icon">
                 <div class="check-mark">
                     <div class="ellipse ellipse1"></div>
@@ -374,6 +374,51 @@
           input.value = formattedPhoneNumber;
       }
     </script>
-    <script src="form-validation.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const studyForm = document.querySelector(".study-form");
+            const successModal = document.getElementById("success-modal");
+            const closeButton = document.getElementById("closeButton");
+
+            studyForm.addEventListener("submit", function(event) {
+                event.preventDefault();
+
+                const formData = new FormData(studyForm);
+
+                // Update the API endpoint URL
+                const apiUrl = 'https://rdg-travels.onrender.com';
+
+                fetch(`${apiUrl}/studying-abroad`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(Object.fromEntries(formData)),
+                })
+                .then(response => response.text())
+                .then(message => {
+                    alert(message); // Display server response message
+                    successModal.style.display = 'block';
+                })
+                .catch(error => {
+                    console.error(error);
+                    alert("An error occurred while submitting the form. Please try again later.");
+                });
+            });
+
+            closeButton.addEventListener("click", function() {
+                // Close the modal when the close button is clicked
+                closeModal();
+                // Reset the flight form
+                studyForm.reset();
+            });
+
+            function closeModal() {
+                successModal.style.display = 'none';
+            }
+        });
+    </script>
+    <script src="/app.js" defer></script>
+    <script src="/form-validation.js" defer></script>
 </body>
 </html>
