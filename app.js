@@ -30,7 +30,7 @@ app.post('/booking-flight', [
   body('returningOn').isISO8601().withMessage('Invalid returning date format'),
   body('fullName').notEmpty().withMessage('Full Name is required'),
   body('email').isEmail().withMessage('Invalid email address'),
-  body('phone').isMobilePhone().withMessage('Invalid phone number'),
+  body('phone').matches(/^\+(?:[0-9] ?){6,14}[0-9]$/).withMessage('Invalid phone number'),
   body('passengers').isInt({ min: 1 }).withMessage('Number of passengers must be at least 1'),
 ], (req, res) => {
   // Check for validation errors
