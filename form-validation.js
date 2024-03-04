@@ -1,4 +1,4 @@
-function setupEventListeners() {
+document.addEventListener('DOMContentLoaded', function () {
     const form = document.querySelector('.flight-form');
 
     form.addEventListener('submit', function (event) {
@@ -65,12 +65,8 @@ function setupEventListeners() {
     if (closeButton) {
         closeButton.addEventListener('click', closeModal);
     }
-}
+});
 
-// Call setupEventListeners() once the DOM is fully loaded
-document.addEventListener('DOMContentLoaded', setupEventListeners);
-
-// Also add event listener for menu icon
 const menuIcon = document.querySelector('.menu-icon');
 const nav = document.querySelector('.nav');
 
