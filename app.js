@@ -34,7 +34,7 @@ app.post('/booking-flight', (req, res) => {
     },
   });
 
-  // Verify the connection configuration
+// Verify the connection configuration
 transporter.verify(function(error, success) {
   if (error) {
     console.log(error);
