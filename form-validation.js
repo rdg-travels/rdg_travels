@@ -13,12 +13,12 @@ function setupEventListeners() {
                 method: 'POST',
                 body: formData
             })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.text();
-            })
+            // .then(response => {
+            //     if (!response.ok) {
+            //         throw new Error('Network response was not ok');
+            //     }
+            //     return response.text();
+            // })
             .then(data => {
                 // Display the success modal
                 document.getElementById('success-modal').style.display = 'block';
