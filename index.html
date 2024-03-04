@@ -788,16 +788,16 @@
       // JavaScript code for handling contact form submission
       document.addEventListener("DOMContentLoaded", function() {
           const flightForm = document.getElementById("flight-form");
-
+  
           flightForm.addEventListener("submit", function(event) {
               event.preventDefault();
       
               const formData = new FormData(flightForm);
               // const data = Object.fromEntries(formData.entries());
-
+  
               // Update the API endpoint URL
               const apiUrl = 'https://rdg-travels.onrender.com';
-
+  
               fetch(`${apiUrl}/booking-flight`, {
                   method: "POST",
                   headers: {
@@ -808,17 +808,31 @@
               .then(response => response.text())
               .then(message => {
                   alert(message);
-                  flightForm.reset();
                   // Display the success modal
-                  document.getElementById('success-modal').style.display = 'block';
-              })
-              .catch(error => {
-                  console.error(error);
-                  alert("An error occurred while sending the message.");
+                  const successModal = document.getElementById('success-modal');
+                  successModal.style.display = 'block';
+  
+                  // Add event listener to close modal when close button is clicked
+                  const closeButton = document.getElementById('closeButton');
+                  if (closeButton) {
+                      closeButton.addEventListener('click', closeModal);
+                  }
+  
+                  // Reset the form
+                  flightForm.reset();
               });
           });
+  
+          // Function to close modal
+          function closeModal() {
+              const successModal = document.getElementById('success-modal');
+              if (successModal) {
+                  successModal.style.display = 'none';
+              }
+          }
       });
     </script>
+  
     <script src="/app.js" defer></script>
     <script src="/form-validation.js" defer></script>
   </body>
