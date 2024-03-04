@@ -76,7 +76,7 @@ app.post('/booking-flight', (req, res) => {
   });
 });
 
-app.post('/study-abroad', (req, res) => {
+app.post('/studying-abroad', (req, res) => {
   const { countryOfInterest, fieldOfStudy, intendedProgram, fullName, email, phoneNumber } = req.body;
 
   // Create transporter
