@@ -809,6 +809,8 @@
               .then(message => {
                   alert(message);
                   flightForm.reset();
+                  // Display the success modal
+                  document.getElementById('success-modal').style.display = 'block';
               })
               .catch(error => {
                   console.error(error);
