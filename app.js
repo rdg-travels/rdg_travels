@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const nodemailer = require('nodemailer');
 const cors = require('cors');
 const path = require('path');
-const { validationResult } = require('express-validator');
+const { body, validationResult } = require('express-validator');
 
 const app = express();
 
