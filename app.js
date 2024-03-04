@@ -52,28 +52,37 @@ function createTransporter() {
 }
 
 app.post('/booking-flight', (req, res) => {
-  const { flyingFrom, flyingTo, leavingOn, returningOn, fullName, email, phone, passengers } = req.body;
+  const formType = req.body.form_type;
 
-  // Create transporter
-  const transporter = createTransporter();
-  // Fill the form
-  const mailOptions = {
-    from: email,
-    to: process.env.EMAIL,
-    subject: 'New Flight Booking',
-    text: `Flying From: ${flyingFrom}\nFlying To: ${flyingTo}\nLeaving On: ${leavingOn}\nReturning On: ${returningOn}\nFull Name: ${fullName}\nEmail Address: ${email}\nPhone Number: ${phone}\nNumber of Passengers: ${passengers}`,
-  };
+  // Check the value of form_type to determine which form was submitted
+  if (formType === 'flight_booking') {
+    // Handle flight booking form submission
+    const { flyingFrom, flyingTo, leavingOn, returningOn, fullName, email, phone, passengers } = req.body;
+    
+    // Create transporter
+    const transporter = createTransporter();
+    // Fill the form
+    const mailOptions = {
+      from: email,
+      to: process.env.EMAIL,
+      subject: 'New Flight Booking',
+      text: `Flying From: ${flyingFrom}\nFlying To: ${flyingTo}\nLeaving On: ${leavingOn}\nReturning On: ${returningOn}\nFull Name: ${fullName}\nEmail Address: ${email}\nPhone Number: ${phone}\nNumber of Passengers: ${passengers}`,
+    };
 
-  // Send the email
-  transporter.sendMail(mailOptions, (error, info) => {
-    if (error) {
-      console.error(error);
-      res.status(500).send('An error occurred while sending the email.');
-    } else {
-      console.log('Email sent:', info.response);
-      res.send('Flight booked successfully!');
-    }
-  });
+    // Send the email
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        console.error(error);
+        res.status(500).send('An error occurred while sending the email.');
+      } else {
+        console.log('Email sent:', info.response);
+        res.send('Flight booked successfully!');
+      }
+    });
+  } else {
+    // Handle unrecognized form submissions
+    res.status(400).send('Unknown form submitted');
+  }
 });
 
 app.post('/studying-abroad', (req, res) => {
