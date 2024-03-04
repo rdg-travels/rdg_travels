@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const nodemailer = require('nodemailer');
 const cors = require('cors');
 const path = require('path');
+const { validationResult } = require('express-validator');
 
 const app = express();
 
@@ -21,7 +22,23 @@ app.use('/booking-flight', cors({
   allowedHeaders: ['Content-Type'],
 }));
 
-app.post('/booking-flight', (req, res) => {
+app.post('/booking-flight', [
+  // Validate form fields
+  body('flyingFrom').notEmpty().withMessage('Flying From is required'),
+  body('flyingTo').notEmpty().withMessage('Flying To is required'),
+  body('leavingOn').isISO8601().withMessage('Invalid leaving date format'),
+  body('returningOn').isISO8601().withMessage('Invalid returning date format'),
+  body('fullName').notEmpty().withMessage('Full Name is required'),
+  body('email').isEmail().withMessage('Invalid email address'),
+  body('phone').isMobilePhone().withMessage('Invalid phone number'),
+  body('passengers').isInt({ min: 1 }).withMessage('Number of passengers must be at least 1'),
+], (req, res) => {
+  // Check for validation errors
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    // Return validation errors to the client
+    return res.status(400).json({ errors: errors.array() });
+  }
   const { flyingFrom, flyingTo, leavingOn, returningOn, fullName, email, phone, passengers } = req.body;
 
   // Create a transporter using your email service credentials
