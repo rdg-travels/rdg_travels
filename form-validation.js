@@ -47,7 +47,10 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function closeModal() {
-        document.getElementById('success-modal').style.display = 'none';
+        const modal = document.getElementById('success-modal');
+        if (modal) {
+            modal.style.display = 'none';
+        }
     }
 
     const closeButton = document.getElementById('closeButton');
