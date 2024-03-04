@@ -1,10 +1,10 @@
-const form = document.querySelector('.flight-form');
-
-form.addEventListener('submit', function (event) {
+function handleFormSubmission(event) {
     event.preventDefault();
 
+    const form = document.querySelector('.flight-form');
+
     // Validate form inputs
-    if (validateForm()) {
+    if (validateForm(form)) {
         // If the form is valid, send data to the server using Fetch API
         const formData = new FormData(form);
 
@@ -36,7 +36,10 @@ form.addEventListener('submit', function (event) {
             alert('Error submitting form. Please try again later.');
         });
     }
-});
+}
+
+// const form = document.querySelector('.flight-form');
+// form.removeEventListener('submit', handleFormSubmission);
 
 function validateForm() {
     let isValid = true;
