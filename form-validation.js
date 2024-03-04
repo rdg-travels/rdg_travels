@@ -38,9 +38,6 @@ function handleFormSubmission(event) {
     }
 }
 
-// const form = document.querySelector('.flight-form');
-// form.addEventListener('submit', handleFormSubmission);
-
 function validateForm(form) {
     let isValid = true;
 
