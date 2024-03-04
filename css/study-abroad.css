@@ -175,7 +175,6 @@
 .package-container img {
     width: 100%;
     height: auto;
-    flex-grow: 1;
     /* border-radius: 8px; */
 }
 
