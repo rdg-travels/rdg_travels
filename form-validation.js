@@ -13,12 +13,20 @@ function setupEventListeners() {
                 method: 'POST',
                 body: formData
             })
-            // .then(response => {
-            //     if (!response.ok) {
-            //         throw new Error('Network response was not ok');
-            //     }
-            //     return response.text();
-            // })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                // Check the Content-Type header to determine the response format
+                const contentType = response.headers.get('Content-Type');
+                if (contentType && contentType.includes('application/json')) {
+                    // If the response is JSON, parse it and return the parsed data
+                    return response.json();
+                } else {
+                    // If the response is not JSON, return the response body as text
+                    return response.text();
+                }
+            })
             .then(data => {
                 // Display the success modal
                 document.getElementById('success-modal').style.display = 'block';
