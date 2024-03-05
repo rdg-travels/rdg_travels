@@ -40,16 +40,16 @@ document.addEventListener("DOMContentLoaded", function() {
             alert("An error occurred while sending the message.");
         });
     });
+
+    const closeButton = document.getElementById("closeButton");
+    closeButton.addEventListener("click", function() {
+        // Close the modal when the close button is clicked
+        closeModal(successModal);
+    });
 });
 
-const closeButton = document.getElementById("closeButton");
-closeButton.addEventListener("click", function() {
-    // Close the modal when the close button is clicked
-    closeModal();
-});
-
-function closeModal() {
-    successModal.style.display = 'none';
+function closeModal(modal) {
+    modal.style.display = 'none';
 }
 
 function validateForm(form) {
