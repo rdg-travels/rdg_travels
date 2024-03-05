@@ -1,3 +1,8 @@
+function closeModal() {
+    const successModal = document.getElementById("success-modal");
+    successModal.style.display = 'none';
+}
+
 document.addEventListener("DOMContentLoaded", function() {
     const flightForm = document.getElementById("flight-form");
     const successModal = document.getElementById("success-modal");
@@ -46,10 +51,6 @@ document.addEventListener("DOMContentLoaded", function() {
         // Close the modal when the close button is clicked
         closeModal();
     });
-
-    function closeModal() {
-        successModal.style.display = 'none';
-    }
 });
 
 function validateForm(form) {
