@@ -46,11 +46,11 @@ document.addEventListener("DOMContentLoaded", function() {
         // Close the modal when the close button is clicked
         closeModal();
     });
-
-    function closeModal() {
-        successModal.style.display = 'none';
-    }
 });
+
+function closeModal() {
+    successModal.style.display = 'none';
+}
 
 function validateForm(form) {
     let isValid = true;
