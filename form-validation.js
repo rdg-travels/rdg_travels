@@ -103,6 +103,157 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 
+document.addEventListener("DOMContentLoaded", function() {
+    const hotelForm = document.getElementById("hotel-form");
+    const successModal = document.getElementById("success-modal");
+
+    hotelForm.addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        const formData = new FormData(hotelForm);
+        const apiUrl = 'https://rdg-travels.onrender.com';
+
+        fetch(`${apiUrl}/book-hotel`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(Object.fromEntries(formData)),
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            // Check the Content-Type header to determine the response format
+            const contentType = response.headers.get('Content-Type');
+            if (contentType && contentType.includes('application/json')) {
+                // If the response is JSON, parse it and return the parsed data
+                return response.json();
+            } else {
+                // If the response is not JSON, return the response body as text
+                return response.text();
+            }
+        })
+        .then(data => {
+            // Display the success modal
+            successModal.style.display = 'block';
+            // Reset the flight form
+            hotelForm.reset();
+        })
+        .catch(error => {
+            console.error(error);
+            alert("An error occurred while sending the message.");
+        });
+    });
+
+    const closeButton = document.getElementById("closeButton");
+    closeButton.addEventListener("click", function() {
+        // Close the modal when the close button is clicked
+        closeModal();
+    });
+});
+
+document.addEventListener("DOMContentLoaded", function() {
+    const bookingForm = document.getElementById("booking-form");
+    const successModal = document.getElementById("success-modal");
+
+    bookingForm.addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        const formData = new FormData(bookingForm);
+        const apiUrl = 'https://rdg-travels.onrender.com';
+
+        fetch(`${apiUrl}/book-now`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(Object.fromEntries(formData)),
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            // Check the Content-Type header to determine the response format
+            const contentType = response.headers.get('Content-Type');
+            if (contentType && contentType.includes('application/json')) {
+                // If the response is JSON, parse it and return the parsed data
+                return response.json();
+            } else {
+                // If the response is not JSON, return the response body as text
+                return response.text();
+            }
+        })
+        .then(data => {
+            // Display the success modal
+            successModal.style.display = 'block';
+            // Reset the flight form
+            bookingForm.reset();
+        })
+        .catch(error => {
+            console.error(error);
+            alert("An error occurred while sending the message.");
+        });
+    });
+
+    const closeButton = document.getElementById("closeButton");
+    closeButton.addEventListener("click", function() {
+        // Close the modal when the close button is clicked
+        closeModal();
+    });
+});
+
+document.addEventListener("DOMContentLoaded", function() {
+    const contactForm = document.getElementById("contact-form");
+    const successModal = document.getElementById("success-modal");
+
+    contactForm.addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        const formData = new FormData(contactForm);
+        const apiUrl = 'https://rdg-travels.onrender.com';
+
+        fetch(`${apiUrl}/contact-us`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(Object.fromEntries(formData)),
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            // Check the Content-Type header to determine the response format
+            const contentType = response.headers.get('Content-Type');
+            if (contentType && contentType.includes('application/json')) {
+                // If the response is JSON, parse it and return the parsed data
+                return response.json();
+            } else {
+                // If the response is not JSON, return the response body as text
+                return response.text();
+            }
+        })
+        .then(data => {
+            // Display the success modal
+            successModal.style.display = 'block';
+            // Reset the flight form
+            contactForm.reset();
+        })
+        .catch(error => {
+            console.error(error);
+            alert("An error occurred while sending the message.");
+        });
+    });
+
+    const closeButton = document.getElementById("closeButton");
+    closeButton.addEventListener("click", function() {
+        // Close the modal when the close button is clicked
+        closeModal();
+    });
+});
+
+
 function validateForm(form) {
     let isValid = true;
 

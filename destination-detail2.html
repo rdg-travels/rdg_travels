@@ -147,7 +147,7 @@
                 <div class="book-now">
                     <p>Book Now</p>
                     <div class="flight-info book-now-info">
-                        <form class=" flight-form booking-form">
+                        <form class=" flight-form booking-form" method="POST" id="booking-form" action="/book-now">
                             <div class="form-group">
                                 <label for="fullName">Full Name</label>
                                 <input type="text" id="fullName" placeholder="Chinwe Segun" required>
@@ -158,17 +158,17 @@
                             </div>
                             <div class="form-group">
                                 <label for="phoneNumber">Phone Number</label>
-                                <input type="tel" id="phoneNumber" pattern="[+]{1}[0-9 ]{1,}" placeholder="+234 345 679 0123" required oninput="formatPhoneNumber(this)">
+                                <input type="tel" id="phoneNumber" name="phoneNumber" pattern="[+]{1}[0-9 ]{1,}" placeholder="+234 345 679 0123" required oninput="formatPhoneNumber(this)">
                             </div>
                             <div class="package-type">
                                 <label for="packageType">Package Type</label>
                                 <div>
                                     <label for="per-person-sharing">
-                                        <input type="radio" id="per-person-sharing" name="package-type" value="per-person-sharing" required>
+                                        <input type="radio" id="per-person-sharing" name="packageType" value="per-person-sharing" required>
                                         Per Person Sharing (2 people)
                                     </label>
                                     <label for="single-occupancy">
-                                        <input type="radio" id="single-occupancy" name="package-type" value="single-occupancy" required>
+                                        <input type="radio" id="single-occupancy" name="packageType" value="single-occupancy" required>
                                         Per Couple
                                     </label>
                                 </div>
@@ -332,5 +332,6 @@
       }
       </script>
       <script src="/form-validation.js"></script>
+      <script src="/app.js"></script>
 </body>
 </html>

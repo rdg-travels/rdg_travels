@@ -50,6 +50,24 @@ app.use('/studying-abroad', cors({
   allowedHeaders: ['Content-Type'],
 }));
 
+app.use('/book-hotel', cors({
+  origin: 'https://rdg-travels.netlify.app',
+  methods: ['GET', 'POST'],
+  allowedHeaders: ['Content-Type'],
+}));
+
+app.use('/book-now', cors({
+  origin: 'https://rdg-travels.netlify.app',
+  methods: ['GET', 'POST'],
+  allowedHeaders: ['Content-Type'],
+}));
+
+app.use('/contact-us', cors({
+  origin: 'https://rdg-travels.netlify.app',
+  methods: ['GET', 'POST'],
+  allowedHeaders: ['Content-Type'],
+}));
+
 app.post('/booking-flight', (req, res) => {
   const { flyingFrom, flyingTo, leavingOn, returningOn, fullName, email, phone, passengers } = req.body;
 
@@ -97,6 +115,91 @@ app.post('/studying-abroad', (req, res) => {
     } else {
       console.log('Email sent:', info.response);
       res.send('Study abroad inquiry submitted successfully!');
+    }
+  });
+});
+
+app.post('/book-hotel', (req, res) => {
+  const { location, checkIn, checkOut, guests, fullName, email, phone } = req.body;
+
+  // Create transporter
+  const transporter = createTransporter();
+
+  // Fill the form
+  const mailOptions = {
+    from: email,
+    to: process.env.EMAIL,
+    subject: 'New Hotel Booking',
+    text: `Location: ${location}\nCheck In: ${checkIn}\nCheck Out: ${checkOut}\nNo of Guests: ${guests}\nFull Name: ${fullName}\nEmail Address: ${email}\nPhone Number: ${phone}`,
+  };
+
+  // Send the email
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      console.error(error);
+      res.status(500).send('An error occurred while sending the email.');
+    } else {
+      console.log('Email sent:', info.response);
+      res.send('Hotel booked successfully!');
+    }
+  });
+});
+
+app.post('/book-now', (req, res) => {
+  const { fullName, email, phoneNumber, packageType } = req.body;
+
+  // Create transporter
+  const transporter = createTransporter();
+
+  // Fill the form
+  const mailOptions = {
+    from: email,
+    to: process.env.EMAIL,
+    subject: 'New Destination Booking',
+    text: `Full Name: ${fullName}\nEmail Address: ${email}\nPhone Number: ${phoneNumber}\nPackage Type: ${packageType}`,
+  };
+
+  // Send the email
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      console.error(error);
+      res.status(500).send('An error occurred while sending the email.');
+    } else {
+      console.log('Email sent:', info.response);
+      res.send('Destination booked successfully!');
+    }
+  });
+});
+
+app.post('/contact-us', (req, res) => {
+  const { fullName, emailAddress, phoneNumber, purpose, message } = req.body;
+
+  // Create transporter
+  const transporter = createTransporter();
+  // Fill the form
+  let mailText = `Full Name: ${fullName}\nEmail Address: ${emailAddress}\nPhone Number: ${phoneNumber}\n`;
+  if (purpose) {
+    mailText += `Purpose of Contact: ${purpose}\n`;
+  }
+  if (message) {
+    mailText += `Message: ${message}`;
+  }
+
+  const mailOptions = {
+    from: emailAddress,
+    to: process.env.EMAIL,
+    subject: 'New Contact Inquiry',
+    text: mailText,
+  };
+
+  // Send the email
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      console.error(error);
+      res.status(500).send('An error occurred while sending the email.');
+    } else {
+      console.log('Email sent:', info.response);
+      res.send('Contact inquiry submitted successfully!');
     }
   });
 });

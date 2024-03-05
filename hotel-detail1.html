@@ -97,14 +97,14 @@
           </div>
         </div>
         <div class="form-frame">
-          <form action="" class="form-box">
+          <form class="form-box" method="POST" id="hotel-form" action="/book-hotel">
             <div><h3>Book Now</h3></div>
             <div class="form-box-field">
               <label for="Full-Name">Full Name</label>
               <input
                 type="text"
-                id="Full-Name"
-                name="Full-Name"
+                id="fullName"
+                name="fullName"
                 placeholder="Chinwe Segun"
                 required
               />
@@ -113,8 +113,8 @@
               <label for="Email">Email</label>
               <input
                 type="email"
-                name="Email"
-                id="Email"
+                name="email"
+                id="email"
                 placeholder="chinwesegun@mail.com"
                 required
               />
@@ -123,8 +123,8 @@
               <label for="Phone-Number">Phone Number</label>
               <input
                 type="tel"
-                name="Phone-Number"
-                id="Phone-Number"
+                name="phone"
+                id="phone"
                 placeholder="+233 456 790 123"
                 required
                 oninput="formatPhoneNumber(this)"
@@ -143,11 +143,11 @@
             <div class="form-box-field check-date">
               <div class="checked">
                 <label for="check-in">Check In</label>
-                <input type="date" name="check-in" id="check-in" required />
+                <input type="date" name="checkIn" id="checkIn" required />
               </div>
               <div class="checked">
                 <label for="check-out">Check Out</label>
-                <input type="date" name="check-out" id="check-out" required />
+                <input type="date" name="checkOut" id="checkOut" required />
               </div>
             </div>
             <div class="form-box-field">
@@ -155,7 +155,7 @@
               <div class="input-with-icon">
               <input
                 type="number"
-                name="No.-of-guests"
+                name="guests"
                 id="guests"
                 required
                 min="1"
@@ -290,5 +290,6 @@
     }
     </script>
     <script src="form-validation.js"></script>
+    <script src="/app.js"></script>
   </body>
 </html>
