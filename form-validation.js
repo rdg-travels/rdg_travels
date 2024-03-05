@@ -48,8 +48,8 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 
-function closeModal(modal) {
-    modal.style.display = 'none';
+function closeModal(successModal) {
+    successModal.style.display = 'none';
 }
 
 function validateForm(form) {
