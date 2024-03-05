@@ -374,50 +374,6 @@
           input.value = formattedPhoneNumber;
       }
     </script>
-    <!-- <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const studyForm = document.querySelector(".study-form");
-            const successModal = document.getElementById("success-modal");
-            const closeButton = document.getElementById("closeButton");
-
-            studyForm.addEventListener("submit", function(event) {
-                event.preventDefault();
-
-                const formData = new FormData(studyForm);
-
-                // Update the API endpoint URL
-                const apiUrl = 'https://rdg-travels.onrender.com';
-
-                fetch(`${apiUrl}/studying-abroad`, {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify(Object.fromEntries(formData)),
-                })
-                .then(response => response.text())
-                .then(message => {
-                    alert(message); // Display server response message
-                    successModal.style.display = 'block';
-                    // Reset the form
-                    studyForm.reset();
-                })
-                .catch(error => {
-                    console.error(error);
-                    alert("An error occurred while submitting the form. Please try again later.");
-                });
-            });
-
-            closeButton.addEventListener("click", function() {
-                // Close the modal when the close button is clicked
-                closeModal();
-            });
-
-            function closeModal() {
-                successModal.style.display = 'none';
-            }
-        });
-    </script> -->
     <script src="/form-validation.js"></script>
     <script src="/app.js"></script>
 </body>

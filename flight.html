@@ -562,49 +562,6 @@
         input.value = formattedPhoneNumber;
     }
     </script>
-    <!-- <script>
-      document.addEventListener("DOMContentLoaded", function() {
-        const flightForm = document.getElementById("flight-form");
-        const successModal = document.getElementById("success-modal");
-        const closeButton = document.getElementById("closeButton");
-
-        flightForm.addEventListener("submit", function(event) {
-          event.preventDefault();
-
-          const formData = new FormData(flightForm);
-          const apiUrl = 'https://rdg-travels.onrender.com';
-
-          fetch(`${apiUrl}/booking-flight`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(Object.fromEntries(formData)),
-          })
-          .then(response => response.text())
-          .then(message => {
-            alert(message);
-            // Display the success modal
-            successModal.style.display = 'block';
-            // Reset the flight form
-            flightForm.reset();
-          })
-          .catch(error => {
-            console.error(error);
-            alert("An error occurred while sending the message.");
-          });
-        });
-
-        closeButton.addEventListener("click", function() {
-          // Close the modal when the close button is clicked
-          closeModal();
-        });
-
-        function closeModal() {
-          successModal.style.display = 'none';
-        }
-      });
-    </script> -->
 
     <script src="/form-validation.js"></script>
     <script src="/app.js"></script>

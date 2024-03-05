@@ -5,28 +5,6 @@ const bodyParser = require('body-parser');
 const nodemailer = require('nodemailer');
 const cors = require('cors');
 const path = require('path');
-const { validationResult } = require('express-validator');
-
-const app = express();
-
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-
-app.use(express.static('public'));
-app.use(bodyParser.json());
-
-// Enable CORS for the relevant route
-app.use('/booking-flight', cors({
-  origin: 'https://rdg-travels.netlify.app',
-  methods: ['GET', 'POST'],
-  allowedHeaders: ['Content-Type'],
-}));
-
-app.use('/studying-abroad', cors({
-  origin: 'https://rdg-travels.netlify.app',
-  methods: ['GET', 'POST'],
-  allowedHeaders: ['Content-Type'],
-}));
 
 // Function to create transporter and verify connection configuration
 function createTransporter() {
@@ -50,6 +28,27 @@ function createTransporter() {
 
   return transporter;
 }
+
+const app = express();
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+app.use(express.static('public'));
+app.use(bodyParser.json());
+
+// Enable CORS for the relevant route
+app.use('/booking-flight', cors({
+  origin: 'https://rdg-travels.netlify.app',
+  methods: ['GET', 'POST'],
+  allowedHeaders: ['Content-Type'],
+}));
+
+app.use('/studying-abroad', cors({
+  origin: 'https://rdg-travels.netlify.app',
+  methods: ['GET', 'POST'],
+  allowedHeaders: ['Content-Type'],
+}));
 
 app.post('/booking-flight', (req, res) => {
   const { flyingFrom, flyingTo, leavingOn, returningOn, fullName, email, phone, passengers } = req.body;
