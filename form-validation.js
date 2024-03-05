@@ -44,13 +44,13 @@ document.addEventListener("DOMContentLoaded", function() {
     const closeButton = document.getElementById("closeButton");
     closeButton.addEventListener("click", function() {
         // Close the modal when the close button is clicked
-        closeModal(successModal);
+        closeModal();
     });
-});
 
-function closeModal(successModal) {
-    successModal.style.display = 'none';
-}
+    function closeModal() {
+        successModal.style.display = 'none';
+    }
+});
 
 function validateForm(form) {
     let isValid = true;
