@@ -1,16 +1,20 @@
-function handleFormSubmission(event) {
-    event.preventDefault();
+document.addEventListener("DOMContentLoaded", function() {
+    const flightForm = document.getElementById("flight-form");
+    const successModal = document.getElementById("success-modal");
+    const closeButton = document.getElementById("closeButton");
 
-    const form = document.querySelector('.flight-form');
+    flightForm.addEventListener("submit", function(event) {
+        event.preventDefault();
 
-    // Validate form inputs
-    if (validateForm(form)) {
-        // If the form is valid, send data to the server using Fetch API
-        const formData = new FormData(form);
+        const formData = new FormData(flightForm);
+        const apiUrl = 'https://rdg-travels.onrender.com';
 
-        fetch('https://rdg-travels.onrender.com/booking-flight', {
-            method: 'POST',
-            body: formData
+        fetch(`${apiUrl}/booking-flight`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(Object.fromEntries(formData)),
         })
         .then(response => {
             if (!response.ok) {
@@ -28,15 +32,25 @@ function handleFormSubmission(event) {
         })
         .then(data => {
             // Display the success modal
-            document.getElementById('success-modal').style.display = 'block';
+            successModal.style.display = 'block';
+            // Reset the flight form
+            flightForm.reset();
         })
         .catch(error => {
-            console.error('Error during fetch operation:', error);
-            // Handle errors, e.g., display an error message to the user
-            alert('Error submitting form. Please try again later.');
+            console.error(error);
+            alert("An error occurred while sending the message.");
         });
+    });
+
+    closeButton.addEventListener("click", function() {
+        // Close the modal when the close button is clicked
+        closeModal();
+    });
+
+    function closeModal() {
+        successModal.style.display = 'none';
     }
-}
+});
 
 function validateForm(form) {
     let isValid = true;
@@ -51,13 +65,6 @@ function validateForm(form) {
     });
 
     return isValid;
-}
-
-function closeModal() {
-    const modal = document.getElementById('success-modal');
-    if (modal) {
-        modal.style.display = 'none';
-    }
 }
 
 const closeButton = document.getElementById('closeButton');

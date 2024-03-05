@@ -88,29 +88,28 @@ body {
 /* hero section */
 
 .hero-section {
-background: url('../images/background-flight-booking.jpeg') center/cover;
-background-color: rgba(38, 74, 219, 0.385);
-background-blend-mode: multiply;
-height: 650px;
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-width: 100%;
-/* padding: 0 100px; */
-margin-bottom: 400px;
-padding-top: 350px;
+    background: url('../images/background-flight-booking.jpeg') center/cover;
+    background-color: rgba(38, 74, 219, 0.385);
+    background-blend-mode: multiply;
+    height: 650px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 400px;
+    padding-top: 350px;
 }
 
 #welcome-text {
     color: #fff;
     text-transform: capitalize;
     font-size: 3rem;
-    letter-spacing: -2px;
+    line-height: 60px;
     text-align: center;
     margin-top: 500px;
     margin-bottom: 32px;
-    /* padding: 500px 80px 0px; */
+    font-weight: 500;
 }
 
 

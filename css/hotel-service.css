@@ -24,15 +24,15 @@
     text-align: center;
     display: flex;
     flex-direction: column;
-    padding-top: 270px;
+    padding-top: 262px;
 }
 
 .hotel-welcome-text h1 {
     font-size: 3em;
-    /* margin-top: 270px; */
     margin-bottom: 44px;
+    line-height: 60px;
     letter-spacing: -1.04px;
-    font-weight: 700;
+    font-weight: 500;
 }
 
 .input-with-icon {
