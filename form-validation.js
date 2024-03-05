@@ -1,7 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
     const flightForm = document.getElementById("flight-form");
     const successModal = document.getElementById("success-modal");
-    const closeButton = document.getElementById("closeButton");
 
     flightForm.addEventListener("submit", function(event) {
         event.preventDefault();
@@ -41,11 +40,12 @@ document.addEventListener("DOMContentLoaded", function() {
             alert("An error occurred while sending the message.");
         });
     });
+});
 
-    closeButton.addEventListener("click", function() {
-        // Close the modal when the close button is clicked
-        closeModal();
-    });
+const closeButton = document.getElementById("closeButton");
+closeButton.addEventListener("click", function() {
+    // Close the modal when the close button is clicked
+    closeModal();
 });
 
 function closeModal() {
