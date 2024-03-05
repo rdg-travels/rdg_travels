@@ -67,11 +67,6 @@ function validateForm(form) {
     return isValid;
 }
 
-const closeButton = document.getElementById('closeButton');
-if (closeButton) {
-    closeButton.addEventListener('click', closeModal);
-}
-
 const menuIcon = document.querySelector('.menu-icon');
 const nav = document.querySelector('.nav');
 
