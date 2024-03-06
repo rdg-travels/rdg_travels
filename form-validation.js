@@ -257,7 +257,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const subscribeForm = document.getElementById("subscribe-form");
     const subscribeModal = document.getElementById("subscribe-modal");
 
-    contactForm.addEventListener("submit", function(event) {
+    subscribeForm.addEventListener("submit", function(event) {
         event.preventDefault();
 
         const formData = new FormData(subscribeForm);
