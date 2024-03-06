@@ -117,11 +117,11 @@
                         <form class=" flight-form booking-form" method="POST" id="booking-form" action="/book-now">
                             <div class="form-group">
                                 <label for="fullName">Full Name</label>
-                                <input type="text" id="fullName" name="fullName" placeholder="Chinwe Segun" required>
+                                <input type="text" id="fullName" name="fullName" placeholder="Chinwe Segun" pattern="[A-Za-z]+\s[A-Za-z]+" title="Please enter your full name in the format: First Name Last Name" required>
                             </div>
                             <div class="form-group">
                                 <label for="email">Email</label>
-                                <input type="email" id="email" name="email" placeholder="chinwesegun@mail.com" required>
+                                <input type="email" id="email" name="email" placeholder="chinwesegun@mail.com" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" title="Please enter a valid email address" required>
                             </div>
                             <div class="form-group">
                                 <label for="phoneNumber">Phone Number</label>
@@ -247,8 +247,8 @@
                     <h4>SUBSCRIBE TO OUR NEWSLETTER</h4>
                     <p>A monthly digest of the latest news, articles, and resources.</p>
                 </div>
-                <form>
-                    <input type="email" placeholder="Email address" required>
+                <form method="POST" id="subscribe-form" action="/subscribe">
+                    <input type="email" name="email" placeholder="Email address" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" title="Please enter a valid email address" required>
                     <button type="submit">Subscribe</button>
                 </form>
             </div>

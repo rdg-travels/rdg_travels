@@ -64,13 +64,15 @@
     gap: 48px;
 }
 
-.welcome-image,
-.study-welcome-text {
-    flex-grow: 1;
+.welcome-image {
+    flex: 1;
 }
 
 .study-welcome-text {
-    padding: 48px 0px 0px;
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    flex-direction: column;
 }
 
 .welcome-image img {

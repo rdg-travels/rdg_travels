@@ -58,7 +58,7 @@
 }
 
 .hotel-welcome-image {
-    width: 220%;
+    flex: 1;
 }
 
 .what-set-us-apart-section {

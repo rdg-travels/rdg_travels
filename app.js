@@ -68,6 +68,12 @@ app.use('/contact-us', cors({
   allowedHeaders: ['Content-Type'],
 }));
 
+app.use('/subscribe', cors({
+  origin: 'https://rdg-travels.netlify.app',
+  methods: ['GET', 'POST'],
+  allowedHeaders: ['Content-Type'],
+}));
+
 app.post('/booking-flight', (req, res) => {
   const { flyingFrom, flyingTo, leavingOn, returningOn, fullName, email, phone, passengers } = req.body;
 
@@ -200,6 +206,32 @@ app.post('/contact-us', (req, res) => {
     } else {
       console.log('Email sent:', info.response);
       res.send('Contact inquiry submitted successfully!');
+    }
+  });
+});
+
+app.post('/subscribe', (req, res) => {
+  const {  email } = req.body;
+
+  // Create transporter
+  const transporter = createTransporter();
+
+  // Fill the form
+  const mailOptions = {
+    from: email,
+    to: process.env.EMAIL,
+    subject: 'New Newsletter Subscription Request',
+    text: `Email Address: ${email}`,
+  };
+
+  // Send the email
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      console.error(error);
+      res.status(500).send('An error occurred while sending the email.');
+    } else {
+      console.log('Email sent:', info.response);
+      res.send('You have been subscribed successfully!');
     }
   });
 });

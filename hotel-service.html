@@ -98,7 +98,7 @@
         
                                 <div class="form-group down-form">
                                     <label for="fullName">Full Name</label>
-                                    <input type="text" id="fullName" name="fullName" placeholder="Chinwe Segun" required>
+                                    <input type="text" id="fullName" name="fullName" placeholder="Chinwe Segun" pattern="[A-Za-z]+\s[A-Za-z]+" title="Please enter your full name in the format: First Name Last Name" required>
                                 </div>
                 
                                 <div class="form-group down-form">
@@ -126,7 +126,7 @@
     <section class="welcome-section hotel-welcome-section">
         <!-- Container for the image -->
         <div class="welcome-image hotel-welcome-image">
-            <img src="images/welcome-image2.png" alt="Hotel Welcome Image">
+            <img src="images/Content (3).png" alt="Hotel Welcome Image">
         </div>
     
         <!-- Container for the text -->
@@ -183,7 +183,7 @@
                 </div>
             </div>
             <div class="why-choose-us-image what-set-us-apart-image">
-                <img src="images/what-set-us-apart-image.png" alt="Hotel Room Image">
+                <img src="images/Content (2).png" alt="Hotel Room Image">
             </div>
         </div>
     </section>
@@ -312,12 +312,12 @@
 
                         <div class="form-group down-form">
                             <label for="fullName">Full Name</label>
-                            <input type="text" id="fullName" name="fullName" placeholder="Chinwe Segun" required>
+                            <input type="text" id="fullName" name="fullName" placeholder="Chinwe Segun" pattern="[A-Za-z]+\s[A-Za-z]+" title="Please enter your full name in the format: First Name Last Name" required>
                         </div>
         
                         <div class="form-group down-form">
                             <label for="email">Email Address</label>
-                            <input type="email" id="email" name="email" placeholder="chinwesegune@mail.com" required>
+                            <input type="email" id="email" name="email" placeholder="chinwesegune@mail.com" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" title="Please enter a valid email address" required>
                         </div>
         
                         <div class="form-group down-form">
@@ -380,8 +380,8 @@
                     <h4>SUBSCRIBE TO OUR NEWSLETTER</h4>
                     <p>A monthly digest of the latest news, articles, and resources.</p>
                 </div>
-                <form>
-                    <input type="email" placeholder="Email address" required>
+                <form method="POST" id="subscribe-form" action="/subscribe">
+                    <input type="email" name="email" placeholder="Email address" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" title="Please enter a valid email address" required>
                     <button type="submit">Subscribe</button>
                 </form>
             </div>

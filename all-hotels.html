@@ -147,8 +147,8 @@
             <h4>SUBSCRIBE TO OUR NEWSLETTER</h4>
             <p>A monthly digest of the latest news, articles, and resources.</p>
           </div>
-          <form method="post" action="subscribe.php">
-            <input type="email" placeholder="Email address" required />
+          <form method="POST" id="subscribe-form" action="/subscribe">
+            <input type="email" name="email" placeholder="Email address" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" title="Please enter a valid email address" required />
             <button type="submit">Subscribe</button>
           </form>
         </div>

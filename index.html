@@ -19,6 +19,17 @@
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
     <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBHOmuCBdqrK1esALcGnicfVP60l2oTrFg&libraries=places"></script>
     <script>
+      function initAutocomplete() {
+        var flyingFromInput = document.getElementById('flyingFrom');
+        var flyingToInput = document.getElementById('flyingTo');
+    
+        var autocompleteFlyingFrom = new google.maps.places.Autocomplete(flyingFromInput);
+        var autocompleteFlyingTo = new google.maps.places.Autocomplete(flyingToInput);
+      }
+      window.onload = initAutocomplete;
+    </script> -->
+    
+    <!-- <script>
         function initAutocomplete() {
             var input = document.getElementById('flyingFrom');
             var autocomplete = new google.maps.places.Autocomplete(input);
@@ -102,6 +113,8 @@
                       id="flyingFrom"
                       name="flyingFrom"
                       placeholder="Lagos, Nigeria"
+                      pattern="^[a-zA-Z\s,]+(?:\s\([a-zA-Z\s,]+\))?$" 
+                      title="Please enter the departure city and country"
                       required
                     />
                   </div>
@@ -113,6 +126,8 @@
                       id="flyingTo"
                       name="flyingTo"
                       placeholder="London, England"
+                      pattern="^[a-zA-Z\s,]+(?:\s\([a-zA-Z\s,]+\))?$" 
+                      title="Please enter the destination city and country"
                       required
                     />
                   </div>
@@ -140,10 +155,23 @@
                       name="returningOn"
                       required
                     />
+                    <div id="returningOnError" class="error-message" style="display: none;">Returning date must be after leaving date</div>
                     <script>
                         document.getElementById("returningOn").min = new Date()
                           .toISOString()
                           .split("T")[0];
+
+                        document.getElementById('returningOn').addEventListener('change', function() {
+                          var returningOnDate = new Date(this.value);
+                          var leavingOnDate = new Date(document.getElementById('leavingOn').value);
+
+                          if (returningOnDate <= leavingOnDate) {
+                            document.getElementById('returningOnError').style.display = 'block';
+                            this.value = ''; // Clear the input field
+                          } else {
+                            document.getElementById('returningOnError').style.display = 'none';
+                          }
+                        });
                     </script>
                   </div>
 
@@ -154,6 +182,8 @@
                       id="fullName"
                       name="fullName"
                       placeholder="Chinwe Segun"
+                      pattern="[A-Za-z]+\s[A-Za-z]+" 
+                      title="Please enter your full name in the format: First Name Last Name"
                       required
                     />
                   </div>
@@ -165,6 +195,8 @@
                       id="email"
                       name="email"
                       placeholder="chinwesegun@mail.com"
+                      pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
+                      title="Please enter a valid email address"
                       required
                     />
                   </div>
@@ -728,8 +760,8 @@
             <h4>SUBSCRIBE TO OUR NEWSLETTER</h4>
             <p>A monthly digest of the latest news, articles, and resources.</p>
           </div>
-          <form method="post" action="subscribe.php">
-            <input type="email" placeholder="Email address" required />
+          <form method="POST" id="subscribe-form" action="/subscribe">
+            <input type="email" name="email" placeholder="Email address" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" title="Please enter a valid email address" required />
             <button type="submit">Subscribe</button>
           </form>
         </div>
@@ -761,6 +793,26 @@
           <p>
             Thanks for booking a trip. We will share with you all the trip
             details in your registered email address.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div id="subscribe-modal" class="modal" onclick="closeModal()">
+      <div class="modal-content">
+        <span class="close" id="closeButton">&times;</span>
+        <div class="modal-icon">
+          <div class="check-mark">
+            <div class="ellipse ellipse1"></div>
+            <div class="ellipse ellipse2"></div>
+            <div class="ellipse ellipse3"></div>
+            <img src="images/search 4.png" alt="check icon" />
+          </div>
+        </div>
+        <div class="modal-text">
+          <h2>Your Subscription was successful</h2>
+          <p>
+            Thanks for subscribing to our newsletter. We will share with you our news in your registered email address.
           </p>
         </div>
       </div>
