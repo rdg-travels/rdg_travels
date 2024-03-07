@@ -9,7 +9,7 @@ function closeSubscribeModal() {
 }
 
 document.addEventListener("DOMContentLoaded", function() {
-    const flightForm = document.getElementById("flight-form");
+    const flightForm = document.getElementById("flight-form", "flight-form1");
     const successModal = document.getElementById("success-modal");
 
     flightForm.addEventListener("submit", function(event) {
