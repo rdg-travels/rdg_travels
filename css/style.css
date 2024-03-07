@@ -252,18 +252,6 @@ nav ul li a:hover {
     margin-top: 16px;
 }
 
-.book-flight-button button {
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.book-flight-button button:hover,
-.contact-button:hover,
-.book-now-link:hover,
-.footer-container button:hover  {
-    background-color: #2456c3;
-}
-
 button {
     font-family: "Circular Std Book", Arial, Helvetica, sans-serif;
 }
@@ -289,6 +277,19 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     padding: 10px 24px;
     font-size: 1.125em;
     white-space: nowrap;
+}
+
+.book-flight-button button:hover,
+.start-study-button button:hover
+.contact-button:hover,
+.book-now-link:hover,
+.footer-container button:hover  {
+    background-color: #2456c3;
+}
+
+.book-flight-button button {
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 /* Home Section Styles */

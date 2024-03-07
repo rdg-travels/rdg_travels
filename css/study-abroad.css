@@ -57,6 +57,15 @@
     text-align: right;
 }
 
+.start-study-button button {
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.start-study-button button:hover {
+    background-color: #2456c3;
+}
+
 .welcome-section {
     padding: 64px 112px;
     display: flex;
