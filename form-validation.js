@@ -1,17 +1,19 @@
+function closeModal(modal) {
+    modal.style.display = 'none';
+    successModal.style.display = 'none';
+}
+
+function closeSubscribeModal() {
+    const subscribeModal = document.getElementById("subscribe-modal");
+    subscribeModal.style.display = 'none';
+}
+
 document.addEventListener("DOMContentLoaded", function() {
     const successModal = document.getElementById("success-modal");
     const subscribeModal = document.getElementById("subscribe-modal");
     const closeButton = document.getElementById("closeButton");
 
-    function closeModal(modal) {
-        modal.style.display = 'none';
-    }
-
-    function closeSubscribeModal() {
-        subscribeModal.style.display = 'none';
-    }
-
-    function sendFormData(formData, apiUrl, modal) {
+    function sendFormData(formData, apiUrl, modal, form) {
         fetch(apiUrl, {
             method: "POST",
             headers: {
@@ -37,7 +39,7 @@ document.addEventListener("DOMContentLoaded", function() {
             // Display the success modal
             modal.style.display = 'block';
             // Reset the form
-            formData.reset();
+            form.reset();
         })
         .catch(error => {
             console.error(error);
@@ -49,7 +51,8 @@ document.addEventListener("DOMContentLoaded", function() {
         event.preventDefault();
 
         const formData = new FormData(form);
-        sendFormData(formData, apiUrl, modal);
+        const apiUrl = 'https://rdg-travels.onrender.com';
+        sendFormData(formData, apiUrl, modal, form);
     }
 
     const flightForm = document.getElementById("flight-form");
