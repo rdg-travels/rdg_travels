@@ -1,4 +1,5 @@
-function closeModal(modal) {
+function closeModal() {
+    const modal = document.getElementById('success-modal');
     modal.style.display = 'none';
 }
 
