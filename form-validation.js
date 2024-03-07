@@ -3,6 +3,11 @@ function closeModal() {
     successModal.style.display = 'none';
 }
 
+function closeSubscribeModal() {
+    const subscribeModal = document.getElementById("subscribe-modal");
+    subscribeModal.style.display = 'none';
+}
+
 document.addEventListener("DOMContentLoaded", function() {
     const flightForm = document.getElementById("flight-form");
     const successModal = document.getElementById("success-modal");
@@ -299,7 +304,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const closeButton = document.getElementById("closeButton");
     closeButton.addEventListener("click", function() {
         // Close the modal when the close button is clicked
-        closeModal();
+        closeSubscribeModal();
     });
 });
 
