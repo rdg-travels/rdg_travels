@@ -88,44 +88,44 @@ document.addEventListener("DOMContentLoaded", function() {
         nav.classList.toggle('show');
     });
 
-    const subscribeForm = document.getElementById("subscribe-form");
+    // const subscribeForm = document.getElementById("subscribe-form");
 
-    subscribeForm.addEventListener("submit", function(event) {
-        event.preventDefault();
+    // subscribeForm.addEventListener("submit", function(event) {
+    //     event.preventDefault();
 
-        const formData = new FormData(subscribeForm);
-        const apiUrl = 'https://rdg-travels.onrender.com';
+    //     const formData = new FormData(subscribeForm);
+    //     const apiUrl = 'https://rdg-travels.onrender.com';
 
-        fetch(`${apiUrl}/subscribe`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(Object.fromEntries(formData)),
-        })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Failed to subscribe. Please try again later.');
-            }
-            // Check the Content-Type header to determine the response format
-            const contentType = response.headers.get('Content-Type');
-            if (contentType && contentType.includes('application/json')) {
-                // If the response is JSON, parse it and return the parsed data
-                return response.json();
-            } else {
-                // If the response is not JSON, return the response body as text
-                return response.text();
-            }
-        })
-        .then(data => {
-            // Display the success modal
-            subscribeModal.style.display = 'block';
-            // Reset the flight form
-            subscribeForm.reset();
-        })
-        .catch(error => {
-            console.error(error);
-            alert("An error occurred while subscribing. Please try again later.");
-        });
-    });
+    //     fetch(`${apiUrl}/subscribe`, {
+    //         method: "POST",
+    //         headers: {
+    //             "Content-Type": "application/json",
+    //         },
+    //         body: JSON.stringify(Object.fromEntries(formData)),
+    //     })
+    //     .then(response => {
+    //         if (!response.ok) {
+    //             throw new Error('Failed to subscribe. Please try again later.');
+    //         }
+    //         // Check the Content-Type header to determine the response format
+    //         const contentType = response.headers.get('Content-Type');
+    //         if (contentType && contentType.includes('application/json')) {
+    //             // If the response is JSON, parse it and return the parsed data
+    //             return response.json();
+    //         } else {
+    //             // If the response is not JSON, return the response body as text
+    //             return response.text();
+    //         }
+    //     })
+    //     .then(data => {
+    //         // Display the success modal
+    //         subscribeModal.style.display = 'block';
+    //         // Reset the flight form
+    //         subscribeForm.reset();
+    //     })
+    //     .catch(error => {
+    //         console.error(error);
+    //         alert("An error occurred while subscribing. Please try again later.");
+    //     });
+    // });
 });
