@@ -82,7 +82,7 @@ app.post('/booking-flight', (req, res) => {
   // Fill the form
   const mailOptions = {
     from: email,
-    to: ['makanjuolabolaji9898@gmail.com', 'recipient2@example.com'],
+    to: process.env.EMAIL_1,
     subject: 'New Flight Booking',
     text: `Flying From: ${flyingFrom}\nFlying To: ${flyingTo}\nLeaving On: ${leavingOn}\nReturning On: ${returningOn}\nFull Name: ${fullName}\nEmail Address: ${email}\nPhone Number: ${phone}\nNumber of Passengers: ${passengers}`,
   };
@@ -108,7 +108,7 @@ app.post('/studying-abroad', (req, res) => {
   // Fill the form
   const mailOptions = {
     from: email,
-    to: process.env.EMAIL,
+    to: process.env.EMAIL_1,
     subject: 'New Study Abroad Inquiry',
     text: `Country of Interest: ${countryOfInterest}\nField of Study: ${fieldOfStudy}\nIntended Program: ${intendedProgram}\nFull Name: ${fullName}\nEmail Address: ${email}\nPhone Number: ${phoneNumber}`,
   };
@@ -134,7 +134,7 @@ app.post('/book-hotel', (req, res) => {
   // Fill the form
   const mailOptions = {
     from: email,
-    to: process.env.EMAIL,
+    to: process.env.EMAIL_1,
     subject: 'New Hotel Booking',
     text: `Location: ${location}\nCheck In: ${checkIn}\nCheck Out: ${checkOut}\nNo of Guests: ${guests}\nFull Name: ${fullName}\nEmail Address: ${email}\nPhone Number: ${phone}`,
   };
@@ -160,7 +160,7 @@ app.post('/book-now', (req, res) => {
   // Fill the form
   const mailOptions = {
     from: email,
-    to: process.env.EMAIL,
+    to: process.env.EMAIL_1,
     subject: 'New Destination Booking',
     text: `Full Name: ${fullName}\nEmail Address: ${email}\nPhone Number: ${phoneNumber}\nPackage Type: ${packageType}`,
   };
@@ -193,7 +193,7 @@ app.post('/contact-us', (req, res) => {
 
   const mailOptions = {
     from: emailAddress,
-    to: process.env.EMAIL,
+    to: process.env.EMAIL_1,
     subject: 'New Contact Inquiry',
     text: mailText,
   };
@@ -219,7 +219,7 @@ app.post('/subscribe', (req, res) => {
   // Fill the form
   const mailOptions = {
     from: email,
-    to: process.env.EMAIL,
+    to: process.env.EMAIL_1,
     subject: 'New Newsletter Subscription Request',
     text: `Email Address: ${email}`,
   };
