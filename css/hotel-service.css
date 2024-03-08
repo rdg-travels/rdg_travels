@@ -79,7 +79,6 @@
 }
 
 .hotel-feature-container {
-    display: flex;
     gap: 20px;
     flex: 1 0 calc(50% - 24px);
     margin-top: 0px;
