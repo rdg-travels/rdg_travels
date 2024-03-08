@@ -99,6 +99,10 @@
     font-size: 1.125em;
 }
 
+.info-text a {
+    color: #0F1416;
+}
+
 .info,
 .second-info {
     display: flex;
