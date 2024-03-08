@@ -81,7 +81,7 @@ app.post('/booking-flight', (req, res) => {
   const transporter = createTransporter();
   // Fill the form
   const mailOptions = {
-    from: req.body.email,
+    from: email,
     to: process.env.EMAIL_1,
     subject: 'New Flight Booking',
     text: `Flying From: ${flyingFrom}\nFlying To: ${flyingTo}\nLeaving On: ${leavingOn}\nReturning On: ${returningOn}\nFull Name: ${fullName}\nEmail Address: ${email}\nPhone Number: ${phone}\nNumber of Passengers: ${passengers}`,
