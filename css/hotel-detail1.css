@@ -182,11 +182,12 @@ right: 15px;
 
 .overview-frame-header h3{
     color: #0F1416;
-font-size: 24px;
-font-weight: 700;
-line-height: 30px;
-letter-spacing: 0em;
-text-align: left;
+    font-size: 1.5em;
+    font-weight: 700;
+    line-height: 30px;
+    letter-spacing: 0em;
+    text-align: left;
+    margin-bottom: 0px;
 }
 
 .overview-frame-header .location {
@@ -197,28 +198,26 @@ text-align: left;
 
 .overview-frame-header .location i{
     width: 16px;
-height: 16px;
-top: 48px;
+    height: 16px;
+    margin-right: 0px;
 
 }
 
 .overview-frame-header .location p{
     color: #6B7280;
     font-size: 1em;
-font-weight: 450;
-line-height: 20px;
-letter-spacing: 0em;
-text-align: left;
+    font-weight: 450;
+    line-height: 20px;
+    letter-spacing: 0em;
+    text-align: left;
+    margin-bottom: 0px;
 }
 
 .overview-frame-paragraph{
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    /* width: 744px;
-height: 227px; */
-gap: 20px;
-
+    gap: 20px;
 }
 
 .overview-frame-paragraph h3{
@@ -229,7 +228,7 @@ gap: 20px;
     line-height: 30px;
     letter-spacing: 0em;
     text-align: left;
-
+    margin-bottom: 0px;
 }
 
 .overview-frame-paragraph p {
@@ -277,15 +276,15 @@ border-radius: 4px;
 position: relative;
 }
 
-.form-box-field label{
+.form-box-field label {
 
-font-size: 14px;
-font-weight: 450;
-line-height: 18px;
-letter-spacing: 0em;
-text-align: left;
-background-color: #ffffff;
-padding: 0px 8px;
+    font-size: 14px;
+    font-weight: 450;
+    line-height: 18px;
+    letter-spacing: 0em;
+    text-align: left;
+    background-color: #ffffff;
+    padding: 0px 8px;
 }
 
 .form-box-field input{
@@ -293,7 +292,7 @@ padding: 0px 8px;
     height: 50px;
     border: 1px solid #79747E;
     border-radius: 4px;
-    padding: 18px 16px;
+    padding: 8px 16px;
     width: 100%;
 }
 
@@ -330,6 +329,9 @@ padding: 0px 8px;
     color: #fff;
     border: none;
     font-family: "Circular Std Book", Arial, Helvetica, sans-serif;
+    border-radius: 6px;
+    padding: 10px 24px;
+    font-size: 1.125em;
 }
 
 .form-box-field label{

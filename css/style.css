@@ -267,6 +267,9 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     padding-left: 48px;
 }
 
+input::placeholder {
+    color: black;
+}
 
 .book-flight-button button,
 .start-study-button button {
@@ -967,6 +970,10 @@ h3 {
     width: 475px;
     border-radius: 6px;
     border: 1px solid #D1D5DB;
+}
+
+.footer-container input::placeholder {
+    color: #9CA3AF;
 }
 
 .footer-container button {

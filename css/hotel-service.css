@@ -66,6 +66,7 @@
     flex-direction: column;
     background-color: #fff;
     color: #111827;
+    align-items: flex-start;
 }
 
 .what-set-us-apart-section h2 {
