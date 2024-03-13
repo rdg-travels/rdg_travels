@@ -355,7 +355,7 @@ button {
     align-self: stretch;
 }
 
-button {
+/* button {
     margin-top: 4px;
     border: none;
     border-radius: 6px;
@@ -365,7 +365,7 @@ button {
     cursor: pointer;
     font-size: 1.125em;
     transition: background-color 0.3s;
-}
+} */
 
 /* button:hover {
     background-color: #0056b3;
@@ -447,8 +447,8 @@ button {
         gap: 12px;
     }
     
-    button {
+    /* button {
         font-size: 1em;
         padding: 12px 20px;
-    }
+    } */
 }

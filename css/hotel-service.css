@@ -148,10 +148,10 @@
         font-size: 1.25em;
     }
 
-    .form-group input,
+    /* .form-group input,
     .form-group select {
         width: calc(100% - 16px);
-    }
+    } */
 
     .hotel-welcome-image {
         width: 100%;

@@ -841,7 +841,7 @@ h3 {
 
 .phone-no {
     display: flex;
-    gap: 24px;
+    gap: 16px;
 }
 
 .phone-no img {
@@ -860,6 +860,7 @@ h3 {
     font-size: 1.125em;
     border: none;
     transition: background-color 0.3s ease;
+    color: #fff;
 }
 
 .contact-button a {
@@ -1315,10 +1316,6 @@ h3 {
         gap: 24px;
     }
 
-    .hotel-card {
-        width: 100%;
-    }
-
     .hotel-details h3 {
         margin-bottom: 0px;
         font-size: 1.25em;
@@ -1498,10 +1495,6 @@ h3 {
 
     .phone-no span {
         margin-left: 8px;
-    }
-
-    .phone-no p {
-        margin-left: 36px;
     }
     
     .contact-content p, 
