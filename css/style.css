@@ -281,7 +281,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 .book-flight-button button:hover,
 .start-study-button button:hover
-.contact-button:hover,
 .book-now-link:hover,
 .footer-container button:hover  {
     background-color: #2456c3;
@@ -851,16 +850,25 @@ h3 {
 }
 
 .contact-button {
+    cursor: pointer;
     z-index: 2;
     align-items: flex-end;
     padding: 10px 24px;
     background-color: #093BA8;
     text-decoration: none;
     border-radius: 6px;
-    font-size: 1.125em;
+}
+
+.contact-button button {
+    background-color: inherit;
     border: none;
+    font-size: 1.125em;
     transition: background-color 0.3s ease;
-    color: #fff;
+}
+
+.contact-button button :hover,
+.contact-button:hover {
+    background-color: #2456c3;
 }
 
 .contact-button a {

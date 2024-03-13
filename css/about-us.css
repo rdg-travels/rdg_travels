@@ -26,6 +26,7 @@
 .images-container {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     flex: 1;
     gap: 32px;
 }
@@ -67,7 +68,6 @@
 
 .stacked-images {
     display: flex;
-    flex-wrap: wrap;
     gap: 32px;
 }
 
@@ -85,5 +85,15 @@
 
     .mission-container h2 {
         font-size: 2em;
+    }
+
+    .stacked-images {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .images-container {
+        gap: 16px;
     }
 }
