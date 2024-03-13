@@ -593,7 +593,7 @@ h3 {
     display: flex;
     gap: 32px;
     flex-direction: row;
-    align-items: flex-start;
+    align-items: center;
     align-self: stretch;
 }
 
@@ -624,11 +624,16 @@ h3 {
 }
 
 .feature {
+    width: 280px;
     margin-bottom: 40px;
     display: flex;
     align-items: flex-start;
     gap: 24px;
     text-align: left;
+}
+
+.feature-down {
+    margin-bottom: 0px;
 }
 
 .feature i {
@@ -638,7 +643,6 @@ h3 {
 
 
 .feature-detail {
-    width: 280px;
     display: flex;
     flex-direction: column;
 }
