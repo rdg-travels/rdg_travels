@@ -268,7 +268,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 input::placeholder {
-    color: black;
+    color: #111827;
 }
 
 .book-flight-button button,

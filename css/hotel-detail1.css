@@ -37,7 +37,7 @@ height: 64px;
 
 .nav-links a{
     text-decoration: none;
-    color: black;
+    color: #111827;
     text-transform: capitalize;
 }
 
@@ -297,7 +297,7 @@ position: relative;
 }
 
 .form-box-field input::placeholder{
-    color: black;
+    color: #111827;
 }
 
 .input-with-icon input {
@@ -396,7 +396,7 @@ position: relative;
 }
 
 .each-hotel-box i {
-    color: black;
+    color: #111827;
     margin-right: 5px;
 }
 
