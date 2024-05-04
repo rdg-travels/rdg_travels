@@ -97,6 +97,26 @@ app.post('/booking-flight', (req, res) => {
       res.send('Flight booked successfully!');
     }
   });
+  // Create transporter for sending acknowledgment email to the user
+      const transporterToUser = createTransporter();
+      const mailOptionsToUser = {
+        from: process.env.EMAIL_1,
+        to: email,
+        subject: 'Flight Booking Acknowledgment',
+        text: `Dear ${fullName},\n\nThank you for booking your flight with us. We have received your request and will get back to you shortly.\n\nBest regards,\nRound D Globe Travels`,
+      };
+
+      // Send acknowledgment email to the user
+      transporterToUser.sendMail(mailOptionsToUser, (error, info) => {
+        if (error) {
+          console.error(error);
+          // Handle error in sending acknowledgment email to user
+        } else {
+          console.log('Acknowledgment email sent to user:', info.response);
+          // Respond to the request indicating success
+          res.send('Flight booked successfully!');
+        }
+      });
 });
 
 app.post('/studying-abroad', (req, res) => {
