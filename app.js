@@ -143,6 +143,26 @@ app.post('/studying-abroad', (req, res) => {
       res.send('Study abroad inquiry submitted successfully!');
     }
   });
+  // Create transporter for sending acknowledgment email to the user
+      const transporterToUser = createTransporter();
+      const mailOptionsToUser = {
+        from: process.env.EMAIL_1,
+        to: email,
+        subject: 'Study Abroad Inquiry Acknowledgement',
+        text: `Dear ${fullName},\n\nThank you for interest in our services to Study Abroad. We have received your request and will get back to you shortly.\n\nBest regards,\nRound D Globe Travels`,
+      };
+
+      // Send acknowledgment email to the user
+      transporterToUser.sendMail(mailOptionsToUser, (error, info) => {
+        if (error) {
+          console.error(error);
+          // Handle error in sending acknowledgment email to user
+        } else {
+          console.log('Acknowledgment email sent to user:', info.response);
+          // Respond to the request indicating success
+          res.send('Study abroad inquiry submitted successfully!');
+        }
+      });
 });
 
 app.post('/book-hotel', (req, res) => {
@@ -169,6 +189,26 @@ app.post('/book-hotel', (req, res) => {
       res.send('Hotel booked successfully!');
     }
   });
+  // Create transporter for sending acknowledgment email to the user
+      const transporterToUser = createTransporter();
+      const mailOptionsToUser = {
+        from: process.env.EMAIL_1,
+        to: email,
+        subject: 'Hotel Booking Acknowledgement',
+        text: `Dear ${fullName},\n\nThank you for booking your Hotel with us. We have received your request and will get back to you shortly.\n\nBest regards,\nRound D Globe Travels`,
+      };
+
+      // Send acknowledgment email to the user
+      transporterToUser.sendMail(mailOptionsToUser, (error, info) => {
+        if (error) {
+          console.error(error);
+          // Handle error in sending acknowledgment email to user
+        } else {
+          console.log('Acknowledgment email sent to user:', info.response);
+          // Respond to the request indicating success
+          res.send('Hotel booked successfully!');
+        }
+      });
 });
 
 app.post('/book-now', (req, res) => {
@@ -195,6 +235,26 @@ app.post('/book-now', (req, res) => {
       res.send('Destination booked successfully!');
     }
   });
+  // Create transporter for sending acknowledgment email to the user
+      const transporterToUser = createTransporter();
+      const mailOptionsToUser = {
+        from: process.env.EMAIL_1,
+        to: email,
+        subject: 'Travel Package Acknowledgement',
+        text: `Dear ${fullName},\n\nThank you for contacting us. We have received your request and will get back to you shortly.\n\nBest regards,\nRound D Globe Travels`,
+      };
+
+      // Send acknowledgment email to the user
+      transporterToUser.sendMail(mailOptionsToUser, (error, info) => {
+        if (error) {
+          console.error(error);
+          // Handle error in sending acknowledgment email to user
+        } else {
+          console.log('Acknowledgment email sent to user:', info.response);
+          // Respond to the request indicating success
+          res.send('Hotel booked successfully!');
+        }
+      });
 });
 
 app.post('/contact-us', (req, res) => {
