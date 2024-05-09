@@ -120,6 +120,7 @@
 }
 
 #contact-form button {
+    color: white;
     background-color: #093BA8;
     transition: background-color 0.3s ease;
     cursor: pointer;
