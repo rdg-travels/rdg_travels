@@ -120,7 +120,7 @@ app.post('/booking-flight', (req, res) => {
 });
 
 app.post('/studying-abroad', (req, res) => {
-  const { countryOfInterest, fieldOfStudy, intendedProgram, fullName, emailAddress, phoneNumber } = req.body;
+  const { countryOfInterest, fieldOfStudy, intendedProgram, fullName, email, phoneNumber } = req.body;
 
   // Create transporter
   const transporter = createTransporter();
@@ -130,7 +130,7 @@ app.post('/studying-abroad', (req, res) => {
     from: email,
     to: process.env.EMAIL_1,
     subject: 'New Study Abroad Inquiry',
-    text: `Country of Interest: ${countryOfInterest}\nField of Study: ${fieldOfStudy}\nIntended Program: ${intendedProgram}\nFull Name: ${fullName}\nEmail Address: ${emailAddress}\nPhone Number: ${phoneNumber}`,
+    text: `Country of Interest: ${countryOfInterest}\nField of Study: ${fieldOfStudy}\nIntended Program: ${intendedProgram}\nFull Name: ${fullName}\nEmail Address: ${email}\nPhone Number: ${phoneNumber}`,
   };
 
   // Send the email
