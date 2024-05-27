@@ -242,7 +242,7 @@ nav ul li a:hover {
     padding-left: 32px;
 }
 
-.form-group input[type="date"]::placeholder, .form-group input[type="date"] {
+.form-group input[type="date"] {
      color: #9CA3AF;
 }
 
