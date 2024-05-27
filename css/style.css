@@ -242,8 +242,8 @@ nav ul li a:hover {
     padding-left: 32px;
 }
 
-.form-group input[type="date"]::placeholder {
-     color: #cdced1;
+.form-group input[type="date"]::placeholder, .form-group input[type="date"] {
+     color: #9CA3AF;
 }
 
 .book-flight-button {
@@ -268,7 +268,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 input::placeholder {
-    color: #cdced1;
+    color: #9CA3AF;
 }
 
 .book-flight-button button,
@@ -973,7 +973,7 @@ h3 {
 }
 
 .footer-container input::placeholder {
-     color: #cdced1;
+     color: #9CA3AF;
 }
 
 .footer-container button {
