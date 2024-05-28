@@ -193,6 +193,7 @@ nav ul li a:hover {
     flex-wrap: wrap;
     justify-content: space-between;
     gap: 16px;
+    margin-top: 32px;
 }
 
 .form-group.flex-group {
@@ -246,6 +247,10 @@ nav ul li a:hover {
      color: #9CA3AF;
 }
 
+.form-group input[type="date"]::placeholder {
+    color: #111827;
+}
+
 .book-flight-button {
     margin-left: auto;
     text-align: right;
@@ -292,6 +297,39 @@ input::placeholder {
 .book-flight-button button {
     cursor: pointer;
     transition: background-color 0.3s ease;
+}
+
+.trip-type-group input[type="radio"] + label {
+    margin-right: 16px;
+    color: #111827;
+    transition: color 0.3s ease;
+}
+
+.trip-type-group input[type="radio"]:checked + label {
+    color: #093BA8;
+}
+
+.error-message {
+    color: red;
+    font-size: 0.875em;
+    margin-top: 4px;
+}
+
+.trip-type-options {
+    display: flex;
+    gap: 1em;
+    margin-top: 20px;
+}
+
+.trip-type-options label {
+    font-size: 1em;
+    font-weight: 500;
+    font-family: "Circular Std Book", Arial, Helvetica, sans-serif;
+    cursor: pointer;
+}
+
+.trip-type-options input {
+    margin-right: 0.5em;
 }
 
 /* Home Section Styles */

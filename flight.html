@@ -51,12 +51,25 @@
               <p>Where are you flying?</p>
             </div>
           </div>
-          <form class="flight-form" method="POST" id="flight-form" action="/booking-flight">
+
+          <div class="trip-type-group">
+            <label for="trip-type">Trip Type</label>
+            <div class="trip-type-options">
+              <label>
+                <input type="radio" name="tripType" value="oneway" checked onchange="toggleReturnDate()"> One way
+              </label>
+              <label>
+                <input type="radio" name="tripType" value="return" onchange="toggleReturnDate()"> Return
+              </label>
+            </div>
+          </div>
+          <form class="flight-form" method="POST" id="flight-form1" action="/booking-flight">
+            
           <div class="form-group flex-group top-input">
-            <label for="departure">Flying From</label>
+            <label for="departure1">Flying From</label>
             <input
               type="text"
-              id="flyingFrom"
+              id="flyingFrom1"
               name="flyingFrom"
               placeholder="Lagos, Nigeria"
               pattern="^[a-zA-Z\s,]+(?:\s\([a-zA-Z\s,]+\))?$" 
@@ -91,27 +104,10 @@
                 .split("T")[0];
             </script>
           </div>
-          <div class="form-group flex-group top-input">
-            <label for="return-date">Returning On</label>
-            <input type="date" id="returningOn" name="returningOn" required />
-            <div id="returningOnError" class="error-message" style="display: none;">Returning date must be after leaving date</div>
-                    <script>
-                        document.getElementById("returningOn").min = new Date()
-                          .toISOString()
-                          .split("T")[0];
-
-                        document.getElementById('returningOn').addEventListener('change', function() {
-                          var returningOnDate = new Date(this.value);
-                          var leavingOnDate = new Date(document.getElementById('leavingOn').value);
-
-                          if (returningOnDate <= leavingOnDate) {
-                            document.getElementById('returningOnError').style.display = 'block';
-                            this.value = ''; // Clear the input field
-                          } else {
-                            document.getElementById('returningOnError').style.display = 'none';
-                          }
-                        });
-                    </script>
+          <div class="form-group flex-group top-input" id="returningOnGroup">
+            <label for="return-date1">Returning On</label>
+            <input type="date" id="returningOn1" name="returningOn" required />
+            <div id="returningOnError1" class="error-message" style="display: none;">Returning date must be after leaving date</div>
           </div>
           <div class="form-group flex-group">
             <label for="full-name">Full Name</label>
@@ -361,13 +357,24 @@
               <p>Where are you flying?</p>
             </div>
           </div>
-          <form class="flight-form" method="POST" id="flight-form1" action="/booking-flight">
+          <div class="trip-type-group">
+            <label for="trip-type">Trip Type</label>
+            <div class="trip-type-options">
+              <label>
+                <input type="radio" name="tripType" value="oneway" checked onchange="toggleReturnDate()"> One way
+              </label>
+              <label>
+                <input type="radio" name="tripType" value="return" onchange="toggleReturnDate()"> Return
+              </label>
+            </div>
+          </div>
+          <form class="flight-form" method="POST" id="flight-form2" action="/booking-flight">
           <div class="form-group flex-group top-input">
-            <label for="departure">Flying From</label>
+            <label for="departure2">Flying From</label>
             <input
               type="text"
-              id="flyingFrom"
-              name="flyingFrom"
+              id="flyingFrom2"
+              name="flyingFrom2"
               placeholder="Lagos, Nigeria"
               pattern="^[a-zA-Z\s,]+(?:\s\([a-zA-Z\s,]+\))?$" 
               title="Please enter the departure city and country"
@@ -401,27 +408,10 @@
                 .split("T")[0];
             </script>
           </div>
-          <div class="form-group flex-group top-input">
-            <label for="return-date">Returning On</label>
-            <input type="date" id="returningOn" name="returningOn" required />
-            <div id="returningOnError" class="error-message" style="display: none;">Returning date must be after leaving date</div>
-                    <script>
-                        document.getElementById("returningOn").min = new Date()
-                          .toISOString()
-                          .split("T")[0];
-
-                        document.getElementById('returningOn').addEventListener('change', function() {
-                          var returningOnDate = new Date(this.value);
-                          var leavingOnDate = new Date(document.getElementById('leavingOn').value);
-
-                          if (returningOnDate <= leavingOnDate) {
-                            document.getElementById('returningOnError').style.display = 'block';
-                            this.value = ''; // Clear the input field
-                          } else {
-                            document.getElementById('returningOnError').style.display = 'none';
-                          }
-                        });
-                    </script>
+          <div class="form-group flex-group top-input" id="returningOnGroup">
+            <label for="return-date2">Returning On</label>
+            <input type="date" id="returningOn2" name="returningOn" required />
+            <div id="returningOnError2" class="error-message" style="display: none;">Returning date must be after leaving date</div>
           </div>
           <div class="form-group flex-group">
             <label for="full-name">Full Name</label>

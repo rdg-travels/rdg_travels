@@ -10,7 +10,7 @@ function closeSubscribeModal() {
 }
 
 document.addEventListener("DOMContentLoaded", function() {
-    const flightForm = document.getElementById("flight-form");
+    const flightForm = document.getElementById("flight-form1");
     const successModal = document.getElementById("success-modal");
 
     flightForm.addEventListener("submit", function(event) {
@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 document.addEventListener("DOMContentLoaded", function() {
-    const flightForm2 = document.getElementById("flight-form1");
+    const flightForm2 = document.getElementById("flight-form2");
     const successModal = document.getElementById("success-modal");
 
     flightForm2.addEventListener("submit", function(event) {
@@ -483,3 +483,56 @@ const nav = document.querySelector('.nav');
 menuIcon.addEventListener('click', () => {
     nav.classList.toggle('show');
 });
+
+function toggleReturnDate(event) {
+    const formSection = event.target.closest('.book-flight-section');
+    const isReturn = event.target.value === 'return';
+    const returnDateInput = formSection.querySelector('[id^="returningOn"]');
+    const returnDateGroup = formSection.querySelector('[id^="returningOnGroup"]');
+  
+    if (isReturn) {
+      returnDateGroup.style.display = 'block';
+      returnDateInput.required = true;
+    } else {
+      returnDateGroup.style.display = 'none';
+      returnDateInput.required = false;
+      returnDateInput.value = ''; // Clear the return date input
+    }
+  }
+  
+  // Attach event listeners to radio buttons
+  document.querySelectorAll('input[name="tripType"]').forEach(radio => {
+    radio.addEventListener('change', toggleReturnDate);
+  });
+  
+  // Set minimum dates for return fields and validate them
+  function setMinDate() {
+    document.querySelectorAll('input[id^="leavingOn"]').forEach(input => {
+      input.min = new Date().toISOString().split("T")[0];
+    });
+    document.querySelectorAll('input[id^="returningOn"]').forEach(input => {
+      input.min = new Date().toISOString().split("T")[0];
+    });
+  }
+  
+  function validateReturningDate(event) {
+    const returningOnDate = new Date(event.target.value);
+    const leavingOnInput = event.target.closest('form').querySelector('input[id^="leavingOn"]');
+    const leavingOnDate = new Date(leavingOnInput.value);
+    const errorMessage = event.target.closest('form').querySelector('.error-message');
+  
+    if (returningOnDate <= leavingOnDate) {
+      errorMessage.style.display = 'block';
+      event.target.value = ''; // Clear the input field
+    } else {
+      errorMessage.style.display = 'none';
+    }
+  }
+  
+  document.addEventListener('DOMContentLoaded', () => {
+    setMinDate();
+    document.querySelectorAll('input[id^="returningOn"]').forEach(input => {
+      input.addEventListener('change', validateReturningDate);
+    });
+  });
+  
