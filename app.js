@@ -75,48 +75,51 @@ app.use('/subscribe', cors({
 }));
 
 app.post('/booking-flight', (req, res) => {
-  const { flyingFrom, flyingTo, leavingOn, returningOn, fullName, email, phone, passengers } = req.body;
+  const { tripType, flyingFrom, flyingTo, leavingOn, returningOn, fullName, email, phone, passengers } = req.body;
 
+  // Check if trip is one way or return
+  const isOneWay = tripType === 'oneWay';
+  const returningDate = isOneWay ? 'N/A' : returningOn
+  
   // Create transporter
   const transporter = createTransporter();
-  // Fill the form
-  const mailOptions = {
+
+  // Email options for admin
+  const adminMailOptions = {
     from: email,
     to: process.env.EMAIL_1,
     subject: 'New Flight Booking',
     text: `Flying From: ${flyingFrom}\nFlying To: ${flyingTo}\nLeaving On: ${leavingOn}\nReturning On: ${returningOn}\nFull Name: ${fullName}\nEmail Address: ${email}\nPhone Number: ${phone}\nNumber of Passengers: ${passengers}`,
   };
 
-  // Send the email
-  transporter.sendMail(mailOptions, (error, info) => {
+  // Email options for user acknowledgment
+  const userMailOptions = {
+    from: process.env.EMAIL_1,
+    to: email,
+    subject: 'Flight Booking Acknowledgment',
+    text: `Dear ${fullName},\n\nThank you for booking your flight with us. We have received your request and will get back to you shortly.\n\nBest regards,\nRound D Globe Travels`,
+  };
+
+  // Send email to admin
+  transporter.sendMail(adminMailOptions, (error, info) => {
     if (error) {
       console.error(error);
-      res.status(500).send('An error occurred while sending the email.');
+      return res.status(500).send('An error occurred while sending the booking email.');
     } else {
-      console.log('Email sent:', info.response);
-      res.send('Flight booked successfully!');
-    }
-  });
-  // Create transporter for sending acknowledgment email to the user
-      const transporterToUser = createTransporter();
-      const mailOptionsToUser = {
-        from: process.env.EMAIL_1,
-        to: email,
-        subject: 'Flight Booking Acknowledgment',
-        text: `Dear ${fullName},\n\nThank you for booking your flight with us. We have received your request and will get back to you shortly.\n\nBest regards,\nRound D Globe Travels`,
-      };
+      console.log('Booking email sent:', info.response);
 
-      // Send acknowledgment email to the user
-      transporterToUser.sendMail(mailOptionsToUser, (error, info) => {
+      // Send acknowledgment email to user
+      transporter.sendMail(userMailOptions, (error, info) => {
         if (error) {
           console.error(error);
-          // Handle error in sending acknowledgment email to user
+          return res.status(500).send('An error occurred while sending the acknowledgment email.');
         } else {
           console.log('Acknowledgment email sent to user:', info.response);
-          // Respond to the request indicating success
-          res.send('Flight booked successfully!');
+          return res.send('Flight booked successfully!');
         }
       });
+    }
+  });
 });
 
 app.post('/studying-abroad', (req, res) => {
