@@ -89,7 +89,7 @@ app.post('/booking-flight', (req, res) => {
     from: email,
     to: process.env.EMAIL_1,
     subject: 'New Flight Booking',
-    text: `Flying From: ${flyingFrom}\nFlying To: ${flyingTo}\nLeaving On: ${leavingOn}\nReturning On: ${returningOn}\nFull Name: ${fullName}\nEmail Address: ${email}\nPhone Number: ${phone}\nNumber of Passengers: ${passengers}`,
+    text: `Trip Type: ${tripType}\nFlying From: ${flyingFrom}\nFlying To: ${flyingTo}\nLeaving On: ${leavingOn}\nReturning On: ${returningOn}\nFull Name: ${fullName}\nEmail Address: ${email}\nPhone Number: ${phone}\nNumber of Passengers: ${passengers}`,
   };
 
   // Email options for user acknowledgment
