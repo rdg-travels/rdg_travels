@@ -126,33 +126,6 @@ body {
     box-shadow: 0px 4px 16px 0px rgba(17, 34, 17, 0.05);
 }
 
-
-.flight-details-heading {
-    text-transform: capitalize;
-    /* font-size: 13px;
-    margin-left: 5px; */
-    /* grid-column: span 4; */
-    align-items: normal;
-}
-
-.text p {
-    font-size: 1.25em;
-    font-weight: 700;
-    line-height: 28px;
-    margin-bottom: 0px;
-}
-
-.flight-form {
-    /* display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-gap: 16px;
-    justify-content: space-between; */
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 16px;
-}
-
 .form-group {
     position: relative;
     display: flex;
@@ -400,21 +373,10 @@ line-height: 28px;
         display: flex;
         flex-direction: column;
     }
-    
-    .flight-form {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 16px;
-    }
 
     .flight-form .button {
         margin-right: auto;
     }
-
-    /* .form-group input,
-    .form-group select {
-        width: calc(100% - 16px);
-    } */
 
     .book-flight-button {
         grid-column: span 2;

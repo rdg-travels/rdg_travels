@@ -92,180 +92,87 @@
           </div>
 
           <!-- Book Flight Form -->
-          <div id="book-flight" class="book-flight-section">
-            <form
-              class="flight-form"
-              method="POST"
-              id="flight-form1"
-              action="/booking-flight"
-            >
-              <!-- Flight Details -->
-              <div class="flight-details">
-                <div class="flight-details-heading">
-                  <div class="flight-icon">
-                    <img src="images/mdi_flight.svg" alt="flight icon" />
-                  </div>
-                  <div class="text">
-                    <p>Where are you flying?</p>
-                  </div>
-                </div>
+          <!-- Book Flight Form -->
+<div id="book-flight" class="book-flight-section">
+  <form class="flight-form" method="POST" id="flight-form" action="/booking-flight">
+    <!-- Flight Details -->
+    <div class="flight-details">
+      <div class="flight-details-heading">
+        <div class="flight-icon">
+          <img src="images/mdi_flight.svg" alt="flight icon" />
+        </div>
+        <div class="text">
+          <p>Where are you flying?</p>
+        </div>
+      </div>
 
-                <div class="trip-type-group">
-                  <label for="trip-type">Trip Type</label>
-                  <div class="trip-type-options">
-                    <label>
-                      <input type="radio" name="tripType" value="oneway" onchange="toggleReturnDate()"> One way
-                    </label>
-                    <label>
-                      <input type="radio" name="tripType" value="return" onchange="toggleReturnDate()"> Return
-                    </label>
-                  </div>
-                </div>
+      <div class="trip-type-group">
+        <label for="trip-type">Trip Type</label>
+        <div class="trip-type-options">
+          <label>
+            <input type="radio" name="tripType" value="oneway" checked onchange="toggleReturnDate(event)"> One way
+          </label>
+          <label>
+            <input type="radio" name="tripType" value="return" onchange="toggleReturnDate(event)"> Return
+          </label>
+        </div>
+      </div>
 
-                <!-- Input fields for Flying From, Flying To, Leaving On, Returning On -->
-                <div class="flight-info">
-                  <div class="form-group flex-group top-input">
-                    <label for="flyingFrom">Flying From</label>
-                    <input
-                      type="text"
-                      id="flyingFrom"
-                      name="flyingFrom"
-                      placeholder="Lagos, Nigeria"
-                      pattern="^[a-zA-Z\s,]+(?:\s\([a-zA-Z\s,]+\))?$"
-                      title="Please enter the departure city and country"
-                      required
-                    />
-                  </div>
+      <!-- Input fields for Flying From, Flying To, Leaving On, Returning On -->
+      <div class="flight-info">
+        <div class="form-group flex-group top-input">
+          <label for="flyingFrom">Flying From</label>
+          <input type="text" id="flyingFrom" name="flyingFrom" placeholder="Lagos, Nigeria" pattern="^[a-zA-Z\s,]+(?:\s\([a-zA-Z\s,]+\))?$" title="Please enter the departure city and country" required />
+        </div>
 
-                  <div class="form-group flex-group top-input">
-                    <label for="flyingTo">Flying To</label>
-                    <input
-                      type="text"
-                      id="flyingTo"
-                      name="flyingTo"
-                      placeholder="London, England"
-                      pattern="^[a-zA-Z\s,]+(?:\s\([a-zA-Z\s,]+\))?$"
-                      title="Please enter the destination city and country"
-                      required
-                    />
-                  </div>
+        <div class="form-group flex-group top-input">
+          <label for="flyingTo">Flying To</label>
+          <input type="text" id="flyingTo" name="flyingTo" placeholder="London, England" pattern="^[a-zA-Z\s,]+(?:\s\([a-zA-Z\s,]+\))?$" title="Please enter the destination city and country" required />
+        </div>
 
-                  <div class="form-group flex-group top-input">
-                    <label for="leavingOn">Leaving On</label>
-                    <input
-                      type="date"
-                      id="leavingOn"
-                      name="leavingOn"
-                      required
-                    />
-                    <script>
-                      document.getElementById("leavingOn").min = new Date()
-                        .toISOString()
-                        .split("T")[0];
-                    </script>
-                  </div>
+        <div class="form-group flex-group top-input">
+          <label for="leavingOn">Leaving On</label>
+          <input type="date" id="leavingOn" name="leavingOn" required />
+        </div>
 
-                  <div class="form-group flex-group top-input" id="returningOnGroup">
-                    <label for="returningOn">Returning On</label>
-                    <input
-                      type="date"
-                      id="returningOn"
-                      name="returningOn"
-                    />
-                    <div
-                      id="returningOnError1"
-                      class="error-message"
-                      style="display: none"
-                    >
-                      Returning date must be after leaving date
-                    </div>
-                    <script>
-                      document.getElementById("returningOn").min = new Date()
-                        .toISOString()
-                        .split("T")[0];
-
-                      document
-                        .getElementById("returningOn")
-                        .addEventListener("change", function () {
-                          var returningOnDate = new Date(this.value);
-                          var leavingOnDate = new Date(
-                            document.getElementById("leavingOn").value
-                          );
-
-                          if (returningOnDate <= leavingOnDate) {
-                            document.getElementById(
-                              "returningOnError"
-                            ).style.display = "block";
-                            this.value = ""; // Clear the input field
-                          } else {
-                            document.getElementById(
-                              "returningOnError"
-                            ).style.display = "none";
-                          }
-                        });
-                    </script>
-                  </div>
-
-                  <div class="form-group flex-group">
-                    <label for="fullName">Full Name</label>
-                    <input
-                      type="text"
-                      id="fullName"
-                      name="fullName"
-                      placeholder="Chinwe Segun"
-                      required
-                    />
-                    <!-- pattern="[A-Za-z]+\s[A-Za-z]+"
-                      title="Please enter your full name in the format: First Name Last Name" -->
-                  </div>
-
-                  <div class="form-group flex-group">
-                    <label for="email">Email Address</label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      placeholder="chinwesegun@mail.com"
-                      title="Please enter a valid email address"
-                      required
-                    />
-                  </div>
-
-                  <div class="form-group flex-group">
-                    <label for="phone">Phone Number</label>
-                    <input
-                      type="tel"
-                      id="phone"
-                      name="phone"
-                      pattern="[+]{1}[0-9 ]{1,}"
-                      placeholder="+234 566 566 7789"
-                      required
-                      oninput="formatPhoneNumber(this)"
-                    />
-                  </div>
-
-                  <div class="form-group flex-group guest">
-                    <label for="passengers">No of Passengers</label>
-                    <div class="input-with-icon">
-                      <input
-                        type="number"
-                        id="passengers"
-                        name="passengers"
-                        min="1"
-                        placeholder="2"
-                        required
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Book Flight Button -->
-              <div class="book-flight-button">
-                <button type="submit">Book Flight</button>
-              </div>
-            </form>
+        <div class="form-group flex-group top-input" id="returningOnGroup">
+          <label for="returningOn">Returning On</label>
+          <input type="date" id="returningOn" name="returningOn" />
+          <div id="returningOnError" class="error-message" style="display: none">
+            Returning date must be after leaving date
           </div>
+        </div>
+
+        <div class="form-group flex-group">
+          <label for="fullName">Full Name</label>
+          <input type="text" id="fullName" name="fullName" placeholder="Chinwe Segun" required />
+        </div>
+
+        <div class="form-group flex-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" placeholder="chinwesegun@mail.com" title="Please enter a valid email address" required />
+        </div>
+
+        <div class="form-group flex-group">
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" name="phone" pattern="[+]{1}[0-9 ]{1,}" placeholder="+234 566 566 7789" required oninput="formatPhoneNumber(this)" />
+        </div>
+
+        <div class="form-group flex-group guest">
+          <label for="passengers">No of Passengers</label>
+          <div class="input-with-icon">
+            <input type="number" id="passengers" name="passengers" min="1" placeholder="2" required />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Book Flight Button -->
+    <div class="book-flight-button">
+      <button type="submit">Book Flight</button>
+    </div>
+  </form>
+</div>
         </section>
       </section>
     </section>

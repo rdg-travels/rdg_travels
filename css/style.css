@@ -188,6 +188,10 @@ nav ul li a:hover {
     line-height: 28px;
 }
 
+.text p {
+    margin-bottom: 16px;
+}
+
 .flight-info {
     display: flex;
     flex-wrap: wrap;

@@ -531,8 +531,19 @@ function toggleReturnDate(event) {
   
   document.addEventListener('DOMContentLoaded', () => {
     setMinDate();
+
+    document.querySelectorAll('input[name="tripType"]').forEach(radio => {
+        radio.addEventListener('change', toggleReturnDate);
+      });
+
     document.querySelectorAll('input[id^="returningOn"]').forEach(input => {
       input.addEventListener('change', validateReturningDate);
     });
+
+    // Set initial state for return date based on selected trip type
+    const initialTripType = document.querySelector('input[name="tripType"]:checked');
+    if (initialTripType) {
+      toggleReturnDate({ target: initialTripType });
+    }
   });
   
