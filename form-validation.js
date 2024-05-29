@@ -545,5 +545,64 @@ function toggleReturnDate(event) {
     if (initialTripType) {
       toggleReturnDate({ target: initialTripType });
     }
-  });
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const hotelCards = document.querySelectorAll('.hotel-card');
+    
+    hotelCards.forEach(card => {
+      card.addEventListener('click', (event) => {
+        // Prevent the click event from firing the anchor tag's default action
+        event.preventDefault();
+        const url = card.getAttribute('data-url');
+        window.location.href = url;
+      });
+    });
+});
+  
+document.addEventListener('DOMContentLoaded', () => {
+    // Elements for the photo modal
+    const photoModal = document.getElementById('photoModal');
+    const viewAllPhotosLink = document.getElementById('viewAllPhotosLink');
+    const photoModalClose = document.getElementById('photoModalClose');
+  
+    // Function to open the photo modal
+    viewAllPhotosLink.onclick = function(event) {
+      event.preventDefault(); // Prevent the default anchor behavior
+      photoModal.style.display = 'block';
+    };
+  
+    // Function to close the photo modal
+    photoModalClose.onclick = function() {
+      photoModal.style.display = 'none';
+    };
+  
+    // Close the modal if the user clicks outside of it
+    window.onclick = function(event) {
+      if (event.target === photoModal) {
+        photoModal.style.display = 'none';
+      }
+    };
+  
+    // Existing modal handling (assuming similar structure)
+    const successModal = document.getElementById('success-modal');
+    const subscribeModal = document.getElementById('subscribe-modal');
+    const closeButtons = document.querySelectorAll('.modal .close');
+  
+    closeButtons.forEach(button => {
+      button.onclick = function() {
+        button.parentElement.parentElement.style.display = 'none';
+      };
+    });
+  
+    window.onclick = function(event) {
+      if (event.target === successModal) {
+        successModal.style.display = 'none';
+      } else if (event.target === subscribeModal) {
+        subscribeModal.style.display = 'none';
+      } else if (event.target === photoModal) {
+        photoModal.style.display = 'none';
+      }
+    };
+});
   

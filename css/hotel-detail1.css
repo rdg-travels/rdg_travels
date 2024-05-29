@@ -241,87 +241,33 @@ right: 15px;
     margin-bottom: 0px;
 }
 
-.form-frame{
+.form-frame {
     width: 35%;
-/* height: 635px; */
     padding: 32px;
     border-radius: 10px;
     border: 1px solid #E4E7EC;
-/* gap: 28px; */
 }
 
-.form-box{
-    display: flex;
-    flex-direction: column;
-    gap: 32px;
-    align-items: flex-start;
-}
-
-.form-box h3{
-font-size: 1rem;
-font-weight: 700;
-line-height: 23px;
-letter-spacing: 0em;
-text-align: left;
-
-}
-
-.form-box .form-box-field{
-    display: flex;
-    flex-direction: column;
-    /* gap: 10px; */
-    width: 100%;
-    /* flex: 1 0 0; */
-border-radius: 4px;
-position: relative;
-}
-
-.form-box-field label {
-
-    font-size: 14px;
-    font-weight: 450;
-    line-height: 18px;
-    letter-spacing: 0em;
-    text-align: left;
-    background-color: #ffffff;
-    padding: 0px 8px;
-}
-
-.form-box-field input{
-    font-family: "Circular Std Book", Arial, Helvetica, sans-serif;
-    height: 50px;
-    border: 1px solid #79747E;
-    border-radius: 4px;
-    padding: 8px 16px;
-    width: 100%;
-}
-
-.form-box-field input::placeholder{
-    color: #111827;
+.hotel-book p {
+    font-size: 1em;
+    font-weight: bold;
+    margin-bottom: 0px;
 }
 
 .input-with-icon input {
     padding-left: 48px;
 }
 
-.form-box .check-date{
-    /* background-color: #25D366; */
+.form-group.check-date {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     gap: 24px;
 }
+
 .checked {
     position: relative;
-    /* background-color: #39cedc; */
     width: 100%;
-    /* flex: 1 0 0; */
-}
-
- .checked input,  .checked input{
-    /* width: 100%; */
-    font-size: 0.9em;
-    /* background-color: #c9dc39; */
 }
 
 .form-box-field input[type="submit"]{
@@ -332,18 +278,8 @@ position: relative;
     border-radius: 6px;
     padding: 10px 24px;
     font-size: 1.125em;
+    width: 100%;
 }
-
-.form-box-field label{
-    position: absolute;
-    /* bottom: 10px; */
-    top: -10px;
-    left: 10px;
-    z-index: 1;
-}
-
-
-
 
 /* hotel list section */
 .hotel-list-section{
@@ -351,8 +287,6 @@ position: relative;
     display: flex;
     flex-direction: column;
     gap: 48px;
-
-
 }
 
 .all-hotels-container{
@@ -625,22 +559,6 @@ color: #9CA3AF;
     .form-frame {
         width: 100%;
         padding: 16px;
-    }
-    
-    .form-box-field label {
-        font-size: 0.8rem;
-    }
-    
-    .form-box-field input {
-        font-size: 0.9rem;
-    }
-    
-    .checked input[type="date"] {
-        font-size: 0.8rem;
-    }
-    
-    .form-box-field input[type="submit"] {
-        font-size: 0.9rem;
     }
     
     .overview-frame-header h3 {

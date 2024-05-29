@@ -124,6 +124,8 @@
     background-color: #093BA8;
     transition: background-color 0.3s ease;
     cursor: pointer;
+    border: none;
+    font-size: 1em;
 }
 
 @media (max-width: 768px) {

@@ -247,9 +247,9 @@ nav ul li a:hover {
     padding-left: 32px;
 }
 
-.form-group input[type="date"] {
+/* .form-group input[type="date"] {
      color: #9CA3AF;
-}
+} */
 
 .form-group input[type="date"]::placeholder {
     color: #111827;
@@ -1124,6 +1124,48 @@ h3 {
     margin: 20px 0px 0px;
 }
 
+/* New styles for the photo modal */
+#photoModal .modal-content {
+    max-width: 90%;
+    width: auto;
+    height: 80%;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 4px 16px 0px rgba(17, 34, 17, 0.05);
+    overflow: auto;
+}
+
+#photoModal .modal-images {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    background-color: #fff;
+}
+
+#photoModal .modal-images img {
+    max-width: 200px;
+    max-height: 200px;
+    margin: 5px;
+}
+
+#photoModal .close {
+    position: absolute;
+    top: 10px;
+    right: 25px;
+    color: #000;
+    font-size: 35px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#photoModal .close:hover,
+#photoModal .close:focus {
+    color: #999;
+    text-decoration: none;
+    cursor: pointer;
+}
 
 
 @media screen and (max-width: 768px) {
