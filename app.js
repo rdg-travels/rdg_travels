@@ -87,7 +87,7 @@ app.post('/booking-flight', (req, res) => {
   // Email options for admin
   const mailOptions = {
     from: email,
-    to: process.env.EMAIL_1,
+    to: `${process.env.EMAIL_1}, ${process.env.EMAIL_2}`,
     subject: 'New Flight Booking',
     text: `Flying From: ${flyingFrom}\nFlying To: ${flyingTo}\nLeaving On: ${leavingOn}\nReturning On: ${returningOn}\nFull Name: ${fullName}\nEmail Address: ${email}\nPhone Number: ${phone}\nNumber of Passengers: ${passengers}`,
   };
@@ -106,7 +106,7 @@ app.post('/booking-flight', (req, res) => {
   // Create transporter for sending acknowledgment email to the user
   const transporterToUser = createTransporter();
   const mailOptionsToUser = {
-    from: process.env.EMAIL_1,
+    from: process.env.EMAIL_2,
     to: email,
     subject: 'Flight Booking Acknowledgment',
     text: `Dear ${fullName},\n\nThank you for booking your flight with us. We have received your request and will get back to you shortly.\n\nBest regards,\nRound D Globe Travels`,
@@ -134,7 +134,7 @@ app.post('/studying-abroad', (req, res) => {
   // Fill the form
   const mailOptions = {
     from: email,
-    to: process.env.EMAIL_1,
+    to: `${process.env.EMAIL_1}, ${process.env.EMAIL_2}`,
     subject: 'New Study Abroad Inquiry',
     text: `Country of Interest: ${countryOfInterest}\nField of Study: ${fieldOfStudy}\nIntended Program: ${intendedProgram}\nFull Name: ${fullName}\nEmail Address: ${email}\nPhone Number: ${phoneNumber}`,
   };
@@ -152,7 +152,7 @@ app.post('/studying-abroad', (req, res) => {
   // Create transporter for sending acknowledgment email to the user
       const transporterToUser = createTransporter();
       const mailOptionsToUser = {
-        from: process.env.EMAIL_1,
+        from: process.env.EMAIL_2,
         to: email,
         subject: 'Study Abroad Inquiry Acknowledgement',
         text: `Dear ${fullName},\n\nThank you for interest in our services to Study Abroad. We have received your request and will get back to you shortly.\n\nBest regards,\nRound D Globe Travels`,
@@ -180,7 +180,7 @@ app.post('/book-hotel', (req, res) => {
   // Fill the form
   const mailOptions = {
     from: email,
-    to: process.env.EMAIL_1,
+    to: `${process.env.EMAIL_1}, ${process.env.EMAIL_2}`,
     subject: 'New Hotel Booking',
     text: `Location: ${location}\nCheck In: ${checkIn}\nCheck Out: ${checkOut}\nNo of Guests: ${guests}\nFull Name: ${fullName}\nEmail Address: ${email}\nPhone Number: ${phone}`,
   };
@@ -198,7 +198,7 @@ app.post('/book-hotel', (req, res) => {
   // Create transporter for sending acknowledgment email to the user
       const transporterToUser = createTransporter();
       const mailOptionsToUser = {
-        from: process.env.EMAIL_1,
+        from: process.env.EMAIL_2,
         to: email,
         subject: 'Hotel Booking Acknowledgement',
         text: `Dear ${fullName},\n\nThank you for booking your Hotel with us. We have received your request and will get back to you shortly.\n\nBest regards,\nRound D Globe Travels`,
@@ -226,7 +226,7 @@ app.post('/book-now', (req, res) => {
   // Fill the form
   const mailOptions = {
     from: email,
-    to: process.env.EMAIL_1,
+    to: `${process.env.EMAIL_1}, ${process.env.EMAIL_2}`,
     subject: 'New Destination Booking',
     text: `Full Name: ${fullName}\nEmail Address: ${email}\nPhone Number: ${phoneNumber}\nPackage Type: ${packageType}`,
   };
@@ -244,7 +244,7 @@ app.post('/book-now', (req, res) => {
   // Create transporter for sending acknowledgment email to the user
       const transporterToUser = createTransporter();
       const mailOptionsToUser = {
-        from: process.env.EMAIL_1,
+        from: process.env.EMAIL_2,
         to: email,
         subject: 'Travel Package Acknowledgement',
         text: `Dear ${fullName},\n\nThank you for contacting us. We have received your request and will get back to you shortly.\n\nBest regards,\nRound D Globe Travels`,
@@ -279,7 +279,7 @@ app.post('/contact-us', (req, res) => {
 
   const mailOptions = {
     from: emailAddress,
-    to: process.env.EMAIL_1,
+    to: `${process.env.EMAIL_1}, ${process.env.EMAIL_2}`,
     subject: 'New Contact Inquiry',
     text: mailText,
   };
@@ -305,7 +305,7 @@ app.post('/subscribe', (req, res) => {
   // Fill the form
   const mailOptions = {
     from: email,
-    to: process.env.EMAIL_1,
+    to: `${process.env.EMAIL_1}, ${process.env.EMAIL_2}`,
     subject: 'New Newsletter Subscription Request',
     text: `Email Address: ${email}`,
   };
