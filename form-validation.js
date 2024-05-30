@@ -1,471 +1,12 @@
-function closeModal() {
-    const successModal = document.getElementById("success-modal");
-    successModal.style.display = 'none';
+// Function to close a modal
+function closeModal(modalId) {
+    const modal = document.getElementById(modalId);
+    modal.style.display = 'none';
 }
 
-function closeSubscribeModal() {
-    const subscribeModal = document.getElementById("subscribe-modal");
-    subscribeModal.style.display = 'none';
-
-}
-
-document.addEventListener("DOMContentLoaded", function() {
-    const flightForm = document.getElementById("flight-form1");
-    const successModal = document.getElementById("success-modal");
-
-    flightForm.addEventListener("submit", function(event) {
-        event.preventDefault();
-
-        const formData = new FormData(flightForm);
-        const apiUrl = 'https://rdg-travels.onrender.com';
-
-        fetch(`${apiUrl}/booking-flight`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(Object.fromEntries(formData)),
-        })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            // Check the Content-Type header to determine the response format
-            const contentType = response.headers.get('Content-Type');
-            if (contentType && contentType.includes('application/json')) {
-                // If the response is JSON, parse it and return the parsed data
-                return response.json();
-            } else {
-                // If the response is not JSON, return the response body as text
-                return response.text();
-            }
-        })
-        .then(data => {
-            // Display the success modal
-            successModal.style.display = 'block';
-            // Reset the flight form
-            flightForm.reset();
-        })
-        .catch(error => {
-            console.error(error);
-            alert("An error occurred while sending the message.");
-        });
-    })
-    const closeButton = document.getElementById("closeButton");
-    closeButton.addEventListener("click", function() {
-        // Close the modal when the close button is clicked
-        closeModal();
-    });
-});
-
-document.addEventListener("DOMContentLoaded", function() {
-    const flightForm2 = document.getElementById("flight-form2");
-    const successModal = document.getElementById("success-modal");
-
-    flightForm2.addEventListener("submit", function(event) {
-        event.preventDefault();
-
-        const formData = new FormData(flightForm2);
-        const apiUrl = 'https://rdg-travels.onrender.com';
-
-        fetch(`${apiUrl}/booking-flight`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(Object.fromEntries(formData)),
-        })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            // Check the Content-Type header to determine the response format
-            const contentType = response.headers.get('Content-Type');
-            if (contentType && contentType.includes('application/json')) {
-                // If the response is JSON, parse it and return the parsed data
-                return response.json();
-            } else {
-                // If the response is not JSON, return the response body as text
-                return response.text();
-            }
-        })
-        .then(data => {
-            // Display the success modal
-            successModal.style.display = 'block';
-            // Reset the flight form
-            flightForm2.reset();
-        })
-        .catch(error => {
-            console.error(error);
-            alert("An error occurred while sending the message.");
-        });
-    })
-    const closeButton = document.getElementById("closeButton");
-    closeButton.addEventListener("click", function() {
-        // Close the modal when the close button is clicked
-        closeModal();
-    });
-});
-
-
-
-document.addEventListener("DOMContentLoaded", function() {
-    const studyForm = document.getElementById("study-form");
-    const successModal = document.getElementById("success-modal");
-
-    studyForm.addEventListener("submit", function(event) {
-        event.preventDefault();
-
-        const formData = new FormData(studyForm);
-        const apiUrl = 'https://rdg-travels.onrender.com';
-
-        fetch(`${apiUrl}/studying-abroad`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(Object.fromEntries(formData)),
-        })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            // Check the Content-Type header to determine the response format
-            const contentType = response.headers.get('Content-Type');
-            if (contentType && contentType.includes('application/json')) {
-                // If the response is JSON, parse it and return the parsed data
-                return response.json();
-            } else {
-                // If the response is not JSON, return the response body as text
-                return response.text();
-            }
-        })
-        .then(data => {
-            // Display the success modal
-            successModal.style.display = 'block';
-            // Reset the flight form
-            studyForm.reset();
-        })
-        .catch(error => {
-            console.error(error);
-            alert("An error occurred while sending the message.");
-        });
-    });
-
-    const closeButton = document.getElementById("closeButton");
-    closeButton.addEventListener("click", function() {
-        // Close the modal when the close button is clicked
-        closeModal();
-    });
-});
-
-document.addEventListener("DOMContentLoaded", function() {
-    const studyForm2 = document.getElementById("study-form1");
-    const successModal = document.getElementById("success-modal");
-
-    studyForm2.addEventListener("submit", function(event) {
-        event.preventDefault();
-
-        const formData = new FormData(studyForm2);
-        const apiUrl = 'https://rdg-travels.onrender.com';
-
-        fetch(`${apiUrl}/studying-abroad`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(Object.fromEntries(formData)),
-        })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            // Check the Content-Type header to determine the response format
-            const contentType = response.headers.get('Content-Type');
-            if (contentType && contentType.includes('application/json')) {
-                // If the response is JSON, parse it and return the parsed data
-                return response.json();
-            } else {
-                // If the response is not JSON, return the response body as text
-                return response.text();
-            }
-        })
-        .then(data => {
-            // Display the success modal
-            successModal.style.display = 'block';
-            // Reset the flight form
-            studyForm2.reset();
-        })
-        .catch(error => {
-            console.error(error);
-            alert("An error occurred while sending the message.");
-        });
-    });
-
-    const closeButton = document.getElementById("closeButton");
-    closeButton.addEventListener("click", function() {
-        // Close the modal when the close button is clicked
-        closeModal();
-    });
-});
-
-
-
-document.addEventListener("DOMContentLoaded", function() {
-    const hotelForm = document.getElementById("hotel-form");
-    const successModal = document.getElementById("success-modal");
-
-    hotelForm.addEventListener("submit", function(event) {
-        event.preventDefault();
-
-        const formData = new FormData(hotelForm);
-        const apiUrl = 'https://rdg-travels.onrender.com';
-
-        fetch(`${apiUrl}/book-hotel`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(Object.fromEntries(formData)),
-        })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            // Check the Content-Type header to determine the response format
-            const contentType = response.headers.get('Content-Type');
-            if (contentType && contentType.includes('application/json')) {
-                // If the response is JSON, parse it and return the parsed data
-                return response.json();
-            } else {
-                // If the response is not JSON, return the response body as text
-                return response.text();
-            }
-        })
-        .then(data => {
-            // Display the success modal
-            successModal.style.display = 'block';
-            // Reset the flight form
-            hotelForm.reset();
-        })
-        .catch(error => {
-            console.error(error);
-            alert("An error occurred while sending the message.");
-        });
-    });
-
-    const closeButton = document.getElementById("closeButton");
-    closeButton.addEventListener("click", function() {
-        // Close the modal when the close button is clicked
-        closeModal();
-    });
-});
-
-document.addEventListener("DOMContentLoaded", function() {
-    const hotelForm2 = document.getElementById("hotel-form1");
-    const successModal = document.getElementById("success-modal");
-
-    hotelForm2.addEventListener("submit", function(event) {
-        event.preventDefault();
-
-        const formData = new FormData(hotelForm2);
-        const apiUrl = 'https://rdg-travels.onrender.com';
-
-        fetch(`${apiUrl}/book-hotel`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(Object.fromEntries(formData)),
-        })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            // Check the Content-Type header to determine the response format
-            const contentType = response.headers.get('Content-Type');
-            if (contentType && contentType.includes('application/json')) {
-                // If the response is JSON, parse it and return the parsed data
-                return response.json();
-            } else {
-                // If the response is not JSON, return the response body as text
-                return response.text();
-            }
-        })
-        .then(data => {
-            // Display the success modal
-            successModal.style.display = 'block';
-            // Reset the flight form
-            hotelForm2.reset();
-        })
-        .catch(error => {
-            console.error(error);
-            alert("An error occurred while sending the message.");
-        });
-    });
-
-    const closeButton = document.getElementById("closeButton");
-    closeButton.addEventListener("click", function() {
-        // Close the modal when the close button is clicked
-        closeModal();
-    });
-});
-
-
-
-document.addEventListener("DOMContentLoaded", function() {
-    const bookingForm = document.getElementById("booking-form");
-    const successModal = document.getElementById("success-modal");
-
-    bookingForm.addEventListener("submit", function(event) {
-        event.preventDefault();
-
-        const formData = new FormData(bookingForm);
-        const apiUrl = 'https://rdg-travels.onrender.com';
-
-        fetch(`${apiUrl}/book-now`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(Object.fromEntries(formData)),
-        })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            // Check the Content-Type header to determine the response format
-            const contentType = response.headers.get('Content-Type');
-            if (contentType && contentType.includes('application/json')) {
-                // If the response is JSON, parse it and return the parsed data
-                return response.json();
-            } else {
-                // If the response is not JSON, return the response body as text
-                return response.text();
-            }
-        })
-        .then(data => {
-            // Display the success modal
-            successModal.style.display = 'block';
-            // Reset the flight form
-            bookingForm.reset();
-        })
-        .catch(error => {
-            console.error(error);
-            alert("An error occurred while sending the message.");
-        });
-    });
-
-    const closeButton = document.getElementById("closeButton");
-    closeButton.addEventListener("click", function() {
-        // Close the modal when the close button is clicked
-        closeModal();
-    });
-});
-
-document.addEventListener("DOMContentLoaded", function() {
-    const contactForm = document.getElementById("contact-form");
-    const successModal = document.getElementById("success-modal");
-
-    contactForm.addEventListener("submit", function(event) {
-        event.preventDefault();
-
-        const formData = new FormData(contactForm);
-        const apiUrl = 'https://rdg-travels.onrender.com';
-
-        fetch(`${apiUrl}/contact-us`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(Object.fromEntries(formData)),
-        })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            // Check the Content-Type header to determine the response format
-            const contentType = response.headers.get('Content-Type');
-            if (contentType && contentType.includes('application/json')) {
-                // If the response is JSON, parse it and return the parsed data
-                return response.json();
-            } else {
-                // If the response is not JSON, return the response body as text
-                return response.text();
-            }
-        })
-        .then(data => {
-            // Display the success modal
-            successModal.style.display = 'block';
-            // Reset the flight form
-            contactForm.reset();
-        })
-        .catch(error => {
-            console.error(error);
-            alert("An error occurred while sending the message.");
-        });
-    });
-
-    const closeButton = document.getElementById("closeButton");
-    closeButton.addEventListener("click", function() {
-        // Close the modal when the close button is clicked
-        closeModal();
-    });
-});
-
-document.addEventListener("DOMContentLoaded", function() {
-    const subscribeForm = document.getElementById("subscribe-form");
-    const subscribeModal = document.getElementById("subscribe-modal");
-
-    subscribeForm.addEventListener("submit", function(event) {
-        event.preventDefault();
-        const formData = new FormData(subscribeForm);
-        const apiUrl = 'https://rdg-travels.onrender.com';
-
-        fetch(`${apiUrl}/subscribe`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(Object.fromEntries(formData)),
-        })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            // Check the Content-Type header to determine the response format
-            const contentType = response.headers.get('Content-Type');
-            if (contentType && contentType.includes('application/json')) {
-                // If the response is JSON, parse it and return the parsed data
-                return response.json();
-            } else {
-                // If the response is not JSON, return the response body as text
-                return response.text();
-            }
-        })
-        .then(data => {
-            // Display the success modal
-            subscribeModal.style.display = 'block';
-            // Reset the flight form
-            subscribeForm.reset();
-        })
-        .catch(error => {
-            console.error(error);
-            alert("An error occurred while sending the message.");
-        });
-    });
-
-    const closeButton = document.getElementById("closeButton");
-    closeButton.addEventListener("click", function() {
-        // Close the modal when the close button is clicked
-        closeSubscribeModal();
-    });
-});
-
-
+// Function to validate form fields
 function validateForm(form) {
     let isValid = true;
-    // Validate each input field
     const inputs = form.querySelectorAll('input');
     inputs.forEach(function (input) {
         if (!input.checkValidity()) {
@@ -473,136 +14,159 @@ function validateForm(form) {
             alert(`Invalid input for ${input.name}`);
         }
     });
-
     return isValid;
 }
 
-const menuIcon = document.querySelector('.menu-icon');
-const nav = document.querySelector('.nav');
+// Function to handle form submissions
+function handleFormSubmit(event, formId, apiUrl, successModalId) {
+    event.preventDefault();
 
-menuIcon.addEventListener('click', () => {
-    nav.classList.toggle('show');
-});
+    const form = document.getElementById(formId);
+    if (!validateForm(form)) return;
 
-function toggleReturnDate(event) {
-    const formSection = event.target.closest('.book-flight-section');
-    const isReturn = event.target.value === 'return';
-    const returnDateInput = formSection.querySelector('[id^="returningOn"]');
-    const returnDateGroup = formSection.querySelector('[id^="returningOnGroup"]');
-  
-    if (isReturn) {
-      returnDateGroup.style.display = 'block';
-      returnDateInput.required = true;
-    } else {
-      returnDateGroup.style.display = 'none';
-      returnDateInput.required = false;
-      returnDateInput.value = ''; // Clear the return date input
-    }
-  }
-  
-  // Attach event listeners to radio buttons
-  document.querySelectorAll('input[name="tripType"]').forEach(radio => {
-    radio.addEventListener('change', toggleReturnDate);
-  });
-  
-  // Set minimum dates for return fields and validate them
-  function setMinDate() {
-    document.querySelectorAll('input[id^="leavingOn"]').forEach(input => {
-      input.min = new Date().toISOString().split("T")[0];
+    const formData = new FormData(form);
+
+    fetch(apiUrl, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(Object.fromEntries(formData)),
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {
+        document.getElementById(successModalId).style.display = 'block';
+        form.reset();
+    })
+    .catch(error => {
+        console.error(error);
+        alert("An error occurred while sending the message.");
     });
-    document.querySelectorAll('input[id^="returningOn"]').forEach(input => {
-      input.min = new Date().toISOString().split("T")[0];
-    });
-  }
-  
-  function validateReturningDate(event) {
-    const returningOnDate = new Date(event.target.value);
-    const leavingOnInput = event.target.closest('form').querySelector('input[id^="leavingOn"]');
-    const leavingOnDate = new Date(leavingOnInput.value);
-    const errorMessage = event.target.closest('form').querySelector('.error-message');
-  
-    if (returningOnDate <= leavingOnDate) {
-      errorMessage.style.display = 'block';
-      event.target.value = ''; // Clear the input field
-    } else {
-      errorMessage.style.display = 'none';
-    }
-  }
-  
-  document.addEventListener('DOMContentLoaded', () => {
-    setMinDate();
+}
 
+// Initialize event listeners on DOMContentLoaded
+document.addEventListener("DOMContentLoaded", function() {
+    const successModalId = "success-modal";
+    const subscribeModalId = "subscribe-modal";
+
+    const forms = [
+        { id: "flight-form1", url: "https://rdg-travels.onrender.com/booking-flight" },
+        { id: "flight-form2", url: "https://rdg-travels.onrender.com/booking-flight" },
+        { id: "study-form", url: "https://rdg-travels.onrender.com/studying-abroad" },
+        { id: "study-form1", url: "https://rdg-travels.onrender.com/studying-abroad" },
+        { id: "hotel-form", url: "https://rdg-travels.onrender.com/book-hotel" },
+        { id: "hotel-form1", url: "https://rdg-travels.onrender.com/book-hotel" },
+        { id: "booking-form", url: "https://rdg-travels.onrender.com/book-now" },
+        { id: "contact-form", url: "https://rdg-travels.onrender.com/contact-us" },
+        { id: "subscribe-form", url: "https://rdg-travels.onrender.com/subscribe", successModalId: subscribeModalId },
+    ];
+
+    forms.forEach(form => {
+        const formElement = document.getElementById(form.id);
+        if (formElement) {
+            formElement.addEventListener("submit", (event) => handleFormSubmit(event, form.id, form.url, form.successModalId || successModalId));
+        }
+    });
+
+    const closeButton = document.getElementById("closeButton");
+    closeButton.addEventListener("click", () => closeModal(successModalId));
+
+    const menuIcon = document.querySelector('.menu-icon');
+    const nav = document.querySelector('.nav');
+    menuIcon.addEventListener('click', () => nav.classList.toggle('show'));
+
+    function toggleReturnDate(event) {
+        const formSection = event.target.closest('.book-flight-section');
+        const isReturn = event.target.value === 'return';
+        const returnDateInput = formSection.querySelector('[id^="returningOn"]');
+        const returnDateGroup = formSection.querySelector('[id^="returningOnGroup"]');
+    
+        if (isReturn) {
+            returnDateGroup.style.display = 'block';
+            returnDateInput.required = true;
+        } else {
+            returnDateGroup.style.display = 'none';
+            returnDateInput.required = false;
+            returnDateInput.value = '';
+        }
+    }
+  
     document.querySelectorAll('input[name="tripType"]').forEach(radio => {
         radio.addEventListener('change', toggleReturnDate);
-      });
+    });
+
+    function setMinDate() {
+        const today = new Date().toISOString().split("T")[0];
+        document.querySelectorAll('input[id^="leavingOn"], input[id^="returningOn"]').forEach(input => {
+            input.min = today;
+        });
+    }
+  
+    function validateReturningDate(event) {
+        const returningOnDate = new Date(event.target.value);
+        const leavingOnInput = event.target.closest('form').querySelector('input[id^="leavingOn"]');
+        const leavingOnDate = new Date(leavingOnInput.value);
+        const errorMessage = event.target.closest('form').querySelector('.error-message');
+    
+        if (returningOnDate <= leavingOnDate) {
+            errorMessage.style.display = 'block';
+            event.target.value = '';
+        } else {
+            errorMessage.style.display = 'none';
+        }
+    }
+
+    setMinDate();
 
     document.querySelectorAll('input[id^="returningOn"]').forEach(input => {
-      input.addEventListener('change', validateReturningDate);
+        input.addEventListener('change', validateReturningDate);
     });
 
-    // Set initial state for return date based on selected trip type
     const initialTripType = document.querySelector('input[name="tripType"]:checked');
     if (initialTripType) {
-      toggleReturnDate({ target: initialTripType });
+        toggleReturnDate({ target: initialTripType });
     }
-});
 
-document.addEventListener('DOMContentLoaded', () => {
-    const hotelCards = document.querySelectorAll('.hotel-card');
-    
-    hotelCards.forEach(card => {
-      card.addEventListener('click', (event) => {
-        // Prevent the click event from firing the anchor tag's default action
-        event.preventDefault();
-        const url = card.getAttribute('data-url');
-        window.location.href = url;
-      });
+    document.querySelectorAll('.hotel-card').forEach(card => {
+        card.addEventListener('click', event => {
+            event.preventDefault();
+            const url = card.getAttribute('data-url');
+            window.location.href = url;
+        });
     });
-});
-  
-document.addEventListener('DOMContentLoaded', () => {
-    // Elements for the photo modal
+
     const photoModal = document.getElementById('photoModal');
     const viewAllPhotosLink = document.getElementById('viewAllPhotosLink');
     const photoModalClose = document.getElementById('photoModalClose');
   
-    // Function to open the photo modal
     viewAllPhotosLink.onclick = function(event) {
-      event.preventDefault(); // Prevent the default anchor behavior
-      photoModal.style.display = 'block';
+        event.preventDefault();
+        photoModal.style.display = 'block';
     };
   
-    // Function to close the photo modal
     photoModalClose.onclick = function() {
-      photoModal.style.display = 'none';
-    };
-  
-    // Close the modal if the user clicks outside of it
-    window.onclick = function(event) {
-      if (event.target === photoModal) {
         photoModal.style.display = 'none';
-      }
     };
   
-    // Existing modal handling (assuming similar structure)
-    const successModal = document.getElementById('success-modal');
-    const subscribeModal = document.getElementById('subscribe-modal');
+    window.onclick = function(event) {
+        if (event.target === photoModal) {
+            photoModal.style.display = 'none';
+        } else if (event.target === successModal) {
+            closeModal(successModalId);
+        } else if (event.target === subscribeModal) {
+            closeModal(subscribeModalId);
+        }
+    };
+
     const closeButtons = document.querySelectorAll('.modal .close');
-  
     closeButtons.forEach(button => {
-      button.onclick = function() {
-        button.parentElement.parentElement.style.display = 'none';
-      };
+        button.onclick = function() {
+            button.parentElement.parentElement.style.display = 'none';
+        };
     });
-  
-    window.onclick = function(event) {
-      if (event.target === successModal) {
-        successModal.style.display = 'none';
-      } else if (event.target === subscribeModal) {
-        subscribeModal.style.display = 'none';
-      } else if (event.target === photoModal) {
-        photoModal.style.display = 'none';
-      }
-    };
 });
-  
