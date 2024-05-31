@@ -39,37 +39,37 @@ app.use(bodyParser.json());
 
 // Enable CORS for the relevant route
 app.use('/booking-flight', cors({
-  origin: 'https://rdg-travels.netlify.app',
+  origin: 'https://www.rdgtravels.com',
   methods: ['GET', 'POST'],
   allowedHeaders: ['Content-Type'],
 }));
 
 app.use('/studying-abroad', cors({
-  origin: 'https://rdg-travels.netlify.app',
+  origin: 'https://www.rdgtravels.com',
   methods: ['GET', 'POST'],
   allowedHeaders: ['Content-Type'],
 }));
 
 app.use('/book-hotel', cors({
-  origin: 'https://rdg-travels.netlify.app',
+  origin: 'https://www.rdgtravels.com',
   methods: ['GET', 'POST'],
   allowedHeaders: ['Content-Type'],
 }));
 
 app.use('/book-now', cors({
-  origin: 'https://rdg-travels.netlify.app',
+  origin: 'https://www.rdgtravels.com',
   methods: ['GET', 'POST'],
   allowedHeaders: ['Content-Type'],
 }));
 
 app.use('/contact-us', cors({
-  origin: 'https://rdg-travels.netlify.app',
+  origin: 'https://www.rdgtravels.com',
   methods: ['GET', 'POST'],
   allowedHeaders: ['Content-Type'],
 }));
 
 app.use('/subscribe', cors({
-  origin: 'https://rdg-travels.netlify.app',
+  origin: 'https://www.rdgtravels.com',
   methods: ['GET', 'POST'],
   allowedHeaders: ['Content-Type'],
 }));
