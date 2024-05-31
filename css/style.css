@@ -420,6 +420,10 @@ h3 {
     flex-grow: 1;
 }
 
+.service-info a {
+    color: #111827;
+}
+
 .service-info p {
     font-size: 1em;
     margin-bottom: 48px;
@@ -437,6 +441,10 @@ h3 {
     align-items: center;
     display: flex;
     transition: color 0.3s ease;
+}
+
+#service-link {
+    color: #093BA8;
 }
 
 .service-link img {
