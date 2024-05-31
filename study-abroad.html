@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/study-abroad.css">
+    <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+    <link
+      href="https://db.onlinewebfonts.com/a/y7WeC3fQys9eM03ag2DoL0JVvA55P6RR32USY1mQbvDfS36RtGsca2IR2Oy4U3uy"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+    <script src="https://kit.fontawesome.com/262ff4d8d9.js" crossorigin="anonymous"></script>
+    <title>RDG Travels</title>
+</head>
+<body>
+    <section class="header-and-hero study-header-and-hero">
+        <header>
+            <div class="logo ">
+                <a href="index.html"><img src="images/RDG Logo (1) 2.svg" alt="RDG Logo"></a>
+            </div>
+            <button class="menu-icon">&#9776;</button>
+            <nav class="nav">
+                <ul>
+                    <li><a href="flight.html" class="nav-link">Book Flight</a></li>
+                    <li><a href="study-abroad.html" class="nav-link active">Study Abroad</a></li>
+                    <li><a href="hotel-service.html" class="nav-link">Reserve Hotel</a></li>
+                    <li><a href="destinations.html" class="nav-link">Destinations</a></li>
+                    <li>
+                        <div class="whatsapp">
+                            <a href="https://wa.link/8vfeqe" target="_blank">
+                                <i class="fa fa-whatsapp"></i>
+                                <span>+2348034099082</span>
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+
+        <section class="study-hero-section">
+            <div class="study-welcome-text">
+                <h1>Study Abroad Program</h1>
+            </div>
+
+            <!-- Study Abroad Form -->
+            <div id="study-abroad" class="study-abroad-section">
+                <form class=" flight-form study-form" method="POST" id="study-form" action="/studying-abroad" >
+
+                    <!-- Study Details -->
+                    <div class="study-details">
+                        <div class="study-details-heading">
+                            <div class="text">
+                                <p>Want to Study Abroad?</p>
+                            </div>
+                        </div>
+                    
+                        <!-- Input fields for Study Abroad -->
+                        <div class="study-info">
+                            <div class="form-group">
+                                <label for="countryOfInterest">Country of Interest</label>
+                                <input type="text" id="countryOfInterest" name="countryOfInterest" placeholder="Istanbul, Turkey" required>
+                            </div>
+        
+                            <div class="study-type">
+                                <div class="form-group">
+                                    <label for="fieldOfStudy">Field of Study</label>
+                                    <input type="text" id="fieldOfStudy" name="fieldOfStudy" placeholder="Industrial Chemistry" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="intendedProgram">Intended Program</label>
+                                    <select id="intendedProgram" name="intendedProgram" placeholder="MSc" required>
+                                        <option value="BSc">BSc</option>
+                                        <option value="MSc">MSc</option>
+                                        <option value="Phd">Phd</option>
+                                    </select>
+                                </div>
+                            </div>
+        
+                            <div class="form-group">
+                                <label for="fullName">Full Name</label>
+                                <input type="text" id="fullName" placeholder="Chinwe Segun" name="fullName" required>
+                            </div>
+        
+                            <div class="form-group">
+                                <label for="emailAddress">Email Address</label>
+                                <input type="email" id="emailAddress" placeholder="chinwesegun@mail.com" name="email" title="Please enter a valid email address" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="phoneNumber">Phone Number</label>
+                                <input type="tel" id="phoneNumber" name="phoneNumber" pattern="[+]{1}[0-9 ]{1,}" placeholder="+234 566 566 7789" required oninput="formatPhoneNumber(this)">
+                            </div>
+
+                            <!-- Start Your Study Button -->
+                        <div class="start-study-button">
+                            <button type="submit">Start Your Study</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </section>
+
+    <section class="welcome-section">
+        <!-- Container for the image -->
+        <div class="welcome-image">
+            <img src="images/Content (4).png" alt="Welcome Image">
+        </div>
+    
+        <!-- Container for the text -->
+        <div class="study-welcome-text">
+            <div class="welcome-text-heading">
+                <h2>Welcome to RDG Travels - </h2>
+                <span>Your Gateway to Global Education</span>
+            </div>
+            <p>At ROUND D GLOBE TRAVELS AND TOURS, we are your premier destination for exceptional educational experiences across the globe. We specialize in delivering top-notch academic support and administrative services tailored to the unique needs of students.</p>
+    
+            <p>Throughout our journey, we've assisted numerous individuals in fulfilling their dreams of studying abroad. Backed by our dedicated team of experts, we are committed to providing high-quality services that are both cost-effective and adaptable.</p>
+        </div>
+    </section>
+
+    <section class="packages-section">
+        <div class="packages-heading">
+            <h2>Our Study Abroad Packages Include</h2>
+            <p>Taking Your Travel Experience To The Next Level</p>
+        </div>
+    
+        <div class="packages-grid">
+            <!-- Container 1 -->
+            <div class="package-container">
+                <h3>Academic Counseling</h3>
+                <p>We help you choose the right program and destination to align with your educational and career objectives.</p>
+                <img src="images/academic_counseling_image.png" alt="Academic Counseling Image">
+            </div>
+    
+            <!-- Container 2 -->
+            <div class="package-container">
+                <h3>University Admissions</h3>
+                <p>We guide you through the admissions process, helping you secure a place at your chosen institution.</p>
+                <img src="images/university_admissions_image.png" alt="University Admissions Image">
+            </div>
+    
+            <!-- Container 3 -->
+            <div class="package-container">
+                <h3>Visa Assistance</h3>
+                <p>Our experts assist you in obtaining the necessary student visa, making the application process as smooth as possible.</p>
+                <img src="images/visa_assistance_image.png" alt="Visa Assistance Image">
+            </div>
+    
+            <!-- Container 4 -->
+            <div class="package-container">
+                <h3>Accommodation</h3>
+                <p>We arrange safe and comfortable housing options that fit your budget and preferences.</p>
+                <img src="images/accommodation_image.png" alt="Accommodation Image">
+            </div>
+    
+            <!-- Container 5 -->
+            <div class="package-container">
+                <h3>Orientation</h3>
+                <p>We provide pre-departure and on-site orientation to help you adapt to your new environment.</p>
+                <img src="images/orientation_image.png" alt="Orientation Image">
+            </div>
+    
+            <!-- Container 6 -->
+            <div class="package-container">
+                <h3>Cultural Experience</h3>
+                <p>Immerse yourself in the local culture with planned excursions, language courses, and cultural events.</p>
+                <img src="images/cultural_experience_image.png" alt="Cultural Experience Image">
+            </div>
+    
+            <!-- Container 7 -->
+            <div class="package-container">
+                <h3>24/7 Support</h3>
+                <p>Our support team is available round the clock to address any concerns or issues during your stay abroad.</p>
+                <img src="images/support_image.png" alt="24/7 Support Image">
+            </div>
+        </div>
+    </section>
+    
+    <section class="study-why-choose-us-section">
+        <div class="why-choose-us-heading">
+            <h2>Why Choose Us for Your Study Abroad Journey?</h2>
+        </div>
+    
+        <div class="why-choose-us-grid why-choose-us-flex">
+            <!-- Container 1 -->
+            <div class="study-why-choose-us-container">
+                <img src="images/vaadin_medal2.svg" alt="Medal icon">
+                <h3>Expertise and Experience</h3>
+                <p>With years of experience in the field, our experts are well-versed in the intricacies of studying abroad and visa requirements for various countries.</p>
+            </div>
+    
+            <!-- Container 2 -->
+            <div class="study-why-choose-us-container">
+                <img src="images/mdi_teacher.svg" alt="Teacher Icon">
+                <h3>Personalized Guidance</h3>
+                <p>We understand that each student's needs are unique, and we provide tailored guidance to ensure your success.</p>
+            </div>
+    
+            <!-- Container 3 -->
+            <div class="study-why-choose-us-container">
+                <img src="images/Group.svg" alt="Speed icon">
+                <h3>Efficiency and Speed</h3>
+                <p>We streamline the application process, ensuring your study abroad journey begins promptly.</p>
+            </div>
+    
+            <!-- Container 4 -->
+            <div class="study-why-choose-us-container">
+                <img src="images/wpf_search.svg" alt="Search icon">
+                <h3>Transparency</h3>
+                <p>We maintain clear and transparent communication with our clients throughout the entire process.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="study-abroad-container">
+        <div id="study-abroad" class="study-abroad-section">
+            <div>
+                
+            </div>
+            <form class="flight-form study-form" method="POST" id="study-form1" action="/studying-abroad">
+
+                <!-- Study Details -->
+                <div class="study-details">
+                    <div class="study-details-heading">
+                        <div class="text">
+                            <p>Want to Study Abroad?</p>
+                        </div>
+                    </div>
+                
+                    <!-- Input fields for Study Abroad -->
+                    <div class="study-info">
+                        <div class="form-group">
+                            <label for="countryOfInterest">Country of Interest</label>
+                            <input type="text" id="countryOfInterest" name="countryOfInterest" placeholder="Istanbul, Turkey" required>
+                        </div>
+    
+                        <div class="study-type">
+                            <div class="form-group">
+                                <label for="fieldOfStudy">Field of Study</label>
+                                <input type="text" id="fieldOfStudy" name="fieldOfStudy" placeholder="Industrial Chemistry" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="intendedProgram">Intended Program</label>
+                                <select id="intendedProgram" name="intendedProgram" placeholder="MSc" required>
+                                    <option value="BSc">BSc</option>
+                                    <option value="MSc">MSc</option>
+                                    <option value="Phd">Phd</option>
+                                </select>
+                            </div>
+                        </div>
+    
+                        <div class="form-group">
+                            <label for="fullName">Full Name</label>
+                            <input type="text" id="fullName" placeholder="Chinwe Segun" name="fullName" required>
+                        </div>
+    
+                        <div class="form-group">
+                            <label for="emailAddress">Email Address</label>
+                            <input type="email" id="emailAddress" placeholder="chinwesegun@mail.com" name="email" title="Please enter a valid email address" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phoneNumber">Phone Number</label>
+                            <input type="tel" id="phoneNumber" name="phoneNumber" pattern="[+]{1}[0-9 ]{1,}" placeholder="+234 566 566 7789" required oninput="formatPhoneNumber(this)">
+                        </div>
+
+                        <!-- Start Your Study Button -->
+                    <div class="start-study-button">
+                        <button type="submit">Start Your Study</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <section class="discover-section">
+        <div class="discover-text">
+            <h2>Discover the world with RDG Travels.</h2>
+            <p>Your path to international education starts here.</p>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-section footer-first-section">
+            <div class="footer-container">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="about-us.html">About</a></li>
+                    <li><a href="contact-us.html">Contact Us</a></li>
+                    <li><a href="terms-and-condition.html">Terms and Conditions</a></li>
+                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-container">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="flight.html">Flight Booking</a></li>
+                    <li><a href="study-abroad.html">Study Abroad Program</a></li>
+                    <li><a href="hotel-service.html">Hotel Reservations</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-container">
+                <h4>Follow Us</h4>
+                <ul class="social-icons">
+                    <li><a href="https://web.facebook.com/profile.php?id=100087906160728" target="_blank"><i class="fab fa-facebook"></i></a></li>
+                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                    <li><a href="https://www.instagram.com/rdgtravels/" target="_blank"><i class="fab fa-instagram"></i></a></li>
+                    <li><a href="https://www.linkedin.com/in/estherayanleye/" target="_blank"><i class="fab fa-linkedin"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    
+        <div class="footer-section subscribe-section">
+            <div class="footer-container">
+                <div>
+                    <h4>SUBSCRIBE TO OUR NEWSLETTER</h4>
+                    <p>A monthly digest of the latest news, articles, and resources.</p>
+                </div>
+                <form method="POST" id="subscribe-form" action="/subscribe">
+                    <input type="email" name="email" placeholder="Email address" title="Please enter a valid email address" required>
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    
+        <div class="footer-section copyright-section">
+            <div class="footer-container">
+                <a href="index.html"><img src="images/RDG Logo (1) 2.svg" alt="RDG Logo"></a>
+                <p>© 2023 RDG Consults. All rights reserved.</p>
+            </div>
+        </div>
+    </footer> 
+    
+    <div id="success-modal" class="modal" onclick="closeModal()">
+        <div class="modal-content">
+            <span class="close" id="closeButton">&times;</span>
+            <div class="modal-icon">
+                <div class="check-mark">
+                    <div class="ellipse ellipse1"></div>
+                    <div class="ellipse ellipse2"></div>
+                    <div class="ellipse ellipse3"></div>
+                    <img src="images/search 4.png" alt="check icon">
+                </div>
+            </div>
+            <div class="modal-text">
+                <h2>Your application was successful</h2>
+                <p>Our team will review your details and would reach you via your email or phone number provided.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="subscribe-modal" class="modal" onclick="closeSubscribeModal()">
+        <div class="modal-content">
+          <span class="close" id="closeButton">&times;</span>
+          <div class="modal-icon">
+            <div class="check-mark">
+              <div class="ellipse ellipse1"></div>
+              <div class="ellipse ellipse2"></div>
+              <div class="ellipse ellipse3"></div>
+              <img src="images/search 4.png" alt="check icon" />
+            </div>
+          </div>
+          <div class="modal-text">
+            <h2>Your Subscription was successful</h2>
+            <p>
+              Thanks for subscribing to our newsletter. We will share with you our news in your registered email address.
+            </p>
+          </div>
+        </div>
+      </div>
+  
+    
+    <script>
+        function formatPhoneNumber(input) {
+          // Remove all non-digit characters
+          let phoneNumber = input.value.replace(/\D/g, '');
+      
+          // Format the phone number as desired
+          let formattedPhoneNumber = '+';
+          for (let i = 0; i < phoneNumber.length; i++) {
+            if (i === 3 || i === 6 || i === 9) {
+              formattedPhoneNumber += ' ';
+            }
+            formattedPhoneNumber += phoneNumber[i];
+          }
+  
+          // Update the input value with the formatted phone number
+          input.value = formattedPhoneNumber;
+      }
+    </script>
+    <script src="/form-validation.js"></script>
+    <script src="/app.js"></script>
+</body>
+</html>

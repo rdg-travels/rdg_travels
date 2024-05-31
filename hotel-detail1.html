@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hotel details</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/destinations.css">
+    <link rel="stylesheet" href="./css/hotel-service.css">
+    <link rel="stylesheet" href="/css/hotel-detail1.css" />
+    <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+    <link
+      href="https://db.onlinewebfonts.com/a/y7WeC3fQys9eM03ag2DoL0JVvA55P6RR32USY1mQbvDfS36RtGsca2IR2Oy4U3uy"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script
+      src="https://kit.fontawesome.com/24f84abb34.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <!-- header section -->
+    <header class="header-section">
+      <a href="index.html"
+        ><img src="images/RDG Logo (1) 2.svg" alt="RDG Logo"
+      /></a>
+      <button class="menu-icon">&#9776;</button>
+      <nav class="nav">
+        <ul class="nav-links">
+          <li><a href="flight.html" class="nav-link">book flight</a></li>
+          <li><a href="study-abroad.html" class="nav-link">study abroad</a></li>
+          <li><a href="hotel-service.html" class="nav-link active">reserve hotel</a></li>
+          <li><a href="destinations.html" class="nav-link">destinations</a></li>
+          <li class="last-nav-link">
+            <a href="https://wa.me/+2348034099082" target="_blank">
+              <i class="fa-brands fa-whatsapp"></i> +2348034099082</a
+            >
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- hotel picture section -->
+    <section class="hotel-detail-hero-section">
+      <div class="hotel-detail-hero-section-container">
+        <div class="hotel-detail-hero-section-container-box1"></div>
+        <div class="hotel-detail-hero-section-container-box2">
+          <div class="hotel-detail-hero-section-container-box2-row1">
+            <div class="hotel-detail-hero-section-container-box2-row1-image1"></div>
+            <div class="hotel-detail-hero-section-container-box2-row1-image2"></div>
+          </div>
+          <div class="hotel-detail-hero-section-container-box2-row2">
+            <div class="hotel-detail-hero-section-container-box2-row2-image1"></div>
+            <div class="hotel-detail-hero-section-container-box2-row2-image2">
+              <a href="#" id="viewAllPhotosLink">View all photos</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- overview + form section -->
+
+    <section class="overview-form-section">
+      <div class="overview-form-container">
+        <div class="overview-frame">
+          <div class="overview-frame-header">
+            <h3>Radisson Blu Hotel</h3>
+            <div class="location">
+              <i class="fa-solid fa-location-dot"></i>
+              <p>Kenya, South Africa, London, Turkey</p>
+            </div>
+          </div>
+          <div class="overview-frame-paragraph">
+            <h3>Hotel Overview</h3>
+            <p>
+              Embark on a journey of refined hospitality with Radisson Blu
+              Hotels, where each location is a testament to luxury, comfort, and
+              world-class service. Discover the essence of our hotels in diverse
+              destinations, located in Kenya, Nairobi, Johannesburg, South
+              Africa, London, United Kingdom, Istanbul, Turkey etc
+            </p>
+            <p>
+              Embark on a journey of refined hospitality with Radisson Blu
+              Hotels, where each location is a testament to luxury, comfort, and
+              world-class service. Discover the essence of our hotels in diverse
+              destinations, located in Kenya, Nairobi, Johannesburg, South
+              Africa, London, United Kingdom, Istanbul, Turkey etc
+            </p>
+          </div>
+        </div>
+        <div class="form-frame">
+          <form class="flight-form booking-form" method="POST" id="hotel-form" action="/book-hotel">
+            <div class="hotel-book">
+              <p>Book Now</p>
+            </div>
+            <div class="form-group">
+              <label for="Full-Name">Full Name</label>
+              <input
+                type="text"
+                id="fullName"
+                name="fullName"
+                placeholder="Chinwe Segun"
+                pattern="[A-Za-z]+\s[A-Za-z]+" 
+                title="Please enter your full name in the format: First Name Last Name" 
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="Email">Email</label>
+              <input
+                type="email"
+                name="email"
+                id="email"
+                placeholder="chinwesegun@mail.com"
+                title="Please enter a valid email address"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="Phone-Number">Phone Number</label>
+              <input
+                type="tel"
+                name="phone"
+                id="phone"
+                placeholder="+233 456 790 123"
+                required
+                oninput="formatPhoneNumber(this)"
+              />
+            </div>
+            <div class="form-group">
+              <label for="location">Location</label>
+              <input
+                type="text"
+                name="location"
+                id="location"
+                placeholder="Istanbul, Turkey"
+                required
+              />
+            </div>
+            <div class="form-group check-date">
+              <div class="checked">
+                <label for="check-in">Check In</label>
+                <input type="date" name="checkIn" id="checkIn" required />
+              </div>
+              <div class="checked">
+                <label for="check-out">Check Out</label>
+                <input type="date" name="checkOut" id="checkOut" required />
+              </div>
+            </div>
+            <div class="form-group guest">
+              <label for="guests">No of guests</label>
+              <div class="input-with-icon">
+              <input
+                type="number"
+                name="guests"
+                id="guests"
+                required
+                min="1"
+                placeholder="2"
+              />
+              </div>
+            </div>
+            <div class="form-box-field">
+              <input type="submit" value="Book Now" />
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- hotel list section -->
+
+    <section class="hotel-list-section">
+      <h1>Other Popular Hotels</h1>
+      <div class="all-hotels-container">
+        <div class="each-hotel-box">
+          <img src="./images/hotel-room2.jpeg" alt="hotel room" />
+          <h2>Tribe London Canary wharf</h2>
+          <p><i class="fa-solid fa-location-dot"></i>London, United Kingdom</p>
+          <div class="book-now-btn"><a href="hotel-detail2.html">Book Now</a></div>
+        </div>
+        <div class="each-hotel-box">
+          <img src="./images/hotel-room3.jpeg" alt="hotel room" />
+          <h2>Renaissance Paris Republique</h2>
+          <p><i class="fa-solid fa-location-dot"></i>France</p>
+          <div class="book-now-btn"><a href="hotel-detail2.html">Book Now</a></div>
+        </div>
+        <div class="each-hotel-box">
+          <img src="./images/hotel-room4.jpeg" alt="hotel room" />
+          <h2>JW Marriott Marquis Hotel</h2>
+          <p><i class="fa-solid fa-location-dot"></i>Dubai</p>
+          <div class="book-now-btn"><a href="hotel-detail2.html">Book Now</a></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="footer-section footer-first-section">
+        <div class="footer-container">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="about-us.html">About</a></li>
+            <li><a href="contact-us.html">Contact Us</a></li>
+            <li><a href="terms-and-condition.html">Terms and Conditions</a></li>
+            <li><a href="privacy-policy.html">Privacy Policy</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-container">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="flight.html">Flight Booking</a></li>
+            <li><a href="study-abroad.html">Study Abroad Program</a></li>
+            <li><a href="hotel-service.html">Hotel Reservations</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-container">
+          <h4>Follow Us</h4>
+          <ul class="social-icons">
+            <li>
+              <a
+                href="https://web.facebook.com/profile.php?id=100087906160728"
+                target="_blank"
+                ><i class="fab fa-facebook"></i
+              ></a>
+            </li>
+            <li>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+            </li>
+            <li>
+              <a href="https://www.instagram.com/rdgtravels/" target="_blank"
+                ><i class="fab fa-instagram"></i
+              ></a>
+            </li>
+            <li>
+              <a
+                href="https://www.linkedin.com/in/estherayanleye/"
+                target="_blank"
+                ><i class="fab fa-linkedin"></i
+              ></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-section subscribe-section">
+        <div class="footer-container">
+          <div>
+            <h4>SUBSCRIBE TO OUR NEWSLETTER</h4>
+            <p>A monthly digest of the latest news, articles, and resources.</p>
+          </div>
+          <form method="POST" id="subscribe-form" action="/subscribe">
+            <input type="email" name="email" id="email" placeholder="Email address" title="Please enter a valid email address" required />
+            <button type="submit">Subscribe</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="footer-section copyright-section">
+        <div class="footer-container">
+          <a href="index.html"
+            ><img src="images/RDG Logo (1) 2.svg" alt="RDG Logo"
+          /></a>
+          <p>© 2023 RDG Consults. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <div id="photoModal" class="modal">
+      <div class="modal-content">
+        <span class="close" id="photoModalClose">&times;</span>
+        <div class="modal-images">
+          <!-- Add your photo elements here -->
+          <img src="/images/photo1.jpeg" alt="Photo 1">
+          <img src="/images/photo2.jpeg" alt="Photo 2">
+          <img src="/images/photo3.jpeg" alt="Photo 3">
+          <img src="/images/photo4.jpeg" alt="Photo 4">
+          <img src="/images/photo5.jpeg" alt="Photo 5">
+          <img src="/images/photo6.jpeg" alt="Photo 6">
+          <img src="/images/photo7.jpeg" alt="Photo 7">
+          <img src="/images/photo8.jpeg" alt="Photo 8">
+          <img src="/images/photo9.jpeg" alt="Photo 9">
+          <img src="/images/photo10.jpeg" alt="Photo 10">
+        </div>
+      </div>
+    </div>
+
+    <div id="success-modal" class="modal" onclick="closeModal()">
+      <div class="modal-content">
+          <span class="close">&times;</span>
+          <div class="modal-icon">
+              <div class="check-mark">
+                  <div class="ellipse ellipse1"></div>
+                  <div class="ellipse ellipse2"></div>
+                  <div class="ellipse ellipse3"></div>
+                  <img src="images/search 4.png" alt="check icon">
+              </div>
+          </div>
+          <div class="modal-text">
+              <h2>Hotel Booking was successful</h2>
+              <p>Thanks for booking a hotel. We will share with you all the hotel reservation details in your registered email address</p>
+          </div>
+      </div>
+  </div>
+
+  <div id="subscribe-modal" class="modal" onclick="closeSubscribeModal()">
+    <div class="modal-content">
+      <span class="close" id="closeButton">&times;</span>
+      <div class="modal-icon">
+        <div class="check-mark">
+          <div class="ellipse ellipse1"></div>
+          <div class="ellipse ellipse2"></div>
+          <div class="ellipse ellipse3"></div>
+          <img src="images/search 4.png" alt="check icon" />
+        </div>
+      </div>
+      <div class="modal-text">
+        <h2>Your Subscription was successful</h2>
+        <p>
+          Thanks for subscribing to our newsletter. We will share with you our news in your registered email address.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function formatPhoneNumber(input) {
+      // Remove all non-digit characters
+      let phoneNumber = input.value.replace(/\D/g, '');
+    
+      // Format the phone number as desired
+      let formattedPhoneNumber = '+';
+      for (let i = 0; i < phoneNumber.length; i++) {
+        if (i === 3 || i === 6 || i === 9) {
+          formattedPhoneNumber += ' ';
+        }
+        formattedPhoneNumber += phoneNumber[i];
+      }
+
+      // Update the input value with the formatted phone number
+      input.value = formattedPhoneNumber;
+    }
+  </script>
+  <script src="form-validation.js"></script>
+  <script src="/app.js"></script>
+  </body>
+</html>

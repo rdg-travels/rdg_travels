@@ -1,0 +1,215 @@
+.hotel-header-hero {
+    padding-bottom: 0px;
+}
+
+.hotel-hero-section {
+    margin-bottom: 370px;
+    height: 540px;
+    background-image: url('/images/hotel-background-image.png');
+    background: linear-gradient(90deg, rgba(0, 35, 77, 0.63) 11.46%, rgba(0, 35, 77, 0.00) 77.37%), url(/images/hotel-background-image.png), lightgray 50%;
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+    padding: 100px 112px;
+    flex-direction: column;
+}
+
+.hotel-icon i {
+    color: #093BA8;
+    font-size: 1.5em;
+}
+
+
+.hotel-welcome-text {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    padding-top: 262px;
+}
+
+.hotel-welcome-text h1 {
+    font-size: 3em;
+    margin-bottom: 44px;
+    line-height: 60px;
+    letter-spacing: -1.04px;
+    font-weight: 500;
+}
+
+.input-with-icon {
+    position: relative;
+    
+}
+
+.input-with-icon::before {
+    /* background-image: url("/images/leading-icon.png"); */
+    content: "\f007";
+    font-family: 'Font Awesome 5 Free';
+    position: absolute;
+    top: 48%;
+    left: 16px;
+    transform: translateY(-50%);
+    color: #112211;
+    width: 16px;
+    z-index: 9999;
+}
+
+.guest label {
+    z-index: 1;
+}
+
+.hotel-welcome-image {
+    flex: 1;
+}
+
+.what-set-us-apart-section {
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    color: #111827;
+    align-items: flex-start;
+}
+
+.what-set-us-apart-section h2 {
+    margin-bottom: 48px;
+}
+
+.what-set-us-apart-container {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: row;
+}
+
+.hotel-feature-container {
+    gap: 20px;
+    flex: 1 0 calc(50% - 24px);
+    margin-top: 0px;
+    flex-grow: 1;
+}
+
+.hotel-feature {
+    justify-content: flex-start;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    flex: 1 0 calc(50% - 20px);
+    gap: 20px;
+    margin-bottom: 0px;
+}
+
+.hotel-feature h4 {
+    font-size: 1.25em;
+    flex-grow: 1;
+}
+
+.hotel-feature p {
+    color: #6B7280;
+    flex-grow: 1;
+    font-size: 1em;
+    line-height: 24px;
+    /* margin-top: 20px; */
+}
+
+
+/* .what-set-us-apart-image img {
+    width: 100%;
+    height: 575px;
+} */
+
+
+.hotel-container {
+    background: linear-gradient(0deg, rgba(9, 59, 168, 0.40) 0%, rgba(9, 59, 168, 0.40) 100%), url(/images/hotel-background-image2.png), lightgray 50% / cover no-repeat;
+}
+
+.study-why-choose-us-container i {
+    color: #093BA8;
+    font-size: 3.5em;
+}
+
+@media screen and (max-width: 768px) {
+    .hotel-hero-section {
+        width: 100%;
+        margin-bottom: 152px;
+        padding: 64px 24px;
+    }
+    
+    .hotel-welcome-text {
+        padding-top: 100px;
+    }
+    
+    .hotel-welcome-text h1 {
+        font-size: 2em;
+        margin-bottom: 24px;
+    }
+    
+    .input-with-icon::before {
+        left: 16px;
+    }
+    
+    .hotel-icon i {
+        font-size: 1.25em;
+    }
+
+    /* .form-group input,
+    .form-group select {
+        width: calc(100% - 16px);
+    } */
+
+    .hotel-welcome-image {
+        width: 100%;
+    }
+    
+    .what-set-us-apart-section {
+        padding: 64px 24px;
+    }
+
+    .what-set-us-apart-section h2 {
+        margin-bottom: 24px;
+    }
+
+    .what-set-us-apart-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: flex-start;
+    }
+
+    .hotel-feature-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        flex: 1 1 50%;
+        max-width: 600px;
+    }
+
+    .hotel-feature {
+        flex: 1 1 100%;
+    }
+
+    .what-set-us-apart-image {
+        flex: 1 1 100%; /* Make the image take 100% width */
+        text-align: center; /* Center the image horizontally */
+    }
+    
+    .what-set-us-apart-image img {
+        width: 100%;
+        max-width: 400px;
+        height: auto;
+        margin-top: 32px;
+    }
+    
+    .hotel-feature-detail {
+        flex-grow: 1;
+    }
+    
+    .hotel-feature h4 {
+        font-size: 1.1em;
+    }
+    
+    .hotel-feature p {
+        font-size: 0.95em;
+        line-height: 1.4;
+    }
+    .study-why-choose-us-container i {
+        font-size: 2.5em;
+    }
+}

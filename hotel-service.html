@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/study-abroad.css" />
+    <link rel="stylesheet" href="css/hotel-service.css" />
+    <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
+    <link
+      href="https://db.onlinewebfonts.com/a/y7WeC3fQys9eM03ag2DoL0JVvA55P6RR32USY1mQbvDfS36RtGsca2IR2Oy4U3uy"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script
+      src="https://kit.fontawesome.com/262ff4d8d9.js"
+      crossorigin="anonymous"
+    ></script>
+    <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous"> -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+    <title>RDG Travels</title>
+  </head>
+  <body>
+    <section class="header-and-hero hotel-header-hero">
+      <header>
+        <div class="logo">
+          <a href="index.html"
+            ><img src="images/RDG Logo (1) 2.svg" alt="RDG Logo"
+          /></a>
+        </div>
+        <button class="menu-icon">&#9776;</button>
+        <nav class="nav">
+          <ul>
+            <li><a href="flight.html" class="nav-link">Book Flight</a></li>
+            <li>
+              <a href="study-abroad.html" class="nav-link">Study Abroad</a>
+            </li>
+            <li>
+              <a href="hotel-service.html" class="nav-link active"
+                >Reserve Hotel</a
+              >
+            </li>
+            <li>
+              <a href="destinations.html" class="nav-link">Destinations</a>
+            </li>
+            <li>
+              <div class="whatsapp">
+                <a href="https://wa.link/8vfeqe" target="_blank">
+                  <i class="fa fa-whatsapp"></i>
+                  <span>+2348034099082</span>
+                </a>
+              </div>
+            </li>
+          </ul>
+        </nav>
+      </header>
+
+      <section class="hero-and-form">
+        <section class="hotel-hero-section">
+          <div class="hotel-welcome-text">
+            <h1>Hotel Reservations</h1>
+          </div>
+
+          <!-- Book Hotel Form -->
+          <div id="book-flight" class="book-flight-section book-hotel-section">
+            <form
+              class="flight-form hotel-form"
+              method="POST"
+              id="hotel-form"
+              action="/book-hotel"
+            >
+              <!-- Hotel Details -->
+              <div class="flight-details details-hotel">
+                <div class="flight-details-heading hotel-heading">
+                  <div class="flight-icon hotel-icon">
+                    <i class="fas fa-couch"></i>
+                  </div>
+                  <div class="text">
+                    <p>Find Hotels</p>
+                  </div>
+                </div>
+
+                <div class="flight-info hotel-info">
+                  <div class="form-group flex-group">
+                    <label for="location">Location</label>
+                    <input
+                      type="text"
+                      id="location"
+                      name="location"
+                      placeholder="Istanbul, Turkey"
+                      required
+                    />
+                  </div>
+
+                  <div class="form-group flex-group">
+                    <label for="checkIn">Check In</label>
+                    <input type="date" id="checkIn" name="checkIn" required />
+                    <script>
+                      document.getElementById("checkIn").min = new Date()
+                        .toISOString()
+                        .split("T")[0];
+                    </script>
+                  </div>
+
+                  <div class="form-group flex-group">
+                    <label for="checkOut">Check Out</label>
+                    <input type="date" id="checkOut" name="checkOut" required />
+                    <script>
+                      document.getElementById("checkOut").min = new Date()
+                        .toISOString()
+                        .split("T")[0];
+                    </script>
+                  </div>
+
+                  <div class="form-group flex-group guest">
+                    <label for="guests">No of Guests</label>
+                    <div class="input-with-icon">
+                      <input
+                        type="number"
+                        id="guests"
+                        name="guests"
+                        min="1"
+                        placeholder="2"
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  <div class="form-group down-form">
+                    <label for="fullName">Full Name</label>
+                    <input
+                      type="text"
+                      id="fullName"
+                      name="fullName"
+                      placeholder="Chinwe Segun"
+                      required
+                    />
+                  </div>
+                  <!-- pattern="[A-Za-z]+\s[A-Za-z]+" title="Please enter your full name in the format: First Name Last Name"  -->
+
+                  <div class="form-group down-form">
+                    <label for="email">Email Address</label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      placeholder="chinwesegun@mail.com"
+                      required
+                    />
+                  </div>
+
+                  <div class="form-group down-form">
+                    <label for="phone">Phone Number</label>
+                    <input
+                      type="tel"
+                      id="phone"
+                      name="phone"
+                      pattern="[+]{1}[0-9 ]{1,}"
+                      placeholder="+234 566 566 7789"
+                      required
+                      oninput="formatPhoneNumber(this)"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <!-- Book Flight Button -->
+              <div class="book-flight-button book-hotel">
+                <button type="submit">Book Hotel</button>
+              </div>
+            </form>
+          </div>
+        </section>
+      </section>
+    </section>
+
+    <section class="welcome-section hotel-welcome-section">
+      <!-- Container for the image -->
+      <div class="welcome-image hotel-welcome-image">
+        <img src="images/Content (3).png" alt="Hotel Welcome Image" />
+      </div>
+
+      <!-- Container for the text -->
+      <div class="study-welcome-text welcome-text-hotel">
+        <div class="welcome-text-heading">
+          <h2>Welcome to RDG Travels -</h2>
+          <span>Your Gateway to Exceptional Hotel Experiences</span>
+        </div>
+        <p>
+          We extend our commitment to excellence with our Hotel Reservation
+          Services. Elevate your travel experience with our carefully curated
+          selection of accommodations worldwide. Whether you're planning a
+          leisurely getaway, a business trip, or a group excursion, our
+          personalised approach ensures that your stay exceeds expectations.
+        </p>
+      </div>
+    </section>
+
+    <section class="why-choose-us-section what-set-us-apart-section">
+      <div class="why-choose-us-text what-set-us-apart-text">
+        <h2>What Sets RDG Travels Hotel Reservations Apart?</h2>
+      </div>
+      <div class="why-choose-us-container what-set-us-apart-container">
+        <div class="feature-container hotel-feature-container">
+          <div class="feature hotel-feature">
+            <div class="feature-icon hotel-feature-icon">
+              <img src="images/icons8_adventures.svg" alt="Adventure Icon" />
+            </div>
+            <div class="feature-detail hotel-feature-detail">
+              <h4>Diverse Selection</h4>
+              <p>
+                Choose from a wide array of hotels, resorts, and boutique
+                accommodations tailored to suit various preferences and budgets.
+                We handpick each option to guarantee a delightful and
+                comfortable stay.
+              </p>
+            </div>
+          </div>
+          <div class="feature hotel-feature">
+            <div class="feature-icon hotel-feature-icon">
+              <img src="images/mdi_flight.svg" alt="Flight Icon" />
+            </div>
+            <div class="feature-detail hotel-feature-detail">
+              <h4>Tailored Packages</h4>
+              <p>
+                Our hotel reservation services go beyond just booking a room. We
+                offer customized packages that may include additional amenities,
+                special experiences, and exclusive perks, ensuring your stay is
+                uniquely crafted to meet your needs.
+              </p>
+            </div>
+          </div>
+          <div class="feature hotel-feature">
+            <div class="feature-icon hotel-feature-icon">
+              <img src="images/vaadin_medal2.svg" alt="Medal Icon" />
+            </div>
+            <div class="feature-detail hotel-feature-detail">
+              <h4>Business Travel Solutions</h4>
+              <p>
+                For corporate travelers, we provide seamless hotel reservation
+                services that align with your business requirements. From
+                convenient locations to modern amenities, we prioritize the
+                comfort and productivity of your business stay.
+              </p>
+            </div>
+          </div>
+          <div class="feature hotel-feature">
+            <div class="feature-icon hotel-feature-icon">
+              <img src="images/ri_global-fill.svg" alt="Globe Icon" />
+            </div>
+            <div class="feature-detail hotel-feature-detail">
+              <h4>Group Accommodation</h4>
+              <p>
+                Traveling with a group? We simplify the process with coordinated
+                reservations, ensuring everyone enjoys a hassle-free and
+                cohesive stay.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="why-choose-us-image what-set-us-apart-image">
+          <img src="images/Content (2).png" alt="Hotel Room Image" />
+        </div>
+      </div>
+    </section>
+
+    <section class="packages-section">
+      <div class="packages-heading">
+        <h2>Our Hotel Reservation Services Include</h2>
+        <p>Taking Your Travel Experience To The Next Level</p>
+      </div>
+
+      <div class="packages-grid">
+        <!-- Container 1 -->
+        <div class="package-container hotel-package-container">
+          <h3>Individual Bookings</h3>
+          <p>
+            Discover a world of comfort with our individual hotel bookings,
+            carefully tailored to your preferences and travel plans.
+          </p>
+          <img
+            src="images/individual-booking_image.png"
+            alt="Individual Bookings Image"
+          />
+        </div>
+
+        <!-- Container 2 -->
+        <div class="package-container">
+          <h3>Corporate Stays</h3>
+          <p>
+            Elevate your business travel experience with our curated selection
+            of business-friendly accommodations, designed for efficiency and
+            comfort.
+          </p>
+          <img
+            src="images/corporate-stays_image.png"
+            alt="Corporate Stays Image"
+          />
+        </div>
+
+        <!-- Container 3 -->
+        <div class="package-container">
+          <h3>Group Reservations</h3>
+          <p>
+            From family vacations to corporate retreats, we coordinate group
+            reservations to make planning and booking stress-free.
+          </p>
+          <img
+            src="images/group-reservations_image.png"
+            alt="Group Reservations Image"
+          />
+        </div>
+
+        <!-- Container 4 -->
+        <div class="package-container">
+          <h3>Special Packages</h3>
+          <p>
+            Enhance your stay with our special packages, offering added value
+            and exclusive experiences.
+          </p>
+          <img
+            src="images/special-packages_image.png"
+            alt="Special Packages Image"
+          />
+        </div>
+
+        <!-- Container 5 -->
+        <div class="package-container">
+          <h3>24/7 Support</h3>
+          <p>
+            Our support team is available round the clock to address any
+            concerns or issues during your stay abroad.
+          </p>
+          <img src="images/support_image.png" alt="24/7 Support Image" />
+        </div>
+      </div>
+    </section>
+
+    <section class="study-why-choose-us-section">
+      <div class="why-choose-us-heading">
+        <h2>Why Choose RDG Travels for Your Hotel Reservations?</h2>
+      </div>
+
+      <div class="why-choose-us-grid">
+        <!-- Container 1 -->
+        <div class="study-why-choose-us-container">
+          <i class="fas fa-smile"></i>
+          <h3>Customer-Centric Approach</h3>
+          <p>
+            Your satisfaction is our priority. We listen to your preferences and
+            ensure that every aspect of your hotel stay meets or exceeds your
+            expectations.
+          </p>
+        </div>
+
+        <!-- Container 2 -->
+        <div class="study-why-choose-us-container">
+          <i class="fas fa-sack-dollar"></i>
+          <h3>Value for Money</h3>
+          <p>
+            We optimize your budget without compromising the quality of your
+            accommodation. Enjoy a balance of luxury and affordability.
+          </p>
+        </div>
+
+        <!-- Container 3 -->
+        <div class="study-why-choose-us-container">
+          <img src="images/wpf_search.svg" alt="" />
+          <h3>Efficiency and Transparency</h3>
+          <p>
+            We streamline the reservation process, providing clear and
+            transparent communication from booking to check-out.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="study-abroad-container hotel-container">
+      <!-- Book Hotel Form -->
+      <div id="book-flight" class="book-flight-section book-hotel-section">
+        <form
+          class="flight-form hotel-form"
+          method="POST"
+          id="hotel-form1"
+          action="/book-hotel"
+        >
+          <!-- Hotel Details -->
+          <div class="flight-details details-hotel">
+            <div class="flight-details-heading hotel-heading">
+              <div class="flight-icon hotel-icon">
+                <i class="fas fa-couch"></i>
+              </div>
+              <div class="text">
+                <p>Find Hotels</p>
+              </div>
+            </div>
+
+            <div class="flight-info hotel-info">
+              <div class="form-group flex-group">
+                <label for="location">Location</label>
+                <input
+                  type="text"
+                  id="location"
+                  name="location"
+                  placeholder="Istanbul, Turkey"
+                  required
+                />
+              </div>
+
+              <div class="form-group flex-group">
+                <label for="checkIn">Check In</label>
+                <input type="date" id="checkIn" name="checkIn" required />
+                <script>
+                  document.getElementById("checkIn").min = new Date()
+                    .toISOString()
+                    .split("T")[0];
+                </script>
+              </div>
+
+              <div class="form-group flex-group">
+                <label for="checkOut">Check Out</label>
+                <input type="date" id="checkOut" name="checkOut" required />
+                <script>
+                  document.getElementById("checkOut").min = new Date()
+                    .toISOString()
+                    .split("T")[0];
+                </script>
+              </div>
+
+              <div class="form-group flex-group guest">
+                <label for="guests">No of Guests</label>
+                <div class="input-with-icon">
+                  <input
+                    type="number"
+                    id="guests"
+                    name="guests"
+                    min="1"
+                    placeholder="2"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div class="form-group down-form">
+                <label for="fullName">Full Name</label>
+                <input
+                  type="text"
+                  id="fullName"
+                  name="fullName"
+                  placeholder="Chinwe Segun"
+                  required
+                />
+              </div>
+
+              <div class="form-group down-form">
+                <label for="email">Email Address</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  placeholder="chinwesegune@mail.com"
+                  title="Please enter a valid email address"
+                  required
+                />
+              </div>
+
+              <div class="form-group down-form">
+                <label for="phone">Phone Number</label>
+                <input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  pattern="[+]{1}[0-9 ]{1,}"
+                  placeholder="+234 566 566 7789"
+                  required
+                  oninput="formatPhoneNumber(this)"
+                />
+              </div>
+            </div>
+          </div>
+
+          <!-- Book Flight Button -->
+          <div class="book-flight-button book-hotel">
+            <button type="submit">Book Hotel</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <section class="discover-section">
+      <div class="discover-text">
+        <h2>Discover exceptional stays with RDG Travels.</h2>
+        <p>Your perfect hotel experience begins here..</p>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="footer-section footer-first-section">
+        <div class="footer-container">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="about-us.html">About</a></li>
+            <li><a href="contact-us.html">Contact Us</a></li>
+            <li><a href="terms-and-condition.html">Terms and Conditions</a></li>
+            <li><a href="privacy-policy.html">Privacy Policy</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-container">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="flight.html">Flight Booking</a></li>
+            <li><a href="study-abroad.html">Study Abroad Program</a></li>
+            <li><a href="hotel-service.html">Hotel Reservations</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-container">
+          <h4>Follow Us</h4>
+          <ul class="social-icons">
+            <li>
+              <a
+                href="https://web.facebook.com/profile.php?id=100087906160728"
+                target="_blank"
+                ><i class="fab fa-facebook"></i
+              ></a>
+            </li>
+            <li>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+            </li>
+            <li>
+              <a href="https://www.instagram.com/rdgtravels/" target="_blank"
+                ><i class="fab fa-instagram"></i
+              ></a>
+            </li>
+            <li>
+              <a
+                href="https://www.linkedin.com/in/estherayanleye/"
+                target="_blank"
+                ><i class="fab fa-linkedin"></i
+              ></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-section subscribe-section">
+        <div class="footer-container">
+          <div>
+            <h4>SUBSCRIBE TO OUR NEWSLETTER</h4>
+            <p>A monthly digest of the latest news, articles, and resources.</p>
+          </div>
+          <form method="POST" id="subscribe-form" action="/subscribe">
+            <input
+              type="email"
+              name="email"
+              placeholder="Email address"
+              title="Please enter a valid email address"
+              required
+            />
+            <button type="submit">Subscribe</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="footer-section copyright-section">
+        <div class="footer-container">
+          <a href="index.html"
+            ><img src="images/RDG Logo (1) 2.svg" alt="RDG Logo"
+          /></a>
+          <p>© 2023 RDG Consults. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <div id="success-modal" class="modal" onclick="closeModal()">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <div class="modal-icon">
+          <div class="check-mark">
+            <div class="ellipse ellipse1"></div>
+            <div class="ellipse ellipse2"></div>
+            <div class="ellipse ellipse3"></div>
+            <img src="images/search 4.png" alt="check icon" />
+          </div>
+        </div>
+        <div class="modal-text">
+          <h2>Hotel Booking was successful</h2>
+          <p>
+            Thanks for booking a hotel. We will share with you all the hotel
+            reservation details in your registered email address
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div id="subscribe-modal" class="modal" onclick="closeSubscribeModal()">
+      <div class="modal-content">
+        <span class="close" id="closeButton">&times;</span>
+        <div class="modal-icon">
+          <div class="check-mark">
+            <div class="ellipse ellipse1"></div>
+            <div class="ellipse ellipse2"></div>
+            <div class="ellipse ellipse3"></div>
+            <img src="images/search 4.png" alt="check icon" />
+          </div>
+        </div>
+        <div class="modal-text">
+          <h2>Your Subscription was successful</h2>
+          <p>
+            Thanks for subscribing to our newsletter. We will share with you our
+            news in your registered email address.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function formatPhoneNumber(input) {
+        // Remove all non-digit characters
+        let phoneNumber = input.value.replace(/\D/g, "");
+
+        // Format the phone number as desired
+        let formattedPhoneNumber = "+";
+        for (let i = 0; i < phoneNumber.length; i++) {
+          if (i === 3 || i === 6 || i === 9) {
+            formattedPhoneNumber += " ";
+          }
+          formattedPhoneNumber += phoneNumber[i];
+        }
+
+        // Update the input value with the formatted phone number
+        input.value = formattedPhoneNumber;
+      }
+    </script>
+    <script src="/form-validation.js"></script>
+    <script src="/app.js"></script>
+  </body>
+</html>
