@@ -1460,6 +1460,7 @@ h3 {
     }
 
     .feature {
+        width: 100%;
         margin-bottom: 20px;
         display: flex;
         flex-direction: column;
