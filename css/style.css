@@ -54,10 +54,8 @@ header {
 }
 
 .header-and-hero {
-    /* display: flex; */
+    width: 100vw;
     padding-bottom: 200px;
-    /* flex-direction: column;
-    align-items: flex-start; */
 }
 
 .logo {
@@ -677,7 +675,6 @@ h3 {
 }
 
 .feature {
-    width: 280px;
     margin-bottom: 40px;
     display: flex;
     align-items: flex-start;
@@ -1181,10 +1178,6 @@ h3 {
         width: 100vw;
         font-size: 0.875em;
     }
-
-    /* section {
-        width: 100%;
-    } */
 
     header {
         padding: 16px 24px;
