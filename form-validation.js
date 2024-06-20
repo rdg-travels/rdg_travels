@@ -16,6 +16,9 @@ document.addEventListener("DOMContentLoaded", function() {
     flightForm.addEventListener("submit", function(event) {
         event.preventDefault();
 
+        // Display the preloader
+        document.getElementById('preloader').style.display = 'flex';
+
         const formData = new FormData(flightForm);
         const apiUrl = 'https://rdg-travels.onrender.com';
 
@@ -41,12 +44,16 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         })
         .then(data => {
+            // Hide the preloader
+            document.getElementById('preloader').style.display = 'none';
             // Display the success modal
             successModal.style.display = 'block';
             // Reset the flight form
             flightForm.reset();
         })
         .catch(error => {
+            // Hide the preloader in case of error
+            document.getElementById('preloader').style.display = 'none';
             console.error(error);
             alert("An error occurred while sending the message.");
         });
@@ -64,6 +71,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
     flightForm2.addEventListener("submit", function(event) {
         event.preventDefault();
+
+        // Display the preloader
+        document.getElementById('preloader').style.display = 'flex';
 
         const formData = new FormData(flightForm2);
         const apiUrl = 'https://rdg-travels.onrender.com';
@@ -90,12 +100,16 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         })
         .then(data => {
+            // Hide the preloader in case of error
+            document.getElementById('preloader').style.display = 'none';
             // Display the success modal
             successModal.style.display = 'block';
             // Reset the flight form
             flightForm2.reset();
         })
         .catch(error => {
+            // Hide the preloader in case of error
+            document.getElementById('preloader').style.display = 'none';
             console.error(error);
             alert("An error occurred while sending the message.");
         });
@@ -115,6 +129,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
     studyForm.addEventListener("submit", function(event) {
         event.preventDefault();
+
+        // Display the preloader
+        document.getElementById('preloader').style.display = 'flex';
 
         const formData = new FormData(studyForm);
         const apiUrl = 'https://rdg-travels.onrender.com';
@@ -141,12 +158,16 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         })
         .then(data => {
+            // Hide the preloader in case of error
+            document.getElementById('preloader').style.display = 'none';
             // Display the success modal
             successModal.style.display = 'block';
             // Reset the flight form
             studyForm.reset();
         })
         .catch(error => {
+            // Hide the preloader in case of error
+            document.getElementById('preloader').style.display = 'none';
             console.error(error);
             alert("An error occurred while sending the message.");
         });
@@ -165,6 +186,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
     studyForm2.addEventListener("submit", function(event) {
         event.preventDefault();
+
+        // Display the preloader
+        document.getElementById('preloader').style.display = 'flex';
 
         const formData = new FormData(studyForm2);
         const apiUrl = 'https://rdg-travels.onrender.com';
@@ -191,12 +215,16 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         })
         .then(data => {
+            // Hide the preloader in case of error
+            document.getElementById('preloader').style.display = 'none';
             // Display the success modal
             successModal.style.display = 'block';
             // Reset the flight form
             studyForm2.reset();
         })
         .catch(error => {
+            // Hide the preloader in case of error
+            document.getElementById('preloader').style.display = 'none';
             console.error(error);
             alert("An error occurred while sending the message.");
         });
@@ -217,6 +245,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
     hotelForm.addEventListener("submit", function(event) {
         event.preventDefault();
+
+        // Display the preloader
+        document.getElementById('preloader').style.display = 'flex';
 
         const formData = new FormData(hotelForm);
         const apiUrl = 'https://rdg-travels.onrender.com';
@@ -243,12 +274,16 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         })
         .then(data => {
+            // Hide the preloader in case of error
+            document.getElementById('preloader').style.display = 'none';
             // Display the success modal
             successModal.style.display = 'block';
             // Reset the flight form
             hotelForm.reset();
         })
         .catch(error => {
+            // Hide the preloader in case of error
+            document.getElementById('preloader').style.display = 'none';
             console.error(error);
             alert("An error occurred while sending the message.");
         });
@@ -267,6 +302,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
     hotelForm2.addEventListener("submit", function(event) {
         event.preventDefault();
+
+        // Display the preloader
+        document.getElementById('preloader').style.display = 'flex';
 
         const formData = new FormData(hotelForm2);
         const apiUrl = 'https://rdg-travels.onrender.com';
@@ -293,12 +331,16 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         })
         .then(data => {
+            // Hide the preloader in case of error
+            document.getElementById('preloader').style.display = 'none';
             // Display the success modal
             successModal.style.display = 'block';
             // Reset the flight form
             hotelForm2.reset();
         })
         .catch(error => {
+            // Hide the preloader in case of error
+            document.getElementById('preloader').style.display = 'none';
             console.error(error);
             alert("An error occurred while sending the message.");
         });
@@ -319,6 +361,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
     bookingForm.addEventListener("submit", function(event) {
         event.preventDefault();
+
+        // Display the preloader
+        document.getElementById('preloader').style.display = 'flex';
 
         const formData = new FormData(bookingForm);
         const apiUrl = 'https://rdg-travels.onrender.com';
@@ -345,12 +390,16 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         })
         .then(data => {
+            // Hide the preloader in case of error
+            document.getElementById('preloader').style.display = 'none';
             // Display the success modal
             successModal.style.display = 'block';
             // Reset the flight form
             bookingForm.reset();
         })
         .catch(error => {
+            // Hide the preloader in case of error
+            document.getElementById('preloader').style.display = 'none';
             console.error(error);
             alert("An error occurred while sending the message.");
         });
@@ -369,6 +418,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
     contactForm.addEventListener("submit", function(event) {
         event.preventDefault();
+
+        // Display the preloader
+        document.getElementById('preloader').style.display = 'flex';
 
         const formData = new FormData(contactForm);
         const apiUrl = 'https://rdg-travels.onrender.com';
@@ -395,12 +447,16 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         })
         .then(data => {
+            // Hide the preloader in case of error
+            document.getElementById('preloader').style.display = 'none';
             // Display the success modal
             successModal.style.display = 'block';
             // Reset the flight form
             contactForm.reset();
         })
         .catch(error => {
+            // Hide the preloader in case of error
+            document.getElementById('preloader').style.display = 'none';
             console.error(error);
             alert("An error occurred while sending the message.");
         });
@@ -419,6 +475,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
     subscribeForm.addEventListener("submit", function(event) {
         event.preventDefault();
+        // Display the preloader
+        document.getElementById('preloader').style.display = 'flex';
         const formData = new FormData(subscribeForm);
         const apiUrl = 'https://rdg-travels.onrender.com';
 
@@ -444,12 +502,16 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         })
         .then(data => {
+            // Hide the preloader in case of error
+            document.getElementById('preloader').style.display = 'none';
             // Display the success modal
             subscribeModal.style.display = 'block';
             // Reset the flight form
             subscribeForm.reset();
         })
         .catch(error => {
+            // Hide the preloader in case of error
+            document.getElementById('preloader').style.display = 'none';
             console.error(error);
             alert("An error occurred while sending the message.");
         });
@@ -604,5 +666,6 @@ document.addEventListener('DOMContentLoaded', () => {
         photoModal.style.display = 'none';
       }
     };
+
 });
   
