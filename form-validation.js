@@ -666,6 +666,13 @@ document.addEventListener('DOMContentLoaded', () => {
         photoModal.style.display = 'none';
       }
     };
+});
 
+document.addEventListener("DOMContentLoaded", function() {
+    // Get the current year
+    const currentYear = new Date().getFullYear();
+    
+    // Update the copyright year in the footer
+    document.getElementById("copyright-year").textContent = currentYear;
 });
   
