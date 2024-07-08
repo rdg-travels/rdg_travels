@@ -589,14 +589,23 @@ function toggleReturnDate(event) {
     } else {
       errorMessage.style.display = 'none';
     }
-  }
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    // Get the current year
+    const currentYear = new Date().getFullYear();
+    
+    // Update the copyright year in the footer
+    document.getElementById("copyright-year").textContent = currentYear;
+});
+  
   
   document.addEventListener('DOMContentLoaded', () => {
     setMinDate();
 
     document.querySelectorAll('input[name="tripType"]').forEach(radio => {
         radio.addEventListener('change', toggleReturnDate);
-      });
+    });
 
     document.querySelectorAll('input[id^="returningOn"]').forEach(input => {
       input.addEventListener('change', validateReturningDate);
@@ -667,12 +676,3 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     };
 });
-
-document.addEventListener("DOMContentLoaded", function() {
-    // Get the current year
-    const currentYear = new Date().getFullYear();
-    
-    // Update the copyright year in the footer
-    document.getElementById("copyright-year").textContent = currentYear;
-});
-  
