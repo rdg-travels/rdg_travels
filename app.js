@@ -10,7 +10,7 @@ const IORedis = require('ioredis');
 
 // Create a Redis connection
 const connection = new IORedis({
-  maxRetriesPerRequest: null, // Add this line
+  maxRetriesPerRequest: null,
 });
 
 // Create a queue for background email sending
