@@ -9,7 +9,9 @@ const { Queue, Worker } = require('bullmq');
 const IORedis = require('ioredis');
 
 // Create a Redis connection
-const connection = new IORedis();
+const connection = new IORedis({
+  maxRetriesPerRequest: null, // Add this line
+});
 
 // Create a queue for background email sending
 const emailQueue = new Queue('emailQueue', { connection });
