@@ -5,36 +5,36 @@ const express = require('express');
 const nodemailer = require('nodemailer');
 const cors = require('cors');
 const path = require('path');
-const { Queue, Worker } = require('bullmq');
-const IORedis = require('ioredis');
+// const { Queue, Worker } = require('bullmq');
+// const IORedis = require('ioredis');
 
 // Create a Redis connection
-const connection = new IORedis({
-  host: process.env.REDIS_HOST || '127.0.0.1',
-  port: process.env.REDIS_PORT || 6379,        
-  password: process.env.REDIS_PASSWORD || null,
-  maxRetriesPerRequest: null,                  
-});
+// const connection = new IORedis({
+//   host: process.env.REDIS_HOST || '127.0.0.1',
+//   port: process.env.REDIS_PORT || 6379,        
+//   password: process.env.REDIS_PASSWORD || null,
+//   maxRetriesPerRequest: null,                  
+// });
 
 // Create a queue for background email sending
-const emailQueue = new Queue('emailQueue', {
-  connection,
-  limiter: {
-    max: 1000, // Max 1000 jobs per hour
-    duration: 3600000, // 1 hour
-  },
-});
+// const emailQueue = new Queue('emailQueue', {
+//   connection,
+//   limiter: {
+//     max: 1000, // Max 1000 jobs per hour
+//     duration: 3600000, // 1 hour
+//   },
+// });
 
 // Worker to process email sending in the background
-new Worker('emailQueue', async job => {
-  try {
-    const { mailOptions, transporterConfig } = job.data;
-    const transporter = nodemailer.createTransport(transporterConfig);
-    await transporter.sendMail(mailOptions);
-  } catch (error) {
-    console.error('Error sending email:', error);
-  }
-}, { connection });
+// new Worker('emailQueue', async job => {
+//   try {
+//     const { mailOptions, transporterConfig } = job.data;
+//     const transporter = nodemailer.createTransport(transporterConfig);
+//     await transporter.sendMail(mailOptions);
+//   } catch (error) {
+//     console.error('Error sending email:', error);
+//   }
+// }, { connection });
 
 const app = express();
 
@@ -64,9 +64,10 @@ const transporterConfig = {
 // Function to enqueue email sending job
 async function sendEmail(mailOptions) {
   try {
-    await emailQueue.add('sendEmail', { mailOptions, transporterConfig });
+    const transporter = nodemailer.createTransport(transporterConfig);
+    await transporter.sendMail(mailOptions);
   } catch (error) {
-    console.error('Failed to add email to queue:', error);
+    console.error('Error sending email:', error);
   }
 }
 
