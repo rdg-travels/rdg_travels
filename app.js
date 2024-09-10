@@ -59,12 +59,19 @@ const transporterConfig = {
     user: process.env.EMAIL,
     pass: process.env.EMAIL_PASSWORD,
   },
+  tls: {
+    rejectUnauthorized: false,
+  }
 };
 
 // Function to enqueue email sending job
 async function sendEmail(mailOptions) {
   try {
-    const transporter = nodemailer.createTransport(transporterConfig);
+    const transporter = nodemailer.createTransport({
+      ...transporterConfig,
+      logger: true,
+      debug: true,
+    });
     await transporter.sendMail(mailOptions);
   } catch (error) {
     console.error('Error sending email:', error);
