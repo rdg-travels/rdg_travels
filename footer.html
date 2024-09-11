@@ -54,7 +54,7 @@
           <h4>SUBSCRIBE TO OUR NEWSLETTER</h4>
           <p>A monthly digest of the latest news, articles, and resources.</p>
         </div>
-        <form method="POST" id="subscribe-form" action="/subscribe">
+        <form method="POST" id="subscribe-form">
           <input
             type="email"
             name="email"
@@ -77,3 +77,14 @@
       </div>
     </div>
 </footer>
+
+<div include-html="subscribe-modal.html"></div>
+<div id="preloader" class="preloader" style="display: none;">
+    <div class="spinner"></div>
+</div>
+<script src="/includeHTML.js"></script>
+<script>
+    window.onload = function() {
+    includeHTML();
+    };
+</script>
