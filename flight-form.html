@@ -1,5 +1,5 @@
 <div id="book-flight" class="book-flight-section">
-    <form class="flight-form" method="POST" id="flight-form1" action="/booking-flight">
+    <form class="flight-form" method="POST" id="flight-form1">
       <!-- Flight Details -->
       <div class="flight-details">
         <div class="flight-details-heading">
@@ -78,3 +78,10 @@
       </div>
     </form>
 </div>
+
+<div include-html="success-modal.html"></div>
+<div id="preloader" class="preloader" style="display: none;">
+    <div class="spinner"></div>
+</div>
+
+<script src="/form-validation.js"></script>
