@@ -18,29 +18,7 @@
 </head>
 <body>
     <section class="header-and-hero study-header-and-hero">
-        <header>
-            <div class="logo ">
-                <a href="index.html"><img src="images/RDG Logo (1) 2.svg" alt="RDG Logo"></a>
-            </div>
-            <button class="menu-icon">&#9776;</button>
-            <nav class="nav">
-                <ul>
-                    <li><a href="flight.html" class="nav-link">Book Flight</a></li>
-                    <li><a href="study-abroad.html" class="nav-link active">Study Abroad</a></li>
-                    <li><a href="hotel-service.html" class="nav-link">Reserve Hotel</a></li>
-                    <li><a href="destinations.html" class="nav-link">Destinations</a></li>
-                    <li>
-                        <div class="whatsapp">
-                            <a href="https://wa.link/8vfeqe" target="_blank">
-                                <i class="fa fa-whatsapp"></i>
-                                <span>+2348034099082</span>
-                            </a>
-                        </div>
-                    </li>
-                </ul>
-            </nav>
-        </header>
-
+        <div include-html="header.html"></div>
         <section class="study-hero-section">
             <div class="study-welcome-text">
                 <h1>Study Abroad Program</h1>
@@ -285,58 +263,7 @@
         </div>
     </section>
 
-    <footer class="footer">
-        <div class="footer-section footer-first-section">
-            <div class="footer-container">
-                <h4>Company</h4>
-                <ul>
-                    <li><a href="about-us.html">About</a></li>
-                    <li><a href="contact-us.html">Contact Us</a></li>
-                    <li><a href="terms-and-condition.html">Terms and Conditions</a></li>
-                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-container">
-                <h4>Services</h4>
-                <ul>
-                    <li><a href="flight.html">Flight Booking</a></li>
-                    <li><a href="study-abroad.html">Study Abroad Program</a></li>
-                    <li><a href="hotel-service.html">Hotel Reservations</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-container">
-                <h4>Follow Us</h4>
-                <ul class="social-icons">
-                    <li><a href="https://web.facebook.com/profile.php?id=100087906160728" target="_blank"><i class="fab fa-facebook"></i></a></li>
-                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                    <li><a href="https://www.instagram.com/rdgtravels/" target="_blank"><i class="fab fa-instagram"></i></a></li>
-                    <li><a href="https://www.linkedin.com/in/estherayanleye/" target="_blank"><i class="fab fa-linkedin"></i></a></li>
-                </ul>
-            </div>
-        </div>
-    
-        <div class="footer-section subscribe-section">
-            <div class="footer-container">
-                <div>
-                    <h4>SUBSCRIBE TO OUR NEWSLETTER</h4>
-                    <p>A monthly digest of the latest news, articles, and resources.</p>
-                </div>
-                <form method="POST" id="subscribe-form" action="/subscribe">
-                    <input type="email" name="email" placeholder="Email address" title="Please enter a valid email address" required>
-                    <button type="submit">Subscribe</button>
-                </form>
-            </div>
-        </div>
-    
-        <div class="footer-section copyright-section">
-            <div class="footer-container">
-                <a href="index.html"><img src="images/RDG Logo (1) 2.svg" alt="RDG Logo"></a>
-                <p>© <span id="copyright-year"></span> RDG Consults. All rights reserved.</p>
-            </div>
-        </div>
-    </footer> 
+    <div include-html="footer.html"></div>
     
     <div id="success-modal" class="modal" onclick="closeModal()">
         <div class="modal-content">
@@ -356,31 +283,18 @@
         </div>
     </div>
 
-    <div id="subscribe-modal" class="modal" onclick="closeSubscribeModal()">
-        <div class="modal-content">
-          <span class="close" id="closeButton">&times;</span>
-          <div class="modal-icon">
-            <div class="check-mark">
-              <div class="ellipse ellipse1"></div>
-              <div class="ellipse ellipse2"></div>
-              <div class="ellipse ellipse3"></div>
-              <img src="images/search 4.png" alt="check icon" />
-            </div>
-          </div>
-          <div class="modal-text">
-            <h2>Your Subscription was successful</h2>
-            <p>
-              Thanks for subscribing to our newsletter. We will share with you our news in your registered email address.
-            </p>
-          </div>
-        </div>
-    </div>
+    <div include-html="subscribe-modal.html"></div>
 
     <div id="preloader" class="preloader" style="display: none;">
         <div class="spinner"></div>
     </div>
   
-    
+    <script src="/includeHTML.js"></script>
+    <script>
+        window.onload = function() {
+          includeHTML();
+        };
+    </script>
     <script>
         function formatPhoneNumber(input) {
           // Remove all non-digit characters
