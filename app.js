@@ -81,8 +81,8 @@ app.post('/booking-flight', async(req, res) => {
     const returningDate = isOneWay ? 'N/A' : returningOn;
   
     const adminMailOptions = {
-      from: process.env.EMAIL_1,
-      to: process.env.EMAIL_1,
+      from: process.env.EMAIL_2,
+      to: process.env.EMAIL_2,
       replyTo: email,
       subject: 'New Flight Booking',
       text: `Flying From: ${flyingFrom}\nFlying To: ${flyingTo}\nLeaving On: ${leavingOn}\nReturning On: ${returningDate}\nFull Name: ${fullName}\nEmail Address: ${email}\nPhone Number: ${phone}\nNumber of Passengers: ${passengers}`,
@@ -91,7 +91,7 @@ app.post('/booking-flight', async(req, res) => {
     await sendEmail(adminMailOptions);
   
     const userMailOptions = {
-      from: process.env.EMAIL_1,
+      from: process.env.EMAIL_2,
       to: email,
       subject: 'Flight Booking Acknowledgment',
       text: `Dear ${fullName},\n\nThank you for booking your flight with us. We have received your request and will get back to you shortly.\n\nBest regards,\nRound D Globe Travels`,
@@ -111,8 +111,8 @@ app.post('/studying-abroad', async (req, res) => {
     const { countryOfInterest, fieldOfStudy, intendedProgram, fullName, email, phoneNumber } = req.body;
 
     const adminMailOptions = {
-      from: process.env.EMAIL_1,
-      to: process.env.EMAIL_1,
+      from: process.env.EMAIL_2,
+      to: process.env.EMAIL_2,
       replyTo: email,
       subject: 'New Study Abroad Inquiry',
       text: `Country of Interest: ${countryOfInterest}\nField of Study: ${fieldOfStudy}\nIntended Program: ${intendedProgram}\nFull Name: ${fullName}\nEmail Address: ${email}\nPhone Number: ${phoneNumber}`,
@@ -121,7 +121,7 @@ app.post('/studying-abroad', async (req, res) => {
     await sendEmail(adminMailOptions);
   
     const userMailOptions = {
-      from: process.env.EMAIL_1,
+      from: process.env.EMAIL_2,
       to: email,
       subject: 'Study Abroad Inquiry Acknowledgement',
       text: `Dear ${fullName},\n\nThank you for your interest in our services to Study Abroad. We have received your request and will get back to you shortly.\n\nBest regards,\nRound D Globe Travels`,
@@ -141,8 +141,8 @@ app.post('/book-hotel', async (req, res) => {
     const { location, checkIn, checkOut, guests, fullName, email, phone } = req.body;
 
     const adminMailOptions = {
-      from: process.env.EMAIL_1,
-      to: process.env.EMAIL_1,
+      from: process.env.EMAIL_2,
+      to: process.env.EMAIL_2,
       replyTo: email,
       subject: 'New Hotel Booking',
       text: `Location: ${location}\nCheck In: ${checkIn}\nCheck Out: ${checkOut}\nNo of Guests: ${guests}\nFull Name: ${fullName}\nEmail Address: ${email}\nPhone Number: ${phone}`,
@@ -151,7 +151,7 @@ app.post('/book-hotel', async (req, res) => {
     await sendEmail(adminMailOptions);
   
     const userMailOptions = {
-          from: process.env.EMAIL_1,
+          from: process.env.EMAIL_2,
           to: email,
           subject: 'Hotel Booking Acknowledgement',
           text: `Dear ${fullName},\n\nThank you for booking your Hotel with us. We have received your request and will get back to you shortly.\n\nBest regards,\nRound D Globe Travels`,
@@ -172,8 +172,8 @@ app.post('/book-now', async (req, res) => {
 
     // Fill the form
     const adminMailOptions = {
-      from: process.env.EMAIL_1,
-      to: process.env.EMAIL_1,
+      from: process.env.EMAIL_2,
+      to: process.env.EMAIL_2,
       replyTo: email,
       subject: 'New Destination Booking',
       text: `Full Name: ${fullName}\nEmail Address: ${email}\nPhone Number: ${phoneNumber}\nPackage Type: ${packageType}`,
@@ -182,7 +182,7 @@ app.post('/book-now', async (req, res) => {
     await sendEmail(adminMailOptions);
    
     const userMailOptions = {
-          from: process.env.EMAIL_1,
+          from: process.env.EMAIL_2,
           to: email,
           subject: 'Travel Package Acknowledgement',
           text: `Dear ${fullName},\n\nThank you for contacting us. We have received your request and will get back to you shortly.\n\nBest regards,\nRound D Globe Travels`,
@@ -211,8 +211,8 @@ app.post('/contact-us', async (req, res) => {
     }
   
     const adminMailOptions = {
-      from: process.env.EMAIL_1,
-      to: process.env.EMAIL_1,
+      from: process.env.EMAIL_2,
+      to: process.env.EMAIL_2,
       replyTo: email,
       subject: 'New Contact Inquiry',
       text: mailText,
@@ -233,8 +233,8 @@ app.post('/subscribe', async (req, res) => {
 
     // Fill the form
     const adminMailOptions = {
-      from: process.env.EMAIL_1,
-      to: process.env.EMAIL_1,
+      from: process.env.EMAIL_2,
+      to: process.env.EMAIL_2,
       replyTo: email,
       subject: 'New Newsletter Subscription Request',
       text: `Email Address: ${email}`,
