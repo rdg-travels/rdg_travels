@@ -5,54 +5,25 @@ const express = require('express');
 const nodemailer = require('nodemailer');
 const cors = require('cors');
 const path = require('path');
-// const { Queue, Worker } = require('bullmq');
-// const IORedis = require('ioredis');
-
-// Create a Redis connection
-// const connection = new IORedis({
-//   host: process.env.REDIS_HOST || '127.0.0.1',
-//   port: process.env.REDIS_PORT || 6379,        
-//   password: process.env.REDIS_PASSWORD || null,
-//   maxRetriesPerRequest: null,                  
-// });
-
-// Create a queue for background email sending
-// const emailQueue = new Queue('emailQueue', {
-//   connection,
-//   limiter: {
-//     max: 1000, // Max 1000 jobs per hour
-//     duration: 3600000, // 1 hour
-//   },
-// });
-
-// Worker to process email sending in the background
-// new Worker('emailQueue', async job => {
-//   try {
-//     const { mailOptions, transporterConfig } = job.data;
-//     const transporter = nodemailer.createTransport(transporterConfig);
-//     await transporter.sendMail(mailOptions);
-//   } catch (error) {
-//     console.error('Error sending email:', error);
-//   }
-// }, { connection });
 
 const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
-// app.use(bodyParser.json());
 
 // Enable CORS for relevant routes
 app.use(cors({
-  origin: 'https://www.rdgtravels.com',
+  origin: ['https://www.rdgtravels.com', 'http://127.0.0.1:5500', 'http://localhost:5500'],
   methods: ['GET', 'POST'],
   allowedHeaders: ['Content-Type'],
 }));
 
 // Create transporter config
 const transporterConfig = {
-  service: 'gmail',
+  host: "smtp.gmail.com",
+  port: 465,
+  secure: true, // use SSL
   auth: {
     user: process.env.EMAIL,
     pass: process.env.EMAIL_PASSWORD,
