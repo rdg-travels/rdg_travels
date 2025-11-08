@@ -22,7 +22,7 @@ app.use(cors({
 // Create transporter config
 const transporterConfig = {
   host: "smtp.gmail.com",
-  port: 567,
+  port: 587,
   secure: false,
   auth: {
     user: process.env.EMAIL,
@@ -202,7 +202,7 @@ app.post('/contact-us', async (req, res) => {
 
 app.post('/subscribe', async (req, res) => {
   try {
-    const {  email } = req.body;
+    const { 'subscribe-email': email } = req.body;
 
     // Fill the form
     const adminMailOptions = {
