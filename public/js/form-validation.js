@@ -36,19 +36,8 @@ async function handleFormSubmit(form, endpoint, successModal) {
 
         if (successModal) {
             successModal.style.display = 'block';
-
-            // Reattach close button handler dynamically
-            const closeBtn = successModal.querySelector('.close');
-            if (closeBtn) {
-                closeBtn.addEventListener('click', () => closeModal(successModal));
-            }
-
-            // Optional: close modal when clicking outside it
-            window.addEventListener('click', (event) => {
-                if (event.target === successModal) closeModal(successModal);
-            });
         }
-        
+
         form.reset();
         return data;
 
@@ -188,6 +177,27 @@ function initMenuToggle() {
     }
 }
 
+function initModalHandling() {
+    // Close modals via close button
+    document.querySelectorAll('.modal .close').forEach(button => {
+        button.addEventListener('click', (event) => {
+            const modal = button.closest('.modal');
+            closeModal(modal);
+            hidePreloader(); // Ensure preloader stops
+        });
+    });
+
+    // Close modal when clicking outside
+    window.addEventListener('click', (event) => {
+        document.querySelectorAll('.modal').forEach(modal => {
+            if (event.target === modal) {
+                closeModal(modal);
+                hidePreloader();
+            }
+        });
+    });
+}
+
 // Footer Year
 function setFooterYear() {
     const yearElem = document.getElementById('copyright-year');
@@ -201,5 +211,6 @@ document.addEventListener('DOMContentLoaded', () => {
     initHotelCards();
     initPhotoModal();
     initMenuToggle();
+    initModalHandling();
     setFooterYear();
 });
