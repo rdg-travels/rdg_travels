@@ -14,7 +14,7 @@ app.use(express.static('public'));
 
 // Enable CORS for relevant routes
 app.use(cors({
-  origin: ['https://www.rdgtravels.com', 'http://127.0.0.1:5500', 'http://localhost:5500'],
+  origin: 'https://www.rdgtravels.com',
   methods: ['GET', 'POST'],
   allowedHeaders: ['Content-Type'],
 }));
