@@ -34,8 +34,21 @@ async function handleFormSubmit(form, endpoint, successModal) {
             ? await response.json() 
             : await response.text();
 
-        hidePreloader();
-        if (successModal) successModal.style.display = 'block';
+        if (successModal) {
+            successModal.style.display = 'block';
+
+            // Reattach close button handler dynamically
+            const closeBtn = successModal.querySelector('.close');
+            if (closeBtn) {
+                closeBtn.addEventListener('click', () => closeModal(successModal));
+            }
+
+            // Optional: close modal when clicking outside it
+            window.addEventListener('click', (event) => {
+                if (event.target === successModal) closeModal(successModal);
+            });
+        }
+        
         form.reset();
         return data;
 
