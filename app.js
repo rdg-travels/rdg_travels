@@ -22,12 +22,14 @@ app.use(cors({
 // Create transporter config
 const transporterConfig = {
   host: "smtp.gmail.com",
-  port: 465,
-  secure: true, // use SSL
+  port: 567,
+  secure: false,
   auth: {
     user: process.env.EMAIL,
     pass: process.env.EMAIL_PASSWORD,
   },
+  logger: true,
+  debug: true,
 };
 
 // Function to enqueue email sending job

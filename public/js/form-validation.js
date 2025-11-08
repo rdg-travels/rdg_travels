@@ -1,13 +1,9 @@
-// =========================
 // Modal Handling
-// =========================
 function closeModal(modal) {
     if (modal) modal.style.display = 'none';
 }
 
-// =========================
 // Preloader
-// =========================
 function showPreloader() {
     const preloader = document.getElementById('preloader');
     if (preloader) preloader.style.display = 'flex';
@@ -18,9 +14,7 @@ function hidePreloader() {
     if (preloader) preloader.style.display = 'none';
 }
 
-// =========================
 // Form Submission Handler
-// =========================
 async function handleFormSubmit(form, endpoint, successModal) {
     try {
         showPreloader();
@@ -52,9 +46,7 @@ async function handleFormSubmit(form, endpoint, successModal) {
     }
 }
 
-// =========================
 // Form Initialization
-// =========================
 function initForms() {
     const forms = [
         { id: 'flight-form1', endpoint: 'booking-flight', modal: 'success-modal' },
@@ -92,9 +84,7 @@ function initForms() {
     });
 }
 
-// =========================
 // Flight Trip Logic
-// =========================
 function toggleReturnDate(event) {
     const formSection = event.target.closest('.book-flight-section');
     const isReturn = event.target.value === 'return';
@@ -147,9 +137,7 @@ function initFlightLogic() {
     if (initialTripType) toggleReturnDate({ target: initialTripType });
 }
 
-// =========================
 // Hotel Cards Navigation
-// =========================
 function initHotelCards() {
     document.querySelectorAll('.hotel-card').forEach(card => {
         card.addEventListener('click', (event) => {
@@ -160,9 +148,7 @@ function initHotelCards() {
     });
 }
 
-// =========================
 // Photo Modal
-// =========================
 function initPhotoModal() {
     const photoModal = document.getElementById('photoModal');
     const viewAllPhotosLink = document.getElementById('viewAllPhotosLink');
@@ -180,9 +166,7 @@ function initPhotoModal() {
     }
 }
 
-// =========================
 // Menu Toggle
-// =========================
 function initMenuToggle() {
     const menuIcon = document.querySelector('.menu-icon');
     const nav = document.querySelector('.nav');
@@ -191,17 +175,13 @@ function initMenuToggle() {
     }
 }
 
-// =========================
 // Footer Year
-// =========================
 function setFooterYear() {
     const yearElem = document.getElementById('copyright-year');
     if (yearElem) yearElem.textContent = new Date().getFullYear();
 }
 
-// =========================
 // Initialize Everything
-// =========================
 document.addEventListener('DOMContentLoaded', () => {
     initForms();
     initFlightLogic();
