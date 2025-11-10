@@ -1045,7 +1045,7 @@ h3 {
 }
 
 .modal {
-    display: none;
+    /* display: none; */
     position: fixed;
     top: 0;
     left: 0;
@@ -1057,39 +1057,64 @@ h3 {
 
   
 .modal-content {
-    position: absolute;
+    position: relative;
+    z-index: 10;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     max-width: 400px;
-    margin: auto;
     padding: 20px 20px 20px;
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0px 4px 16px 0px rgba(17, 34, 17, 0.05);
 }
 
-.close {
-    float: right;
-    font-size: 1.5em;
-    cursor: pointer;
+/* Make sure the close button sits above everything else in the modal */
+.modal .close {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  font-size: 28px;
+  font-weight: bold;
+  color: #333;
+  cursor: pointer;
+  z-index: 9999; /* higher than the checkmark and ellipses */
+  background: transparent;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  user-select: none;
 }
 
-.close:hover {
-    color: #A6AAAC;
+.modal .close:hover {
+  color: #A6AAAC;
+}
+
+/* Make sure the checkmark stays behind the close button */
+.check-mark,
+.ellipse1,
+.ellipse2,
+.ellipse3 {
+  z-index: 1;
+}
+
+.check-mark img {
+  z-index: 2;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.close {
+    font-size: 1.5em;
+    cursor: pointer;
 }
 
 .check-mark {
     position: relative;
     margin: 0 auto;
     padding-top: 112px;
-}
-
-.check-mark img {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
 }
 
 .ellipse {
