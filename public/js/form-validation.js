@@ -71,6 +71,15 @@ function initForms() {
             e.preventDefault();
             handleFormSubmit(form, endpoint, successModal);
         });
+
+        if (successModal) {
+            // Target the close button by class '.close' AND ID 'closeButton' for robustness
+            successModal.querySelectorAll('.close, #closeButton').forEach(closeButton => {
+                closeButton.addEventListener('click', () => {
+                    closeModal(successModal); // Pass the specific modal element to closeModal
+                });
+            });
+        }
     });
 
     // Global close buttons
