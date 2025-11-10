@@ -74,7 +74,7 @@ function initForms() {
 
         if (successModal) {
             // Target the close button by class '.close' AND ID 'closeButton' for robustness
-            successModal.querySelectorAll('.close, #closeButton').forEach(closeButton => {
+            successModal.querySelectorAll('.close').forEach(closeButton => {
                 closeButton.addEventListener('click', () => {
                     closeModal(successModal); // Pass the specific modal element to closeModal
                 });
