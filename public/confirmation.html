@@ -640,8 +640,9 @@
       }
 
       // ── Read data ─────────────────────────────────────────────────────────────
-      const urlParams  = new URLSearchParams(location.search);
+      const urlParams   = new URLSearchParams(location.search);
       const paystackRef = urlParams.get('reference') || '';
+      const urlBookingRef = urlParams.get('bookingRef') || '';
 
       let summary = null;
       try {
@@ -672,7 +673,7 @@
 
       } else {
         // ── Success banner ────────────────────────────────────────────────────
-        const bookingRef  = summary?.bookingReference || '—';
+        const bookingRef  = summary?.bookingReference || urlBookingRef || '—';
         const email       = summary?.email            || '';
         const passengerName = summary?.passengerName  || '';
 

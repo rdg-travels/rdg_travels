@@ -132,7 +132,7 @@ async function sendConfirmationEmail(data, customerEmail, paystackReference) {
 
             <!-- CTA -->
             <div style="text-align:center;margin-bottom:24px;">
-              <a href="${process.env.SITE_URL || "https://rdgtravels.com"}/confirmation.html?reference=${paystackReference || ""}"
+              <a href="${process.env.SITE_URL || "https://rdgtravels.com"}/confirmation.html?reference=${paystackReference || ""}&bookingRef=${data.bookingReference || ""}"
                  style="display:inline-block;background:#093ba8;color:#fff;padding:12px 28px;
                         border-radius:8px;font-size:14px;font-weight:700;text-decoration:none;">
                 View Booking
