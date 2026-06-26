@@ -29,7 +29,7 @@ function fmtNGN(n) {
   return "₦" + Number(Math.round(n)).toLocaleString("en-NG");
 }
 
-async function sendConfirmationEmail(data, customerEmail) {
+async function sendConfirmationEmail(data, customerEmail, paystackReference) {
   const {
     bookingReference, passengerName,
     origin, destination, departureDate, returnDate, tripType,
@@ -132,7 +132,7 @@ async function sendConfirmationEmail(data, customerEmail) {
 
             <!-- CTA -->
             <div style="text-align:center;margin-bottom:24px;">
-              <a href="https://rdgtravels.com/confirmation.html"
+              <a href="${process.env.SITE_URL || "https://rdgtravels.com"}/confirmation.html?reference=${paystackReference || ""}"
                  style="display:inline-block;background:#093ba8;color:#fff;padding:12px 28px;
                         border-radius:8px;font-size:14px;font-weight:700;text-decoration:none;">
                 View Booking
@@ -218,13 +218,14 @@ exports.handler = async (event) => {
   if (payload.event === "charge.success") {
     const { metadata } = payload.data || {};
     const customerEmail = payload.data?.customer?.email;
+    const paystackReference = payload.data?.reference;
 
     console.log("charge.success — orderId:", metadata?.orderId,
                 "ref:", metadata?.bookingReference);
 
     if (customerEmail && metadata?.bookingReference) {
       try {
-        await sendConfirmationEmail(metadata, customerEmail);
+        await sendConfirmationEmail(metadata, customerEmail, paystackReference);
       } catch (err) {
         // Log but don't fail the webhook response — Paystack would retry endlessly
         console.error("Failed to send confirmation email:", err.message);
