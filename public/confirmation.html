@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Booking Confirmed — RDG Travels</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/flight.css" />
+    <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
+    <link
+      href="https://db.onlinewebfonts.com/a/y7WeC3fQys9eM03ag2DoL0JVvA55P6RR32USY1mQbvDfS36RtGsca2IR2Oy4U3uy"
+      rel="stylesheet" type="text/css"
+    />
+    <script src="https://kit.fontawesome.com/24f84abb34.js" crossorigin="anonymous"></script>
+
+    <style>
+      .cf-page { background: #f9fafb; min-height: 100vh; }
+
+      /* ── Progress bar (all steps done) ── */
+      .cf-progress {
+        background: #fff;
+        border-bottom: 1px solid #e5e7eb;
+        padding: 20px 112px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .cf-step {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .cf-step-num {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.8125rem;
+        font-weight: 700;
+        border: 2px solid #093ba8;
+        background: #093ba8;
+        color: #fff;
+      }
+
+      .cf-step--current .cf-step-num {
+        background: #059669;
+        border-color: #059669;
+        box-shadow: 0 0 0 4px rgba(5,150,105,0.15);
+      }
+
+      .cf-step-label {
+        font-size: 0.72rem;
+        font-weight: 600;
+        color: #093ba8;
+        white-space: nowrap;
+      }
+
+      .cf-step--current .cf-step-label { color: #059669; }
+
+      .cf-divider {
+        flex: 1;
+        max-width: 80px;
+        height: 2px;
+        background: #093ba8;
+        margin: 0 8px;
+        margin-bottom: 20px;
+      }
+
+      /* ── Main container ── */
+      .cf-container {
+        max-width: 680px;
+        margin: 40px auto;
+        padding: 0 24px;
+      }
+
+      /* ── Success banner ── */
+      .cf-success-card {
+        background: #fff;
+        border: 1px solid #e5e7eb;
+        border-radius: 16px;
+        padding: 48px 40px 36px;
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      /* CSS checkmark circle */
+      .cf-check-wrap {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        background: #dcfce7;
+        margin-bottom: 20px;
+        animation: cf-pop 0.4s cubic-bezier(0.175,0.885,0.32,1.275) both;
+      }
+
+      @keyframes cf-pop {
+        0%   { transform: scale(0); opacity: 0; }
+        100% { transform: scale(1); opacity: 1; }
+      }
+
+      .cf-check-wrap i {
+        font-size: 2.25rem;
+        color: #059669;
+      }
+
+      .cf-success-title {
+        font-size: 1.75rem;
+        font-weight: 800;
+        color: #111827;
+        margin-bottom: 8px;
+        letter-spacing: -0.5px;
+      }
+
+      .cf-success-sub {
+        font-size: 0.9375rem;
+        color: #6b7280;
+        margin-bottom: 28px;
+        line-height: 1.6;
+      }
+
+      /* Reference pills */
+      .cf-refs {
+        display: flex;
+        gap: 12px;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-bottom: 20px;
+      }
+
+      .cf-ref-pill {
+        background: #f3f4f6;
+        border-radius: 8px;
+        padding: 10px 20px;
+        text-align: center;
+      }
+
+      .cf-ref-label {
+        font-size: 0.6875rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: #9ca3af;
+        margin-bottom: 4px;
+      }
+
+      .cf-ref-value {
+        font-size: 1.125rem;
+        font-weight: 800;
+        color: #111827;
+        letter-spacing: 0.5px;
+        font-family: monospace;
+      }
+
+      .cf-email-note {
+        font-size: 0.8125rem;
+        color: #9ca3af;
+        margin-top: 4px;
+      }
+
+      .cf-email-note strong { color: #374151; }
+
+      /* ── Flight summary card ── */
+      .cf-summary-card {
+        background: #fff;
+        border: 1px solid #e5e7eb;
+        border-radius: 16px;
+        overflow: hidden;
+        margin-bottom: 24px;
+      }
+
+      .cf-summary-header {
+        background: #093ba8;
+        color: #fff;
+        padding: 14px 24px;
+        font-size: 0.8125rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .cf-summary-body { padding: 24px; }
+
+      .cf-airline-row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 20px;
+        padding-bottom: 16px;
+        border-bottom: 1px solid #f3f4f6;
+      }
+
+      .cf-airline-name {
+        font-weight: 700;
+        font-size: 1rem;
+        color: #111827;
+      }
+
+      .cf-badge {
+        margin-left: auto;
+        background: #eff6ff;
+        color: #093ba8;
+        font-size: 0.72rem;
+        padding: 3px 10px;
+        border-radius: 4px;
+        font-weight: 700;
+        text-transform: capitalize;
+      }
+
+      /* Route leg */
+      .cf-leg { margin-bottom: 16px; }
+
+      .cf-leg-label {
+        font-size: 0.6875rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: #9ca3af;
+        margin-bottom: 10px;
+      }
+
+      .cf-route {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+
+      .cf-iata {
+        font-size: 2rem;
+        font-weight: 800;
+        color: #111827;
+        letter-spacing: -1px;
+        line-height: 1;
+      }
+
+      .cf-route-mid {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+      }
+
+      .cf-route-date {
+        font-size: 0.8125rem;
+        color: #6b7280;
+        font-weight: 500;
+      }
+
+      .cf-route-line {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        gap: 4px;
+      }
+
+      .cf-route-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        border: 2px solid #9ca3af;
+        flex-shrink: 0;
+      }
+
+      .cf-route-dash {
+        flex: 1;
+        height: 1px;
+        background: #d1d5db;
+      }
+
+      .cf-route-plane {
+        color: #9ca3af;
+        font-size: 0.75rem;
+        transform: rotate(90deg);
+      }
+
+      .cf-divider-line {
+        border: none;
+        border-top: 1px solid #f3f4f6;
+        margin: 16px 0;
+      }
+
+      /* Detail rows */
+      .cf-detail-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+
+      .cf-detail-item { display: flex; flex-direction: column; gap: 3px; }
+
+      .cf-detail-label {
+        font-size: 0.6875rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.4px;
+        color: #9ca3af;
+      }
+
+      .cf-detail-value {
+        font-size: 0.9375rem;
+        font-weight: 600;
+        color: #111827;
+      }
+
+      /* Total paid */
+      .cf-total-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 20px;
+        padding-top: 16px;
+        border-top: 1px solid #e5e7eb;
+      }
+
+      .cf-total-label {
+        font-size: 0.875rem;
+        font-weight: 700;
+        color: #374151;
+      }
+
+      .cf-total-amount {
+        font-size: 1.5rem;
+        font-weight: 800;
+        color: #059669;
+        letter-spacing: -0.5px;
+      }
+
+      /* ── Action buttons ── */
+      .cf-actions {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+
+      .cf-btn-primary {
+        flex: 1;
+        min-width: 160px;
+        height: 50px;
+        background: #093ba8;
+        color: #fff;
+        border: none;
+        border-radius: 9px;
+        font-size: 0.9375rem;
+        font-weight: 700;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        text-decoration: none;
+        transition: background 0.15s;
+      }
+
+      .cf-btn-primary:hover { background: #072e8a; }
+
+      .cf-btn-secondary {
+        flex: 1;
+        min-width: 160px;
+        height: 50px;
+        background: #fff;
+        color: #093ba8;
+        border: 1.5px solid #093ba8;
+        border-radius: 9px;
+        font-size: 0.9375rem;
+        font-weight: 700;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        text-decoration: none;
+        transition: background 0.15s;
+      }
+
+      .cf-btn-secondary:hover { background: #eff6ff; }
+
+      /* ── No-data fallback ── */
+      .cf-fallback {
+        background: #fff;
+        border: 1px solid #e5e7eb;
+        border-radius: 16px;
+        padding: 48px 24px;
+        text-align: center;
+        color: #6b7280;
+        margin-bottom: 20px;
+      }
+
+      .cf-fallback-icon {
+        font-size: 2.5rem;
+        color: #059669;
+        margin-bottom: 16px;
+      }
+
+      .cf-fallback h2 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #111827;
+        margin-bottom: 8px;
+      }
+
+      .cf-fallback p {
+        font-size: 0.9375rem;
+        max-width: 420px;
+        margin: 0 auto 20px;
+        line-height: 1.6;
+      }
+
+      /* ── Print styles ── */
+      @media print {
+        .nav-bar,
+        .cf-progress,
+        .cf-actions,
+        footer,
+        .cf-summary-header i { display: none !important; }
+
+        body, .cf-page { background: #fff !important; }
+
+        .cf-container {
+          max-width: 100%;
+          margin: 0;
+          padding: 0;
+        }
+
+        .cf-success-card,
+        .cf-summary-card {
+          border: 1px solid #ccc;
+          border-radius: 0;
+          box-shadow: none;
+          margin-bottom: 16px;
+          break-inside: avoid;
+        }
+
+        .cf-success-card { padding: 24px; }
+
+        .cf-summary-header {
+          background: #093ba8 !important;
+          -webkit-print-color-adjust: exact;
+          print-color-adjust: exact;
+        }
+
+        .cf-check-wrap { display: none; }
+
+        .cf-success-title { font-size: 1.25rem; }
+
+        .cf-print-logo {
+          display: block !important;
+          height: 40px;
+          margin-bottom: 16px;
+        }
+      }
+
+      /* ── Responsive ── */
+      @media (max-width: 768px) {
+        .cf-progress { padding: 16px 20px; }
+        .cf-divider  { max-width: 40px; }
+        .cf-step-label { font-size: 0.625rem; }
+        .cf-container { margin: 20px auto; padding: 0 16px; }
+        .cf-success-card { padding: 32px 20px 24px; }
+        .cf-success-title { font-size: 1.375rem; }
+        .cf-detail-grid { grid-template-columns: 1fr; }
+        .cf-actions { flex-direction: column; }
+        .cf-btn-primary, .cf-btn-secondary { min-width: unset; }
+      }
+    </style>
+  </head>
+
+  <body class="cf-page">
+
+    <!-- ── Nav ── -->
+    <header class="nav-bar">
+      <a href="index.html"><img src="images/RDG Logo (1) 2.svg" alt="RDG Logo" /></a>
+      <button class="menu-icon">&#9776;</button>
+      <nav class="nav">
+        <ul class="nav-links">
+          <li><a href="flight.html" class="nav-link">book flight</a></li>
+          <li><a href="study-abroad.html" class="nav-link">study abroad</a></li>
+          <li><a href="hotel-service.html" class="nav-link">reserve hotel</a></li>
+          <li><a href="destinations.html" class="nav-link">destinations</a></li>
+          <li class="last-nav-link nav-link">
+            <a href="https://wa.me/+2348034099082" target="_blank">
+              <i class="fa-brands fa-whatsapp"></i> +2348034099082
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- ── Progress bar (all steps complete) ── -->
+    <div class="cf-progress">
+      <div class="cf-step">
+        <span class="cf-step-num"><i class="fas fa-check"></i></span>
+        <span class="cf-step-label">Search</span>
+      </div>
+      <div class="cf-divider"></div>
+      <div class="cf-step">
+        <span class="cf-step-num"><i class="fas fa-check"></i></span>
+        <span class="cf-step-label">Passenger details</span>
+      </div>
+      <div class="cf-divider"></div>
+      <div class="cf-step">
+        <span class="cf-step-num"><i class="fas fa-check"></i></span>
+        <span class="cf-step-label">Payment</span>
+      </div>
+      <div class="cf-divider"></div>
+      <div class="cf-step cf-step--current">
+        <span class="cf-step-num"><i class="fas fa-check"></i></span>
+        <span class="cf-step-label">Confirmed</span>
+      </div>
+    </div>
+
+    <!-- ── Main content ── -->
+    <div class="cf-container">
+
+      <!-- Hidden logo shown only in print -->
+      <img class="cf-print-logo" src="images/RDG Logo (1) 2.svg" alt="RDG Travels"
+           style="display:none;" />
+
+      <!-- Content rendered by JS -->
+      <div id="cf-content"></div>
+
+      <!-- Action buttons rendered by JS -->
+      <div class="cf-actions" id="cf-actions" style="display:none;">
+        <button class="cf-btn-primary" onclick="window.print()">
+          <i class="fas fa-download"></i> Download Itinerary
+        </button>
+        <a href="flight.html" class="cf-btn-secondary">
+          <i class="fas fa-search"></i> Book Another Flight
+        </a>
+        <a href="index.html" class="cf-btn-secondary">
+          <i class="fas fa-home"></i> Back to Home
+        </a>
+      </div>
+
+    </div>
+
+    <!-- ── Footer ── -->
+    <footer class="footer">
+      <div class="footer-section footer-first-section">
+        <div class="footer-container">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="about-us.html">About</a></li>
+            <li><a href="contact-us.html">Contact Us</a></li>
+            <li><a href="terms-and-condition.html">Terms and Conditions</a></li>
+            <li><a href="privacy-policy.html">Privacy Policy</a></li>
+          </ul>
+        </div>
+        <div class="footer-container">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="flight.html">Flight Booking</a></li>
+            <li><a href="study-abroad.html">Study Abroad Program</a></li>
+            <li><a href="hotel-service.html">Hotel Reservations</a></li>
+          </ul>
+        </div>
+        <div class="footer-container">
+          <h4>Follow Us</h4>
+          <ul class="social-icons">
+            <li><a href="https://web.facebook.com/profile.php?id=100087906160728" target="_blank"><i class="fab fa-facebook"></i></a></li>
+            <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+            <li><a href="https://www.instagram.com/rdgtravels/" target="_blank"><i class="fab fa-instagram"></i></a></li>
+            <li><a href="https://www.linkedin.com/in/estherayanleye/" target="_blank"><i class="fab fa-linkedin"></i></a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-section subscribe-section">
+        <div class="footer-container">
+          <div>
+            <h4>SUBSCRIBE TO OUR NEWSLETTER</h4>
+            <p>A monthly digest of the latest news, articles, and resources.</p>
+          </div>
+          <form id="subscribe-form">
+            <input type="email" name="email" placeholder="Email address" required />
+            <button type="submit">Subscribe</button>
+          </form>
+        </div>
+      </div>
+      <div class="footer-section copyright-section">
+        <div class="footer-container">
+          <a href="index.html"><img src="images/RDG Logo (1) 2.svg" alt="RDG Logo" /></a>
+          <p>© <span id="copyright-year"></span> RDG Consults. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      document.getElementById('copyright-year').textContent = new Date().getFullYear();
+
+      // ── Helpers ───────────────────────────────────────────────────────────────
+      function formatDate(dateStr) {
+        if (!dateStr) return '—';
+        const [y, mo, d] = dateStr.split('T')[0].split('-').map(Number);
+        const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+        return d + ' ' + months[mo - 1] + ' ' + y;
+      }
+
+      function fmtNGN(n) {
+        return '₦' + Number(Math.round(n)).toLocaleString('en-NG');
+      }
+
+      function paxSummary(adults, children, infants) {
+        const parts = [];
+        if (adults)   parts.push(adults   + ' adult'  + (adults   > 1 ? 's' : ''));
+        if (children) parts.push(children + ' child'  + (children > 1 ? 'ren' : ''));
+        if (infants)  parts.push(infants  + ' infant' + (infants  > 1 ? 's' : ''));
+        return parts.join(', ') || '1 adult';
+      }
+
+      function legHTML(fromCode, toCode, dateStr, label) {
+        return `
+          <div class="cf-leg">
+            <div class="cf-leg-label">${label}</div>
+            <div class="cf-route">
+              <span class="cf-iata">${fromCode}</span>
+              <div class="cf-route-mid">
+                <span class="cf-route-date">${formatDate(dateStr)}</span>
+                <div class="cf-route-line">
+                  <span class="cf-route-dot"></span>
+                  <span class="cf-route-dash"></span>
+                  <i class="fas fa-plane cf-route-plane"></i>
+                  <span class="cf-route-dash"></span>
+                  <span class="cf-route-dot"></span>
+                </div>
+              </div>
+              <span class="cf-iata">${toCode}</span>
+            </div>
+          </div>`;
+      }
+
+      // ── Read data ─────────────────────────────────────────────────────────────
+      const urlParams  = new URLSearchParams(location.search);
+      const paystackRef = urlParams.get('reference') || '';
+
+      let summary = null;
+      try {
+        const raw = sessionStorage.getItem('bookingSummary');
+        if (raw) {
+          summary = JSON.parse(raw);
+          // Clear it so a page refresh doesn't re-show stale data
+          sessionStorage.removeItem('bookingSummary');
+        }
+      } catch { /* malformed JSON — treat as missing */ }
+
+      // ── Render ────────────────────────────────────────────────────────────────
+      const content   = document.getElementById('cf-content');
+      const actionsEl = document.getElementById('cf-actions');
+
+      if (!summary && !paystackRef) {
+        // No data at all — user navigated here directly
+        content.innerHTML = `
+          <div class="cf-fallback">
+            <div class="cf-fallback-icon"><i class="fas fa-ticket-alt"></i></div>
+            <h2>No booking found</h2>
+            <p>It looks like you arrived here directly. If you've just completed a
+               booking, please check your email for confirmation details.</p>
+            <a href="flight.html" class="cf-btn-primary" style="display:inline-flex;max-width:220px;margin:0 auto;">
+              <i class="fas fa-search"></i> Search Flights
+            </a>
+          </div>`;
+
+      } else {
+        // ── Success banner ────────────────────────────────────────────────────
+        const bookingRef  = summary?.bookingReference || '—';
+        const email       = summary?.email            || '';
+        const passengerName = summary?.passengerName  || '';
+
+        const refs = [
+          { label: 'Booking reference', value: bookingRef },
+          ...(paystackRef ? [{ label: 'Payment reference', value: paystackRef }] : []),
+        ];
+
+        content.innerHTML = `
+          <div class="cf-success-card">
+            <div class="cf-check-wrap">
+              <i class="fas fa-check"></i>
+            </div>
+            <h1 class="cf-success-title">Booking Confirmed!</h1>
+            <p class="cf-success-sub">
+              Your payment was successful and your flight has been booked.
+              ${passengerName ? 'Have a great trip, <strong>' + passengerName + '</strong>!' : ''}
+            </p>
+            <div class="cf-refs">
+              ${refs.map(r => `
+                <div class="cf-ref-pill">
+                  <div class="cf-ref-label">${r.label}</div>
+                  <div class="cf-ref-value">${r.value}</div>
+                </div>`).join('')}
+            </div>
+            ${email ? `<p class="cf-email-note">Confirmation sent to <strong>${email}</strong></p>` : ''}
+          </div>`;
+
+        // ── Flight summary card ───────────────────────────────────────────────
+        if (summary) {
+          const {
+            origin, destination, departureDate, returnDate, tripType,
+            airline, cabinClass,
+            adults = 1, children = 0, infants = 0,
+            totalAmountNGN, totalAmount, currency,
+          } = summary;
+
+          const isReturn = tripType === 'return' && returnDate;
+          const outLabel = isReturn ? 'Outbound' : 'Flight';
+
+          const cabinLabels = {
+            economy: 'Economy', premium_economy: 'Premium Economy',
+            business: 'Business', first: 'First Class',
+          };
+
+          const legsHTML = legHTML(origin, destination, departureDate, outLabel)
+            + (isReturn ? '<hr class="cf-divider-line">' + legHTML(destination, origin, returnDate, 'Return') : '');
+
+          const totalPax = parseInt(adults) + parseInt(children) + parseInt(infants);
+          const perPersonNGN = totalAmountNGN && totalPax ? totalAmountNGN / totalPax : null;
+
+          const detailItems = [
+            { label: 'Passenger(s)', value: paxSummary(parseInt(adults), parseInt(children), parseInt(infants)) },
+            { label: 'Cabin class',  value: cabinLabels[cabinClass] || cabinClass || 'Economy' },
+            { label: 'Airline',      value: airline || '—' },
+            ...(totalAmount && currency ? [{ label: 'Fare',  value: currency + ' ' + Number(totalAmount).toLocaleString('en-US', { minimumFractionDigits: 2 }) + ' × ' + totalPax }] : []),
+          ];
+
+          content.innerHTML += `
+            <div class="cf-summary-card">
+              <div class="cf-summary-header">
+                <i class="fas fa-plane"></i> Flight Summary
+              </div>
+              <div class="cf-summary-body">
+                ${airline ? `
+                <div class="cf-airline-row">
+                  <span class="cf-airline-name">${airline}</span>
+                  <span class="cf-badge">${cabinLabels[cabinClass] || cabinClass || 'Economy'}</span>
+                </div>` : ''}
+                ${legsHTML}
+                <hr class="cf-divider-line">
+                <div class="cf-detail-grid">
+                  ${detailItems.map(d => `
+                    <div class="cf-detail-item">
+                      <span class="cf-detail-label">${d.label}</span>
+                      <span class="cf-detail-value">${d.value}</span>
+                    </div>`).join('')}
+                </div>
+                ${totalAmountNGN ? `
+                <div class="cf-total-row">
+                  <span class="cf-total-label">Total paid</span>
+                  <span class="cf-total-amount">${fmtNGN(totalAmountNGN)}</span>
+                </div>` : ''}
+              </div>
+            </div>`;
+        }
+
+        actionsEl.style.display = 'flex';
+      }
+
+      // ── Subscribe form ────────────────────────────────────────────────────────
+      document.getElementById('subscribe-form').addEventListener('submit', function (e) {
+        e.preventDefault();
+      });
+    </script>
+
+  </body>
+</html>

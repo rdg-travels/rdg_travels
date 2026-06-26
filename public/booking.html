@@ -1,0 +1,1229 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Passenger Details — RDG Travels</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/flight.css" />
+    <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
+    <link
+      href="https://db.onlinewebfonts.com/a/y7WeC3fQys9eM03ag2DoL0JVvA55P6RR32USY1mQbvDfS36RtGsca2IR2Oy4U3uy"
+      rel="stylesheet" type="text/css"
+    />
+    <script src="https://kit.fontawesome.com/24f84abb34.js" crossorigin="anonymous"></script>
+
+    <style>
+      .bk-page { background: #f9fafb; min-height: 100vh; }
+
+      /* ── Progress bar ── */
+      .bk-progress {
+        background: #fff;
+        border-bottom: 1px solid #e5e7eb;
+        padding: 20px 112px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0;
+      }
+
+      .bk-step {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .bk-step-num {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.8125rem;
+        font-weight: 700;
+        border: 2px solid #d1d5db;
+        color: #9ca3af;
+        background: #fff;
+      }
+
+      .bk-step--done .bk-step-num {
+        background: #093ba8;
+        border-color: #093ba8;
+        color: #fff;
+      }
+
+      .bk-step--active .bk-step-num {
+        background: #093ba8;
+        border-color: #093ba8;
+        color: #fff;
+        box-shadow: 0 0 0 4px rgba(9,59,168,0.15);
+      }
+
+      .bk-step-label {
+        font-size: 0.72rem;
+        font-weight: 600;
+        color: #9ca3af;
+        white-space: nowrap;
+      }
+
+      .bk-step--done .bk-step-label,
+      .bk-step--active .bk-step-label { color: #093ba8; }
+
+      .bk-divider {
+        flex: 1;
+        max-width: 80px;
+        height: 2px;
+        background: #e5e7eb;
+        margin: 0 8px;
+        margin-bottom: 20px;
+      }
+
+      .bk-divider--done { background: #093ba8; }
+
+      /* ── Layout ── */
+      .bk-layout {
+        max-width: 1100px;
+        margin: 32px auto;
+        padding: 0 24px;
+        display: grid;
+        grid-template-columns: 1fr 340px;
+        gap: 24px;
+        align-items: start;
+      }
+
+      /* ── Sidebar summary ── */
+      .bk-sidebar { position: sticky; top: 110px; }
+
+      .bk-summary-card {
+        background: #fff;
+        border: 1px solid #e5e7eb;
+        border-radius: 12px;
+        overflow: hidden;
+      }
+
+      .bk-summary-header {
+        background: #093ba8;
+        color: #fff;
+        padding: 14px 20px;
+        font-size: 0.8125rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .bk-summary-body { padding: 16px 20px; }
+
+      .bk-summary-airline {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 16px;
+      }
+
+      .bk-summary-logo { height: 20px; width: auto; }
+
+      .bk-summary-airline-name {
+        font-weight: 600;
+        font-size: 0.9375rem;
+        color: #111827;
+      }
+
+      .bk-summary-badge {
+        margin-left: auto;
+        background: #eff6ff;
+        color: #093ba8;
+        font-size: 0.72rem;
+        padding: 2px 8px;
+        border-radius: 4px;
+        font-weight: 600;
+      }
+
+      .bk-summary-leg { margin-bottom: 14px; }
+
+      .bk-summary-leg-label {
+        font-size: 0.6875rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: #9ca3af;
+        margin-bottom: 6px;
+      }
+
+      .bk-summary-route {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .bk-summary-iata {
+        font-size: 1.375rem;
+        font-weight: 800;
+        color: #111827;
+        letter-spacing: -0.5px;
+      }
+
+      .bk-summary-arrow {
+        color: #d1d5db;
+        font-size: 0.875rem;
+        flex: 1;
+        text-align: center;
+      }
+
+      .bk-summary-times {
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.8125rem;
+        color: #6b7280;
+        margin-top: 4px;
+      }
+
+      .bk-summary-meta {
+        font-size: 0.75rem;
+        color: #9ca3af;
+        margin-top: 3px;
+      }
+
+      .bk-summary-divider {
+        border: none;
+        border-top: 1px solid #f3f4f6;
+        margin: 14px 0;
+      }
+
+      .bk-price-row {
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.875rem;
+        color: #6b7280;
+        margin-bottom: 6px;
+      }
+
+      .bk-price-total {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        margin-top: 10px;
+        padding-top: 10px;
+        border-top: 1px solid #e5e7eb;
+      }
+
+      .bk-price-total-label {
+        font-size: 0.875rem;
+        font-weight: 700;
+        color: #111827;
+      }
+
+      .bk-price-total-amount {
+        font-size: 1.375rem;
+        font-weight: 800;
+        color: #093ba8;
+        letter-spacing: -0.5px;
+      }
+
+      .bk-price-total-sub {
+        font-size: 0.72rem;
+        color: #9ca3af;
+        text-align: right;
+      }
+
+      /* ── Skeleton for summary ── */
+      .bk-skel {
+        background: linear-gradient(90deg,#f3f4f6 25%,#e9ebee 50%,#f3f4f6 75%);
+        background-size: 400% 100%;
+        animation: bk-shimmer 1.3s infinite;
+        border-radius: 4px;
+        margin-bottom: 10px;
+      }
+      .bk-skel.h14 { height: 14px; }
+      .bk-skel.h32 { height: 32px; }
+      .bk-skel.w60 { width: 60%; }
+      .bk-skel.w40 { width: 40%; }
+      .bk-skel.w100 { width: 100%; }
+      @keyframes bk-shimmer {
+        0%   { background-position: 400% 0; }
+        100% { background-position: -400% 0; }
+      }
+
+      /* ── Passenger forms ── */
+      .bk-section-title {
+        font-size: 1.125rem;
+        font-weight: 700;
+        color: #111827;
+        margin-bottom: 4px;
+      }
+
+      .bk-section-sub {
+        font-size: 0.875rem;
+        color: #6b7280;
+        margin-bottom: 20px;
+      }
+
+      .bk-pax-card {
+        background: #fff;
+        border: 1px solid #e5e7eb;
+        border-radius: 12px;
+        padding: 24px;
+        margin-bottom: 16px;
+      }
+
+      .bk-pax-title {
+        font-size: 1rem;
+        font-weight: 700;
+        color: #111827;
+        margin-bottom: 18px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .bk-pax-badge {
+        font-size: 0.72rem;
+        background: #fef3c7;
+        color: #92400e;
+        padding: 2px 8px;
+        border-radius: 4px;
+        font-weight: 600;
+      }
+
+      .bk-pax-type-badge {
+        font-size: 0.72rem;
+        background: #f3f4f6;
+        color: #6b7280;
+        padding: 2px 8px;
+        border-radius: 4px;
+        font-weight: 600;
+        text-transform: capitalize;
+      }
+
+      .bk-doc-heading {
+        font-size: 0.8125rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: #9ca3af;
+        margin: 18px 0 12px;
+        padding-top: 16px;
+        border-top: 1px solid #f3f4f6;
+      }
+
+      /* Field rows */
+      .bk-row {
+        display: grid;
+        gap: 14px;
+        margin-bottom: 14px;
+      }
+
+      .bk-row-3 { grid-template-columns: 120px 1fr 1fr; }
+      .bk-row-2 { grid-template-columns: 1fr 1fr; }
+      .bk-row-4 { grid-template-columns: 1fr 1fr 1fr 1fr; }
+      .bk-row-1 { grid-template-columns: 1fr; }
+
+      .bk-field { display: flex; flex-direction: column; gap: 5px; }
+
+      .bk-label {
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: #374151;
+        text-transform: uppercase;
+        letter-spacing: 0.4px;
+      }
+
+      .bk-input,
+      .bk-select {
+        height: 44px;
+        padding: 0 12px;
+        border: 1.5px solid #d1d5db;
+        border-radius: 7px;
+        font-size: 0.9375rem;
+        color: #111827;
+        background: #fff;
+        width: 100%;
+        transition: border-color 0.15s;
+      }
+
+      .bk-input:focus,
+      .bk-select:focus {
+        outline: none;
+        border-color: #093ba8;
+        box-shadow: 0 0 0 3px rgba(9,59,168,0.1);
+      }
+
+      .bk-input.error,
+      .bk-select.error { border-color: #dc2626; }
+
+      /* Form error */
+      .bk-form-error {
+        background: #fef2f2;
+        border: 1px solid #fecaca;
+        border-radius: 8px;
+        padding: 12px 16px;
+        color: #dc2626;
+        font-size: 0.875rem;
+        margin-bottom: 16px;
+      }
+
+      /* Loading overlay */
+      .bk-loading-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(255,255,255,0.85);
+        z-index: 200;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+      }
+
+      .bk-loading-overlay.visible { display: flex; }
+
+      .bk-spinner {
+        width: 44px;
+        height: 44px;
+        border: 4px solid #e5e7eb;
+        border-top-color: #093ba8;
+        border-radius: 50%;
+        animation: bk-spin 0.7s linear infinite;
+      }
+
+      @keyframes bk-spin { to { transform: rotate(360deg); } }
+
+      .bk-loading-label {
+        font-size: 0.9375rem;
+        font-weight: 600;
+        color: #374151;
+      }
+
+      /* ── Phone field ── */
+      .bk-phone-wrap {
+        display: flex;
+        border: 1.5px solid #d1d5db;
+        border-radius: 7px;
+        overflow: hidden;
+        transition: border-color 0.15s;
+      }
+
+      .bk-phone-wrap:focus-within {
+        border-color: #093ba8;
+        box-shadow: 0 0 0 3px rgba(9,59,168,0.1);
+      }
+
+      .bk-phone-wrap.error { border-color: #dc2626; }
+
+      .bk-phone-code {
+        border: none;
+        border-right: 1.5px solid #d1d5db;
+        border-radius: 0;
+        background: #f9fafb;
+        padding: 0 8px;
+        font-size: 0.875rem;
+        color: #111827;
+        min-width: 110px;
+        flex-shrink: 0;
+        cursor: pointer;
+        outline: none;
+        height: 44px;
+      }
+
+      .bk-phone-num {
+        border: none !important;
+        box-shadow: none !important;
+        border-radius: 0 !important;
+        flex: 1;
+        min-width: 0;
+      }
+
+      .bk-phone-num:focus {
+        outline: none;
+        box-shadow: none !important;
+      }
+
+      /* Submit */
+      .bk-submit-btn {
+        width: 100%;
+        height: 52px;
+        background: #093ba8;
+        color: #fff;
+        border: none;
+        border-radius: 10px;
+        font-size: 1rem;
+        font-weight: 700;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        transition: background 0.15s;
+        margin-top: 8px;
+      }
+
+      .bk-submit-btn:hover { background: #072e8a; }
+      .bk-submit-btn:disabled { opacity: 0.6; cursor: default; }
+
+      .bk-back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        color: #093ba8;
+        font-size: 0.875rem;
+        font-weight: 500;
+        text-decoration: none;
+        margin-bottom: 20px;
+      }
+
+      .bk-back-link:hover { text-decoration: underline; }
+
+      /* Offer error */
+      .bk-offer-error {
+        background: #fff;
+        border: 1px solid #e5e7eb;
+        border-radius: 12px;
+        padding: 48px 24px;
+        text-align: center;
+        color: #6b7280;
+      }
+
+      .bk-offer-error h3 { color: #374151; margin-bottom: 8px; }
+      .bk-offer-error p  { font-size: 0.875rem; margin-bottom: 20px; }
+
+      .bk-offer-error a {
+        display: inline-block;
+        padding: 10px 24px;
+        background: #093ba8;
+        color: #fff;
+        border-radius: 7px;
+        font-size: 0.875rem;
+        font-weight: 600;
+      }
+
+      /* ── Responsive ── */
+      @media (max-width: 900px) {
+        .bk-progress { padding: 16px 20px; }
+        .bk-layout {
+          grid-template-columns: 1fr;
+          margin: 16px auto;
+          padding: 0 16px;
+        }
+        .bk-sidebar { position: static; order: -1; }
+        .bk-row-3 { grid-template-columns: 100px 1fr 1fr; }
+        .bk-row-4 { grid-template-columns: 1fr 1fr; }
+      }
+
+      @media (max-width: 600px) {
+        .bk-progress { gap: 0; }
+        .bk-divider { max-width: 40px; }
+        .bk-step-label { font-size: 0.625rem; }
+        .bk-row-3 { grid-template-columns: 1fr; }
+        .bk-row-2 { grid-template-columns: 1fr; }
+        .bk-row-4 { grid-template-columns: 1fr; }
+        .bk-pax-card { padding: 16px; }
+      }
+    </style>
+  </head>
+
+  <body class="bk-page">
+
+    <!-- ── Nav ── -->
+    <header class="nav-bar">
+      <a href="index.html"><img src="images/RDG Logo (1) 2.svg" alt="RDG Logo" /></a>
+      <button class="menu-icon">&#9776;</button>
+      <nav class="nav">
+        <ul class="nav-links">
+          <li><a href="flight.html" class="nav-link active">book flight</a></li>
+          <li><a href="study-abroad.html" class="nav-link">study abroad</a></li>
+          <li><a href="hotel-service.html" class="nav-link">reserve hotel</a></li>
+          <li><a href="destinations.html" class="nav-link">destinations</a></li>
+          <li class="last-nav-link nav-link">
+            <a href="https://wa.me/+2348034099082" target="_blank">
+              <i class="fa-brands fa-whatsapp"></i> +2348034099082
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- ── Progress bar ── -->
+    <div class="bk-progress">
+      <div class="bk-step bk-step--done">
+        <span class="bk-step-num"><i class="fas fa-check"></i></span>
+        <span class="bk-step-label">Search</span>
+      </div>
+      <div class="bk-divider bk-divider--done"></div>
+      <div class="bk-step bk-step--active">
+        <span class="bk-step-num">2</span>
+        <span class="bk-step-label">Passenger details</span>
+      </div>
+      <div class="bk-divider"></div>
+      <div class="bk-step">
+        <span class="bk-step-num">3</span>
+        <span class="bk-step-label">Payment</span>
+      </div>
+      <div class="bk-divider"></div>
+      <div class="bk-step">
+        <span class="bk-step-num">4</span>
+        <span class="bk-step-label">Confirmed</span>
+      </div>
+    </div>
+
+    <!-- ── Loading overlay ── -->
+    <div class="bk-loading-overlay" id="bk-loading">
+      <div class="bk-spinner"></div>
+      <span class="bk-loading-label" id="bk-loading-label">Processing…</span>
+    </div>
+
+    <!-- ── Main layout ── -->
+    <div class="bk-layout">
+
+      <!-- Left: forms -->
+      <div class="bk-main">
+
+        <a class="bk-back-link" id="bk-back-link" href="javascript:history.back()">
+          <i class="fas fa-arrow-left"></i> Back to results
+        </a>
+
+        <!-- Offer error state -->
+        <div class="bk-offer-error" id="bk-offer-error" hidden>
+          <div style="font-size:2.5rem;color:#d1d5db;margin-bottom:14px;">
+            <i class="fas fa-exclamation-circle"></i>
+          </div>
+          <h3>This offer is no longer available</h3>
+          <p id="bk-offer-error-msg">Prices change quickly. Please search again for the latest fares.</p>
+          <a href="flight.html">Search again</a>
+        </div>
+
+        <!-- Passenger forms (rendered by JS) -->
+        <div id="bk-forms-wrap">
+          <h2 class="bk-section-title">Passenger details</h2>
+          <p class="bk-section-sub">Enter details exactly as they appear on the travel document.</p>
+
+          <form id="bk-form" novalidate>
+            <div id="bk-passengers"></div>
+
+            <div class="bk-form-error" id="bk-form-error" hidden></div>
+
+            <button type="submit" class="bk-submit-btn" id="bk-submit">
+              <i class="fas fa-lock"></i> Continue to Payment
+            </button>
+          </form>
+        </div>
+
+      </div>
+
+      <!-- Right: summary -->
+      <div class="bk-sidebar">
+        <div class="bk-summary-card" id="bk-summary">
+          <!-- Skeleton while offer loads -->
+          <div class="bk-summary-header">Your flight</div>
+          <div class="bk-summary-body" id="bk-summary-body">
+            <div class="bk-skel h14 w60"></div>
+            <div class="bk-skel h32 w100"></div>
+            <div class="bk-skel h14 w40"></div>
+            <div class="bk-skel h14 w60"></div>
+            <div class="bk-skel h14 w100" style="margin-top:20px;"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ── Footer ── -->
+    <footer class="footer">
+      <div class="footer-section footer-first-section">
+        <div class="footer-container">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="about-us.html">About</a></li>
+            <li><a href="contact-us.html">Contact Us</a></li>
+            <li><a href="terms-and-condition.html">Terms and Conditions</a></li>
+            <li><a href="privacy-policy.html">Privacy Policy</a></li>
+          </ul>
+        </div>
+        <div class="footer-container">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="flight.html">Flight Booking</a></li>
+            <li><a href="study-abroad.html">Study Abroad Program</a></li>
+            <li><a href="hotel-service.html">Hotel Reservations</a></li>
+          </ul>
+        </div>
+        <div class="footer-container">
+          <h4>Follow Us</h4>
+          <ul class="social-icons">
+            <li><a href="https://web.facebook.com/profile.php?id=100087906160728" target="_blank"><i class="fab fa-facebook"></i></a></li>
+            <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+            <li><a href="https://www.instagram.com/rdgtravels/" target="_blank"><i class="fab fa-instagram"></i></a></li>
+            <li><a href="https://www.linkedin.com/in/estherayanleye/" target="_blank"><i class="fab fa-linkedin"></i></a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-section subscribe-section">
+        <div class="footer-container">
+          <div>
+            <h4>SUBSCRIBE TO OUR NEWSLETTER</h4>
+            <p>A monthly digest of the latest news, articles, and resources.</p>
+          </div>
+          <form id="subscribe-form">
+            <input type="email" name="email" placeholder="Email address" required />
+            <button type="submit">Subscribe</button>
+          </form>
+        </div>
+      </div>
+      <div class="footer-section copyright-section">
+        <div class="footer-container">
+          <a href="index.html"><img src="images/RDG Logo (1) 2.svg" alt="RDG Logo" /></a>
+          <p>© <span id="copyright-year"></span> RDG Consults. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // ── Phone country codes ───────────────────────────────────────────────────
+      const PHONE_CODES = [
+        ['+234','🇳🇬','Nigeria'],
+        ['+1',  '🇺🇸','USA / Canada'],
+        ['+44', '🇬🇧','United Kingdom'],
+        ['+353','🇮🇪','Ireland'],
+        ['+971','🇦🇪','UAE'],
+        ['+974','🇶🇦','Qatar'],
+        ['+966','🇸🇦','Saudi Arabia'],
+        ['+965','🇰🇼','Kuwait'],
+        ['+973','🇧🇭','Bahrain'],
+        ['+49', '🇩🇪','Germany'],
+        ['+33', '🇫🇷','France'],
+        ['+31', '🇳🇱','Netherlands'],
+        ['+32', '🇧🇪','Belgium'],
+        ['+39', '🇮🇹','Italy'],
+        ['+34', '🇪🇸','Spain'],
+        ['+351','🇵🇹','Portugal'],
+        ['+41', '🇨🇭','Switzerland'],
+        ['+46', '🇸🇪','Sweden'],
+        ['+47', '🇳🇴','Norway'],
+        ['+45', '🇩🇰','Denmark'],
+        ['+358','🇫🇮','Finland'],
+        ['+43', '🇦🇹','Austria'],
+        ['+48', '🇵🇱','Poland'],
+        ['+30', '🇬🇷','Greece'],
+        ['+90', '🇹🇷','Turkey'],
+        ['+233','🇬🇭','Ghana'],
+        ['+221','🇸🇳','Senegal'],
+        ['+225','🇨🇮',"Côte d'Ivoire"],
+        ['+237','🇨🇲','Cameroon'],
+        ['+254','🇰🇪','Kenya'],
+        ['+251','🇪🇹','Ethiopia'],
+        ['+255','🇹🇿','Tanzania'],
+        ['+256','🇺🇬','Uganda'],
+        ['+250','🇷🇼','Rwanda'],
+        ['+27', '🇿🇦','South Africa'],
+        ['+20', '🇪🇬','Egypt'],
+        ['+212','🇲🇦','Morocco'],
+        ['+91', '🇮🇳','India'],
+        ['+86', '🇨🇳','China'],
+        ['+81', '🇯🇵','Japan'],
+        ['+65', '🇸🇬','Singapore'],
+        ['+60', '🇲🇾','Malaysia'],
+        ['+66', '🇹🇭','Thailand'],
+        ['+62', '🇮🇩','Indonesia'],
+        ['+61', '🇦🇺','Australia'],
+        ['+55', '🇧🇷','Brazil'],
+        ['+1876','🇯🇲','Jamaica'],
+        ['+1868','🇹🇹','Trinidad & Tobago'],
+      ];
+
+      const PHONE_CODE_OPTIONS = PHONE_CODES
+        .map(([code, flag, name]) =>
+          `<option value="${code}">${flag} ${code}</option>`)
+        .join('');
+
+      // ── Country list (ISO 2-letter codes) ────────────────────────────────────
+      const COUNTRIES = [
+        ['AF','Afghanistan'],['AL','Albania'],['DZ','Algeria'],['AO','Angola'],
+        ['AR','Argentina'],['AM','Armenia'],['AU','Australia'],['AT','Austria'],
+        ['AZ','Azerbaijan'],['BH','Bahrain'],['BD','Bangladesh'],['BY','Belarus'],
+        ['BE','Belgium'],['BJ','Benin'],['BO','Bolivia'],['BA','Bosnia and Herzegovina'],
+        ['BW','Botswana'],['BR','Brazil'],['BN','Brunei'],['BG','Bulgaria'],
+        ['BF','Burkina Faso'],['BI','Burundi'],['KH','Cambodia'],['CM','Cameroon'],
+        ['CA','Canada'],['CV','Cape Verde'],['CF','Central African Republic'],
+        ['TD','Chad'],['CL','Chile'],['CN','China'],['CO','Colombia'],
+        ['CG','Congo'],['CD','DR Congo'],['HR','Croatia'],['CU','Cuba'],
+        ['CY','Cyprus'],['CZ','Czech Republic'],['DK','Denmark'],['DJ','Djibouti'],
+        ['DO','Dominican Republic'],['EC','Ecuador'],['EG','Egypt'],['SV','El Salvador'],
+        ['GQ','Equatorial Guinea'],['ER','Eritrea'],['EE','Estonia'],['ET','Ethiopia'],
+        ['FJ','Fiji'],['FI','Finland'],['FR','France'],['GA','Gabon'],
+        ['GM','Gambia'],['GE','Georgia'],['DE','Germany'],['GH','Ghana'],
+        ['GR','Greece'],['GT','Guatemala'],['GN','Guinea'],['GW','Guinea-Bissau'],
+        ['GY','Guyana'],['HT','Haiti'],['HN','Honduras'],['HU','Hungary'],
+        ['IS','Iceland'],['IN','India'],['ID','Indonesia'],['IR','Iran'],
+        ['IQ','Iraq'],['IE','Ireland'],['IL','Israel'],['IT','Italy'],
+        ['CI','Côte d\'Ivoire'],['JM','Jamaica'],['JP','Japan'],['JO','Jordan'],
+        ['KZ','Kazakhstan'],['KE','Kenya'],['KW','Kuwait'],['KG','Kyrgyzstan'],
+        ['LA','Laos'],['LV','Latvia'],['LB','Lebanon'],['LR','Liberia'],
+        ['LY','Libya'],['LT','Lithuania'],['LU','Luxembourg'],['MG','Madagascar'],
+        ['MW','Malawi'],['MY','Malaysia'],['MV','Maldives'],['ML','Mali'],
+        ['MT','Malta'],['MR','Mauritania'],['MU','Mauritius'],['MX','Mexico'],
+        ['MD','Moldova'],['MN','Mongolia'],['ME','Montenegro'],['MA','Morocco'],
+        ['MZ','Mozambique'],['MM','Myanmar'],['NA','Namibia'],['NP','Nepal'],
+        ['NL','Netherlands'],['NZ','New Zealand'],['NI','Nicaragua'],['NE','Niger'],
+        ['NG','Nigeria'],['MK','North Macedonia'],['NO','Norway'],['OM','Oman'],
+        ['PK','Pakistan'],['PA','Panama'],['PG','Papua New Guinea'],['PY','Paraguay'],
+        ['PE','Peru'],['PH','Philippines'],['PL','Poland'],['PT','Portugal'],
+        ['QA','Qatar'],['RO','Romania'],['RU','Russia'],['RW','Rwanda'],
+        ['SA','Saudi Arabia'],['SN','Senegal'],['RS','Serbia'],['SL','Sierra Leone'],
+        ['SG','Singapore'],['SK','Slovakia'],['SI','Slovenia'],['SO','Somalia'],
+        ['ZA','South Africa'],['SS','South Sudan'],['ES','Spain'],['LK','Sri Lanka'],
+        ['SD','Sudan'],['SR','Suriname'],['SE','Sweden'],['CH','Switzerland'],
+        ['SY','Syria'],['TW','Taiwan'],['TJ','Tajikistan'],['TZ','Tanzania'],
+        ['TH','Thailand'],['TL','Timor-Leste'],['TG','Togo'],['TT','Trinidad and Tobago'],
+        ['TN','Tunisia'],['TR','Turkey'],['TM','Turkmenistan'],['UG','Uganda'],
+        ['UA','Ukraine'],['AE','United Arab Emirates'],['GB','United Kingdom'],
+        ['US','United States'],['UY','Uruguay'],['UZ','Uzbekistan'],['VE','Venezuela'],
+        ['VN','Vietnam'],['YE','Yemen'],['ZM','Zambia'],['ZW','Zimbabwe'],
+      ];
+
+      const COUNTRY_OPTIONS = COUNTRIES
+        .map(([code, name]) => `<option value="${code}">${name}</option>`)
+        .join('');
+
+      // ── FX: convert to NGN for Paystack ──────────────────────────────────────
+      // Live rate fetched from get-fx-rate.js; fallback used if that call fails.
+      const FALLBACK_FX = { GBP: 2050, USD: 1620, EUR: 1750, ZAR: 88 };
+      // window._fxRates populated after page load; keyed by source currency.
+      window._fxRates = {};
+
+      function toNGN(amount, currency) {
+        if (currency === 'NGN') return parseFloat(amount);
+        const rate = window._fxRates[currency] || FALLBACK_FX[currency] || 1600;
+        return Math.round(parseFloat(amount) * rate);
+      }
+
+      async function fetchFXRate(currency) {
+        if (currency === 'NGN' || window._fxRates[currency]) return;
+        try {
+          const res  = await fetch(`/.netlify/functions/get-fx-rate?from=${currency}&to=NGN`);
+          const data = await res.json();
+          if (data.rate) window._fxRates[currency] = data.rate;
+        } catch {
+          // toNGN will use FALLBACK_FX
+        }
+      }
+
+      function fmtCurrency(amount, currency) {
+        return currency + ' ' + Number(amount).toLocaleString('en-US', {
+          minimumFractionDigits: 2, maximumFractionDigits: 2
+        });
+      }
+
+      function fmtNGN(n) {
+        return '₦' + Math.round(n).toLocaleString('en-NG');
+      }
+
+      // ── Date helpers ──────────────────────────────────────────────────────────
+      function formatTime(dt) {
+        const [, t] = dt.split('T');
+        const [h, m] = t.split(':').map(Number);
+        const ap = h >= 12 ? 'PM' : 'AM';
+        return (h % 12 || 12) + ':' + String(m).padStart(2, '0') + ' ' + ap;
+      }
+
+      function formatDate(dt) {
+        const [y, mo, d] = dt.split('T')[0].split('-').map(Number);
+        const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+        return d + ' ' + months[mo - 1] + ' ' + y;
+      }
+
+      function parseDuration(iso) {
+        const m = iso.match(/PT(?:(\d+)H)?(?:(\d+)M)?/);
+        return m ? [(m[1] ? m[1]+'h' : ''), (m[2] ? m[2]+'m' : '')].filter(Boolean).join(' ') : iso;
+      }
+
+      // ── URL params ────────────────────────────────────────────────────────────
+      const sp = Object.fromEntries(new URLSearchParams(location.search));
+      const offerId   = sp.offerId   || '';
+      const adults    = parseInt(sp.adults   || 1);
+      const children  = parseInt(sp.children || 0);
+      const infants   = parseInt(sp.infants  || 0);
+
+      // Update back link to go back to search results
+      if (sp.origin && sp.destination && sp.departureDate) {
+        const backParams = new URLSearchParams(sp);
+        delete backParams.offerId; // not needed for search
+        document.getElementById('bk-back-link').href = 'search.html?' + backParams.toString();
+      }
+
+      // ── Render flight summary ─────────────────────────────────────────────────
+      function renderSummary(offer) {
+        const isReturn = offer.slices.length > 1;
+        const totalPax = adults + children + infants;
+        const ngn      = toNGN(offer.total_amount, offer.total_currency);
+        const totalNGN = ngn * totalPax;
+
+        const carrier = offer.slices[0].segments[0].marketing_carrier;
+
+        let legsHTML = offer.slices.map((slice, i) => {
+          const first = slice.segments[0];
+          const last  = slice.segments[slice.segments.length - 1];
+          const label = isReturn ? (i === 0 ? 'Outbound' : 'Return') : 'Flight';
+          return `
+            <div class="bk-summary-leg">
+              <div class="bk-summary-leg-label">${label}</div>
+              <div class="bk-summary-route">
+                <span class="bk-summary-iata">${first.origin.iata_code}</span>
+                <span class="bk-summary-arrow">──<i class="fas fa-plane" style="margin:0 4px;font-size:.7rem;"></i>──</span>
+                <span class="bk-summary-iata">${last.destination.iata_code}</span>
+              </div>
+              <div class="bk-summary-times">
+                <span>${formatTime(first.departing_at)}</span>
+                <span style="color:#9ca3af;font-size:.72rem;">${parseDuration(slice.duration)}</span>
+                <span>${formatTime(last.arriving_at)}</span>
+              </div>
+              <div class="bk-summary-meta">${formatDate(first.departing_at)}</div>
+            </div>`;
+        }).join('<hr class="bk-summary-divider">');
+
+        const paxLabel = [
+          adults   ? adults   + ' adult'   + (adults   > 1 ? 's' : '') : '',
+          children ? children + ' child'   + (children > 1 ? 'ren' : '') : '',
+          infants  ? infants  + ' infant'  + (infants  > 1 ? 's' : '') : '',
+        ].filter(Boolean).join(', ');
+
+        document.getElementById('bk-summary-body').innerHTML = `
+          <div class="bk-summary-airline">
+            <img class="bk-summary-logo"
+                 src="${carrier.logo_symbol_url}"
+                 alt="${carrier.name}"
+                 onerror="this.style.display='none'">
+            <span class="bk-summary-airline-name">${carrier.name}</span>
+            <span class="bk-summary-badge">${offer.slices[0].fare_brand_name || 'Economy'}</span>
+          </div>
+          ${legsHTML}
+          <hr class="bk-summary-divider">
+          <div class="bk-price-row">
+            <span>${fmtCurrency(offer.total_amount, offer.total_currency)} × ${totalPax} pax</span>
+            <span>${fmtCurrency(parseFloat(offer.total_amount) * totalPax, offer.total_currency)}</span>
+          </div>
+          ${offer.total_currency !== 'NGN' ? `
+          <div class="bk-price-row">
+            <span style="color:#9ca3af;font-size:.75rem;">Approx. in NGN</span>
+            <span style="color:#9ca3af;font-size:.75rem;">${fmtNGN(totalNGN)}</span>
+          </div>` : ''}
+          <div class="bk-price-total">
+            <span class="bk-price-total-label">Total</span>
+            <div>
+              <div class="bk-price-total-amount">${fmtNGN(totalNGN)}</div>
+              <div class="bk-price-total-sub">incl. taxes &amp; fees</div>
+            </div>
+          </div>`;
+      }
+
+      // ── Render passenger forms ────────────────────────────────────────────────
+      function paxFormHTML(index, paxType, isLead) {
+        const p = 'pax' + index;
+        const typeLabels = { adult: 'Adult', child: 'Child', infant: 'Infant' };
+        return `
+          <div class="bk-pax-card">
+            <h3 class="bk-pax-title">
+              ${isLead ? 'Lead passenger' : 'Passenger ' + (index + 1)}
+              <span class="bk-pax-type-badge">${typeLabels[paxType]}</span>
+              ${isLead ? '<span class="bk-pax-badge">Contact details required</span>' : ''}
+            </h3>
+
+            <div class="bk-row bk-row-4">
+              <div class="bk-field">
+                <label class="bk-label" for="${p}_title">Title</label>
+                <select class="bk-select" id="${p}_title" required>
+                  <option value="">—</option>
+                  <option value="mr">Mr</option>
+                  <option value="ms">Ms</option>
+                  <option value="mrs">Mrs</option>
+                  <option value="miss">Miss</option>
+                  <option value="dr">Dr</option>
+                </select>
+              </div>
+              <div class="bk-field">
+                <label class="bk-label" for="${p}_gender">Gender</label>
+                <select class="bk-select" id="${p}_gender" required>
+                  <option value="">—</option>
+                  <option value="m">Male</option>
+                  <option value="f">Female</option>
+                </select>
+              </div>
+              <div class="bk-field">
+                <label class="bk-label" for="${p}_first">First name</label>
+                <input class="bk-input" id="${p}_first" type="text" placeholder="As on passport" required />
+              </div>
+              <div class="bk-field">
+                <label class="bk-label" for="${p}_last">Last name</label>
+                <input class="bk-input" id="${p}_last" type="text" placeholder="As on passport" required />
+              </div>
+            </div>
+
+            <div class="bk-row ${isLead ? 'bk-row-3' : 'bk-row-1'}">
+              <div class="bk-field">
+                <label class="bk-label" for="${p}_dob">Date of birth</label>
+                <input class="bk-input" id="${p}_dob" type="date" required />
+              </div>
+              ${isLead ? `
+              <div class="bk-field">
+                <label class="bk-label" for="${p}_email">Email address</label>
+                <input class="bk-input" id="${p}_email" type="email" placeholder="your@email.com" required />
+              </div>
+              <div class="bk-field">
+                <label class="bk-label" for="${p}_phone_num">Phone number</label>
+                <div class="bk-phone-wrap">
+                  <select class="bk-phone-code" id="${p}_phone_code">
+                    ${PHONE_CODE_OPTIONS}
+                  </select>
+                  <input class="bk-input bk-phone-num" id="${p}_phone_num" type="tel"
+                         placeholder="803 263 7598" required />
+                </div>
+              </div>` : ''}
+            </div>
+
+            <div class="bk-doc-heading">Travel document</div>
+
+            <div class="bk-row bk-row-4">
+              <div class="bk-field">
+                <label class="bk-label" for="${p}_doctype">Type</label>
+                <select class="bk-select" id="${p}_doctype">
+                  <option value="passport">Passport</option>
+                  <option value="known_traveler_number">Known Traveler No.</option>
+                  <option value="passenger_redress_number">Redress No.</option>
+                </select>
+              </div>
+              <div class="bk-field">
+                <label class="bk-label" for="${p}_docnum">Number</label>
+                <input class="bk-input" id="${p}_docnum" type="text" placeholder="A12345678" required />
+              </div>
+              <div class="bk-field">
+                <label class="bk-label" for="${p}_docexp">Expiry date</label>
+                <input class="bk-input" id="${p}_docexp" type="date" required />
+              </div>
+              <div class="bk-field">
+                <label class="bk-label" for="${p}_nat">Nationality</label>
+                <select class="bk-select" id="${p}_nat" required>
+                  <option value="">Country</option>
+                  ${COUNTRY_OPTIONS}
+                </select>
+              </div>
+            </div>
+          </div>`;
+      }
+
+      function renderPassengerForms() {
+        const paxTypes = [
+          ...Array(adults).fill('adult'),
+          ...Array(children).fill('child'),
+          ...Array(infants).fill('infant'),
+        ];
+        document.getElementById('bk-passengers').innerHTML =
+          paxTypes.map((type, i) => paxFormHTML(i, type, i === 0)).join('');
+      }
+
+      // ── Collect + validate form data ──────────────────────────────────────────
+      function collectPassengers() {
+        const total = adults + children + infants;
+        const passengers = [];
+        for (let i = 0; i < total; i++) {
+          const p = 'pax' + i;
+          passengers.push({
+            title:          document.getElementById(p + '_title').value,
+            gender:         document.getElementById(p + '_gender').value,
+            firstName:      document.getElementById(p + '_first').value.trim(),
+            lastName:       document.getElementById(p + '_last').value.trim(),
+            dateOfBirth:    document.getElementById(p + '_dob').value,
+            email:          i === 0 ? document.getElementById(p + '_email').value.trim() : undefined,
+            phone:          i === 0 ? (
+              (document.getElementById(p + '_phone_code').value || '') +
+              document.getElementById(p + '_phone_num').value.replace(/\D/g, '')
+            ) : undefined,
+            documentType:   document.getElementById(p + '_doctype').value,
+            documentNumber: document.getElementById(p + '_docnum').value.trim(),
+            documentExpiry: document.getElementById(p + '_docexp').value,
+            nationality:    document.getElementById(p + '_nat').value,
+          });
+        }
+        return passengers;
+      }
+
+      function validatePassengers(passengers) {
+        for (let i = 0; i < passengers.length; i++) {
+          const p = passengers[i];
+          const prefix = 'Passenger ' + (i + 1) + ': ';
+          if (!p.title)          return prefix + 'please select a title.';
+          if (!p.gender)         return prefix + 'please select a gender.';
+          if (!p.firstName)      return prefix + 'first name is required.';
+          if (!p.lastName)       return prefix + 'last name is required.';
+          if (!p.dateOfBirth)    return prefix + 'date of birth is required.';
+          if (i === 0 && !p.email)  return prefix + 'email address is required.';
+          if (i === 0 && (!p.phone || p.phone.replace(/\D/g, '').length < 7))
+            return prefix + 'a valid phone number is required.';
+          if (!p.documentNumber) return prefix + 'document number is required.';
+          if (!p.documentExpiry) return prefix + 'document expiry is required.';
+          if (!p.nationality)    return prefix + 'nationality is required.';
+        }
+        return null;
+      }
+
+      // ── Show/hide error ───────────────────────────────────────────────────────
+      function showFormError(msg) {
+        const el = document.getElementById('bk-form-error');
+        el.textContent = msg;
+        el.hidden = false;
+        el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+
+      function hideFormError() {
+        document.getElementById('bk-form-error').hidden = true;
+      }
+
+      // ── Loading overlay ───────────────────────────────────────────────────────
+      function showLoading(label) {
+        document.getElementById('bk-loading-label').textContent = label;
+        document.getElementById('bk-loading').classList.add('visible');
+      }
+
+      function hideLoading() {
+        document.getElementById('bk-loading').classList.remove('visible');
+      }
+
+      // ── Page init ─────────────────────────────────────────────────────────────
+      document.getElementById('copyright-year').textContent = new Date().getFullYear();
+
+      if (!offerId) {
+        document.getElementById('bk-offer-error').hidden = false;
+        document.getElementById('bk-offer-error-msg').textContent = 'No offer selected. Please search for flights first.';
+        document.getElementById('bk-forms-wrap').hidden = true;
+      } else {
+        // Render forms immediately (don't wait for offer)
+        renderPassengerForms();
+
+        // Confirm offer is still live, then fetch live FX rate for its currency
+        fetch('/.netlify/functions/select', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ offerId }),
+        })
+          .then(r => r.json().then(d => ({ ok: r.ok, data: d })))
+          .then(async ({ ok, data }) => {
+            if (!ok) {
+              document.getElementById('bk-offer-error').hidden = false;
+              document.getElementById('bk-offer-error-msg').textContent = data.error || 'This offer is no longer available.';
+              document.getElementById('bk-forms-wrap').hidden = true;
+              return;
+            }
+            window._confirmedOffer = data.offer;
+            // Fetch live rate for whatever currency Duffel returned (usually GBP in sandbox)
+            await fetchFXRate(data.offer.total_currency);
+            renderSummary(data.offer);
+          })
+          .catch(() => {
+            document.getElementById('bk-summary-body').innerHTML =
+              '<p style="color:#9ca3af;font-size:.875rem;text-align:center;padding:16px 0;">Could not load flight details.</p>';
+          });
+      }
+
+      // ── Form submit ───────────────────────────────────────────────────────────
+      document.getElementById('bk-form').addEventListener('submit', async function (e) {
+        e.preventDefault();
+        hideFormError();
+
+        const passengers = collectPassengers();
+        const validationError = validatePassengers(passengers);
+        if (validationError) { showFormError(validationError); return; }
+
+        const offer = window._confirmedOffer;
+
+        // 1. Create Duffel order
+        showLoading('Creating your booking…');
+        let bookData;
+        try {
+          const bookRes = await fetch('/.netlify/functions/book', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ offerId, passengers }),
+          });
+          bookData = await bookRes.json();
+          if (!bookRes.ok) {
+            hideLoading();
+            showFormError(bookData.error || 'Booking failed. Please try again.');
+            return;
+          }
+        } catch {
+          hideLoading();
+          showFormError('Network error. Please check your connection and try again.');
+          return;
+        }
+
+        // 2. Save flight summary to sessionStorage before leaving the page
+        const ngn = toNGN(bookData.totalAmount, bookData.currency);
+        sessionStorage.setItem('bookingSummary', JSON.stringify({
+          bookingReference: bookData.bookingReference,
+          orderId:          bookData.orderId,
+          totalAmountNGN:   ngn,
+          totalAmount:      bookData.totalAmount,
+          currency:         bookData.currency,
+          passengerName:    passengers[0].firstName + ' ' + passengers[0].lastName,
+          email:            passengers[0].email,
+          origin:           sp.origin || '',
+          destination:      sp.destination || '',
+          departureDate:    sp.departureDate || '',
+          returnDate:       sp.returnDate    || '',
+          tripType:         sp.tripType      || 'oneway',
+          adults, children, infants,
+          airline: offer ? offer.slices[0].segments[0].marketing_carrier.name : '',
+          cabinClass: sp.cabinClass || 'economy',
+        }));
+
+        // 3. Initialize Paystack transaction
+        showLoading('Redirecting to payment…');
+        let payData;
+        try {
+          const payRes = await fetch('/.netlify/functions/pay', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              email:            passengers[0].email,
+              amount:           ngn,
+              currency:         'NGN',
+              orderId:          bookData.orderId,
+              bookingReference: bookData.bookingReference,
+              // included in Paystack metadata so the webhook can send confirmation email
+              passengerName:    passengers[0].firstName + ' ' + passengers[0].lastName,
+              origin:           sp.origin        || '',
+              destination:      sp.destination   || '',
+              departureDate:    sp.departureDate  || '',
+              returnDate:       sp.returnDate     || '',
+              tripType:         sp.tripType       || 'oneway',
+              adults:           adults.toString(),
+              children:         children.toString(),
+              infants:          infants.toString(),
+              airline:          offer ? offer.slices[0].segments[0].marketing_carrier.name : '',
+              cabinClass:       sp.cabinClass     || 'economy',
+              totalAmountNGN:   String(ngn),
+            }),
+          });
+          payData = await payRes.json();
+          if (!payRes.ok) {
+            hideLoading();
+            showFormError(payData.error || 'Payment setup failed. Please try again.');
+            return;
+          }
+        } catch {
+          hideLoading();
+          showFormError('Payment initialization failed. Please try again.');
+          return;
+        }
+
+        // 4. Redirect to Paystack
+        window.location.href = payData.authorizationUrl;
+      });
+
+      // ── Subscribe modal ───────────────────────────────────────────────────────
+      document.getElementById('subscribe-form').addEventListener('submit', function (e) {
+        e.preventDefault();
+      });
+    </script>
+
+  </body>
+</html>

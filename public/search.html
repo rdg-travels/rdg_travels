@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flight Results — RDG Travels</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/flight.css" />
+    <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
+    <link
+      href="https://db.onlinewebfonts.com/a/y7WeC3fQys9eM03ag2DoL0JVvA55P6RR32USY1mQbvDfS36RtGsca2IR2Oy4U3uy"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://kit.fontawesome.com/24f84abb34.js" crossorigin="anonymous"></script>
+    <style>
+      .sr-page {
+        background-color: #f9fafb;
+        min-height: 100vh;
+      }
+
+      /* ── Summary bar ── */
+      .sr-summary-bar {
+        background: #fff;
+        border-bottom: 1px solid #e5e7eb;
+        padding: 16px 112px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .sr-summary-left {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+
+      .sr-summary-route {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: #111827;
+      }
+
+      .sr-summary-meta {
+        display: flex;
+        gap: 16px;
+        color: #6b7280;
+        font-size: 0.8125rem;
+        flex-wrap: wrap;
+      }
+
+      .sr-summary-meta span::before {
+        content: "·";
+        margin-right: 16px;
+      }
+
+      .sr-summary-meta span:first-child::before {
+        content: "";
+        margin-right: 0;
+      }
+
+      .sr-modify-link {
+        color: #093ba8;
+        text-decoration: none;
+        font-size: 0.875rem;
+        font-weight: 500;
+        white-space: nowrap;
+      }
+
+      .sr-modify-link:hover {
+        text-decoration: underline;
+      }
+
+      /* ── Container ── */
+      .sr-container {
+        max-width: 920px;
+        margin: 28px auto;
+        padding: 0 24px;
+      }
+
+      .sr-count {
+        font-size: 0.8125rem;
+        color: #6b7280;
+        margin-bottom: 16px;
+      }
+
+      .sr-count strong {
+        color: #111827;
+      }
+
+      /* ── Result card ── */
+      .sr-card {
+        background: #fff;
+        border-radius: 12px;
+        border: 1px solid #e5e7eb;
+        margin-bottom: 16px;
+        overflow: hidden;
+        transition: box-shadow 0.2s;
+      }
+
+      .sr-card:hover {
+        box-shadow: 0 4px 20px rgba(17, 34, 17, 0.09);
+      }
+
+      .sr-card-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 16px 24px 12px;
+        border-bottom: 1px solid #f3f4f6;
+      }
+
+      .sr-airline {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .sr-airline-logo {
+        height: 22px;
+        width: auto;
+      }
+
+      .sr-airline-name {
+        font-weight: 600;
+        font-size: 0.9375rem;
+        color: #111827;
+      }
+
+      .sr-badge {
+        background: #eff6ff;
+        color: #093ba8;
+        font-size: 0.72rem;
+        padding: 2px 8px;
+        border-radius: 4px;
+        font-weight: 500;
+      }
+
+      /* ── Leg ── */
+      .sr-leg {
+        padding: 14px 24px;
+        border-bottom: 1px solid #f3f4f6;
+      }
+
+      .sr-leg-label {
+        font-size: 0.6875rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.6px;
+        color: #9ca3af;
+        margin-bottom: 10px;
+      }
+
+      .sr-leg-route {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+
+      .sr-endpoint {
+        display: flex;
+        flex-direction: column;
+        min-width: 90px;
+      }
+
+      .sr-endpoint.right {
+        text-align: right;
+        align-items: flex-end;
+      }
+
+      .sr-iata {
+        font-size: 1.625rem;
+        font-weight: 800;
+        color: #111827;
+        line-height: 1;
+        letter-spacing: -0.5px;
+      }
+
+      .sr-time {
+        font-size: 0.875rem;
+        color: #374151;
+        margin-top: 3px;
+        font-weight: 500;
+      }
+
+      .sr-airport {
+        font-size: 0.6875rem;
+        color: #9ca3af;
+        margin-top: 2px;
+        max-width: 120px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .sr-endpoint.right .sr-airport {
+        text-align: right;
+      }
+
+      .sr-midpoint {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+      }
+
+      .sr-duration {
+        font-size: 0.8125rem;
+        color: #6b7280;
+        font-weight: 500;
+      }
+
+      .sr-line {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        gap: 4px;
+      }
+
+      .sr-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        border: 2px solid #9ca3af;
+        flex-shrink: 0;
+      }
+
+      .sr-dash {
+        flex: 1;
+        height: 1px;
+        background: #d1d5db;
+      }
+
+      .sr-plane-icon {
+        color: #9ca3af;
+        font-size: 0.75rem;
+        transform: rotate(90deg);
+      }
+
+      .sr-stops {
+        font-size: 0.75rem;
+        color: #6b7280;
+      }
+
+      .sr-stops.direct {
+        color: #059669;
+        font-weight: 600;
+      }
+
+      /* ── Card footer ── */
+      .sr-card-footer {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 24px;
+        padding: 14px 24px;
+        background: #fafafa;
+      }
+
+      .sr-price {
+        display: flex;
+        align-items: baseline;
+        gap: 4px;
+      }
+
+      .sr-currency {
+        font-size: 0.875rem;
+        color: #6b7280;
+        font-weight: 500;
+      }
+
+      .sr-amount {
+        font-size: 1.5rem;
+        font-weight: 800;
+        color: #111827;
+        letter-spacing: -0.5px;
+      }
+
+      .sr-per-pax {
+        font-size: 0.72rem;
+        color: #9ca3af;
+      }
+
+      .sr-select-btn {
+        background: #093ba8;
+        color: #fff;
+        padding: 10px 22px;
+        border-radius: 6px;
+        text-decoration: none;
+        font-size: 0.875rem;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition: background 0.2s;
+        white-space: nowrap;
+      }
+
+      .sr-select-btn:hover {
+        background: #072e8a;
+      }
+
+      /* ── Skeleton loader ── */
+      .sr-skeleton {
+        display: none;
+      }
+
+      .sr-skeleton.visible {
+        display: block;
+      }
+
+      .sr-skel-card {
+        background: #fff;
+        border: 1px solid #e5e7eb;
+        border-radius: 12px;
+        padding: 20px 24px;
+        margin-bottom: 16px;
+      }
+
+      .sr-skel-line {
+        height: 14px;
+        background: linear-gradient(90deg, #f3f4f6 25%, #e9ebee 50%, #f3f4f6 75%);
+        background-size: 400% 100%;
+        animation: sr-shimmer 1.3s infinite;
+        border-radius: 4px;
+        margin-bottom: 12px;
+      }
+
+      .sr-skel-line.w60 { width: 60%; }
+      .sr-skel-line.w40 { width: 40%; }
+      .sr-skel-line.w25 { width: 25%; margin-left: auto; }
+
+      .sr-skel-route {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin: 16px 0 12px;
+      }
+
+      .sr-skel-block {
+        height: 48px;
+        width: 80px;
+        background: linear-gradient(90deg, #f3f4f6 25%, #e9ebee 50%, #f3f4f6 75%);
+        background-size: 400% 100%;
+        animation: sr-shimmer 1.3s infinite;
+        border-radius: 6px;
+        flex-shrink: 0;
+      }
+
+      .sr-skel-dash {
+        flex: 1;
+        height: 6px;
+        background: linear-gradient(90deg, #f3f4f6 25%, #e9ebee 50%, #f3f4f6 75%);
+        background-size: 400% 100%;
+        animation: sr-shimmer 1.3s infinite;
+        border-radius: 3px;
+      }
+
+      @keyframes sr-shimmer {
+        0%   { background-position: 400% 0; }
+        100% { background-position: -400% 0; }
+      }
+
+      /* ── Error / empty states ── */
+      .sr-error,
+      .sr-empty {
+        display: none;
+        text-align: center;
+        padding: 72px 24px;
+      }
+
+      .sr-error.visible,
+      .sr-empty.visible {
+        display: block;
+      }
+
+      .sr-state-icon {
+        font-size: 3rem;
+        color: #d1d5db;
+        margin-bottom: 16px;
+      }
+
+      .sr-error h3,
+      .sr-empty h3 {
+        font-size: 1.125rem;
+        color: #374151;
+        margin-bottom: 8px;
+      }
+
+      .sr-error p,
+      .sr-empty p {
+        color: #9ca3af;
+        font-size: 0.875rem;
+      }
+
+      .sr-retry-btn {
+        display: inline-block;
+        margin-top: 20px;
+        background: #093ba8;
+        color: #fff;
+        padding: 10px 24px;
+        border-radius: 6px;
+        text-decoration: none;
+        font-size: 0.875rem;
+        font-weight: 600;
+      }
+
+      /* ── Responsive ── */
+      @media (max-width: 768px) {
+        .sr-summary-bar {
+          padding: 14px 20px;
+        }
+
+        .sr-container {
+          margin: 16px auto;
+          padding: 0 16px;
+        }
+
+        .sr-card-header {
+          padding: 14px 16px 10px;
+        }
+
+        .sr-leg {
+          padding: 12px 16px;
+        }
+
+        .sr-leg-route {
+          gap: 8px;
+        }
+
+        .sr-endpoint {
+          min-width: 68px;
+        }
+
+        .sr-iata {
+          font-size: 1.25rem;
+        }
+
+        .sr-airport {
+          display: none;
+        }
+
+        .sr-card-footer {
+          padding: 12px 16px;
+          gap: 12px;
+        }
+
+        .sr-amount {
+          font-size: 1.25rem;
+        }
+
+        .sr-select-btn {
+          padding: 9px 16px;
+          font-size: 0.8125rem;
+        }
+      }
+    </style>
+  </head>
+
+  <body class="sr-page">
+
+    <!-- ── Nav (matches flight.html) ── -->
+    <header class="nav-bar">
+      <a href="index.html"><img src="images/RDG Logo (1) 2.svg" alt="RDG Logo" /></a>
+      <button class="menu-icon">&#9776;</button>
+      <nav class="nav">
+        <ul class="nav-links">
+          <li><a href="flight.html" class="nav-link active">book flight</a></li>
+          <li><a href="study-abroad.html" class="nav-link">study abroad</a></li>
+          <li><a href="hotel-service.html" class="nav-link">reserve hotel</a></li>
+          <li><a href="destinations.html" class="nav-link">destinations</a></li>
+          <li class="last-nav-link nav-link">
+            <a href="https://wa.me/+2348034099082" target="_blank">
+              <i class="fa-brands fa-whatsapp"></i> +2348034099082
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- ── Search summary bar ── -->
+    <div class="sr-summary-bar">
+      <div class="sr-summary-left">
+        <div class="sr-summary-route" id="sr-route-label">Searching…</div>
+        <div class="sr-summary-meta" id="sr-meta-label"></div>
+      </div>
+      <a href="flight.html" class="sr-modify-link" id="sr-modify-link">
+        <i class="fas fa-sliders-h"></i>&nbsp; Modify search
+      </a>
+    </div>
+
+    <!-- ── Main content ── -->
+    <div class="sr-container">
+
+      <!-- Offer count -->
+      <p class="sr-count" id="sr-count" style="display:none"></p>
+
+      <!-- Skeleton (shown while loading) -->
+      <div class="sr-skeleton visible" id="sr-skeleton">
+        <div class="sr-skel-card">
+          <div class="sr-skel-line w60"></div>
+          <div class="sr-skel-route">
+            <div class="sr-skel-block"></div>
+            <div class="sr-skel-dash"></div>
+            <div class="sr-skel-block"></div>
+          </div>
+          <div class="sr-skel-line w25"></div>
+        </div>
+        <div class="sr-skel-card">
+          <div class="sr-skel-line w40"></div>
+          <div class="sr-skel-route">
+            <div class="sr-skel-block"></div>
+            <div class="sr-skel-dash"></div>
+            <div class="sr-skel-block"></div>
+          </div>
+          <div class="sr-skel-line w25"></div>
+        </div>
+        <div class="sr-skel-card">
+          <div class="sr-skel-line w60"></div>
+          <div class="sr-skel-route">
+            <div class="sr-skel-block"></div>
+            <div class="sr-skel-dash"></div>
+            <div class="sr-skel-block"></div>
+          </div>
+          <div class="sr-skel-line w25"></div>
+        </div>
+      </div>
+
+      <!-- Error state -->
+      <div class="sr-error" id="sr-error">
+        <div class="sr-state-icon"><i class="fas fa-exclamation-circle"></i></div>
+        <h3>Search failed</h3>
+        <p id="sr-error-msg">We couldn't complete your search. Please try again.</p>
+        <a href="flight.html" class="sr-retry-btn">Try again</a>
+      </div>
+
+      <!-- Empty state -->
+      <div class="sr-empty" id="sr-empty">
+        <div class="sr-state-icon"><i class="fas fa-plane-slash"></i></div>
+        <h3>No flights found</h3>
+        <p>Try adjusting your dates or route.</p>
+        <a href="flight.html" class="sr-retry-btn">Modify search</a>
+      </div>
+
+      <!-- Results list -->
+      <div id="sr-results"></div>
+
+    </div>
+
+    <!-- ── Footer (matches flight.html) ── -->
+    <footer class="footer">
+      <div class="footer-section footer-first-section">
+        <div class="footer-container">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="about-us.html">About</a></li>
+            <li><a href="contact-us.html">Contact Us</a></li>
+            <li><a href="terms-and-condition.html">Terms and Conditions</a></li>
+            <li><a href="privacy-policy.html">Privacy Policy</a></li>
+          </ul>
+        </div>
+        <div class="footer-container">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="flight.html">Flight Booking</a></li>
+            <li><a href="study-abroad.html">Study Abroad Program</a></li>
+            <li><a href="hotel-service.html">Hotel Reservations</a></li>
+          </ul>
+        </div>
+        <div class="footer-container">
+          <h4>Follow Us</h4>
+          <ul class="social-icons">
+            <li><a href="https://web.facebook.com/profile.php?id=100087906160728" target="_blank"><i class="fab fa-facebook"></i></a></li>
+            <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+            <li><a href="https://www.instagram.com/rdgtravels/" target="_blank"><i class="fab fa-instagram"></i></a></li>
+            <li><a href="https://www.linkedin.com/in/estherayanleye/" target="_blank"><i class="fab fa-linkedin"></i></a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-section subscribe-section">
+        <div class="footer-container">
+          <div>
+            <h4>SUBSCRIBE TO OUR NEWSLETTER</h4>
+            <p>A monthly digest of the latest news, articles, and resources.</p>
+          </div>
+          <form id="subscribe-form">
+            <input type="email" name="email" placeholder="Email address" required />
+            <button type="submit">Subscribe</button>
+          </form>
+        </div>
+      </div>
+      <div class="footer-section copyright-section">
+        <div class="footer-container">
+          <a href="index.html"><img src="images/RDG Logo (1) 2.svg" alt="RDG Logo" /></a>
+          <p>© <span id="copyright-year"></span> RDG Consults. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- ── Subscribe modal ── -->
+    <div id="subscribe-modal" class="modal">
+      <div class="modal-content">
+        <span class="close" id="closeButton">&times;</span>
+        <div class="modal-icon">
+          <div class="check-mark">
+            <div class="ellipse ellipse1"></div>
+            <div class="ellipse ellipse2"></div>
+            <div class="ellipse ellipse3"></div>
+            <img src="images/search 4.png" alt="check icon" />
+          </div>
+        </div>
+        <div class="modal-text">
+          <h2>Your Subscription was successful</h2>
+          <p>Thanks for subscribing to our newsletter. We will share with you our news in your registered email address.</p>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // ── Helpers ──────────────────────────────────────────────────────────────
+
+      function parseDuration(iso) {
+        const m = iso.match(/PT(?:(\d+)H)?(?:(\d+)M)?/);
+        if (!m) return iso;
+        return [(m[1] ? m[1] + 'h' : ''), (m[2] ? m[2] + 'm' : '')].filter(Boolean).join(' ');
+      }
+
+      function formatTime(dt) {
+        // Parse "2026-08-01T00:00:00" without timezone conversion
+        const [, time] = dt.split('T');
+        const [h, min] = time.split(':').map(Number);
+        const ampm = h >= 12 ? 'PM' : 'AM';
+        const h12 = h % 12 || 12;
+        return h12 + ':' + String(min).padStart(2, '0') + ' ' + ampm;
+      }
+
+      function formatDate(dt) {
+        const [y, mo, d] = dt.split('T')[0].split('-').map(Number);
+        const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+        return d + ' ' + months[mo - 1] + ' ' + y;
+      }
+
+      function countStops(slice) {
+        const techStops = slice.segments.reduce((n, s) => n + s.stops.length, 0);
+        return (slice.segments.length - 1) + techStops;
+      }
+
+      function stopLabel(n) {
+        if (n === 0) return '<span class="sr-stops direct">Direct</span>';
+        return '<span class="sr-stops">' + n + (n === 1 ? ' stop' : ' stops') + '</span>';
+      }
+
+      function legHTML(slice, label) {
+        const first = slice.segments[0];
+        const last  = slice.segments[slice.segments.length - 1];
+        const stops = countStops(slice);
+        return `
+          <div class="sr-leg">
+            <div class="sr-leg-label">${label}</div>
+            <div class="sr-leg-route">
+              <div class="sr-endpoint">
+                <span class="sr-iata">${first.origin.iata_code}</span>
+                <span class="sr-time">${formatTime(first.departing_at)}</span>
+                <span class="sr-airport">${first.origin.name}</span>
+              </div>
+              <div class="sr-midpoint">
+                <span class="sr-duration">${parseDuration(slice.duration)}</span>
+                <div class="sr-line">
+                  <span class="sr-dot"></span>
+                  <span class="sr-dash"></span>
+                  <i class="fas fa-plane sr-plane-icon"></i>
+                  <span class="sr-dash"></span>
+                  <span class="sr-dot"></span>
+                </div>
+                ${stopLabel(stops)}
+              </div>
+              <div class="sr-endpoint right">
+                <span class="sr-iata">${last.destination.iata_code}</span>
+                <span class="sr-time">${formatTime(last.arriving_at)}</span>
+                <span class="sr-airport">${last.destination.name}</span>
+              </div>
+            </div>
+          </div>`;
+      }
+
+      function renderCard(offer, sp) {
+        const carrier = offer.slices[0].segments[0].marketing_carrier;
+        const isReturn = offer.slices.length > 1;
+
+        const bookingParams = new URLSearchParams({
+          offerId:       offer.id,
+          origin:        sp.origin        || '',
+          destination:   sp.destination   || '',
+          departureDate: sp.departureDate  || '',
+          adults:        sp.adults         || 1,
+          children:      sp.children       || 0,
+          infants:       sp.infants        || 0,
+          cabinClass:    sp.cabinClass     || 'economy',
+          tripType:      sp.tripType       || 'oneway',
+        });
+        if (sp.returnDate) bookingParams.set('returnDate', sp.returnDate);
+
+        const outboundLabel = isReturn ? 'Outbound' : 'Flight';
+        const returnLeg = isReturn ? legHTML(offer.slices[1], 'Return') : '';
+
+        const price = Number(offer.total_amount).toLocaleString('en-US', {
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2,
+        });
+
+        return `
+          <div class="sr-card">
+            <div class="sr-card-header">
+              <div class="sr-airline">
+                <img class="sr-airline-logo"
+                     src="${carrier.logo_symbol_url}"
+                     alt="${carrier.name}"
+                     onerror="this.style.display='none'">
+                <span class="sr-airline-name">${carrier.name}</span>
+              </div>
+              <span class="sr-badge">${offer.slices[0].fare_brand_name || 'Economy'}</span>
+            </div>
+            ${legHTML(offer.slices[0], outboundLabel)}
+            ${returnLeg}
+            <div class="sr-card-footer">
+              <div class="sr-price">
+                <span class="sr-currency">${offer.total_currency}</span>
+                <span class="sr-amount">${price}</span>
+                <span class="sr-per-pax">/ person</span>
+              </div>
+              <a href="booking.html?${bookingParams.toString()}" class="sr-select-btn">
+                Select flight <i class="fas fa-arrow-right"></i>
+              </a>
+            </div>
+          </div>`;
+      }
+
+      // ── Page init ─────────────────────────────────────────────────────────────
+
+      document.getElementById('copyright-year').textContent = new Date().getFullYear();
+
+      const sp = Object.fromEntries(new URLSearchParams(location.search));
+
+      // Build summary bar
+      const routeLabel = document.getElementById('sr-route-label');
+      const metaLabel  = document.getElementById('sr-meta-label');
+
+      if (sp.origin && sp.destination) {
+        routeLabel.textContent = sp.origin + ' → ' + sp.destination;
+      }
+
+      const metaParts = [];
+      if (sp.departureDate) {
+        const dates = formatDate(sp.departureDate + 'T00:00:00');
+        metaParts.push(sp.returnDate ? dates + ' – ' + formatDate(sp.returnDate + 'T00:00:00') : dates);
+      }
+      const adults   = parseInt(sp.adults   || 1);
+      const children = parseInt(sp.children || 0);
+      const infants  = parseInt(sp.infants  || 0);
+      const totalPax = adults + children + infants;
+      metaParts.push(totalPax + ' passenger' + (totalPax > 1 ? 's' : ''));
+      if (sp.cabinClass) metaParts.push(sp.cabinClass.charAt(0).toUpperCase() + sp.cabinClass.slice(1));
+      if (sp.tripType)   metaParts.push(sp.tripType === 'return' ? 'Return' : 'One way');
+
+      metaLabel.innerHTML = metaParts.map((t, i) => '<span>' + t + '</span>').join('');
+
+      // Fetch results
+      async function search() {
+        try {
+          const res = await fetch('/.netlify/functions/search', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              origin:        sp.origin        || '',
+              destination:   sp.destination   || '',
+              departureDate: sp.departureDate  || '',
+              returnDate:    sp.returnDate     || undefined,
+              adults:        parseInt(sp.adults   || 1),
+              children:      parseInt(sp.children || 0),
+              infants:       parseInt(sp.infants  || 0),
+              cabinClass:    sp.cabinClass     || 'economy',
+              tripType:      sp.tripType       || 'oneway',
+            }),
+          });
+
+          const data = await res.json();
+
+          document.getElementById('sr-skeleton').classList.remove('visible');
+
+          if (!res.ok) {
+            document.getElementById('sr-error-msg').textContent = data.error || 'Search failed. Please try again.';
+            document.getElementById('sr-error').classList.add('visible');
+            return;
+          }
+
+          const offers = data.offers || [];
+
+          if (offers.length === 0) {
+            document.getElementById('sr-empty').classList.add('visible');
+            return;
+          }
+
+          const countEl = document.getElementById('sr-count');
+          countEl.innerHTML = '<strong>' + offers.length + '</strong> flight' + (offers.length > 1 ? 's' : '') + ' found';
+          countEl.style.display = 'block';
+
+          document.getElementById('sr-results').innerHTML = offers.map(o => renderCard(o, sp)).join('');
+
+        } catch (err) {
+          document.getElementById('sr-skeleton').classList.remove('visible');
+          document.getElementById('sr-error').classList.add('visible');
+        }
+      }
+
+      search();
+
+      // Subscribe form (mirrors flight.html behaviour)
+      document.getElementById('subscribe-form').addEventListener('submit', function (e) {
+        e.preventDefault();
+        document.getElementById('subscribe-modal').style.display = 'flex';
+      });
+
+      const closeBtn = document.getElementById('closeButton');
+      if (closeBtn) {
+        closeBtn.addEventListener('click', function () {
+          document.getElementById('subscribe-modal').style.display = 'none';
+        });
+      }
+
+      window.addEventListener('click', function (e) {
+        const modal = document.getElementById('subscribe-modal');
+        if (e.target === modal) modal.style.display = 'none';
+      });
+    </script>
+
+  </body>
+</html>

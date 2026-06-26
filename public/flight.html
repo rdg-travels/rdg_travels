@@ -5,128 +5,618 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Flight Booking</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/study-abroad.css">
-    <link rel="stylesheet" href="./css/hotel-service.css">
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/study-abroad.css" />
+    <link rel="stylesheet" href="./css/hotel-service.css" />
     <link rel="stylesheet" href="./css/flight.css" />
-    <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
     <link
       href="https://db.onlinewebfonts.com/a/y7WeC3fQys9eM03ag2DoL0JVvA55P6RR32USY1mQbvDfS36RtGsca2IR2Oy4U3uy"
       rel="stylesheet"
       type="text/css"
     />
-    <script
-      src="https://kit.fontawesome.com/24f84abb34.js"
-      crossorigin="anonymous"
-    ></script>
-  </head>
-  <body>
-    <!-- header section -->
+    <script src="https://kit.fontawesome.com/24f84abb34.js" crossorigin="anonymous"></script>
 
+    <style>
+      /* ── Booking widget ────────────────────────────────────────────────── */
+
+      .fw-tabs {
+        display: flex;
+        gap: 4px;
+        margin-bottom: 20px;
+      }
+
+      .fw-tab {
+        padding: 8px 20px;
+        border: 1px solid #d1d5db;
+        border-radius: 6px;
+        background: transparent;
+        color: #6b7280;
+        font-size: 0.875rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.15s;
+      }
+
+      .fw-tab:hover {
+        border-color: #093ba8;
+        color: #093ba8;
+      }
+
+      .fw-tab--active {
+        background: #093ba8;
+        border-color: #093ba8;
+        color: #fff;
+      }
+
+      /* Rows */
+      .fw-row-1,
+      .fw-row-2 {
+        display: flex;
+        align-items: flex-end;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+
+      .fw-row-1 {
+        margin-bottom: 12px;
+      }
+
+      /* Individual field */
+      .fw-field {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        min-width: 160px;
+        position: relative;
+      }
+
+      .fw-field--grow2 { flex: 2; }
+
+      .fw-label {
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: #374151;
+        margin-bottom: 6px;
+        text-transform: uppercase;
+        letter-spacing: 0.4px;
+      }
+
+      .fw-input-wrap {
+        position: relative;
+      }
+
+      .fw-icon {
+        position: absolute;
+        left: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #9ca3af;
+        font-size: 0.875rem;
+        pointer-events: none;
+        z-index: 1;
+      }
+
+      .fw-input,
+      .fw-pax-btn {
+        width: 100%;
+        height: 48px;
+        padding: 0 12px 0 36px;
+        border: 1.5px solid #d1d5db;
+        border-radius: 8px;
+        font-size: 0.9375rem;
+        color: #111827;
+        background: #fff;
+        appearance: none;
+        transition: border-color 0.15s;
+        cursor: text;
+      }
+
+      .fw-input:focus,
+      .fw-pax-btn:focus {
+        outline: none;
+        border-color: #093ba8;
+        box-shadow: 0 0 0 3px rgba(9, 59, 168, 0.1);
+      }
+
+      .fw-input.fw-error-field {
+        border-color: #dc2626;
+      }
+
+      .fw-pax-btn {
+        text-align: left;
+        cursor: pointer;
+        font-size: 0.875rem;
+        color: #374151;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      /* Swap button */
+      .fw-swap-btn {
+        width: 40px;
+        height: 40px;
+        border: 1.5px solid #d1d5db;
+        border-radius: 50%;
+        background: #fff;
+        color: #6b7280;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        margin-bottom: 2px;
+        transition: all 0.15s;
+      }
+
+      .fw-swap-btn:hover {
+        background: #093ba8;
+        border-color: #093ba8;
+        color: #fff;
+      }
+
+      /* Airport dropdown */
+      .fw-dropdown {
+        position: absolute;
+        top: calc(100% + 4px);
+        left: 0;
+        right: 0;
+        background: #fff;
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+        z-index: 100;
+        max-height: 240px;
+        overflow-y: auto;
+        list-style: none;
+        display: none;
+      }
+
+      .fw-dropdown.open {
+        display: block;
+      }
+
+      .fw-dropdown li {
+        padding: 10px 14px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        border-bottom: 1px solid #f9fafb;
+      }
+
+      .fw-dropdown li:last-child {
+        border-bottom: none;
+      }
+
+      .fw-dropdown li:hover,
+      .fw-dropdown li.fw-highlighted {
+        background: #eff6ff;
+      }
+
+      .fw-dd-code {
+        font-weight: 700;
+        font-size: 0.875rem;
+        color: #093ba8;
+        min-width: 32px;
+      }
+
+      .fw-dd-info {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .fw-dd-city {
+        font-size: 0.875rem;
+        color: #111827;
+        font-weight: 500;
+      }
+
+      .fw-dd-name {
+        font-size: 0.75rem;
+        color: #9ca3af;
+      }
+
+      /* Passenger panel */
+      .fw-pax-wrap {
+        position: relative;
+      }
+
+      .fw-pax-panel {
+        position: absolute;
+        top: calc(100% + 6px);
+        left: 0;
+        right: 0;
+        background: #fff;
+        border: 1px solid #e5e7eb;
+        border-radius: 10px;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+        padding: 16px;
+        z-index: 100;
+        min-width: 260px;
+      }
+
+      .fw-pax-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 0;
+        border-bottom: 1px solid #f3f4f6;
+        gap: 12px;
+      }
+
+      .fw-pax-row:last-of-type {
+        border-bottom: none;
+      }
+
+      .fw-pax-info strong {
+        display: block;
+        font-size: 0.875rem;
+        color: #111827;
+      }
+
+      .fw-pax-info span {
+        font-size: 0.75rem;
+        color: #9ca3af;
+      }
+
+      .fw-counter {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .fw-counter-btn {
+        width: 30px;
+        height: 30px;
+        border: 1.5px solid #d1d5db;
+        border-radius: 50%;
+        background: #fff;
+        color: #374151;
+        font-size: 1.125rem;
+        line-height: 1;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.15s;
+      }
+
+      .fw-counter-btn:hover:not(:disabled) {
+        border-color: #093ba8;
+        color: #093ba8;
+      }
+
+      .fw-counter-btn:disabled {
+        opacity: 0.35;
+        cursor: default;
+      }
+
+      .fw-counter-val {
+        font-size: 0.9375rem;
+        font-weight: 600;
+        color: #111827;
+        min-width: 16px;
+        text-align: center;
+      }
+
+      .fw-cabin-label {
+        font-size: 0.875rem;
+        color: #111827;
+        font-weight: 500;
+      }
+
+      .fw-cabin-select {
+        padding: 6px 10px;
+        border: 1.5px solid #d1d5db;
+        border-radius: 6px;
+        font-size: 0.875rem;
+        color: #111827;
+        background: #fff;
+        cursor: pointer;
+      }
+
+      .fw-pax-done-btn {
+        display: block;
+        width: 100%;
+        margin-top: 14px;
+        padding: 9px;
+        background: #093ba8;
+        color: #fff;
+        border: none;
+        border-radius: 7px;
+        font-size: 0.875rem;
+        font-weight: 600;
+        cursor: pointer;
+      }
+
+      /* Validation error */
+      .fw-error-msg {
+        margin-top: 10px;
+        padding: 10px 14px;
+        background: #fef2f2;
+        border: 1px solid #fecaca;
+        border-radius: 6px;
+        color: #dc2626;
+        font-size: 0.875rem;
+        display: none;
+      }
+
+      .fw-error-msg.visible {
+        display: block;
+      }
+
+      /* Search button */
+      .fw-submit-row {
+        margin-top: 16px;
+        display: flex;
+        justify-content: flex-end;
+      }
+
+      .fw-submit-btn {
+        height: 48px;
+        padding: 0 32px;
+        background: #093ba8;
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        font-size: 0.9375rem;
+        font-weight: 600;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition: background 0.15s;
+      }
+
+      .fw-submit-btn:hover {
+        background: #072e8a;
+      }
+
+      /* Multi-city placeholder */
+      .fw-multicity-msg {
+        text-align: center;
+        padding: 32px 16px;
+        color: #6b7280;
+      }
+
+      .fw-multicity-icon {
+        font-size: 2rem;
+        color: #d1d5db;
+        margin-bottom: 12px;
+      }
+
+      .fw-multicity-msg p {
+        margin-bottom: 12px;
+        font-size: 0.9375rem;
+      }
+
+      .fw-multicity-link {
+        display: inline-block;
+        padding: 10px 24px;
+        background: #093ba8;
+        color: #fff;
+        border-radius: 7px;
+        font-size: 0.875rem;
+        font-weight: 600;
+        text-decoration: none;
+      }
+
+      /* ── Hero section adjustment ─────────────────────────────────────── */
+      /* The original flight.css sets margin-bottom:400px on .hero-section.
+         The new widget is shorter (no name/email/phone fields) so we reduce it. */
+      .hero-section {
+        margin-bottom: 240px !important;
+        padding-top: 200px !important;
+      }
+
+      /* ── Responsive ──────────────────────────────────────────────────── */
+      @media (max-width: 900px) {
+        .fw-row-1,
+        .fw-row-2 {
+          flex-direction: column;
+          align-items: stretch;
+          gap: 10px;
+        }
+
+        .fw-swap-btn {
+          align-self: center;
+          transform: rotate(90deg);
+        }
+
+        .fw-field {
+          min-width: unset;
+          width: 100%;
+        }
+
+        .fw-pax-panel {
+          right: 0;
+          left: auto;
+          min-width: 280px;
+        }
+
+        .fw-submit-btn {
+          width: 100%;
+          justify-content: center;
+        }
+
+        .hero-section {
+          margin-bottom: 680px !important;
+          padding-top: 160px !important;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <!-- ── Nav ─────────────────────────────────────────────────────────────── -->
     <header class="nav-bar">
-        <a href="index.html"><img src="images/RDG Logo (1) 2.svg" alt="RDG Logo"></a>
-        <button class="menu-icon">&#9776;</button>
-        <nav class="nav">
-            <ul class="nav-links">
-                <li><a href="flight.html" class="nav-link active">book flight</a></li>
-                <li><a href="study-abroad.html" class="nav-link">study abroad</a></li>
-                <li><a href="hotel-service.html" class="nav-link">reserve hotel</a></li>
-                <li><a href="destinations.html" class="nav-link">destinations</a></li>
-                <li class="last-nav-link nav-link"><a href="https://wa.me/+2348034099082" target="_blank"><i class="fa-brands fa-whatsapp"></i> +2348034099082</a></li>
-            </ul>
-        </nav>
+      <a href="index.html"><img src="images/RDG Logo (1) 2.svg" alt="RDG Logo" /></a>
+      <button class="menu-icon">&#9776;</button>
+      <nav class="nav">
+        <ul class="nav-links">
+          <li><a href="flight.html" class="nav-link active">book flight</a></li>
+          <li><a href="study-abroad.html" class="nav-link">study abroad</a></li>
+          <li><a href="hotel-service.html" class="nav-link">reserve hotel</a></li>
+          <li><a href="destinations.html" class="nav-link">destinations</a></li>
+          <li class="last-nav-link nav-link">
+            <a href="https://wa.me/+2348034099082" target="_blank">
+              <i class="fa-brands fa-whatsapp"></i> +2348034099082
+            </a>
+          </li>
+        </ul>
+      </nav>
     </header>
 
-    <!-- hero section -->
-
+    <!-- ── Hero ─────────────────────────────────────────────────────────────── -->
     <section class="hero-section">
       <h1 id="welcome-text">flight bookings</h1>
 
-      <!-- Book Flight Form -->
-<div id="book-flight" class="book-flight-section">
-  <form class="flight-form" method="POST" id="flight-form1" action="/booking-flight">
-    <!-- Flight Details -->
-    <div class="flight-details">
-      <div class="flight-details-heading">
-        <div class="flight-icon">
-          <img src="images/mdi_flight.svg" alt="flight icon" />
-        </div>
-        <div class="text">
-          <p>Where are you flying?</p>
-        </div>
-      </div>
+      <div id="book-flight" class="book-flight-section">
 
-      <div class="trip-type-group">
-        <label for="trip-type">Trip Type</label>
-        <div class="trip-type-options">
-          <label>
-            <input type="radio" name="tripType" value="oneWay" checked onchange="toggleReturnDate(event)"> One way
-          </label>
-          <label>
-            <input type="radio" name="tripType" value="return" onchange="toggleReturnDate(event)"> Return
-          </label>
-        </div>
-      </div>
-
-      <!-- Input fields for Flying From, Flying To, Leaving On, Returning On -->
-      <div class="flight-info">
-        <div class="form-group flex-group top-input">
-          <label for="flyingFrom">Flying From</label>
-          <input type="text" id="flyingFrom1" name="flyingFrom" placeholder="Lagos, Nigeria" pattern="^[a-zA-Z\s,]+(?:\s\([a-zA-Z\s,]+\))?$" title="Please enter the departure city and country" required />
+        <!-- Trip type tabs -->
+        <div class="fw-tabs" role="tablist">
+          <button type="button" class="fw-tab fw-tab--active" data-trip="oneway">One Way</button>
+          <button type="button" class="fw-tab" data-trip="return">Return</button>
+          <button type="button" class="fw-tab" data-trip="multicity">Multi-city</button>
         </div>
 
-        <div class="form-group flex-group top-input">
-          <label for="flyingTo">Flying To</label>
-          <input type="text" id="flyingTo1" name="flyingTo" placeholder="London, England" pattern="^[a-zA-Z\s,]+(?:\s\([a-zA-Z\s,]+\))?$" title="Please enter the destination city and country" required />
-        </div>
+        <!-- Main search form -->
+        <form id="fw-form" novalidate>
 
-        <div class="form-group flex-group top-input">
-          <label for="leavingOn">Leaving On</label>
-          <input type="date" id="leavingOn1" name="leavingOn" required />
-        </div>
+          <!-- Row 1: Origin ⇄ Destination -->
+          <div class="fw-row-1">
 
-        <div class="form-group flex-group top-input" id="returningOnGroup">
-          <label for="returningOn">Returning On</label>
-          <input type="date" id="returningOn1" name="returningOn" />
-          <div id="returningOnError" class="error-message" style="display: none">
-            Returning date must be after leaving date
+            <div class="fw-field fw-field--grow2">
+              <label class="fw-label" for="fw-origin-text">Flying From</label>
+              <div class="fw-input-wrap">
+                <i class="fas fa-plane-departure fw-icon"></i>
+                <input class="fw-input" id="fw-origin-text" type="text"
+                       placeholder="City or airport" autocomplete="off" />
+                <input type="hidden" id="fw-origin-code" />
+                <ul class="fw-dropdown" id="fw-origin-list" role="listbox"
+                    aria-label="Origin airport suggestions"></ul>
+              </div>
+            </div>
+
+            <button type="button" class="fw-swap-btn" id="fw-swap" aria-label="Swap airports">
+              <i class="fas fa-exchange-alt"></i>
+            </button>
+
+            <div class="fw-field fw-field--grow2">
+              <label class="fw-label" for="fw-dest-text">Flying To</label>
+              <div class="fw-input-wrap">
+                <i class="fas fa-plane-arrival fw-icon"></i>
+                <input class="fw-input" id="fw-dest-text" type="text"
+                       placeholder="City or airport" autocomplete="off" />
+                <input type="hidden" id="fw-dest-code" />
+                <ul class="fw-dropdown" id="fw-dest-list" role="listbox"
+                    aria-label="Destination airport suggestions"></ul>
+              </div>
+            </div>
+
           </div>
-        </div>
 
-        <div class="form-group flex-group">
-          <label for="fullName">Full Name</label>
-          <input type="text" id="fullName1" name="fullName" placeholder="Chinwe Segun" required />
-        </div>
+          <!-- Row 2: Dates + Passengers + Search -->
+          <div class="fw-row-2">
 
-        <div class="form-group flex-group">
-          <label for="email">Email Address</label>
-          <input type="email" id="email1" name="email" placeholder="chinwesegun@mail.com" title="Please enter a valid email address" required />
-        </div>
+            <div class="fw-field">
+              <label class="fw-label" for="fw-depart">Departure</label>
+              <div class="fw-input-wrap">
+                <i class="fas fa-calendar-alt fw-icon"></i>
+                <input class="fw-input" id="fw-depart" type="date" />
+              </div>
+            </div>
 
-        <div class="form-group flex-group">
-          <label for="phone">Phone Number</label>
-          <input type="tel" id="phone1" name="phone" pattern="[+]{1}[0-9 ]{1,}" placeholder="+234 566 566 7789" required oninput="formatPhoneNumber(this)" />
-        </div>
+            <div class="fw-field" id="fw-return-field">
+              <label class="fw-label" for="fw-return">Return</label>
+              <div class="fw-input-wrap">
+                <i class="fas fa-calendar-alt fw-icon"></i>
+                <input class="fw-input" id="fw-return" type="date" />
+              </div>
+            </div>
 
-        <div class="form-group flex-group guest">
-          <label for="passengers">No of Passengers</label>
-          <div class="input-with-icon">
-            <input type="number" id="passengers1" name="passengers" min="1" placeholder="2" required />
+            <div class="fw-field fw-pax-wrap">
+              <label class="fw-label">Passengers &amp; Class</label>
+              <div class="fw-input-wrap">
+                <i class="fas fa-users fw-icon"></i>
+                <button type="button" class="fw-pax-btn" id="fw-pax-btn"
+                        aria-haspopup="true" aria-expanded="false">
+                  1 Adult · Economy
+                </button>
+              </div>
+              <div class="fw-pax-panel" id="fw-pax-panel" hidden>
+                <div class="fw-pax-row">
+                  <div class="fw-pax-info">
+                    <strong>Adults</strong>
+                    <span>12+ years</span>
+                  </div>
+                  <div class="fw-counter">
+                    <button type="button" class="fw-counter-btn" id="fw-adults-dec" disabled>−</button>
+                    <span class="fw-counter-val" id="fw-adults-val">1</span>
+                    <button type="button" class="fw-counter-btn" id="fw-adults-inc">+</button>
+                  </div>
+                </div>
+                <div class="fw-pax-row">
+                  <div class="fw-pax-info">
+                    <strong>Children</strong>
+                    <span>2–11 years</span>
+                  </div>
+                  <div class="fw-counter">
+                    <button type="button" class="fw-counter-btn" id="fw-children-dec" disabled>−</button>
+                    <span class="fw-counter-val" id="fw-children-val">0</span>
+                    <button type="button" class="fw-counter-btn" id="fw-children-inc">+</button>
+                  </div>
+                </div>
+                <div class="fw-pax-row">
+                  <div class="fw-pax-info">
+                    <strong>Infants</strong>
+                    <span>Under 2 years</span>
+                  </div>
+                  <div class="fw-counter">
+                    <button type="button" class="fw-counter-btn" id="fw-infants-dec" disabled>−</button>
+                    <span class="fw-counter-val" id="fw-infants-val">0</span>
+                    <button type="button" class="fw-counter-btn" id="fw-infants-inc">+</button>
+                  </div>
+                </div>
+                <div class="fw-pax-row">
+                  <label class="fw-cabin-label" for="fw-cabin">Cabin class</label>
+                  <select class="fw-cabin-select" id="fw-cabin">
+                    <option value="economy">Economy</option>
+                    <option value="premium_economy">Premium Economy</option>
+                    <option value="business">Business</option>
+                    <option value="first">First</option>
+                  </select>
+                </div>
+                <button type="button" class="fw-pax-done-btn" id="fw-pax-done">Done</button>
+              </div>
+            </div>
+
+            <div style="display:flex;align-items:flex-end;flex-shrink:0;">
+              <button type="submit" class="fw-submit-btn">
+                <i class="fas fa-search"></i> Search Flights
+              </button>
+            </div>
+
           </div>
+
+          <div class="fw-error-msg" id="fw-error-msg"></div>
+
+        </form>
+
+        <!-- Multi-city placeholder -->
+        <div class="fw-multicity-msg" id="fw-multicity-msg" hidden>
+          <i class="fas fa-route fw-multicity-icon"></i>
+          <p>Multi-city booking is available through our team.</p>
+          <a href="contact-us.html" class="fw-multicity-link">Contact Us to Book</a>
         </div>
+
       </div>
-    </div>
-
-    <!-- Book Flight Button -->
-    <div class="book-flight-button">
-      <button type="submit">Book Flight</button>
-    </div>
-  </form>
-</div>
-
     </section>
 
-    <!-- what set us section -->
+    <!-- ── What Sets RDG Travels Apart (unchanged) ──────────────────────────── -->
     <section class="why-choose-us-section what-set-us-apart-section">
       <div class="why-choose-us-text what-set-us-apart-text">
         <h2>What Sets RDG Travels Apart?</h2>
@@ -135,7 +625,7 @@
         <div class="feature-container hotel-feature-container">
           <div class="feature hotel-feature">
             <div class="feature-icon hotel-feature-icon">
-              <img src="images/icons8_adventures.svg" alt="Adventure Icon">
+              <img src="images/icons8_adventures.svg" alt="Adventure Icon" />
             </div>
             <div class="feature-detail hotel-feature-detail">
               <h4>Personalized Adventures</h4>
@@ -148,7 +638,7 @@
           </div>
           <div class="feature hotel-feature">
             <div class="feature-icon hotel-feature-icon">
-              <img src="images/mdi_flight.svg" alt="Flight Icon">
+              <img src="images/mdi_flight.svg" alt="Flight Icon" />
             </div>
             <div class="feature-detail hotel-feature-detail">
               <h4>Corporate Travel Solutions</h4>
@@ -162,7 +652,7 @@
           </div>
           <div class="feature hotel-feature">
             <div class="feature-icon hotel-feature-icon">
-                <img src="images/vaadin_medal2.svg" alt="Medal Icon">
+              <img src="images/vaadin_medal2.svg" alt="Medal Icon" />
             </div>
             <div class="feature-detail hotel-feature-detail">
               <h4>Unparalleled Expertise</h4>
@@ -175,7 +665,7 @@
           </div>
           <div class="feature hotel-feature">
             <div class="feature-icon hotel-feature-icon">
-                <img src="images/ri_global-fill.svg" alt="Globe Icon">
+              <img src="images/ri_global-fill.svg" alt="Globe Icon" />
             </div>
             <div class="feature-detail hotel-feature-detail">
               <h4>Global Network</h4>
@@ -193,208 +683,96 @@
       </div>
     </section>
 
-    <!-- services section -->
+    <!-- ── Services (unchanged) ─────────────────────────────────────────────── -->
     <section class="packages-section">
       <div class="packages-heading">
         <h2>Our Services</h2>
         <p>Taking Your Travel Experience To The Next Level</p>
       </div>
-
       <div class="packages-grid">
-        <!-- Container 1 -->
         <div class="package-container">
           <h3>Individual Travel</h3>
-          <p>
-            From romantic getaways to family adventures, we design bespoke trips
-            that turn your dreams into reality.
-          </p>
+          <p>From romantic getaways to family adventures, we design bespoke trips that turn your dreams into reality.</p>
           <img src="/images/service1.png" alt="Service 1 Image" />
         </div>
-
         <div class="package-container">
           <h3>Corporate Travel</h3>
-          <p>
-            Boost your business with our comprehensive corporate travel
-            management services, ensuring smooth, hassle-free journeys for your
-            team.
-          </p>
+          <p>Boost your business with our comprehensive corporate travel management services, ensuring smooth, hassle-free journeys for your team.</p>
           <img src="/images/service2.png" alt="Service 2 Image" />
         </div>
-
         <div class="package-container">
           <h3>Group Travel</h3>
-          <p>
-            Traveling with a group? We've got you covered with seamless planning
-            and coordination.
-          </p>
+          <p>Traveling with a group? We've got you covered with seamless planning and coordination.</p>
           <img src="/images/service3.png" alt="Service 3 Image" />
         </div>
-
         <div class="package-container">
           <h3>Tours</h3>
-          <p>
-            Explore the world with our expertly curated tours that enhance your
-            travel experience.
-          </p>
+          <p>Explore the world with our expertly curated tours that enhance your travel experience.</p>
           <img src="/images/service4.png" alt="Service 4 Image" />
         </div>
-
         <div class="package-container">
           <h3>Protocol Services</h3>
-          <p>
-            Experience the highest level of service with our protocol services,
-            ensuring smooth journey from start to finish.
-          </p>
+          <p>Experience the highest level of service with our protocol services, ensuring smooth journey from start to finish.</p>
           <img src="/images/service5.png" alt="Service 5 Image" />
         </div>
-
         <div class="package-container">
           <h3>Airport Pick-up and Drop-off</h3>
-          <p>
-            Leave the logistics to us. We'll ensure you're met at the airport
-            and safely transported to your destination.
-          </p>
+          <p>Leave the logistics to us. We'll ensure you're met at the airport and safely transported to your destination.</p>
           <img src="/images/service6.png" alt="Service 6 Image" />
         </div>
-
         <div class="package-container">
           <h3>Travel Insurance</h3>
-          <p>
-            Protect your journey with comprehensive travel insurance coverage
-            for peace of mind.
-          </p>
+          <p>Protect your journey with comprehensive travel insurance coverage for peace of mind.</p>
           <img src="/images/service7.png" alt="Service 7 Image" />
         </div>
       </div>
     </section>
 
-    <!-- why choose us section -->
+    <!-- ── Why Choose Us (unchanged) ────────────────────────────────────────── -->
     <section class="study-why-choose-us-section">
       <div class="why-choose-us-heading">
         <h2>Why Choose Us?</h2>
       </div>
-
       <div class="why-choose-us-grid">
-        <!-- Container 1 -->
         <div class="study-why-choose-us-container">
-          <img
-            src="./images/icon-park-solid_emotion-happy (1).svg"
-            alt="face smile"
-          />
+          <img src="./images/icon-park-solid_emotion-happy (1).svg" alt="face smile" />
           <h3>Customer-Centric Approach</h3>
-          <p>
-            Your satisfaction is our top priority. We listen to your needs and
-            ensure that every aspect of your journey exceeds your expectations.
-          </p>
+          <p>Your satisfaction is our top priority. We listen to your needs and ensure that every aspect of your journey exceeds your expectations.</p>
         </div>
-
         <div class="study-why-choose-us-container">
           <img src="./images/healthicons_money-bag (1).svg" alt="dollar sack" />
           <h3>Value for Money</h3>
-          <p>
-            We optimize your budget without compromising the quality of your
-            travel experience.
-          </p>
+          <p>We optimize your budget without compromising the quality of your travel experience.</p>
         </div>
-
         <div class="study-why-choose-us-container">
           <img src="./images/bx_support (1).svg" alt="headset" />
           <h3>24/7 Support</h3>
-          <p>
-            No matter where you are in the world, our support is available round
-            the clock to ensure your peace of mind.
-          </p>
+          <p>No matter where you are in the world, our support is available round the clock to ensure your peace of mind.</p>
         </div>
       </div>
     </section>
 
-    <!-- flight booking two -->
+    <!-- ── Second booking CTA (replaces old form) ───────────────────────────── -->
     <section>
       <div class="flight-section-two">
-        <!-- Book Flight Form -->
-<div id="book-flight" class="book-flight-section">
-  <form class="flight-form" method="POST" id="flight-form2" action="/booking-flight">
-    <!-- Flight Details -->
-    <div class="flight-details">
-      <div class="flight-details-heading">
-        <div class="flight-icon">
-          <img src="images/mdi_flight.svg" alt="flight icon" />
+        <div style="text-align:center;color:#fff;">
+          <h2 style="font-size:1.75rem;font-weight:700;margin-bottom:12px;">Ready to fly?</h2>
+          <p style="font-size:1rem;opacity:0.85;margin-bottom:24px;">
+            Search hundreds of airlines and book your next trip in minutes.
+          </p>
+          <a href="#book-flight"
+             style="display:inline-block;padding:14px 36px;background:#fff;color:#093ba8;
+                    border-radius:8px;font-weight:700;font-size:1rem;text-decoration:none;
+                    transition:opacity 0.15s;"
+             onmouseover="this.style.opacity='0.9'"
+             onmouseout="this.style.opacity='1'">
+            Search Flights
+          </a>
         </div>
-        <div class="text">
-          <p>Where are you flying?</p>
-        </div>
-      </div>
-
-      <div class="trip-type-group">
-        <label for="trip-type">Trip Type</label>
-        <div class="trip-type-options">
-          <label>
-            <input type="radio" name="tripType" value="oneway" onchange="toggleReturnDate(event)"> One way
-          </label>
-          <label>
-            <input type="radio" name="tripType" value="return" onchange="toggleReturnDate(event)"> Return
-          </label>
-        </div>
-      </div>
-
-      <!-- Input fields for Flying From, Flying To, Leaving On, Returning On -->
-      <div class="flight-info">
-        <div class="form-group flex-group top-input">
-          <label for="flyingFrom">Flying From</label>
-          <input type="text" id="flyingFrom2" name="flyingFrom" placeholder="Lagos, Nigeria" pattern="^[a-zA-Z\s,]+(?:\s\([a-zA-Z\s,]+\))?$" title="Please enter the departure city and country" required />
-        </div>
-
-        <div class="form-group flex-group top-input">
-          <label for="flyingTo">Flying To</label>
-          <input type="text" id="flyingTo2" name="flyingTo" placeholder="London, England" pattern="^[a-zA-Z\s,]+(?:\s\([a-zA-Z\s,]+\))?$" title="Please enter the destination city and country" required />
-        </div>
-
-        <div class="form-group flex-group top-input">
-          <label for="leavingOn">Leaving On</label>
-          <input type="date" id="leavingOn2" name="leavingOn" required />
-        </div>
-
-        <div class="form-group flex-group top-input" id="returningOnGroup">
-          <label for="returningOn">Returning On</label>
-          <input type="date" id="returningOn2" name="returningOn" />
-          <div id="returningOnError" class="error-message" style="display: none">
-            Returning date must be after leaving date
-          </div>
-        </div>
-
-        <div class="form-group flex-group">
-          <label for="fullName">Full Name</label>
-          <input type="text" id="fullName2" name="fullName" placeholder="Chinwe Segun" required />
-        </div>
-
-        <div class="form-group flex-group">
-          <label for="email">Email Address</label>
-          <input type="email" id="email2" name="email" placeholder="chinwesegun@mail.com" title="Please enter a valid email address" required />
-        </div>
-
-        <div class="form-group flex-group">
-          <label for="phone">Phone Number</label>
-          <input type="tel" id="phone2" name="phone" pattern="[+]{1}[0-9 ]{1,}" placeholder="+234 566 566 7789" required oninput="formatPhoneNumber(this)" />
-        </div>
-
-        <div class="form-group flex-group guest">
-          <label for="passengers">No of Passengers</label>
-          <div class="input-with-icon">
-            <input type="number" id="passengers2" name="passengers" min="1" placeholder="2" required />
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Book Flight Button -->
-    <div class="book-flight-button">
-      <button type="submit">Book Flight</button>
-    </div>
-  </form>
-</div>
       </div>
     </section>
-    <!-- discover section -->
+
+    <!-- ── Discover (unchanged) ──────────────────────────────────────────────── -->
     <section class="discover-section">
       <div class="discover-text">
         <h2>Discover the world with RDG Travels.</h2>
@@ -402,8 +780,7 @@
       </div>
     </section>
 
-    <!-- footer -->
-
+    <!-- ── Footer (unchanged) ───────────────────────────────────────────────── -->
     <footer class="footer">
       <div class="footer-section footer-first-section">
         <div class="footer-container">
@@ -415,7 +792,6 @@
             <li><a href="privacy-policy.html">Privacy Policy</a></li>
           </ul>
         </div>
-
         <div class="footer-container">
           <h4>Services</h4>
           <ul>
@@ -424,36 +800,16 @@
             <li><a href="hotel-service.html">Hotel Reservations</a></li>
           </ul>
         </div>
-
         <div class="footer-container">
           <h4>Follow Us</h4>
           <ul class="social-icons">
-            <li>
-              <a
-                href="https://web.facebook.com/profile.php?id=100087906160728"
-                target="_blank"
-                ><i class="fab fa-facebook"></i
-              ></a>
-            </li>
-            <li>
-              <a href="#"><i class="fab fa-twitter"></i></a>
-            </li>
-            <li>
-              <a href="https://www.instagram.com/rdgtravels/" target="_blank"
-                ><i class="fab fa-instagram"></i
-              ></a>
-            </li>
-            <li>
-              <a
-                href="https://www.linkedin.com/in/estherayanleye/"
-                target="_blank"
-                ><i class="fab fa-linkedin"></i
-              ></a>
-            </li>
+            <li><a href="https://web.facebook.com/profile.php?id=100087906160728" target="_blank"><i class="fab fa-facebook"></i></a></li>
+            <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+            <li><a href="https://www.instagram.com/rdgtravels/" target="_blank"><i class="fab fa-instagram"></i></a></li>
+            <li><a href="https://www.linkedin.com/in/estherayanleye/" target="_blank"><i class="fab fa-linkedin"></i></a></li>
           </ul>
         </div>
       </div>
-
       <div class="footer-section subscribe-section">
         <div class="footer-container">
           <div>
@@ -461,22 +817,21 @@
             <p>A monthly digest of the latest news, articles, and resources.</p>
           </div>
           <form method="POST" id="subscribe-form" action="/subscribe">
-            <input type="email" name="email" placeholder="Email address" title="Please enter a valid email address" required />
+            <input type="email" name="email" placeholder="Email address"
+                   title="Please enter a valid email address" required />
             <button type="submit">Subscribe</button>
           </form>
         </div>
       </div>
-
       <div class="footer-section copyright-section">
         <div class="footer-container">
-          <a href="index.html"
-            ><img src="images/RDG Logo (1) 2.svg" alt="RDG Logo"
-          /></a>
+          <a href="index.html"><img src="images/RDG Logo (1) 2.svg" alt="RDG Logo" /></a>
           <p>© <span id="copyright-year"></span> RDG Consults. All rights reserved.</p>
         </div>
       </div>
     </footer>
 
+    <!-- ── Modals (unchanged) ────────────────────────────────────────────────── -->
     <div id="success-modal" class="modal">
       <div class="modal-content">
         <span class="close" id="closeButton">&times;</span>
@@ -490,10 +845,7 @@
         </div>
         <div class="modal-text">
           <h2>Your Booking was successful</h2>
-          <p>
-            Thanks for booking a trip. We will share with you all the trip
-            details in your registered email address.
-          </p>
+          <p>Thanks for booking a trip. We will share with you all the trip details in your registered email address.</p>
         </div>
       </div>
     </div>
@@ -511,9 +863,7 @@
         </div>
         <div class="modal-text">
           <h2>Your Subscription was successful</h2>
-          <p>
-            Thanks for subscribing to our newsletter. We will share with you our news in your registered email address.
-          </p>
+          <p>Thanks for subscribing to our newsletter. We will share with you our news in your registered email address.</p>
         </div>
       </div>
     </div>
@@ -522,27 +872,382 @@
       <div class="spinner"></div>
     </div>
 
-
+    <!-- ── Widget script ─────────────────────────────────────────────────────── -->
     <script>
-      function formatPhoneNumber(input) {
-        // Remove all non-digit characters
-        let phoneNumber = input.value.replace(/\D/g, '');
-    
-        // Format the phone number as desired
-        let formattedPhoneNumber = '+';
-        for (let i = 0; i < phoneNumber.length; i++) {
-          if (i === 3 || i === 6 || i === 9) {
-            formattedPhoneNumber += ' ';
-          }
-          formattedPhoneNumber += phoneNumber[i];
+      // ── Airport data ──────────────────────────────────────────────────────────
+      const AIRPORTS = [
+        // Nigeria
+        { code:'LOS', city:'Lagos',         name:'Murtala Muhammed International',      country:'Nigeria' },
+        { code:'ABV', city:'Abuja',          name:'Nnamdi Azikiwe International',         country:'Nigeria' },
+        { code:'PHC', city:'Port Harcourt',  name:'Port Harcourt International',          country:'Nigeria' },
+        { code:'KAN', city:'Kano',           name:'Mallam Aminu Kano International',      country:'Nigeria' },
+        { code:'ENU', city:'Enugu',          name:'Akanu Ibiam International',            country:'Nigeria' },
+        { code:'CBQ', city:'Calabar',        name:'Margaret Ekpo International',          country:'Nigeria' },
+        { code:'BNI', city:'Benin City',     name:'Benin Airport',                        country:'Nigeria' },
+        { code:'ILR', city:'Ilorin',         name:'Ilorin International',                 country:'Nigeria' },
+        // West Africa
+        { code:'ACC', city:'Accra',          name:'Kotoka International',                 country:'Ghana' },
+        { code:'ABJ', city:'Abidjan',        name:'Félix-Houphouët-Boigny International',country:'Côte d\'Ivoire' },
+        { code:'DKR', city:'Dakar',          name:'Léopold Sédar Senghor International',  country:'Senegal' },
+        { code:'COO', city:'Cotonou',        name:'Cadjehoun Airport',                    country:'Benin' },
+        { code:'LFW', city:'Lomé',           name:'Gnassingbé Eyadéma International',     country:'Togo' },
+        { code:'OUA', city:'Ouagadougou',    name:'Ouagadougou Airport',                  country:'Burkina Faso' },
+        { code:'BKO', city:'Bamako',         name:'Bamako–Sénou International',           country:'Mali' },
+        { code:'CKY', city:'Conakry',        name:'Conakry International',                country:'Guinea' },
+        { code:'FNA', city:'Freetown',       name:'Lungi International',                  country:'Sierra Leone' },
+        { code:'ROB', city:'Monrovia',       name:'Roberts International',                country:'Liberia' },
+        // East Africa
+        { code:'NBO', city:'Nairobi',        name:'Jomo Kenyatta International',          country:'Kenya' },
+        { code:'ADD', city:'Addis Ababa',    name:'Addis Ababa Bole International',       country:'Ethiopia' },
+        { code:'EBB', city:'Entebbe',        name:'Entebbe International',                country:'Uganda' },
+        { code:'DAR', city:'Dar es Salaam',  name:'Julius Nyerere International',         country:'Tanzania' },
+        { code:'ZNZ', city:'Zanzibar',       name:'Abeid Amani Karume International',     country:'Tanzania' },
+        { code:'KGL', city:'Kigali',         name:'Kigali International',                 country:'Rwanda' },
+        // Central & Southern Africa
+        { code:'DLA', city:'Douala',         name:'Douala International',                 country:'Cameroon' },
+        { code:'NSI', city:'Yaoundé',        name:'Yaoundé Nsimalen International',       country:'Cameroon' },
+        { code:'LBV', city:'Libreville',     name:'Léon-Mba International',               country:'Gabon' },
+        { code:'FIH', city:'Kinshasa',       name:'N\'djili International',               country:'DR Congo' },
+        { code:'LUN', city:'Lusaka',         name:'Kenneth Kaunda International',         country:'Zambia' },
+        { code:'HRE', city:'Harare',         name:'Robert Gabriel Mugabe International',  country:'Zimbabwe' },
+        { code:'JNB', city:'Johannesburg',   name:'O.R. Tambo International',             country:'South Africa' },
+        { code:'CPT', city:'Cape Town',      name:'Cape Town International',              country:'South Africa' },
+        { code:'DUR', city:'Durban',         name:'King Shaka International',             country:'South Africa' },
+        // North Africa
+        { code:'CMN', city:'Casablanca',     name:'Mohammed V International',             country:'Morocco' },
+        { code:'CAI', city:'Cairo',          name:'Cairo International',                  country:'Egypt' },
+        { code:'TUN', city:'Tunis',          name:'Tunis-Carthage International',         country:'Tunisia' },
+        { code:'ALG', city:'Algiers',        name:'Houari Boumediene Airport',            country:'Algeria' },
+        // UK
+        { code:'LHR', city:'London',         name:'Heathrow Airport',                     country:'United Kingdom' },
+        { code:'LGW', city:'London',         name:'Gatwick Airport',                      country:'United Kingdom' },
+        { code:'STN', city:'London',         name:'Stansted Airport',                     country:'United Kingdom' },
+        { code:'MAN', city:'Manchester',     name:'Manchester Airport',                   country:'United Kingdom' },
+        { code:'EDI', city:'Edinburgh',      name:'Edinburgh Airport',                    country:'United Kingdom' },
+        { code:'BHX', city:'Birmingham',     name:'Birmingham Airport',                   country:'United Kingdom' },
+        // Europe
+        { code:'CDG', city:'Paris',          name:'Charles de Gaulle Airport',            country:'France' },
+        { code:'ORY', city:'Paris',          name:'Orly Airport',                         country:'France' },
+        { code:'AMS', city:'Amsterdam',      name:'Amsterdam Airport Schiphol',           country:'Netherlands' },
+        { code:'FRA', city:'Frankfurt',      name:'Frankfurt Airport',                    country:'Germany' },
+        { code:'MUC', city:'Munich',         name:'Munich Airport',                       country:'Germany' },
+        { code:'BER', city:'Berlin',         name:'Berlin Brandenburg Airport',           country:'Germany' },
+        { code:'MAD', city:'Madrid',         name:'Adolfo Suárez Madrid–Barajas',         country:'Spain' },
+        { code:'BCN', city:'Barcelona',      name:'Barcelona–El Prat Airport',            country:'Spain' },
+        { code:'FCO', city:'Rome',           name:'Leonardo da Vinci International',      country:'Italy' },
+        { code:'MXP', city:'Milan',          name:'Milan Malpensa Airport',               country:'Italy' },
+        { code:'ZRH', city:'Zürich',         name:'Zürich Airport',                       country:'Switzerland' },
+        { code:'BRU', city:'Brussels',       name:'Brussels Airport',                     country:'Belgium' },
+        { code:'LIS', city:'Lisbon',         name:'Lisbon Airport',                       country:'Portugal' },
+        { code:'VIE', city:'Vienna',         name:'Vienna International Airport',         country:'Austria' },
+        { code:'CPH', city:'Copenhagen',     name:'Copenhagen Airport',                   country:'Denmark' },
+        { code:'ARN', city:'Stockholm',      name:'Stockholm Arlanda Airport',            country:'Sweden' },
+        { code:'OSL', city:'Oslo',           name:'Oslo Airport',                         country:'Norway' },
+        { code:'HEL', city:'Helsinki',       name:'Helsinki Airport',                     country:'Finland' },
+        { code:'WAW', city:'Warsaw',         name:'Warsaw Chopin Airport',                country:'Poland' },
+        { code:'ATH', city:'Athens',         name:'Athens International Airport',         country:'Greece' },
+        { code:'IST', city:'Istanbul',       name:'Istanbul Airport',                     country:'Turkey' },
+        { code:'SAW', city:'Istanbul',       name:'Sabiha Gökçen International',          country:'Turkey' },
+        // Middle East
+        { code:'DXB', city:'Dubai',          name:'Dubai International Airport',          country:'UAE' },
+        { code:'AUH', city:'Abu Dhabi',      name:'Abu Dhabi International Airport',      country:'UAE' },
+        { code:'DOH', city:'Doha',           name:'Hamad International Airport',          country:'Qatar' },
+        { code:'KWI', city:'Kuwait City',    name:'Kuwait International Airport',         country:'Kuwait' },
+        { code:'BAH', city:'Manama',         name:'Bahrain International Airport',        country:'Bahrain' },
+        { code:'RUH', city:'Riyadh',         name:'King Khalid International Airport',    country:'Saudi Arabia' },
+        { code:'JED', city:'Jeddah',         name:'King Abdulaziz International Airport', country:'Saudi Arabia' },
+        { code:'AMM', city:'Amman',          name:'Queen Alia International Airport',     country:'Jordan' },
+        { code:'BEY', city:'Beirut',         name:'Rafic Hariri International Airport',   country:'Lebanon' },
+        // Asia
+        { code:'BOM', city:'Mumbai',         name:'Chhatrapati Shivaji Maharaj Intl',     country:'India' },
+        { code:'DEL', city:'New Delhi',      name:'Indira Gandhi International Airport',  country:'India' },
+        { code:'SIN', city:'Singapore',      name:'Singapore Changi Airport',             country:'Singapore' },
+        { code:'BKK', city:'Bangkok',        name:'Suvarnabhumi Airport',                 country:'Thailand' },
+        { code:'HKG', city:'Hong Kong',      name:'Hong Kong International Airport',      country:'China' },
+        { code:'PVG', city:'Shanghai',       name:'Shanghai Pudong International',        country:'China' },
+        { code:'PEK', city:'Beijing',        name:'Beijing Capital International',        country:'China' },
+        { code:'NRT', city:'Tokyo',          name:'Narita International Airport',         country:'Japan' },
+        { code:'HND', city:'Tokyo',          name:'Haneda Airport',                       country:'Japan' },
+        { code:'ICN', city:'Seoul',          name:'Incheon International Airport',        country:'South Korea' },
+        { code:'KUL', city:'Kuala Lumpur',   name:'Kuala Lumpur International Airport',   country:'Malaysia' },
+        { code:'CGK', city:'Jakarta',        name:'Soekarno–Hatta International',         country:'Indonesia' },
+        // North America
+        { code:'JFK', city:'New York',       name:'John F. Kennedy International',        country:'USA' },
+        { code:'EWR', city:'Newark',         name:'Newark Liberty International',         country:'USA' },
+        { code:'LAX', city:'Los Angeles',    name:'Los Angeles International',            country:'USA' },
+        { code:'ORD', city:'Chicago',        name:'O\'Hare International',                country:'USA' },
+        { code:'IAD', city:'Washington D.C.',name:'Dulles International Airport',         country:'USA' },
+        { code:'ATL', city:'Atlanta',        name:'Hartsfield-Jackson Atlanta Intl',      country:'USA' },
+        { code:'MIA', city:'Miami',          name:'Miami International Airport',          country:'USA' },
+        { code:'IAH', city:'Houston',        name:'George Bush Intercontinental',         country:'USA' },
+        { code:'YYZ', city:'Toronto',        name:'Toronto Pearson International',        country:'Canada' },
+        { code:'YUL', city:'Montreal',       name:'Montréal-Trudeau International',       country:'Canada' },
+        { code:'YVR', city:'Vancouver',      name:'Vancouver International Airport',      country:'Canada' },
+        // Oceania
+        { code:'SYD', city:'Sydney',         name:'Sydney Airport',                       country:'Australia' },
+        { code:'MEL', city:'Melbourne',      name:'Melbourne Airport',                    country:'Australia' },
+      ];
+
+      function searchAirports(q) {
+        const s = q.trim().toLowerCase();
+        if (s.length < 1) return [];
+        return AIRPORTS.filter(a =>
+          a.code.toLowerCase().startsWith(s) ||
+          a.city.toLowerCase().includes(s) ||
+          a.name.toLowerCase().includes(s) ||
+          a.country.toLowerCase().includes(s)
+        ).slice(0, 8);
+      }
+
+      // ── State ─────────────────────────────────────────────────────────────────
+      let tripType  = 'oneway';
+      let adults    = 1;
+      let children  = 0;
+      let infants   = 0;
+
+      // ── Helpers ───────────────────────────────────────────────────────────────
+
+      function updatePaxBtn() {
+        const total = adults + children + infants;
+        const cabin = document.getElementById('fw-cabin');
+        const label = cabin.options[cabin.selectedIndex].text;
+        const paxStr = total === 1
+          ? '1 Adult'
+          : total + ' Passengers';
+        document.getElementById('fw-pax-btn').textContent = paxStr + ' · ' + label;
+        document.getElementById('fw-adults-dec').disabled   = adults   <= 1;
+        document.getElementById('fw-children-dec').disabled = children <= 0;
+        document.getElementById('fw-infants-dec').disabled  = infants  <= 0;
+      }
+
+      function buildDropdownItem(airport) {
+        const li = document.createElement('li');
+        li.setAttribute('role', 'option');
+        li.innerHTML = `
+          <span class="fw-dd-code">${airport.code}</span>
+          <span class="fw-dd-info">
+            <span class="fw-dd-city">${airport.city}, ${airport.country}</span>
+            <span class="fw-dd-name">${airport.name}</span>
+          </span>`;
+        return li;
+      }
+
+      function wireDropdown(textId, codeId, listId) {
+        const textEl = document.getElementById(textId);
+        const codeEl = document.getElementById(codeId);
+        const listEl = document.getElementById(listId);
+
+        function populateList(q) {
+          listEl.innerHTML = '';
+          const results = searchAirports(q);
+          if (!results.length) { listEl.classList.remove('open'); return; }
+          results.forEach(airport => {
+            const li = buildDropdownItem(airport);
+            li.addEventListener('mousedown', e => {
+              e.preventDefault();
+              textEl.value = airport.city + ' (' + airport.code + ')';
+              codeEl.value = airport.code;
+              listEl.classList.remove('open');
+              textEl.classList.remove('fw-error-field');
+            });
+            listEl.appendChild(li);
+          });
+          listEl.classList.add('open');
         }
 
-        // Update the input value with the formatted phone number
-        input.value = formattedPhoneNumber;
-    }
+        textEl.addEventListener('input', () => {
+          codeEl.value = '';
+          populateList(textEl.value);
+        });
+
+        textEl.addEventListener('focus', () => {
+          if (textEl.value) populateList(textEl.value);
+        });
+
+        textEl.addEventListener('blur', () => {
+          setTimeout(() => listEl.classList.remove('open'), 150);
+        });
+      }
+
+      // ── Init dropdowns ────────────────────────────────────────────────────────
+      wireDropdown('fw-origin-text', 'fw-origin-code', 'fw-origin-list');
+      wireDropdown('fw-dest-text',   'fw-dest-code',   'fw-dest-list');
+
+      // ── Swap ──────────────────────────────────────────────────────────────────
+      document.getElementById('fw-swap').addEventListener('click', () => {
+        const oText = document.getElementById('fw-origin-text').value;
+        const oCode = document.getElementById('fw-origin-code').value;
+        const dText = document.getElementById('fw-dest-text').value;
+        const dCode = document.getElementById('fw-dest-code').value;
+        document.getElementById('fw-origin-text').value = dText;
+        document.getElementById('fw-origin-code').value = dCode;
+        document.getElementById('fw-dest-text').value   = oText;
+        document.getElementById('fw-dest-code').value   = oCode;
+      });
+
+      // ── Trip type tabs ────────────────────────────────────────────────────────
+      document.querySelectorAll('.fw-tab').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.fw-tab').forEach(t => t.classList.remove('fw-tab--active'));
+          btn.classList.add('fw-tab--active');
+          tripType = btn.dataset.trip;
+
+          const form       = document.getElementById('fw-form');
+          const multicity  = document.getElementById('fw-multicity-msg');
+          const returnField = document.getElementById('fw-return-field');
+
+          if (tripType === 'multicity') {
+            form.hidden      = true;
+            multicity.hidden = false;
+          } else {
+            form.hidden      = false;
+            multicity.hidden = true;
+            returnField.style.display = tripType === 'return' ? '' : 'none';
+          }
+        });
+      });
+
+      // Hide return field initially (one-way default)
+      document.getElementById('fw-return-field').style.display = 'none';
+
+      // ── Passenger panel ───────────────────────────────────────────────────────
+      const paxPanel = document.getElementById('fw-pax-panel');
+      const paxBtn   = document.getElementById('fw-pax-btn');
+
+      paxBtn.addEventListener('click', () => {
+        const open = !paxPanel.hidden;
+        paxPanel.hidden = open;
+        paxBtn.setAttribute('aria-expanded', String(!open));
+      });
+
+      document.getElementById('fw-pax-done').addEventListener('click', () => {
+        paxPanel.hidden = true;
+        paxBtn.setAttribute('aria-expanded', 'false');
+      });
+
+      document.addEventListener('click', e => {
+        if (!document.querySelector('.fw-pax-wrap').contains(e.target)) {
+          paxPanel.hidden = true;
+          paxBtn.setAttribute('aria-expanded', 'false');
+        }
+      });
+
+      function wireCounter(decId, incId, getter, setter, min, max) {
+        document.getElementById(decId).addEventListener('click', () => {
+          if (getter() > min) { setter(getter() - 1); updatePaxBtn(); }
+        });
+        document.getElementById(incId).addEventListener('click', () => {
+          if (getter() < max) { setter(getter() + 1); updatePaxBtn(); }
+        });
+      }
+
+      wireCounter('fw-adults-dec',   'fw-adults-inc',
+        () => adults,   v => { adults   = v; document.getElementById('fw-adults-val').textContent   = v; }, 1, 9);
+      wireCounter('fw-children-dec', 'fw-children-inc',
+        () => children, v => { children = v; document.getElementById('fw-children-val').textContent = v; }, 0, 9);
+      wireCounter('fw-infants-dec',  'fw-infants-inc',
+        () => infants,  v => { infants  = v; document.getElementById('fw-infants-val').textContent  = v; }, 0, 9);
+
+      document.getElementById('fw-cabin').addEventListener('change', updatePaxBtn);
+
+      // ── Set today as minimum date ─────────────────────────────────────────────
+      const today = new Date().toISOString().split('T')[0];
+      document.getElementById('fw-depart').min = today;
+      document.getElementById('fw-return').min = today;
+
+      document.getElementById('fw-depart').addEventListener('change', function () {
+        document.getElementById('fw-return').min = this.value || today;
+      });
+
+      // ── Form submit ───────────────────────────────────────────────────────────
+      document.getElementById('fw-form').addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        const errorEl = document.getElementById('fw-error-msg');
+        errorEl.textContent = '';
+        errorEl.classList.remove('visible');
+
+        const originCode  = document.getElementById('fw-origin-code').value.trim();
+        const destCode    = document.getElementById('fw-dest-code').value.trim();
+        const depart      = document.getElementById('fw-depart').value;
+        const ret         = document.getElementById('fw-return').value;
+        const cabinClass  = document.getElementById('fw-cabin').value;
+
+        if (!originCode) {
+          document.getElementById('fw-origin-text').classList.add('fw-error-field');
+          errorEl.textContent = 'Please select a departure airport from the list.';
+          errorEl.classList.add('visible');
+          return;
+        }
+
+        if (!destCode) {
+          document.getElementById('fw-dest-text').classList.add('fw-error-field');
+          errorEl.textContent = 'Please select a destination airport from the list.';
+          errorEl.classList.add('visible');
+          return;
+        }
+
+        if (originCode === destCode) {
+          errorEl.textContent = 'Origin and destination cannot be the same airport.';
+          errorEl.classList.add('visible');
+          return;
+        }
+
+        if (!depart) {
+          errorEl.textContent = 'Please select a departure date.';
+          errorEl.classList.add('visible');
+          return;
+        }
+
+        if (tripType === 'return' && !ret) {
+          errorEl.textContent = 'Please select a return date.';
+          errorEl.classList.add('visible');
+          return;
+        }
+
+        if (tripType === 'return' && ret <= depart) {
+          errorEl.textContent = 'Return date must be after the departure date.';
+          errorEl.classList.add('visible');
+          return;
+        }
+
+        const params = new URLSearchParams({
+          origin:        originCode,
+          destination:   destCode,
+          departureDate: depart,
+          adults,
+          children,
+          infants,
+          cabinClass,
+          tripType,
+        });
+        if (tripType === 'return' && ret) params.set('returnDate', ret);
+
+        window.location.href = 'search.html?' + params.toString();
+      });
+
+      // ── Footer: copyright year + subscribe modal ───────────────────────────────
+      document.getElementById('copyright-year').textContent = new Date().getFullYear();
+
+      document.getElementById('subscribe-form').addEventListener('submit', function (e) {
+        e.preventDefault();
+        document.getElementById('subscribe-modal').style.display = 'flex';
+      });
+
+      document.querySelectorAll('.modal .close').forEach(btn => {
+        btn.addEventListener('click', () => {
+          btn.closest('.modal').style.display = 'none';
+        });
+      });
+
+      window.addEventListener('click', e => {
+        document.querySelectorAll('.modal').forEach(m => {
+          if (e.target === m) m.style.display = 'none';
+        });
+      });
     </script>
 
     <script src="/js/form-validation.js"></script>
-    <!-- <script src="/app.js"></script> -->
+
   </body>
 </html>
