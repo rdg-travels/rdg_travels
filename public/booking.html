@@ -786,30 +786,38 @@
         .join('');
 
       // ── FX: convert to NGN for Paystack ──────────────────────────────────────
-      // Live rate fetched from get-fx-rate.js; fallback used if that call fails.
       const FALLBACK_FX = { GBP: 2050, USD: 1620, EUR: 1750, ZAR: 88 };
-      // window._fxRates populated after page load; keyed by source currency.
       window._fxRates = {};
+      window._userCurrency = { code: 'USD', symbol: '$' };
 
       function toNGN(amount, currency) {
         if (currency === 'NGN') return parseFloat(amount);
-        const rate = window._fxRates[currency] || FALLBACK_FX[currency] || 1600;
+        const rate = window._fxRates[currency + '_NGN'] || FALLBACK_FX[currency] || 1600;
         return Math.round(parseFloat(amount) * rate);
       }
 
-      async function fetchFXRate(currency) {
-        if (currency === 'NGN' || window._fxRates[currency]) return;
+      async function fetchFXRate(fromCurrency, toCurrency) {
+        const key = fromCurrency + '_' + toCurrency;
+        if (window._fxRates[key]) return window._fxRates[key];
+        if (fromCurrency === toCurrency) { window._fxRates[key] = 1; return 1; }
         try {
-          const res  = await fetch(`/.netlify/functions/get-fx-rate?from=${currency}&to=NGN`);
+          const res  = await fetch(`/.netlify/functions/get-fx-rate?from=${fromCurrency}&to=${toCurrency}`);
           const data = await res.json();
-          if (data.rate) window._fxRates[currency] = data.rate;
-        } catch {
-          // toNGN will use FALLBACK_FX
-        }
+          if (data.rate) window._fxRates[key] = data.rate;
+          return data.rate || 1;
+        } catch { return 1; }
       }
 
-      function fmtCurrency(amount, currency) {
-        return currency + ' ' + Number(amount).toLocaleString('en-US', {
+      async function loadUserCurrency() {
+        try {
+          const res  = await fetch('/.netlify/functions/get-currency');
+          const data = await res.json();
+          if (data.code) window._userCurrency = { code: data.code, symbol: data.symbol };
+        } catch { /* keep default */ }
+      }
+
+      function fmtCurrency(amount, symbol) {
+        return symbol + Number(amount).toLocaleString('en-US', {
           minimumFractionDigits: 2, maximumFractionDigits: 2
         });
       }
@@ -852,15 +860,24 @@
       }
 
       // ── Render flight summary ─────────────────────────────────────────────────
-      function renderSummary(offer) {
+      async function renderSummary(offer) {
         const isReturn = offer.slices.length > 1;
         const totalPax = adults + children + infants;
-        const ngn      = toNGN(offer.total_amount, offer.total_currency);
-        const totalNGN = ngn * totalPax;
+
+        // Convert to user's display currency
+        const { code: displayCode, symbol: displaySymbol } = window._userCurrency;
+        const displayRate  = await fetchFXRate(offer.total_currency, displayCode);
+        const displayPer   = parseFloat(offer.total_amount) * displayRate;
+        const displayTotal = displayPer * totalPax;
+
+        // Still need NGN for Paystack (internal only)
+        const ngnRate  = await fetchFXRate(offer.total_currency, 'NGN');
+        window._fxRates[offer.total_currency + '_NGN'] = ngnRate;
+        const totalNGN = Math.round(parseFloat(offer.total_amount) * ngnRate * totalPax);
 
         const carrier = offer.slices[0].segments[0].marketing_carrier;
 
-        let legsHTML = offer.slices.map((slice, i) => {
+        const legsHTML = offer.slices.map((slice, i) => {
           const first = slice.segments[0];
           const last  = slice.segments[slice.segments.length - 1];
           const label = isReturn ? (i === 0 ? 'Outbound' : 'Return') : 'Flight';
@@ -881,11 +898,12 @@
             </div>`;
         }).join('<hr class="bk-summary-divider">');
 
-        const paxLabel = [
-          adults   ? adults   + ' adult'   + (adults   > 1 ? 's' : '') : '',
-          children ? children + ' child'   + (children > 1 ? 'ren' : '') : '',
-          infants  ? infants  + ' infant'  + (infants  > 1 ? 's' : '') : '',
-        ].filter(Boolean).join(', ');
+        const ngnNote = displayCode !== 'NGN'
+          ? `<div class="bk-price-row">
+               <span style="color:#9ca3af;font-size:.75rem;">Charged via Paystack</span>
+               <span style="color:#9ca3af;font-size:.75rem;">${fmtNGN(totalNGN)}</span>
+             </div>`
+          : '';
 
         document.getElementById('bk-summary-body').innerHTML = `
           <div class="bk-summary-airline">
@@ -899,18 +917,14 @@
           ${legsHTML}
           <hr class="bk-summary-divider">
           <div class="bk-price-row">
-            <span>${fmtCurrency(offer.total_amount, offer.total_currency)} × ${totalPax} pax</span>
-            <span>${fmtCurrency(parseFloat(offer.total_amount) * totalPax, offer.total_currency)}</span>
+            <span>${fmtCurrency(displayPer, displaySymbol)} × ${totalPax} pax</span>
+            <span>${fmtCurrency(displayTotal, displaySymbol)}</span>
           </div>
-          ${offer.total_currency !== 'NGN' ? `
-          <div class="bk-price-row">
-            <span style="color:#9ca3af;font-size:.75rem;">Approx. in NGN</span>
-            <span style="color:#9ca3af;font-size:.75rem;">${fmtNGN(totalNGN)}</span>
-          </div>` : ''}
+          ${ngnNote}
           <div class="bk-price-total">
             <span class="bk-price-total-label">Total</span>
             <div>
-              <div class="bk-price-total-amount">${fmtNGN(totalNGN)}</div>
+              <div class="bk-price-total-amount">${fmtCurrency(displayTotal, displaySymbol)}</div>
               <div class="bk-price-total-sub">incl. taxes &amp; fees</div>
             </div>
           </div>`;
@@ -1098,14 +1112,16 @@
         // Render forms immediately (don't wait for offer)
         renderPassengerForms();
 
-        // Confirm offer is still live, then fetch live FX rate for its currency
-        fetch('/.netlify/functions/select', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ offerId }),
-        })
-          .then(r => r.json().then(d => ({ ok: r.ok, data: d })))
-          .then(async ({ ok, data }) => {
+        // Confirm offer is still live + detect user currency in parallel
+        Promise.all([
+          fetch('/.netlify/functions/select', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ offerId }),
+          }).then(r => r.json().then(d => ({ ok: r.ok, data: d }))),
+          loadUserCurrency(),
+        ])
+          .then(async ([{ ok, data }]) => {
             if (!ok) {
               document.getElementById('bk-offer-error').hidden = false;
               document.getElementById('bk-offer-error-msg').textContent = data.error || 'This offer is no longer available.';
@@ -1113,9 +1129,7 @@
               return;
             }
             window._confirmedOffer = data.offer;
-            // Fetch live rate for whatever currency Duffel returned (usually GBP in sandbox)
-            await fetchFXRate(data.offer.total_currency);
-            renderSummary(data.offer);
+            await renderSummary(data.offer);
           })
           .catch(() => {
             document.getElementById('bk-summary-body').innerHTML =

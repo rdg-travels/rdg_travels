@@ -687,7 +687,43 @@
           </div>`;
       }
 
-      function renderCard(offer, sp) {
+      // ── User currency (detected from location) ───────────────────────────────
+      // Populated before cards render; defaults to USD if detection fails.
+      window._userCurrency = { code: 'USD', symbol: '$' };
+      window._displayRates = {}; // { 'GBP': 1.27 } — rate to convert INTO user currency
+
+      async function loadDisplayCurrency() {
+        try {
+          const res  = await fetch('/.netlify/functions/get-currency');
+          const data = await res.json();
+          if (data.code) window._userCurrency = { code: data.code, symbol: data.symbol };
+        } catch { /* keep default */ }
+      }
+
+      async function getDisplayRate(fromCurrency) {
+        const uc = window._userCurrency.code;
+        if (fromCurrency === uc) return 1;
+        const key = fromCurrency + '_' + uc;
+        if (window._displayRates[key]) return window._displayRates[key];
+        try {
+          const res  = await fetch(`/.netlify/functions/get-fx-rate?from=${fromCurrency}&to=${uc}`);
+          const data = await res.json();
+          if (data.rate) window._displayRates[key] = data.rate;
+          return data.rate || 1;
+        } catch { return 1; }
+      }
+
+      function fmtDisplay(amount, rate) {
+        const { code, symbol } = window._userCurrency;
+        const converted = parseFloat(amount) * rate;
+        const formatted = converted.toLocaleString('en-US', {
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2,
+        });
+        return { symbol, formatted, code };
+      }
+
+      function renderCard(offer, sp, displayRate) {
         const carrier = offer.slices[0].segments[0].marketing_carrier;
         const isReturn = offer.slices.length > 1;
 
@@ -707,10 +743,8 @@
         const outboundLabel = isReturn ? 'Outbound' : 'Flight';
         const returnLeg = isReturn ? legHTML(offer.slices[1], 'Return') : '';
 
-        const price = Number(offer.total_amount).toLocaleString('en-US', {
-          minimumFractionDigits: 2,
-          maximumFractionDigits: 2,
-        });
+        const rate = displayRate || 1;
+        const { symbol, formatted } = fmtDisplay(offer.total_amount, rate);
 
         return `
           <div class="sr-card">
@@ -728,8 +762,8 @@
             ${returnLeg}
             <div class="sr-card-footer">
               <div class="sr-price">
-                <span class="sr-currency">${offer.total_currency}</span>
-                <span class="sr-amount">${price}</span>
+                <span class="sr-currency">${symbol}</span>
+                <span class="sr-amount">${formatted}</span>
                 <span class="sr-per-pax">/ person</span>
               </div>
               <a href="booking.html?${bookingParams.toString()}" class="sr-select-btn">
@@ -768,24 +802,27 @@
 
       metaLabel.innerHTML = metaParts.map((t, i) => '<span>' + t + '</span>').join('');
 
-      // Fetch results
+      // Fetch results + user currency in parallel
       async function search() {
         try {
-          const res = await fetch('/.netlify/functions/search', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              origin:        sp.origin        || '',
-              destination:   sp.destination   || '',
-              departureDate: sp.departureDate  || '',
-              returnDate:    sp.returnDate     || undefined,
-              adults:        parseInt(sp.adults   || 1),
-              children:      parseInt(sp.children || 0),
-              infants:       parseInt(sp.infants  || 0),
-              cabinClass:    sp.cabinClass     || 'economy',
-              tripType:      sp.tripType       || 'oneway',
+          const [res] = await Promise.all([
+            fetch('/.netlify/functions/search', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                origin:        sp.origin        || '',
+                destination:   sp.destination   || '',
+                departureDate: sp.departureDate  || '',
+                returnDate:    sp.returnDate     || undefined,
+                adults:        parseInt(sp.adults   || 1),
+                children:      parseInt(sp.children || 0),
+                infants:       parseInt(sp.infants  || 0),
+                cabinClass:    sp.cabinClass     || 'economy',
+                tripType:      sp.tripType       || 'oneway',
+              }),
             }),
-          });
+            loadDisplayCurrency(),
+          ]);
 
           const data = await res.json();
 
@@ -804,11 +841,15 @@
             return;
           }
 
+          // Get FX rate once (all offers from Duffel share the same currency)
+          const offerCurrency = offers[0].total_currency;
+          const displayRate = await getDisplayRate(offerCurrency);
+
           const countEl = document.getElementById('sr-count');
           countEl.innerHTML = '<strong>' + offers.length + '</strong> flight' + (offers.length > 1 ? 's' : '') + ' found';
           countEl.style.display = 'block';
 
-          document.getElementById('sr-results').innerHTML = offers.map(o => renderCard(o, sp)).join('');
+          document.getElementById('sr-results').innerHTML = offers.map(o => renderCard(o, sp, displayRate)).join('');
 
         } catch (err) {
           document.getElementById('sr-skeleton').classList.remove('visible');
