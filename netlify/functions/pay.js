@@ -29,7 +29,7 @@ exports.handler = async (event) => {
     email,
     amount: Math.round(amount * 100), // kobo
     currency: currency || "NGN",
-    callback_url: "https://rdgtravels.com/confirmation.html",
+    callback_url: `${process.env.SITE_URL || "https://rdgtravels.com"}/confirmation.html`,
     metadata: {
       orderId, bookingReference,
       passengerName, origin, destination, departureDate, returnDate,
