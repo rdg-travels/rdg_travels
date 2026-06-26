@@ -4,8 +4,9 @@
   "description": "Welcome to the RDG Travels website project! This web application is designed to provide users with a platform for flight booking, exploring study abroad programs, and accessing hotel services. The project is developed using HTML/CSS for the frontend and Node.js for the backend.",
   "main": "app.js",
   "scripts": {
-    "dev": "netlify dev",
-    "build": "echo 'No build step required'",
+    "dev": "tinacms dev -c \"netlify dev\"",
+    "build": "tinacms build",
+    "admin": "tinacms dev",
     "test": "node test/test-search.js"
   },
   "keywords": [],

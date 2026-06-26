@@ -61,9 +61,15 @@
 
     <section class="hero-and-form">
       <section class="hero-section">
+        <!-- Promo banner — shown only when promo_banner_active is true in site-settings.json -->
+        <div id="promo-banner" style="display:none;background:#f59e0b;color:#111827;text-align:center;padding:10px 20px;font-size:0.9rem;font-weight:600;border-radius:8px;margin-bottom:16px;">
+          <span id="promo-banner-text"></span>
+          <a id="promo-banner-cta" href="#" style="margin-left:12px;background:#111827;color:#fff;padding:4px 14px;border-radius:4px;text-decoration:none;font-size:0.8rem;"></a>
+        </div>
+
         <div class="welcome-text">
-          <h1>Welcome to RDG Travels</h1>
-          <p>
+          <h1 id="hero-headline">Welcome to RDG Travels</h1>
+          <p id="hero-subtext">
             We redefine travel with personalized adventures, seamless
             corporate solutions, curated study abroad packages, and
             hassle-free visa processing.
@@ -770,6 +776,23 @@
   </script>
   <script src="/js/customer-feedback.js"></script>
   <script src="/js/form-validation.js"></script>
+  <script>
+    fetch('/content/site-settings.json')
+      .then(function(r){ return r.json(); })
+      .then(function(s){
+        if (s.hero_headline) document.getElementById('hero-headline').textContent = s.hero_headline;
+        if (s.hero_subtext)  document.getElementById('hero-subtext').textContent  = s.hero_subtext;
+        if (s.promo_banner_active) {
+          var banner = document.getElementById('promo-banner');
+          document.getElementById('promo-banner-text').textContent = s.promo_banner_text || '';
+          var cta = document.getElementById('promo-banner-cta');
+          cta.textContent = s.promo_banner_cta || '';
+          cta.href = s.promo_banner_url || '#';
+          banner.style.display = 'block';
+        }
+      })
+      .catch(function(){});
+  </script>
   <!-- <script src="/app.js"></script> -->
 </body>
 
