@@ -1,9 +1,0 @@
-fragment SiteSettingsParts on SiteSettings {
-  __typename
-  hero_headline
-  hero_subtext
-  promo_banner_active
-  promo_banner_text
-  promo_banner_cta
-  promo_banner_url
-}

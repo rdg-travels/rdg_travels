@@ -5,6 +5,8 @@
 
 [build.environment]
   NODE_VERSION = "18"
+  # TINA_PUBLIC_CLIENT_ID is intentionally embedded in the pre-built admin bundle (it's a public key)
+  SECRETS_SCAN_OMIT_KEYS = "TINA_PUBLIC_CLIENT_ID"
 
 [dev]
   publish = "public"
