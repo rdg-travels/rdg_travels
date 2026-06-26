@@ -174,7 +174,7 @@ async function sendConfirmationEmail(data, customerEmail) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      from: "RDG Travels <bookings@rdgtravels.com>",
+      from: "RDG Travels <no-reply@bookings.rdgtravels.com>",
       to: [customerEmail],
       subject: `Booking Confirmed — ${bookingReference}`,
       html,
