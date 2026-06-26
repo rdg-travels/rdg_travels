@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "dev": "npx tinacms dev -c \"netlify dev\"",
-    "build": "npx tinacms build || echo 'Tina cloud not ready, skipping admin build'",
+    "build": "npx tinacms build",
     "admin": "npx tinacms dev",
     "test": "node test/test-search.js"
   },
