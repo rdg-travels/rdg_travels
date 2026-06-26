@@ -38,6 +38,25 @@ async function sendConfirmationEmail(data, customerEmail, paystackReference) {
 
   const isReturn = tripType === "return" && returnDate;
 
+  const siteUrl = process.env.SITE_URL || "https://rdgtravels.com";
+  const confirmParams = new URLSearchParams({
+    reference:     paystackReference  || "",
+    bookingRef:    bookingReference   || "",
+    origin:        origin             || "",
+    destination:   destination        || "",
+    departureDate: departureDate      || "",
+    returnDate:    returnDate         || "",
+    tripType:      tripType           || "oneway",
+    airline:       airline            || "",
+    cabinClass:    cabinClass         || "",
+    adults:        adults             || "1",
+    children:      children           || "0",
+    infants:       infants            || "0",
+    totalAmountNGN: totalAmountNGN    || "",
+    passengerName: passengerName      || "",
+  });
+  const confirmUrl = `${siteUrl}/confirmation.html?${confirmParams.toString()}`;
+
   const routeSection = `
     <tr>
       <td style="padding:8px 0;color:#6b7280;font-size:14px;">Route</td>
@@ -132,7 +151,7 @@ async function sendConfirmationEmail(data, customerEmail, paystackReference) {
 
             <!-- CTA -->
             <div style="text-align:center;margin-bottom:24px;">
-              <a href="${process.env.SITE_URL || "https://rdgtravels.com"}/confirmation.html?reference=${paystackReference || ""}&bookingRef=${data.bookingReference || ""}"
+              <a href="${confirmUrl}"
                  style="display:inline-block;background:#093ba8;color:#fff;padding:12px 28px;
                         border-radius:8px;font-size:14px;font-weight:700;text-decoration:none;">
                 View Booking

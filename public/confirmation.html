@@ -640,8 +640,8 @@
       }
 
       // ── Read data ─────────────────────────────────────────────────────────────
-      const urlParams   = new URLSearchParams(location.search);
-      const paystackRef = urlParams.get('reference') || '';
+      const urlParams     = new URLSearchParams(location.search);
+      const paystackRef   = urlParams.get('reference') || '';
       const urlBookingRef = urlParams.get('bookingRef') || '';
 
       let summary = null;
@@ -649,10 +649,28 @@
         const raw = sessionStorage.getItem('bookingSummary');
         if (raw) {
           summary = JSON.parse(raw);
-          // Clear it so a page refresh doesn't re-show stale data
           sessionStorage.removeItem('bookingSummary');
         }
       } catch { /* malformed JSON — treat as missing */ }
+
+      // If no sessionStorage (e.g. opened from email), rebuild from URL params
+      if (!summary && urlBookingRef) {
+        summary = {
+          bookingReference: urlBookingRef,
+          origin:           urlParams.get('origin')        || '',
+          destination:      urlParams.get('destination')   || '',
+          departureDate:    urlParams.get('departureDate') || '',
+          returnDate:       urlParams.get('returnDate')    || '',
+          tripType:         urlParams.get('tripType')      || 'oneway',
+          airline:          urlParams.get('airline')       || '',
+          cabinClass:       urlParams.get('cabinClass')    || 'economy',
+          adults:           urlParams.get('adults')        || '1',
+          children:         urlParams.get('children')      || '0',
+          infants:          urlParams.get('infants')       || '0',
+          totalAmountNGN:   urlParams.get('totalAmountNGN') || '',
+          passengerName:    urlParams.get('passengerName') || '',
+        };
+      }
 
       // ── Render ────────────────────────────────────────────────────────────────
       const content   = document.getElementById('cf-content');
