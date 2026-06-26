@@ -4,15 +4,16 @@
   "description": "Welcome to the RDG Travels website project! This web application is designed to provide users with a platform for flight booking, exploring study abroad programs, and accessing hotel services. The project is developed using HTML/CSS for the frontend and Node.js for the backend.",
   "main": "app.js",
   "scripts": {
-    "dev": "tinacms dev -c \"netlify dev\"",
-    "build": "tinacms build",
-    "admin": "tinacms dev",
+    "dev": "npx tinacms dev -c \"netlify dev\"",
+    "build": "npx tinacms build",
+    "admin": "npx tinacms dev",
     "test": "node test/test-search.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@tinacms/cli": "^2.5.1",
     "body-parser": "^1.20.2",
     "bullmq": "^5.8.2",
     "cors": "^2.8.5",
@@ -20,7 +21,8 @@
     "express": "^4.18.2",
     "express-validator": "^7.0.1",
     "ioredis": "^5.4.1",
-    "nodemailer": "^6.9.10"
+    "nodemailer": "^6.9.10",
+    "tinacms": "^3.9.3"
   },
   "devDependencies": {
     "netlify-cli": "^26.1.0"
