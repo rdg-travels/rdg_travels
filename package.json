@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "dev": "npx tinacms dev -c \"netlify dev\"",
-    "build": "NODE_OPTIONS=--max_old_space_size=1024 npx tinacms build",
+    "build": "echo 'Admin pre-built — no rebuild needed'",
     "admin": "npx tinacms dev",
     "test": "node test/test-search.js"
   },
