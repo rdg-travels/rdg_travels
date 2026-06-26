@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "dev": "npx tinacms dev -c \"netlify dev\"",
-    "build": "echo 'Admin pre-built — no rebuild needed'",
+    "build": "cp -r content public/ && echo 'Admin pre-built — no rebuild needed'",
     "admin": "npx tinacms dev",
     "test": "node test/test-search.js"
   },
